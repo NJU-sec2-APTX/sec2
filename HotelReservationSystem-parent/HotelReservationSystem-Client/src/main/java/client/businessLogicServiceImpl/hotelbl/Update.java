@@ -1,29 +1,28 @@
 package client.businessLogicServiceImpl.hotelbl;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import client.businessLogicService.hotelblService.HotelblUpdateService;
-import client.dataService.HotelDataService;
+import common.dataService.HotelDataService;
+import common.otherEnumClasses.Person;
 import common.otherEnumClasses.Room;
 
 public class Update implements HotelblUpdateService{
-
+	
 	@Override
-	public boolean checkIn(int id, Date beginTime, int dayNum) {
-		Room room = HotelDataService.getRoom(id);
+	public boolean checkIn(Person person, int roomId, Date beginTime, int dayNum) {
+		Room room = HotelDataService.getRoom(roomId);
 		if(!room.isUsed){
 			room.isUsed = true;
 			room.beginTime = beginTime;
 			return HotelDataService.setRoom(room);
 		}
 		return false;
-		
 	}
 
 	@Override
-	public boolean checkOut(int id, String endTime) {
-		Room room = HotelDataService.getRoom(id);
+	public boolean checkOut(Person person, int roomID, Date endTime) {
+		Room room = HotelDataService.getRoom(person.id);
 		if(room.isUsed){
 			room.isUsed = false;
 			room.beginTime = null;
@@ -32,11 +31,4 @@ public class Update implements HotelblUpdateService{
 		}
 		return false;
 	}
-
-	@Override
-	public boolean adminRoom(ArrayList<Room> rooms) {
-		return HotelDataService.adminRoom(rooms);
-	}
-	
-	
 }

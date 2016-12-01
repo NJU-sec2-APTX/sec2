@@ -12,19 +12,19 @@ public class HotelVO {
 	public String area;
 	public String address;
 	public String introduction;
+	public double price;
 	public int star;
 	public double mark;
-	public ArrayList<Room> roomCondition;
+	public ArrayList<Room> rooms;
 	
 	public HotelVO(HotelPO hotelPO){
-		id = hotelPO.id;
-		name = hotelPO.name;
-		area = hotelPO.area;
-		address = hotelPO.address;
-		introduction = hotelPO.introduction;
-		star = hotelPO.star;
-		mark = hotelPO.mark;
-		
-		//convert rooms to rommCondition
+		id = hotelPO.getId();
+		name = hotelPO.getName();
+		area = hotelPO.getArea();
+		address = hotelPO.getAddress();
+		introduction = hotelPO.getIntroduction();
+		star = hotelPO.getStar();
+		mark = hotelPO.getMark();
+		rooms = hotelPO.getRooms();
 	}
 }

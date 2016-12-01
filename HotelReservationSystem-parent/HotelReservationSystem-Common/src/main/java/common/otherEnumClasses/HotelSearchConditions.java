@@ -13,5 +13,6 @@ public class HotelSearchConditions {
 	double markDown;
 	Date dateUp;
 	Date dateDown;
+	int restHotelNumber;
 	boolean isEverReserved;
 }

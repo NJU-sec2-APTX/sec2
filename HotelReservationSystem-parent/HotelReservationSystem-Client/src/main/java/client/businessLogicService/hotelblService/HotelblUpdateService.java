@@ -1,14 +1,13 @@
 package client.businessLogicService.hotelblService;
 
-import java.util.ArrayList;
+import java.util.Date;
 
-import client.po.Room;
+import common.otherEnumClasses.Person;
 
 public interface HotelblUpdateService {
 	
-	public boolean checkIn(int id, String beginTime, int dayNum);
+	public boolean checkIn(Person person, int roomId, Date beginTime, int dayNum);
 	
-	public boolean checkOut(int id, String endTime);
-	
-	public boolean adminRoom(ArrayList<Room> rooms);
+	public boolean checkOut(Person person, int roomId, Date endTime);
+
 }
