@@ -1,6 +1,7 @@
 package server.dataServiceImpl;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
@@ -11,7 +12,11 @@ import common.otherEnumClasses.ResultMessage;
 import common.otherEnumClasses.UserRole;
 import common.po.MemberPO;
 
-public class MemberDataServiceImpl implements MemberDataService{
+public class MemberDataServiceImpl extends UnicastRemoteObject implements MemberDataService{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3822375549030670538L;
 	private DBHelper databasehelper;
 	private String sql;
 	private String sql1;
@@ -56,6 +61,7 @@ public class MemberDataServiceImpl implements MemberDataService{
 		try {
 			databasehelper=new DBHelper(sql);
 			resultset=databasehelper.pst.executeQuery();
+			System.out.println(resultset==null);
 			String id = null;
 			UserRole userrole = null;
 			String name=null;

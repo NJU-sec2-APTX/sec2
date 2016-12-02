@@ -1,5 +1,7 @@
 package server.dataServiceImpl;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,8 +13,16 @@ import common.otherEnumClasses.UserRole;
 import common.po.StrategyPO;
 import common.vo.StrategyVO;
 
-public class StrategyDataServiceImpl implements StrategyDataService{
+public class StrategyDataServiceImpl extends UnicastRemoteObject implements StrategyDataService{
 
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8831632291308378492L;
+
+	public StrategyDataServiceImpl() throws RemoteException {
+	}
 
 	DBHelper databasehelper;
 	ResultSet resultset;
