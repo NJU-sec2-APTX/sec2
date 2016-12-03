@@ -8,5 +8,5 @@ import common.vo.UserVO;
 public interface HotelWorkerMaintainService {
 	public UserVO getUserInfo(String id,UserRole ur) throws Exception;
 	
-	public ResultMessage modifyUserInfo(String id,UserPO po) throws Exception;
+	public ResultMessage modifyUserInfo(UserPO po) throws Exception;
 }

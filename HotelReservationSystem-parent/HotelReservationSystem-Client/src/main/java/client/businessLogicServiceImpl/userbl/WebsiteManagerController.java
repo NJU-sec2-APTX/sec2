@@ -20,7 +20,7 @@ public class WebsiteManagerController implements WebsiteManagerMaintainService{
 
 	@Override
 	public UserVO getUserInfo(String id, UserRole ur) throws Exception {
-		return new UserVO(u.getUserInf(id, ur));
+		return u.getUserInf(id, ur);
 	}
 
 	@Override
@@ -30,8 +30,8 @@ public class WebsiteManagerController implements WebsiteManagerMaintainService{
 	}
 
 	@Override
-	public ResultMessage modifyUserInfo(String id, UserPO po) throws Exception {
-		return u.modifyUser(id, po);
+	public ResultMessage modifyUserInfo(UserPO po) throws Exception {
+		return u.modifyUser(po);
 	}
 
 	@Override
@@ -41,8 +41,7 @@ public class WebsiteManagerController implements WebsiteManagerMaintainService{
 	}
 
 	@Override
-	public ResultMessage addUser(String id, UserPO po) throws Exception {
-		return u.addUser(id, po);
-	}
-		
+	public ResultMessage addUser(UserPO po) throws Exception {
+		return u.addUser(po);
+	}		
 }

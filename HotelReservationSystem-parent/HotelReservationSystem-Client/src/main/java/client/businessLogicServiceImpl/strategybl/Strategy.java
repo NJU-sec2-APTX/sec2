@@ -15,7 +15,7 @@ import common.vo.StrategyVO;
 
 public class Strategy {
 	private String id;
-	
+	private UserRole ur;
 	//这个是用来存strategylineitem容器类的列表，其中存的是持有某个strategy对象以及其根据订单用该strategy所计算出的总价
 	private StrategyList strategy_price;
 	
@@ -25,6 +25,7 @@ public class Strategy {
 	//初始化的时候就将strategylist加载出来
 	public Strategy(String ID,UserRole ur){
 		id=ID;
+		this.ur=ur;
 		try {
 			this.getStrategyList();
 		} catch (RemoteException e) {
@@ -38,11 +39,11 @@ public class Strategy {
 	 * @throws RemoteException
 	 */
 	public Map<String,StrategyVO> getStrategyList() throws RemoteException{
-		
-		if(Client.getStrategyDataService().findAll(id)==null){
+		if(Client.getStrategyDataService().findAll(id,ur)==null){
+			strategylist=new HashMap<String,StrategyVO>();
 			return null;
 		}else{
-			ArrayList<StrategyVO> templist=Client.getStrategyDataService().findAll(id);
+			ArrayList<StrategyVO> templist=Client.getStrategyDataService().findAll(id,ur);
 			strategylist=new HashMap<String,StrategyVO>();
 			for(int i=0;i<templist.size();i++){
 				strategylist.put(templist.get(i).getName(), templist.get(i));
@@ -58,8 +59,8 @@ public class Strategy {
 	 * @return
 	 * @throws RemoteException 
 	 */
-	public StrategyVO getStrategy (String ID,String StrategyName) throws RemoteException{
-		if(strategylist!=null){
+	public StrategyVO getStrategy (String StrategyName) throws RemoteException{
+		if(strategylist.size()!=0){
 			return strategylist.get(StrategyName);
 		}else{
 			this.getStrategyList();
@@ -76,9 +77,12 @@ public class Strategy {
 	 * @return
 	 * @throws RemoteException
 	 */
-	public ResultMessage modifyStrategy(UserRole ur,String ID,StrategyPO po) throws RemoteException{
+	public ResultMessage modifyStrategy(StrategyPO po) throws RemoteException{
+		if(po.getID()!=id||po.getUserRole()!=ur){
+			return ResultMessage.Failure;
+		}
 		if(strategylist.get(po.getName())!=null&&strategylist.get(po.getName()).getUserRole()==ur){
-			if(Client.getStrategyDataService().update(ID,po.getName(),po)==ResultMessage.Success){
+			if(Client.getStrategyDataService().update(id,po.getName(),po)==ResultMessage.Success){
 				strategylist.replace(po.getName(), new StrategyVO(po));
 				return ResultMessage.Success;
 			}else{
@@ -96,7 +100,10 @@ public class Strategy {
 	 * @return
 	 * @throws RemoteException
 	 */
-	public ResultMessage removeStrategy (UserRole ur,String ID,StrategyPO po) throws RemoteException{
+	public ResultMessage removeStrategy (StrategyPO po) throws RemoteException{
+		if(po.getID()!=id||po.getUserRole()!=ur){
+			return ResultMessage.Failure;
+		}
 		if(strategylist.get(po.getName())!=null&&strategylist.get(po.getName()).getUserRole()==ur){
 			if(Client.getStrategyDataService().delete(po)==ResultMessage.Success){
 				strategylist.remove(po.getName());
@@ -116,13 +123,13 @@ public class Strategy {
 	 * @return
 	 * @throws RemoteException
 	 */
-	public ResultMessage addStrategy(UserRole ur,String ID,StrategyPO po) throws RemoteException{
-		if(strategylist==null){
-			strategylist=new HashMap<String,StrategyVO>();
+	public ResultMessage addStrategy(StrategyPO po) throws RemoteException{
+		if(po.getID()!=id||po.getUserRole()!=ur){
+			return ResultMessage.Failure;
 		}
 		if(strategylist.get(po.getName())==null){
 			if(Client.getStrategyDataService().insert(po)==ResultMessage.Success){
-				strategylist.put(po.getName(), new StrategyVO(po));
+				strategylist.put(po.getName(),new StrategyVO(po));
 				return ResultMessage.Success;
 			}else{
 				return ResultMessage.Failure;
@@ -141,12 +148,12 @@ public class Strategy {
 	 * @return
 	 * @throws RemoteException
 	 */
-	public StrategyList calPrice(String ID,UserRole ur,OrderVO vo) throws RemoteException{
-		if(vo!=null&&strategylist!=null&&ID==id){
-			strategy_price=new StrategyList(ID,ur);
+	public StrategyList calPrice(OrderVO vo) throws RemoteException{
+		if(vo!=null&&strategylist!=null){
+			strategy_price=new StrategyList(id,ur);
 			/*
 			 * while(strategy_price!=null)*/
-			ArrayList<StrategyVO> list=Client.getStrategyDataService().findAll(ID);
+			ArrayList<StrategyVO> list=Client.getStrategyDataService().findAll(id,ur);
 			for(int i=0;i<list.size();i++){
 				StrategyVO tempvo=list.get(i);
 				//如果vo的商圈，期间，会员等级符合要求			
@@ -161,7 +168,7 @@ public class Strategy {
 	}
 	
 	public void print(){
-		if(strategylist!=null){
+		if(strategylist.size()!=0){
 			for(StrategyVO vo:strategylist.values()){
 				vo.print();
 			}

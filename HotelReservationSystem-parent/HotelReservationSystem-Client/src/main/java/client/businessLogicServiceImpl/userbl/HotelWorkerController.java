@@ -16,12 +16,12 @@ public class HotelWorkerController implements HotelWorkerMaintainService{
 	
 	@Override
 	public UserVO getUserInfo(String id, UserRole ur) throws Exception {
-		return new UserVO(u.getUserInf(id, ur));
+		return u.getUserInf(id, ur);
 	}
 
 	@Override
-	public ResultMessage modifyUserInfo(String id, UserPO po) throws Exception {
-		return u.modifyUser(id, po);
+	public ResultMessage modifyUserInfo(UserPO po) throws Exception {
+		return u.modifyUser(po);
 	}
 	
 }

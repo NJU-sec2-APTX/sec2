@@ -13,9 +13,9 @@ public interface WebsiteManagerMaintainService {
 	
 	public MemberVO getMemberInfo(String id,UserRole ur) throws Exception;
 	
-	public ResultMessage modifyUserInfo(String id,UserPO po) throws Exception;
+	public ResultMessage modifyUserInfo(UserPO po) throws Exception;
 	
 	public ResultMessage modifyMemberInfo(String id,MemberPO po) throws Exception;
 	
-	public ResultMessage addUser(String id,UserPO po) throws Exception;
+	public ResultMessage addUser(UserPO po) throws Exception;
 }

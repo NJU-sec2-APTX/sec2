@@ -61,7 +61,6 @@ public class MemberDataServiceImpl extends UnicastRemoteObject implements Member
 		try {
 			databasehelper=new DBHelper(sql);
 			resultset=databasehelper.pst.executeQuery();
-			System.out.println(resultset==null);
 			String id = null;
 			UserRole userrole = null;
 			String name=null;

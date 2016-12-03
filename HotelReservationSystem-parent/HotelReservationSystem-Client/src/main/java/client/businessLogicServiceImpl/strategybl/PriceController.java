@@ -10,8 +10,8 @@ import common.vo.OrderVO;
 public class PriceController implements StrategyPriceService{
 	private Strategy strategy;
 	
-	public StrategyList calPrice(String ID,UserRole ur,OrderVO vo) throws RemoteException{
-		return strategy.calPrice(ID, ur, vo);
+	public StrategyList calPrice(OrderVO vo) throws RemoteException{
+		return strategy.calPrice(vo);
 	}
 	
 	public PriceController(String ID,UserRole ur){

@@ -10,5 +10,5 @@ public interface WebsiteSalesMaintainService {
 	
 	public UserVO getUserInfo(String id,UserRole ur) throws Exception;
 	
-	public ResultMessage modifyUserInfo(String id,UserPO po) throws Exception;
+	public ResultMessage modifyUserInfo(UserPO po) throws Exception;
 }

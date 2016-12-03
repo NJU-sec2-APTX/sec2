@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import common.otherEnumClasses.ResultMessage;
+import common.otherEnumClasses.UserRole;
 import common.po.StrategyPO;
 import common.vo.StrategyVO;
 
@@ -16,6 +17,6 @@ public interface StrategyDataService extends Remote{
 
 	public ResultMessage delete(StrategyPO spo)throws RemoteException;
 	
-	public ArrayList<StrategyVO> findAll(String ID) throws RemoteException;
+	public ArrayList<StrategyVO> findAll(String ID,UserRole ur) throws RemoteException;
 }
 

@@ -62,10 +62,32 @@ public class StrategyPO  implements Serializable{
 		return id;
 	}
 	
-	public void setName(String s){
-		if(!s.equals(strategy_name)){
-			strategy_name=s;
-		}
+	public void setBirthday(boolean b){
+		this.IsMemberBirthday=b;
+	}
+	
+	public void setCount(double c){
+		this.count=c;
+	}
+	
+	public void setEnterprise(String s){
+		this.enterpriseList=s;
+	}
+	
+	public void setStartDate(Date d){
+		this.start_date=d;
+	}
+	
+	public void setEndDate(Date d){
+		this.end_date=d;
+	}
+	
+	public void setBusinessArea(String s){
+		this.businessarea=s;
+	}
+	
+	public void setRoom(int r){
+		this.roomNumber=r;
 	}
 	
 	public UserRole getUserRole(){

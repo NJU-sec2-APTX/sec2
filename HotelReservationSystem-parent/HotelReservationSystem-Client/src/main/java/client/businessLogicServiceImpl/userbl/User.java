@@ -7,6 +7,7 @@ import common.otherEnumClasses.ResultMessage;
 import common.otherEnumClasses.UserRole;
 import common.po.MemberPO;
 import common.po.UserPO;
+import common.vo.UserVO;
 
 public class User {
 	//如果是member，则委托给member模块
@@ -44,12 +45,16 @@ public class User {
 		if(userpo.getUserRole()==UserRole.Sales){
 			MemberPO po;
 			try {
-				po = Client.getMemberDataService().find(id);
-				if(po==null){
-					return ResultMessage.Failure;
+				if(Client.getUserDataService().find(userpo.getId(),userpo.getUserRole())!=null){
+					po = Client.getMemberDataService().find(id);
+					if(po==null){
+						return ResultMessage.Failure;
+					}else{
+						po.setCredit(po.getCredit()+money*100);
+						return Client.getUserDataService().updatecredit(id, money);
+					}
 				}else{
-					po.setCredit(po.getCredit()+money*100);
-					return Client.getUserDataService().updatecredit(id, money);
+					return ResultMessage.Failure;
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -66,13 +71,17 @@ public class User {
 	 * @param ur
 	 * @return
 	 */
-	public UserPO getUserInf(String id,UserRole ur){
+	public UserVO getUserInf(String id,UserRole ur){
 		try {
-			if(userpo.getUserRole()==UserRole.Manager||
-					(userpo.getUserRole()==UserRole.HotelWorker&&ur==UserRole.HotelWorker)||
-					(userpo.getUserRole()==UserRole.Sales&&ur==UserRole.Sales)){
-				UserPO po=Client.getUserDataService().find(id, ur);
-				return po;
+			if(Client.getUserDataService().find(userpo.getId(), userpo.getUserRole())!=null){
+				if(userpo.getUserRole()==UserRole.Manager||
+						(userpo.getUserRole()==UserRole.HotelWorker&&ur==UserRole.HotelWorker)||
+						(userpo.getUserRole()==UserRole.Sales&&ur==UserRole.Sales)){
+					UserPO po=Client.getUserDataService().find(id, ur);
+					return new UserVO(po);
+				}else{
+					return null;
+				}
 			}else{
 				return null;
 			}
@@ -89,26 +98,30 @@ public class User {
 	 * @return
 	 */
 	
-	public ResultMessage modifyUser(String ID,UserPO po){
+	public ResultMessage modifyUser(UserPO po){
 		if((userpo.getUserRole()==UserRole.Manager&&po.getUserRole()!=UserRole.Manager||
 				(userpo.getUserRole()==UserRole.HotelWorker&&po.getUserRole()==UserRole.HotelWorker))||
 				(userpo.getUserRole()==UserRole.Sales&&po.getUserRole()==UserRole.Sales)){
 			try {
-				if(Client.getUserDataService().find(ID, po.getUserRole())==null){
-					return ResultMessage.Failure;
-				}else{
-					UserPO temp=Client.getUserDataService().find(ID, po.getUserRole());
-					if(temp.getName().equals(po.getName())&&temp.getPassword().equals(po.getPassword())
-							&&temp.getContact().equals(po.getContact())&&temp.getHotel().equals(po.getHotel())){
+				if(Client.getUserDataService().find(userpo.getId(), userpo.getUserRole())!=null){
+					if(Client.getUserDataService().find(po.getId(), po.getUserRole())==null){
 						return ResultMessage.Failure;
 					}else{
-						if(Client.getUserDataService().update(po)==ResultMessage.Success){
-							userpo=po;
-							return ResultMessage.Success;
-						}else{
+						UserPO temp=Client.getUserDataService().find(po.getId(), po.getUserRole());
+						if(temp.getName().equals(po.getName())&&temp.getPassword().equals(po.getPassword())
+								&&temp.getContact().equals(po.getContact())&&temp.getHotel().equals(po.getHotel())){
 							return ResultMessage.Failure;
+						}else{
+							if(Client.getUserDataService().update(po)==ResultMessage.Success){
+								userpo=po;
+								return ResultMessage.Success;
+							}else{
+								return ResultMessage.Failure;
+							}
 						}
 					}
+				}else{
+					return ResultMessage.Failure;
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -119,13 +132,17 @@ public class User {
 		}
 	}
 	
-	public ResultMessage addUser(String ID,UserPO po){
+	public ResultMessage addUser(UserPO po){
 		if(userpo.getUserRole()==UserRole.Manager){
 			try {
-				if(Client.getUserDataService().find(ID, po.getUserRole())!=null){
-					return ResultMessage.Failure;
+				if(Client.getUserDataService().find(userpo.getId(), UserRole.Manager)!=null){
+					if(Client.getUserDataService().find(po.getId(), po.getUserRole())!=null){
+						return ResultMessage.Failure;
+					}else{
+						return Client.getUserDataService().insert(po);
+					}
 				}else{
-					return Client.getUserDataService().insert(po);
+					return ResultMessage.Failure;
 				}
 			} catch (Exception e) {
 				e.printStackTrace();

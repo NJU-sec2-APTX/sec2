@@ -54,7 +54,6 @@ public class StrategyDataServiceImpl extends UnicastRemoteObject implements Stra
 			databasehelper.pst.execute(sql);
 			return ResultMessage.Success;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return ResultMessage.Failure;
 		}
@@ -108,8 +107,8 @@ public class StrategyDataServiceImpl extends UnicastRemoteObject implements Stra
 //	String id,UserRole ur,String strategy_name,ArrayList<String> enterpriseList,int roomNumber,
 //	Date start_date,Date end_date,ArrayList<String> businessarea,int level,double count,boolean IsBirthday
 
-	public ArrayList<StrategyVO> findAll(String ID){
-		sql="select * from strategy where id='"+ID+"';";
+	public ArrayList<StrategyVO> findAll(String ID,UserRole ur){
+		sql="select * from strategy where id='"+ID+"'&&userrole='"+ur+"';";
 		ArrayList<StrategyVO> allStrategy=null;
 		try {
 			databasehelper=new DBHelper(sql);
@@ -117,7 +116,6 @@ public class StrategyDataServiceImpl extends UnicastRemoteObject implements Stra
 			if(resultset.next()){
 				allStrategy=new ArrayList<StrategyVO>();
 				do{
-					UserRole ur=null;
 					String name=null;
 					boolean isBirthday=false;
 					int room=0;
@@ -127,9 +125,6 @@ public class StrategyDataServiceImpl extends UnicastRemoteObject implements Stra
 					double count=0;
 					String enterprise=null;
 					String area=null;
-					if(resultset.getString(2)!=null){
-						ur=UserRole.getUserRole(resultset.getString(2));
-					}
 					if(resultset.getString(3)!=null){
 						name=resultset.getString(3);
 					}

@@ -53,6 +53,7 @@ public class UserFactoryTest extends TestCase{
 		assertEquals(ResultMessage.Success,factory.logout(member1.getId(), member1.getUserRole()));
 		assertEquals(ResultMessage.Failure,factory.logout(user2.getId(), user2.getUserRole()));
 		assertEquals(ResultMessage.Failure,factory.logout(user2.getId(), user2.getUserRole()));
+		assertEquals(ResultMessage.Success,factory.logout(user1.getId(), user1.getUserRole()));
 	}
 	
 	@Test

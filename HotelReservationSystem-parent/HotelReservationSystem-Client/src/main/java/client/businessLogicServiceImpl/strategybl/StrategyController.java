@@ -16,23 +16,23 @@ public class StrategyController implements StrategyMaintainService{
 			strategy=new Strategy(ID,ur);
 		}
 	}
-	public StrategyVO getStrategy (String ID,String StrategyName) throws RemoteException{
-		return strategy.getStrategy(ID, StrategyName);
-	} 
+	public StrategyVO getStrategy (String StrategyName) throws RemoteException{
+		return strategy.getStrategy(StrategyName);
+	}
 	
-	public Map<String,StrategyVO> getStrategyList(String ID,UserRole ur)throws RemoteException{
+	public Map<String,StrategyVO> getStrategyList()throws RemoteException{
 		return strategy.getStrategyList();
 	}
 	
-	public ResultMessage modifyStrategy(UserRole ur,String ID,StrategyPO po)throws RemoteException{
-		return strategy.modifyStrategy(ur, ID, po);
+	public ResultMessage modifyStrategy(StrategyPO po)throws RemoteException{
+		return strategy.modifyStrategy(po);
 	}
 	
-	public ResultMessage removeStrategy (UserRole ur,String ID,StrategyPO po) throws RemoteException{
-		return strategy.removeStrategy(ur, ID, po);
+	public ResultMessage removeStrategy (StrategyPO po) throws RemoteException{
+		return strategy.removeStrategy(po);
 	}
 	
-	public ResultMessage addStrategy(UserRole ur,String ID,StrategyPO po)throws RemoteException{
-		return strategy.addStrategy(ur, ID, po);
+	public ResultMessage addStrategy(StrategyPO po)throws RemoteException{
+		return strategy.addStrategy(po);
 	}
 }

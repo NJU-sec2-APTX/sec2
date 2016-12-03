@@ -30,7 +30,6 @@ public class UserDataServiceImpl extends UnicastRemoteObject implements UserData
 		try {
 			databasehelper=new DBHelper(sql);
 			resultset=databasehelper.pst.executeQuery();
-			System.out.println(resultset==null);
 			if(resultset.next()){
 				databasehelper.close();
 				return ResultMessage.Failure;
