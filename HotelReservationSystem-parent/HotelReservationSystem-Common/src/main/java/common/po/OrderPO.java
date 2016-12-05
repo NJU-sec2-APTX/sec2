@@ -1,7 +1,9 @@
 package common.po;
 
+import java.util.ArrayList;
 import java.util.Date;
 
+import common.otherEnumClasses.CreditChange;
 import common.otherEnumClasses.OrderState;
 import common.otherEnumClasses.Person;
 import common.vo.OrderVO;
@@ -9,7 +11,8 @@ import common.vo.OrderVO;
 public class OrderPO {
 	
 	private String id;
-	private int creditChange;
+	private double creditChange;
+	private double price;
 	private OrderState state;
 	private double mark;
 	private Person person;
@@ -20,6 +23,7 @@ public class OrderPO {
 	private Date checkOutTime;
 	private int numberOfPerson;
 	private boolean haschild;
+	ArrayList<CreditChange> creditChangeList;
 	
 	public OrderPO(){
 		
@@ -40,15 +44,39 @@ public class OrderPO {
 		haschild = vo.haschild;
 	}
 	
+	public void addCreditChange(CreditChange oneRecord){
+		this.creditChangeList.add(oneRecord);
+	}
+	
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public int getCreditChange() {
+	public double getCreditChange() {
 		return creditChange;
 	}
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public ArrayList<CreditChange> getCreditChangeList() {
+		return creditChangeList;
+	}
+
+	public void setCreditChangeList(ArrayList<CreditChange> creditChangeList) {
+		this.creditChangeList = creditChangeList;
+	}
+
+	public void setCreditChange(double creditChange) {
+		this.creditChange = creditChange;
+	}
+
 	public void setCreditChange(int creditChange) {
 		this.creditChange = creditChange;
 	}

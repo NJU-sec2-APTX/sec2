@@ -1,5 +1,5 @@
 package common.otherEnumClasses;
 
 public enum OrderState {
-	NotDone, Done, Exceptional, Commented, Canceled, LateCanceled
+	NotDone, Done, Exceptional, Commented, Canceled, ExceptionalCanceled
 }

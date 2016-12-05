@@ -9,7 +9,8 @@ import common.po.OrderPO;
 public class OrderVO {
 
 	public String id;
-	public int creditChange;
+	public double creditChange;
+	public double price;
 	public OrderState state;
 	public double mark;
 	public Person person;
