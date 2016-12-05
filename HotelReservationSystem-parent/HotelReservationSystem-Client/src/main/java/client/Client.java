@@ -16,7 +16,7 @@ public class Client {
 	
 	public Client(){
 		try {
-//            HotelDataService hotelds = (HotelDataService) Naming.lookup("rmi://localhost:8888/HotelDataService");
+            HotelDataService hotelds = (HotelDataService) Naming.lookup("rmi://localhost:8888/HotelDataService");
             memberDataService = (MemberDataService) Naming.lookup("rmi://localhost:8888/MemberDataService");
 //            OrderDataService orderds = (OrderDataService) Naming.lookup("rmi://localhost:8888/OrderDataService");
             strategyDataService = (StrategyDataService) Naming.lookup("rmi://localhost:8888/StrategyDataService");
