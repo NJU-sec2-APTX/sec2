@@ -21,6 +21,7 @@ public class OrderPO {
 	private Date latestDoneTime;
 	private Date checkInTime;
 	private Date checkOutTime;
+	private Date cancelTime;
 	private int numberOfPerson;
 	private boolean haschild;
 	ArrayList<CreditChange> creditChangeList;
@@ -45,6 +46,7 @@ public class OrderPO {
 	}
 	
 	public void addCreditChange(CreditChange oneRecord){
+		this.creditChange += oneRecord.changeNum;
 		this.creditChangeList.add(oneRecord);
 	}
 	
@@ -139,5 +141,13 @@ public class OrderPO {
 	}
 	public void setMark(double mark) {
 		this.mark = mark;
+	}
+
+	public Date getCancelTime() {
+		return cancelTime;
+	}
+
+	public void setCancelTime(Date cancelTime) {
+		this.cancelTime = cancelTime;
 	}
 }

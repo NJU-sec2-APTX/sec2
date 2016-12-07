@@ -12,4 +12,5 @@ public interface OrderDataService extends Remote{
 
 	boolean updateOrder(OrderPO po);
 	
+	boolean addOrder(OrderPO po);
 }

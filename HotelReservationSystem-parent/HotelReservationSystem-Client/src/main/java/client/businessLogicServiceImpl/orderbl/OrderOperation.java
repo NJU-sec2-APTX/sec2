@@ -4,15 +4,24 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import client.Client;
+import client.businessLogicService.orderblService.orderblService;
 import common.otherEnumClasses.CreditChange;
 import common.otherEnumClasses.OrderState;
 import common.otherEnumClasses.Person;
 import common.po.OrderPO;
 import common.vo.OrderVO;
 
-public class OrderOperation {
+public class OrderOperation implements orderblService{
 
-	ArrayList<OrderVO> searchOrderListFromData(Person person){
+	ArrayList<OrderVO> searchOrderListSortedByTime(){
+		ArrayList<>
+	}
+	
+	ArrayList<OrderVO> searchOrderListSortedByHotel(){
+		
+	}
+	
+	public ArrayList<OrderVO> searchOrderListFromData(Person person){
 		ArrayList<OrderPO> pos = Client.getOrderDataService().findOrderList(person);
 		ArrayList<OrderVO> vos = new ArrayList<OrderVO>();
 		for (OrderPO orderPO : pos) {
@@ -21,13 +30,13 @@ public class OrderOperation {
 		return vos;
 	}
 	
-	boolean createOrder(OrderVO vo, Person person){
-		if(){
-			
-		}
+	public boolean createOrder(OrderVO vo, Person person){
+		OrderPO po = new OrderPO(vo);
+		po.setPerson(person);
+		return Client.getOrderDataService().addOrder(po);
 	}
 	
-	boolean executeOrder(OrderVO vo, Person person, Date checkInTime){
+	public boolean executeOrder(OrderVO vo, Person person, Date checkInTime){
 		if(vo.state==OrderState.NotDone||vo.state==OrderState.Exceptional){
 			OrderPO po = new OrderPO(vo);
 			if(vo.state == OrderState.Exceptional){
@@ -41,7 +50,7 @@ public class OrderOperation {
 		return false;
 	}
 	
-	boolean assessOrder(OrderVO vo, double mark){
+	public boolean assessOrder(OrderVO vo, double mark){
 		if(vo.state!=OrderState.Done){
 			OrderPO po = new OrderPO(vo);
 			po.setMark(mark);
@@ -50,7 +59,7 @@ public class OrderOperation {
 		return false;
 	}
 	
-	boolean clientCancelOrder(OrderVO vo){
+	public boolean clientCancelOrder(OrderVO vo){
 		if(vo.state==OrderState.NotDone){
 			OrderPO po = new OrderPO(vo);
 			Date latestTime = po.getLatestDoneTime();
@@ -66,14 +75,16 @@ public class OrderOperation {
 		return false;
 	}
 	
-	boolean managerCancalOrder(OrderVO vo, boolean isAll){
+	public boolean managerCancalOrder(OrderVO vo, boolean isAll){
 		if(vo.state==OrderState.Exceptional){
 			OrderPO po = new OrderPO(vo);
 			po.addCreditChange(new CreditChange(po.getPerson(), (isAll?1:0.5)*po.getPrice(), po, OrderState.Exceptional, OrderState.ExceptionalCanceled));
 			po.setCancelTime(new Date());
 			po.setState(OrderState.ExceptionalCanceled);
-			return Client.getOrderds().updateOrder(po);
+			return Client.getOrderDataService().updateOrder(po);
 		}
 		return false;
 	}
+	
+	
 }

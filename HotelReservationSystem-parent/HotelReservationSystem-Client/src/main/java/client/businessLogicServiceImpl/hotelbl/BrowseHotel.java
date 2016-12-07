@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
+import client.Client;
 import common.dataService.HotelDataService;
 import common.otherEnumClasses.HotelSearchConditions;
 import common.otherEnumClasses.SortFlag;
@@ -16,7 +17,7 @@ import common.vo.HotelVO;
 public class BrowseHotel {
 
 	ArrayList<HotelVO> browse(String area, String address, HotelSearchConditions searchItems){
-		ArrayList<HotelPO> hotelsPO = HotelDataService.getHotelList(area, address);
+		ArrayList<HotelPO> hotelsPO = Client.getHotelDataService().getHotelList(area, address);
 		ArrayList<HotelVO> hotelsVO = new ArrayList<HotelVO>();
 		for (HotelPO hotelPO : hotelsPO) {
 			hotelsVO.add(new HotelVO(hotelPO));
