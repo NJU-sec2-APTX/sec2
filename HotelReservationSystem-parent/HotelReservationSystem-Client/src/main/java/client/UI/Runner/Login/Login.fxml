@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane fx:id="loginBase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="1124.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Runner.Login.LoginController">
+   <children>
+      <Button fx:id="okButton" layoutX="427.0" layoutY="404.0" mnemonicParsing="false" onAction="#okButtonHandler" prefHeight="46.0" prefWidth="125.0" text="确认" />
+      <Button fx:id="cancelButton" layoutX="602.0" layoutY="404.0" mnemonicParsing="false" onAction="#cancelButtonHandler" prefHeight="46.0" prefWidth="125.0" text="取消" />
+      <PasswordField fx:id="passwordField" layoutX="462.0" layoutY="307.0" />
+      <TextField fx:id="accountField" layoutX="462.0" layoutY="211.0" />
+      <Label layoutX="388.0" layoutY="212.0" text="账号：">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="388.0" layoutY="308.0" text="密码：">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <ToolBar fx:id="selectBar" layoutX="390.0" layoutY="131.0" prefHeight="43.0" prefWidth="554.0">
+         <items>
+            <Label text="用户类型：">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <RadioButton fx:id="memberRadButton" mnemonicParsing="false" onAction="#chooseButtonHandler" text="会员" />
+            <RadioButton fx:id="ManagerRadButton" mnemonicParsing="false" onAction="#chooseButtonHandler" text="酒店管理人员" />
+            <RadioButton fx:id="salesRadButton" mnemonicParsing="false" onAction="#chooseButtonHandler" text="网站营销人员" />
+            <RadioButton fx:id="adRadButton" mnemonicParsing="false" onAction="#chooseButtonHandler" text="网站管理人员" />
+         </items>
+      </ToolBar>
+      <Group layoutX="88.0" layoutY="50.0" />
+      <RadioButton fx:id="memberRadButton1" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#chooseButtonHandler" prefHeight="78.0" prefWidth="191.0" text="会员" />
+      <RadioButton fx:id="ManagerRadButton1" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="酒店管理人员" />
+      <RadioButton fx:id="salesRadButton1" layoutX="10.0" layoutY="62.0" mnemonicParsing="false" onAction="#chooseButtonHandler" text="网站营销人员" />
+   </children>
+</AnchorPane>

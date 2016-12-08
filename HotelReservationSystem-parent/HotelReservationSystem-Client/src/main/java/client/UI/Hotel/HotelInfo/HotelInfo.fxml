@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane fx:id="basePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Hotel.HotelInfo.HotelInfoController">
+   <children>
+      <Pane prefHeight="550.0" prefWidth="870.0">
+         <children>
+            <Label fx:id="hotelNameLabel" layoutX="47.0" layoutY="37.0" prefHeight="88.0" prefWidth="196.0" text="酒店Label">
+               <font>
+                  <Font size="39.0" />
+               </font>
+            </Label>
+            <Button fx:id="hotelInfoButton" layoutX="47.0" layoutY="150.0" mnemonicParsing="false" onAction="#hotelInfoButtonHandler" text="基本信息" />
+            <Button fx:id="hotelIntroduceButton" layoutX="47.0" layoutY="199.0" mnemonicParsing="false" onAction="#hotelIntroduceButtonHandler" text="酒店简介" />
+            <Button fx:id="hotelLocationButton" layoutX="47.0" layoutY="247.0" mnemonicParsing="false" onAction="#hotelLocationButtonHandler" text="地理信息" />
+            <Button fx:id="serviceButton" layoutX="47.0" layoutY="300.0" mnemonicParsing="false" onAction="#serviceButtonHandler" text="设施服务" />
+            <TextArea fx:id="showArea" layoutX="155.0" layoutY="129.0" prefHeight="356.0" prefWidth="681.0" />
+            <Button fx:id="correctButton" layoutX="398.0" layoutY="497.0" mnemonicParsing="false" onAction="#correctButtonHandler" text="更改" />
+            <Button fx:id="cancelButton" layoutX="534.0" layoutY="497.0" mnemonicParsing="false" onAction="#cancelButtonHandler" text="取消" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

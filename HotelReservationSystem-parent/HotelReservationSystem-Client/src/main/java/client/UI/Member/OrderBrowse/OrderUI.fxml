@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane fx:id="basePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Member.OrderBrowse.OrderUIController">
+   <children>
+      <ToolBar prefHeight="44.0" prefWidth="870.0">
+        <items>
+          <Button fx:id="orderNumButton" mnemonicParsing="false" onAction="#orderNumButtonHandler" prefHeight="30.0" prefWidth="129.0" text="订单号" />
+            <Button fx:id="hotelNameButton" mnemonicParsing="false" onAction="#hotelNameButtonHandler" prefHeight="30.0" prefWidth="200.0" text="酒店名称" />
+            <Button fx:id="makeOrderTimeButton" mnemonicParsing="false" onAction="#makeOrderTimeButtonHandler" prefHeight="30.0" prefWidth="118.0" text="生成时间" />
+            <Button fx:id="ExecuteOrderTimeButton" mnemonicParsing="false" onAction="#ExecuteOrderTimeButtonHandler" prefHeight="30.0" prefWidth="113.0" text="生效时间" />
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="112.0" text="状态" />
+            <Button fx:id="operateButton" mnemonicParsing="false" onAction="#operateButtonHandler" prefHeight="30.0" prefWidth="148.0" text="操作" />
+        </items>
+      </ToolBar>
+      <ScrollPane fx:id="showPane" layoutY="44.0" prefHeight="510.0" prefWidth="870.0" />
+   </children>
+</AnchorPane>
