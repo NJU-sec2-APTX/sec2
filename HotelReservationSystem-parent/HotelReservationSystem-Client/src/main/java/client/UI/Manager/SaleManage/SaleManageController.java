@@ -1,4 +1,4 @@
-package UI.Admintor;
+package UI.Manager.SaleManage;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 
-public class SolerManageController {
+public class SaleManageController {
 	@FXML
 	Button  添加营销人员,删除营销人员,修改营销人员权限,查看营销人员;
 	@FXML

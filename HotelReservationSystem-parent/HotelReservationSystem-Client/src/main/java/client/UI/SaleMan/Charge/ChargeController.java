@@ -1,4 +1,4 @@
-package UI.Sales;
+package UI.SaleMan.Charge;
 
 import java.io.IOException;
 
@@ -6,16 +6,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.Pane;
 
 public class ChargeController {
-	@FXML
 	Button  ≥‰÷µ;
 	@FXML
-	StackPane change;
-	@FXML
+	Pane change;
 	AnchorPane all;
 	
+        @FXML
 	AnchorPane add;
 	public void  click≥‰÷µ() throws IOException {
 		all.getChildren().clear();

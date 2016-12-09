@@ -42,7 +42,7 @@ public class LoginController {
         
         @FXML
 	void okButtonHandler(){
-                UserRole userRole=UserRole.Member;
+                UserRole userRole=UserRole.Sales;
 		System.out.println("确定");
 		String account=accountField.getText();
 		String password=passwordField.getText();
@@ -61,12 +61,12 @@ public class LoginController {
                         case Sales:
                             loginBase.getChildren().clear();
                             System.out.println("Sales");
-                            //loginBase.getChildren().add(FXMLLoader.load((new File("src/UI/Hotel/HotelUI.fxml")).toURL()));
+                            loginBase.getChildren().add(FXMLLoader.load((new File("src/UI/SaleMan/SaleFrame.fxml")).toURL()));
                             break;
                         case Manager:
                             loginBase.getChildren().clear();
                             System.out.println("Manager");
-                            //loginBase.getChildren().add(FXMLLoader.load((new File("src/UI/Hotel/HotelUI.fxml")).toURL()));
+                            loginBase.getChildren().add(FXMLLoader.load((new File("src/UI/Manager/ManagerFrame.fxml")).toURL()));
                             break;
                     }
                     System.out.println("登录成功");
