@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane fx:id="all" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Manager.HotelManage.HotelManageController">
+   <children>
+      <Pane fx:id="change" prefHeight="550.0" prefWidth="870.0">
+         <children>
+            <Button fx:id="上线酒店" layoutX="320.0" layoutY="40.0" mnemonicParsing="false" onAction="#click上线酒店" prefHeight="70.0" prefWidth="250.0" text="上线酒店" />
+            <Button fx:id="删除酒店" layoutX="320.0" layoutY="140.0" mnemonicParsing="false" onAction="#click删除酒店" prefHeight="70.0" prefWidth="250.0" text="删除酒店" />
+            <Button fx:id="修改酒店信息" layoutX="320.0" layoutY="240.0" mnemonicParsing="false" onAction="#click删除酒店信息" prefHeight="70.0" prefWidth="250.0" text="修改酒店信息" />
+            <Button fx:id="查看酒店" layoutX="320.0" layoutY="340.0" mnemonicParsing="false" onAction="#click查看酒店" prefHeight="70.0" prefWidth="250.0" text="查看酒店" />
+            <Button layoutX="805.0" layoutY="488.0" mnemonicParsing="false" text="取消" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

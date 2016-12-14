@@ -9,7 +9,8 @@ import common.po.OrderPO;
 public class OrderVO {
 
 	public String id;
-	public int creditChange;
+	public double creditChange;
+	public double price;
 	public OrderState state;
 	public double mark;
 	public Person person;
@@ -18,6 +19,7 @@ public class OrderVO {
 	public Date latestDoneTime;
 	public Date checkInTime;
 	public Date checkOutTime;
+	public Date cancelTime;
 	public int numberOfPerson;
 	public boolean haschild;
 	
@@ -36,6 +38,7 @@ public class OrderVO {
 		latestDoneTime = po.getLatestDoneTime();
 		checkInTime = po.getCheckInTime();
 		checkOutTime = po.getCheckOutTime();
+		cancelTime = po.getCancelTime();
 		numberOfPerson = po.getNumberOfPerson();
 		haschild = po.isHaschild();
 	}

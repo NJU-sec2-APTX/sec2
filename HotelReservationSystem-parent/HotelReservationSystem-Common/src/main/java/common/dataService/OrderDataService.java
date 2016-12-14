@@ -1,5 +1,16 @@
 package common.dataService;
 
-public interface OrderDataService {
+import java.rmi.Remote;
+import java.util.ArrayList;
 
+import common.otherEnumClasses.Person;
+import common.po.OrderPO;
+
+public interface OrderDataService extends Remote{
+
+	ArrayList<OrderPO> findOrderList(Person person);
+
+	boolean updateOrder(OrderPO po);
+	
+	boolean addOrder(OrderPO po);
 }

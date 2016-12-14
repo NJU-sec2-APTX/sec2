@@ -5,7 +5,9 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import common.dataService.HotelDataService;
 import common.dataService.MemberDataService;
+import common.dataService.OrderDataService;
 import common.dataService.StrategyDataService;
 import common.dataService.UserDataService;
 
@@ -13,12 +15,14 @@ public class Client {
 	private static MemberDataService memberDataService;
 	private static StrategyDataService strategyDataService;
 	private static UserDataService userDataService;
+	private static HotelDataService hotelDataService;
+	private static OrderDataService orderDataService;
 	
 	public Client(){
 		try {
-//            HotelDataService hotelds = (HotelDataService) Naming.lookup("rmi://localhost:8888/HotelDataService");
+			hotelDataService = (HotelDataService) Naming.lookup("rmi://localhost:8888/HotelDataService");
             memberDataService = (MemberDataService) Naming.lookup("rmi://localhost:8888/MemberDataService");
-//            OrderDataService orderds = (OrderDataService) Naming.lookup("rmi://localhost:8888/OrderDataService");
+            orderDataService = (OrderDataService) Naming.lookup("rmi://localhost:8888/OrderDataService");
             strategyDataService = (StrategyDataService) Naming.lookup("rmi://localhost:8888/StrategyDataService");
             userDataService = (UserDataService) Naming.lookup("rmi://localhost:8888/UserDataService");
             System.out.println("连接成功");
@@ -29,6 +33,14 @@ public class Client {
         } catch (NotBoundException e) {
             e.printStackTrace();
         }
+	}
+
+	public static HotelDataService getHotelDataService() {
+		return hotelDataService;
+	}
+
+	public static OrderDataService getOrderDataService() {
+		return orderDataService;
 	}
 
 	public static MemberDataService getMemberDataService() {

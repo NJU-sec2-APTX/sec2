@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Runner.Register.PersonController">
+   <children>
+      <Pane fx:id="repPane" prefHeight="441.0" prefWidth="755.0">
+         <children>
+            <Label layoutX="50.0" layoutY="31.0" text="账号：">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="99.0" text="密码：">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="162.0" text="联系方式：">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="228.0" text="真实姓名：">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="306.0" text="出生日期：">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="accountField" layoutX="151.0" layoutY="30.0" prefHeight="30.0" prefWidth="345.0" />
+            <TextField fx:id="passWordField" layoutX="151.0" layoutY="98.0" prefHeight="30.0" prefWidth="345.0" />
+            <TextField fx:id="contactField" layoutX="151.0" layoutY="161.0" prefHeight="30.0" prefWidth="345.0" />
+            <TextField fx:id="nameField" layoutX="151.0" layoutY="227.0" prefHeight="30.0" prefWidth="345.0" />
+            <TextField fx:id="yearField" layoutX="151.0" layoutY="305.0" prefHeight="30.0" prefWidth="67.0" />
+            <Label layoutX="232.0" layoutY="306.0" text="年">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="MonthField" layoutX="268.0" layoutY="305.0" prefHeight="30.0" prefWidth="39.0" />
+            <Label layoutX="324.0" layoutY="306.0" text="月">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="dayField" layoutX="355.0" layoutY="305.0" prefHeight="30.0" prefWidth="39.0" />
+            <Label layoutX="410.0" layoutY="306.0" text="日">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Button fx:id="okButton" layoutX="570.0" layoutY="380.0" mnemonicParsing="false" onAction="#okButton" prefHeight="46.0" prefWidth="125.0" text="确定" />
+   </children>
+</Pane>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane fx:id="all" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Manager.SaleManage.SaleManageController">
+   <children>
+      <Pane prefHeight="550.0" prefWidth="870.0">
+         <children>
+            <Button fx:id="删除营销人员" layoutX="320.0" layoutY="140.0" mnemonicParsing="false" onAction="#click删除营销人员" prefHeight="70.0" prefWidth="250.0" text="删除营销人员" />
+            <Button fx:id="添加营销人员" layoutX="320.0" layoutY="40.0" mnemonicParsing="false" onAction="#click添加营销人员" prefHeight="70.0" prefWidth="250.0" text="添加营销人员" />
+            <Button fx:id="修改营销人员权限" layoutX="320.0" layoutY="240.0" mnemonicParsing="false" onAction="#click修改营销人员权限" prefHeight="70.0" prefWidth="250.0" text="修改营销人员权限" />
+            <Button fx:id="查看营销人员" layoutX="320.0" layoutY="340.0" mnemonicParsing="false" onAction="#click查看营销人员" prefHeight="70.0" prefWidth="250.0" text="查看营销人员" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

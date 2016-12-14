@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane fx:id="base" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="1124.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Runner.RunnerController">
+   <children>
+      <Button fx:id="loginButton" layoutX="500.0" layoutY="459.0" mnemonicParsing="false" onAction="#loginButtonHandler" prefHeight="46.0" prefWidth="125.0" text="登录" />
+      <Button fx:id="registerButton" layoutX="500.0" layoutY="521.0" mnemonicParsing="false" onAction="#registerButtonHandler" prefHeight="46.0" prefWidth="125.0" text="注册" />
+   </children>
+</AnchorPane>

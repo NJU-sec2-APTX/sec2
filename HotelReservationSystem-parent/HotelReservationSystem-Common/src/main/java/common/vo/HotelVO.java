@@ -16,6 +16,7 @@ public class HotelVO {
 	public int star;
 	public double mark;
 	public ArrayList<Room> rooms;
+	public boolean isEverReserved;
 	
 	public HotelVO(HotelPO hotelPO){
 		id = hotelPO.getId();
