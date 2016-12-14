@@ -32,7 +32,7 @@ public class UserDataServiceImpl extends UnicastRemoteObject implements UserData
 			resultset=databasehelper.pst.executeQuery();
 			if(resultset.next()){
 				databasehelper.close();
-				return ResultMessage.Failure;
+				return ResultMessage.Logged;
 			}else{
 				sql="select * from user where id='"+ID+"'&&password='"+password+"'&&userrole='"+ur.toString()+"';";
 				databasehelper=new DBHelper(sql);

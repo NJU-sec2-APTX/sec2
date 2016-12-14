@@ -30,7 +30,7 @@ public class UserManagerAddTest extends TestCase{
 			po.setName("杨子脏");
 			po.setPassword("干死扬子脏");
 			assertEquals(ResultMessage.Success,managermaintain.addUser(po));
-			assertEquals(ResultMessage.Failure,managermaintain.addUser(po));
+			assertEquals(ResultMessage.Registered,managermaintain.addUser(po));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -42,7 +42,7 @@ public class User {
 	}
 	
 	public ResultMessage recharge(String id,double money){
-		if(userpo.getUserRole()==UserRole.Sales){
+		if(userpo.getUserRole()==UserRole.Sales||userpo.getUserRole()==UserRole.Manager){
 			MemberPO po;
 			try {
 				if(Client.getUserDataService().find(userpo.getId(),userpo.getUserRole())!=null){
@@ -137,7 +137,7 @@ public class User {
 			try {
 				if(Client.getUserDataService().find(userpo.getId(), UserRole.Manager)!=null){
 					if(Client.getUserDataService().find(po.getId(), po.getUserRole())!=null){
-						return ResultMessage.Failure;
+						return ResultMessage.Registered;
 					}else{
 						return Client.getUserDataService().insert(po);
 					}

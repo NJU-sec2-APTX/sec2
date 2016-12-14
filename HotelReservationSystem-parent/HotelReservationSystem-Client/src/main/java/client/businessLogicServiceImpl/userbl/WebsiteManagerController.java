@@ -43,5 +43,14 @@ public class WebsiteManagerController implements WebsiteManagerMaintainService{
 	@Override
 	public ResultMessage addUser(UserPO po) throws Exception {
 		return u.addUser(po);
-	}		
+	}
+
+	@Override
+	public ResultMessage recoverCredit(String id,double credit) throws Exception {
+		if(credit<=0){
+			return ResultMessage.Failure;
+		}else{
+			return u.recharge(id, credit/100);
+		}
+	}
 }

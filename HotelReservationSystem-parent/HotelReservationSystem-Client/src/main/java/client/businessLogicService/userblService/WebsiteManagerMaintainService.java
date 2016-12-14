@@ -18,4 +18,6 @@ public interface WebsiteManagerMaintainService {
 	public ResultMessage modifyMemberInfo(String id,MemberPO po) throws Exception;
 	
 	public ResultMessage addUser(UserPO po) throws Exception;
+	
+	public ResultMessage recoverCredit(String id,double credit) throws Exception;
 }

@@ -39,15 +39,14 @@ public class UserFactoryTest extends TestCase{
 	@Test
 	public void testloginandlogout(){
 		//测试登录，包括全部正确，登录成功；密码不对，登录错误；重复登录，登录错误
-		System.out.println(factory==null);
 		assertEquals(ResultMessage.Success,factory.login(member1.getId(), member1.getUserRole(), member1.getPassword()));
 		assertEquals(ResultMessage.Failure,factory.login(member2.getId(), member2.getUserRole(), member2.getPassword()));
-		assertEquals(ResultMessage.Failure,factory.login(member1.getId(), member1.getUserRole(), member1.getPassword()));
+		assertEquals(ResultMessage.Logged,factory.login(member1.getId(), member1.getUserRole(), member1.getPassword()));
 		
 		//测试登录，包括全部正确，登录成功；身份不对，登录错误；重复登录，登录错误
 		assertEquals(ResultMessage.Success,factory.login(user1.getId(), user1.getUserRole(), user1.getPassword()));
 		assertEquals(ResultMessage.Failure,factory.login(user2.getId(), user2.getUserRole(), user2.getPassword()));
-		assertEquals(ResultMessage.Failure,factory.login(user1.getId(), user1.getUserRole(), user1.getPassword()));
+		assertEquals(ResultMessage.Logged,factory.login(user1.getId(), user1.getUserRole(), user1.getPassword()));
 		
 		//测试登出，包括已经登录，则登出成功；账户未登录，登出错误；
 		assertEquals(ResultMessage.Success,factory.logout(member1.getId(), member1.getUserRole()));
@@ -59,6 +58,6 @@ public class UserFactoryTest extends TestCase{
 	@Test
 	public void testregister(){
 		//测试注册，已经存在，注册失败
-		assertEquals(ResultMessage.Failure,factory.register(member1.getId(), member1));
+		assertEquals(ResultMessage.Registered,factory.register(member1.getId(), member1));
 	}
 }

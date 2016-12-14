@@ -22,7 +22,7 @@ public class Member{
 			if(Client.getMemberDataService().find(id)==null){
 				return Client.getMemberDataService().insert(po);
 			}else{
-				return ResultMessage.Failure;
+				return ResultMessage.Registered;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
