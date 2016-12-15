@@ -1,7 +1,10 @@
 package client.businessLogicServiceImpl.orderbl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
+
+import javax.print.attribute.standard.RequestingUserName;
 
 import client.Client;
 import client.businessLogicService.orderblService.orderblService;
@@ -15,20 +18,28 @@ import common.vo.OrderVO;
 
 public class OrderOperation implements orderblService{
 
-	public ArrayList<HotelVO> searchReservedHotel(Person person) {
-		ArrayList<HotelPO> pos = Client.getOrderDataService().searchReservedHotel(person);
+	public ArrayList<HotelVO> searchReservedHotel(Person person){
 		ArrayList<HotelVO> vos = new ArrayList<HotelVO>();
-		for(HotelPO hotelPO : pos){
-			vos.add(new HotelVO(hotelPO));
+		try {
+			ArrayList<HotelPO> pos = Client.getOrderDataService().searchReservedHotel(person);
+			for(HotelPO hotelPO : pos){
+				vos.add(new HotelVO(hotelPO));
+			}
+		} catch (RemoteException e) {
+			
 		}
 		return vos;
 	}
 	
 	public ArrayList<OrderVO> searchOrderListFromData(Person person, OrderState state, HotelVO hotelVO){
-		ArrayList<OrderPO> pos = Client.getOrderDataService().findOrderList(person,state,hotelVO);
 		ArrayList<OrderVO> vos = new ArrayList<OrderVO>();
-		for(OrderPO OrderPO : pos){
-			vos.add(new OrderVO(OrderPO));
+		try {
+			ArrayList<OrderPO> pos = Client.getOrderDataService().findOrderList(person,state,hotelVO);
+			for(OrderPO OrderPO : pos){
+				vos.add(new OrderVO(OrderPO));
+			}
+		} catch (RemoteException e) {
+			
 		}
 		return vos;
 	}
@@ -36,7 +47,11 @@ public class OrderOperation implements orderblService{
 	public boolean createOrder(OrderVO vo, Person person){
 		OrderPO po = new OrderPO(vo);
 		po.setPerson(person);
-		return Client.getOrderDataService().addOrder(po);
+		try {
+			return Client.getOrderDataService().addOrder(po);
+		} catch (RemoteException e) {
+			return false;
+		}
 	}
 	
 	public boolean executeOrder(OrderVO vo, Person person, Date checkInTime){
@@ -48,7 +63,11 @@ public class OrderOperation implements orderblService{
 			po.setState(OrderState.Done);
 			po.setCheckInTime(checkInTime);
 			po.addCreditChange(new CreditChange(person, po.getPrice(), po, vo.state, OrderState.Done));
-			return Client.getOrderDataService().updateOrder(po);
+			try {
+				return Client.getOrderDataService().updateOrder(po);
+			} catch (RemoteException e) {
+				return false;
+			}
 		}
 		return false;
 	}
@@ -57,7 +76,11 @@ public class OrderOperation implements orderblService{
 		if(vo.state!=OrderState.Done){
 			OrderPO po = new OrderPO(vo);
 			po.setMark(mark);
-			return Client.getOrderDataService().updateOrder(po);
+			try {
+				return Client.getOrderDataService().updateOrder(po);
+			} catch (RemoteException e) {
+				return false;
+			}
 		}
 		return false;
 	}
@@ -73,7 +96,11 @@ public class OrderOperation implements orderblService{
 			}
 			po.setCancelTime(date);
 			po.setState(OrderState.Canceled);
-			return Client.getOrderDataService().updateOrder(po);
+			try {
+				return Client.getOrderDataService().updateOrder(po);
+			} catch (RemoteException e) {
+				return false;
+			}
 		}
 		return false;
 	}
@@ -84,7 +111,11 @@ public class OrderOperation implements orderblService{
 			po.addCreditChange(new CreditChange(po.getPerson(), (isAll?1:0.5)*po.getPrice(), po, OrderState.Exceptional, OrderState.ExceptionalCanceled));
 			po.setCancelTime(new Date());
 			po.setState(OrderState.ExceptionalCanceled);
-			return Client.getOrderDataService().updateOrder(po);
+			try {
+				return Client.getOrderDataService().updateOrder(po);
+			} catch (RemoteException e) {
+				return false;
+			}
 		}
 		return false;
 	}

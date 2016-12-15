@@ -1,12 +1,13 @@
 package common.dataService;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import common.otherEnumClasses.Room;
 import common.po.HotelPO;
 
-public interface HotelDataService {
+public interface HotelDataService extends Remote{
 	
 	public HotelPO getHotelInfo(String id) throws RemoteException;
 	
@@ -14,7 +15,7 @@ public interface HotelDataService {
 	
 	public ArrayList<HotelPO> getHotelList(String area, String address) throws RemoteException;
 	
-	public Room getRoom(String id) throws RemoteException;
+	public Room getRoom(int id) throws RemoteException;
 	
-	public boolean setRoom(Room room) throws RemoteException;	
+	public boolean setRoom(Room room) throws RemoteException;
 }

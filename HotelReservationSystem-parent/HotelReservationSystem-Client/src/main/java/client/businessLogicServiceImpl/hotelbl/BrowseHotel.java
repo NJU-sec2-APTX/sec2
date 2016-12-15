@@ -1,5 +1,6 @@
 package client.businessLogicServiceImpl.hotelbl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -15,11 +16,13 @@ import common.vo.HotelVO;
 public class BrowseHotel {
 
 	ArrayList<HotelVO> browse(String area, String address, HotelSearchConditions searchItems, Person person){
-		ArrayList<HotelPO> hotelsPO = Client.getHotelDataService().getHotelList(area, address);
 		ArrayList<HotelVO> hotelsVO = new ArrayList<HotelVO>();
-		for (HotelPO hotelPO : hotelsPO) {
-			hotelsVO.add(new HotelVO(hotelPO));
-		}
+		try {
+			ArrayList<HotelPO> hotelsPO = Client.getHotelDataService().getHotelList(area, address);
+			for (HotelPO hotelPO : hotelsPO) {
+				hotelsVO.add(new HotelVO(hotelPO));
+			}
+		} catch (RemoteException e) {}
 		return BrowseHotel.checkConditions(hotelsVO, searchItems, person);
 	}
 	
@@ -32,9 +35,7 @@ public class BrowseHotel {
 				comp = comp.reversed();
 			}
 			Collections.sort(hotelList, comp);
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {}
 		return hotelList;
 	}
 	
@@ -55,10 +56,14 @@ public class BrowseHotel {
 			
 		}
 		
-		ArrayList<OrderPO> orders = Client.getOrderDataService().findOrderList(person);
-		for(OrderPO po : orders){
-			
-		}
+		ArrayList<OrderPO> orders;
+		try {
+			orders = Client.getOrderDataService().findOrderList(person,null,null);
+			for(OrderPO po : orders){
+				
+			}
+		} catch (RemoteException e) {}
+		
 		return vos;
 	}
 }
