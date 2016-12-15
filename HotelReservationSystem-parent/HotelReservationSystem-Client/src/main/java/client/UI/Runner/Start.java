@@ -1,4 +1,5 @@
 package client.UI.Runner;
+import common.otherEnumClasses.Person;
 import java.io.File;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,9 +13,11 @@ import javafx.stage.StageStyle;
  * @author � zhuyingshan
  */
 public class Start extends Application  {
-
+        public static Person preson;
 	public static void main(String[] args) {
-		Application.launch(Start.class,args);
+            File f=new File("src/main/java/client/UI/Runner/Runner.fxml");
+            System .out.println(f.exists());
+		//Application.launch(Start.class,args);
 	}
 
 	@Override

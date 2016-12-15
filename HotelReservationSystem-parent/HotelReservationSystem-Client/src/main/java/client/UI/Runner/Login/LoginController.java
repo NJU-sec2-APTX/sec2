@@ -1,12 +1,18 @@
 package client.UI.Runner.Login;
 
+import client.UI.Runner.Start;
+import client.businessLogicService.userblService.UserIFactory;
+import client.businessLogicServiceImpl.userbl.UserFactory;
 import common.otherEnumClasses.ResultMessage;
 import common.otherEnumClasses.UserRole;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
@@ -36,17 +42,43 @@ public class LoginController {
         @FXML
         AnchorPane loginBase;
         AnchorPane addPane;
-        
+        UserIFactory uif=new UserFactory() ;
+    @FXML
+    private RadioButton enterpriseRadButton;
+        UserRole checkRole(){
+            if(memberRadButton.isSelected()){
+                return  UserRole.Member;
+            }else if(ManagerRadButton.isSelected()){
+                return UserRole.Manager;
+            }else if(salesRadButton.isSelected( )){
+                return UserRole.Sales;
+            }else if(adRadButton.isSelected()){
+                return UserRole.Manager;
+            }else if(enterpriseRadButton.isSelected()){
+                return UserRole.Enterprise;
+            }else{
+                System.err.println("client.UI.Runner.Login.LoginController.checkRole()");
+                return null;
+            }
+        }
         
         @FXML
 	void okButtonHandler(){
-                UserRole userRole=UserRole.Sales;
-		System.out.println("okButton");
-		String account=accountField.getText();
+                System.out.println("okButton");
+                String account=accountField.getText();
 		String password=passwordField.getText();
+                UserRole userRole=checkRole();
+                ResultMessage result=uif.login(account, userRole, password);
                try {
-                   if(ResultMessage.Success==ResultMessage.Success){
+                   if(result==ResultMessage.Success){
+                        Start.person.role=userRole;
+                        Start.person.id=account;
                         switch(userRole){
+                        case Enterprise:
+                            loginBase.getChildren( ).clear();
+                            System.out.println("Enterprise");
+                            loginBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/EnterpriseUI.fxml")).toURL()));
+                            break;
                         case Member:
                             loginBase.getChildren().clear();
                             loginBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/MemberUI.fxml")).toURL()));
@@ -68,9 +100,6 @@ public class LoginController {
                             break;
                     }
                     }
-                /*else{
-			
-		}*/
                } catch (Exception e) { 
                    //System.out.println(userRole);
                    e.printStackTrace();
@@ -79,35 +108,19 @@ public class LoginController {
 	}
         @FXML
 	void cancelButtonHandler()throws IOException{
-		//���ؿ�������
                 loginBase.getChildren().clear(  );
-                loginBase.getChildren().add(FXMLLoader.load((new File("src/UI/Runner/Runner.fxml")).toURL()));
+                loginBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Runner/Runner.fxml")).toURL()));
                 System.out.println("cancelButton");
-                
 	}
 
-    @FXML
     private void chooseButtonHandler(ActionEvent event) {
         RadioButton[] arr={ memberRadButton,ManagerRadButton,salesRadButton,adRadButton};
         RadioButton getButton=(RadioButton)event.getSource();
-        switch(getButton.getText()){
-            case "会员":
-                System.out.println("会员");
-                break;
-            case"酒店管理人员":
-                break;
-            case"网站营销人员":
-                break;
-            case"网站管理人员":
-                break;
-            default:
-        }
          for (int i = 0; i < 4; i++) {
              if (arr[i]!=getButton&&arr[i].isSelected()) {
                 arr[i].fire();
                 System.out.println(arr[i].getText());
              }
         }
-        
     }
 }

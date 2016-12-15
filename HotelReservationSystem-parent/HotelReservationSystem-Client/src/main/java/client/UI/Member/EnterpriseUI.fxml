@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-<AnchorPane fx:id="base" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Member.MemberUIController">
+<AnchorPane fx:id="base" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Member.EnterpriseUIController">
    <children>
       <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="141.0" prefWidth="1122.0" style="-fx-background-color: gray;" text="酒店管理系统">
          <font>
@@ -26,7 +26,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="memberInfoButton" mnemonicParsing="false" onAction="#memberInfoButtonHandler" prefHeight="84.0" prefWidth="170.0" text="个人信息">
+            <Button fx:id="memberInfoButton" mnemonicParsing="false" onAction="#memberInfoButtonHandler" prefHeight="84.0" prefWidth="170.0" text="企业信息">
                <font>
                   <Font size="30.0" />
                </font></Button>
@@ -49,7 +49,7 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <Label layoutX="189.0" layoutY="126.0" text="姓名：">
+            <Label layoutX="189.0" layoutY="126.0" text="企业名称：">
                <font>
                   <Font size="30.0" />
                </font>
@@ -70,13 +70,13 @@
                </font>
             </Label>
             <Button fx:id="creditButton" layoutX="566.0" layoutY="270.0" mnemonicParsing="false" onAction="#creditButtonHandler" text="查看信用值变化记录" />
-            <Button fx:id="correctInfoButton" layoutX="566.0" layoutY="343.0" mnemonicParsing="false" onAction="#correctInfoButtonHandler" text="修改个人信息" />
-            <Label fx:id="idField" layoutX="339.0" layoutY="58.0" prefHeight="37.0" prefWidth="233.0" text="id">
+            <Button fx:id="correctInfoButton" layoutX="566.0" layoutY="343.0" mnemonicParsing="false" onAction="#correctInfoButtonHandler" text="修改企业信息" />
+            <Label fx:id="idField" layoutX="339.0" layoutY="59.0" prefHeight="37.0" prefWidth="233.0" text="id">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="nameField" layoutX="339.0" layoutY="127.0" prefHeight="37.0" prefWidth="233.0" text="赵日天">
+            <Label fx:id="nameField" layoutX="339.0" layoutY="127.0" prefHeight="37.0" prefWidth="233.0" text="企业">
                <font>
                   <Font size="24.0" />
                </font>
@@ -96,45 +96,6 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Group layoutX="114.0" layoutY="401.0">
-               <children>
-                  <Label layoutX="78.0" layoutY="1.0" prefHeight="39.0" prefWidth="553.0" text="生日：">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="yearLabel" layoutX="235.0" layoutY="2.0" prefHeight="37.0" prefWidth="57.0" text="2010">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="rankField11" layoutX="306.0" layoutY="2.0" prefHeight="37.0" prefWidth="57.0" text="年">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="monthLabel" layoutX="355.0" layoutY="2.0" prefHeight="37.0" prefWidth="57.0" text="12">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="rankField111" layoutX="419.0" layoutY="2.0" prefHeight="37.0" prefWidth="57.0" text="月">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="dayLabel" layoutX="458.0" layoutY="2.0" prefHeight="37.0" prefWidth="57.0" text="12">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="rankField1111" layoutX="529.0" layoutY="2.0" prefHeight="37.0" prefWidth="57.0" text="日">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Group>
          </children>
       </Pane>
    </children>
