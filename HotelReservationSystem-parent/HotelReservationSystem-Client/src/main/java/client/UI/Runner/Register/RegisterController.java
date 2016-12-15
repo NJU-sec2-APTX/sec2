@@ -1,4 +1,4 @@
-package UI.Runner.Register;
+package client.UI.Runner.Register;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,31 +46,31 @@ public class RegisterController {
 
     @FXML
     private void personButtonHandler  ()throws  IOException{
-        System.out.println("个人会员");
+        System.out.println("personButton");
         repPane.getChildren().clear();
-        repPane.getChildren().add(FXMLLoader.load((new File("src/UI/Runner/Register/Person.fxml")).toURL()));
+        repPane.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Runner/Register/Person.fxml")).toURL()));
     }
 
     @FXML
     private void corporateButtonHandler(ActionEvent event)throws IOException{
-        System.out.println("企业会员");
+        System.out.println("corporate");
         repPane.getChildren().clear();
-        repPane.getChildren().add(FXMLLoader.load((new File("src/UI/Runner/Register/Company.fxml")).toURL()));
-        //替换panel
+        repPane.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Runner/Register/Company.fxml")).toURL()));
+        //锟芥换panel
         
     }
 
     @FXML
     private void cancelButtonHandler(ActionEvent event)throws  IOException{
                 base.getChildren().clear(  );
-                base.getChildren().add(FXMLLoader.load((new File("src/UI/Runner/Runner.fxml")).toURL()));
-                System.out.println("取消");
+                base.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Runner/Runner.fxml")).toURL()));
+                System.out.println("cancelButton");
     }
 
     @FXML
     private void okButton(ActionEvent event) {
         
-        System.out.println("确认");
+        System.out.println("okButton");
     }
 
 }

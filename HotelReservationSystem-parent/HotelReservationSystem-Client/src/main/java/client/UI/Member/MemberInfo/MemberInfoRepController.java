@@ -3,13 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI.Member.MemberInfo;
+package client.UI.Member.MemberInfo;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -18,7 +15,7 @@ import javafx.scene.layout.Pane;
 /**
  * FXML Controller class
  *
- * @author ³Â³¤Éú
+ * @author zhuyingshan
  */
 public class MemberInfoRepController {
 

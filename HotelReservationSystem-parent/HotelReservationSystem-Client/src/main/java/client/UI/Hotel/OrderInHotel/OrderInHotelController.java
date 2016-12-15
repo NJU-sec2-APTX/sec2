@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI.Hotel.OrderInHotel;
+package client.UI.Hotel.OrderInHotel;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,7 +12,7 @@ import javafx.fxml.Initializable;
 /**
  * FXML Controller class
  *
- * @author ³Â³¤Éú
+ * @author zhuyingshan
  */
 public class OrderInHotelController implements Initializable {
 

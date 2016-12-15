@@ -1,4 +1,4 @@
-package UI.SaleMan.Order;
+package client.UI.SaleMan.Order;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import javafx.scene.layout.StackPane;
 
 public class OrderController {
 	@FXML
-	Button  修改,查看;
+	Button  Change,Get;
 	@FXML
 	Pane change;
 	@FXML
@@ -20,14 +20,14 @@ public class OrderController {
 	AnchorPane add;
 	
     @FXML
-        public void click修改() throws IOException{
+        public void Change() throws IOException{
                 all.getChildren().clear();
                 add=FXMLLoader.load(getClass().getResource(".fxml"));
                 all.getChildren().add(add);
         }
           
     @FXML
-        public void click查看() throws IOException{
+        public void Get() throws IOException{
                 all.getChildren().clear();
                 add=FXMLLoader.load(getClass().getResource(".fxml"));
                 all.getChildren().add(add);

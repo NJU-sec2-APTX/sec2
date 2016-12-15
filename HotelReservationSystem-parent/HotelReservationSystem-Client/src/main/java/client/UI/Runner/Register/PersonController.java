@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI.Runner.Register;
+package client.UI.Runner.Register;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,8 +13,7 @@ import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
- *µ×²¿ÎªpanelµÄ¸öÈËÐÅÏ¢Ìæ»»panel
- * @author ³Â³¤Éú
+ * @author ï¿½ zhuyingshan
  */
 public class PersonController  {
     

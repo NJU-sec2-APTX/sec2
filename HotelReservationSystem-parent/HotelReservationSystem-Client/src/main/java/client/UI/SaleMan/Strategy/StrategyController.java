@@ -1,6 +1,7 @@
-package UI.SaleMan.Strategy;
+package client.UI.SaleMan.Strategy;
 
 import java.io.IOException;
+import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +12,7 @@ import javafx.scene.layout.StackPane;
 
 public class StrategyController {
 	@FXML
-	Button  新增,删除,修改,查看;
+	Button  Add,Delete,Change,Get;
 	@FXML
 	Pane change;
 	@FXML
@@ -19,30 +20,30 @@ public class StrategyController {
 	
 	AnchorPane add;
     @FXML
-	public void  click新增() throws IOException {
+	public void  Add() throws IOException {
 		all.getChildren().clear();
 		add=FXMLLoader.load(getClass().getResource(".fxml"));
                 all.getChildren().add(add );
 	}
 	
     @FXML
-	public void click删除() throws IOException{
+	public void Delete() throws IOException{
 		all.getChildren().clear();
                 add=FXMLLoader.load(getClass().getResource(".fxml"));
                 all.getChildren().add(add);
 	}
         
-    @FXML
-        public void click修改() throws IOException{
+        public void Change() throws IOException{
                 all.getChildren().clear();
                 add=FXMLLoader.load(getClass().getResource(".fxml"));
                 all.getChildren().add(add);
         }
           
     @FXML
-        public void click查看() throws IOException{
+        public void Get() throws IOException{
                 all.getChildren().clear();
                 add=FXMLLoader.load(getClass().getResource(".fxml"));
                 all.getChildren().add(add);
         }
+
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI.Hotel.ExecuteOrder;
+package client.UI.Hotel.ExecuteOrder;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +15,7 @@ import javafx.scene.layout.AnchorPane;
 /**
  * FXML Controller class
  *
- * @author ³Â³¤Éú
+ * @author zhuyingshan
  */
 public class ExecuteReplaceController {
 

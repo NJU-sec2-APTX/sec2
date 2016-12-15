@@ -1,20 +1,18 @@
-package UI.Runner.Login;
+package client.UI.Runner.Login;
 
+import common.otherEnumClasses.ResultMessage;
+import common.otherEnumClasses.UserRole;
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import tool.ResultMessage;
-import tool.UserRole;
 
 public class LoginController {
     Stage pStage;
@@ -43,7 +41,7 @@ public class LoginController {
         @FXML
 	void okButtonHandler(){
                 UserRole userRole=UserRole.Sales;
-		System.out.println("确定");
+		System.out.println("okButton");
 		String account=accountField.getText();
 		String password=passwordField.getText();
                try {
@@ -51,25 +49,24 @@ public class LoginController {
                         switch(userRole){
                         case Member:
                             loginBase.getChildren().clear();
-                            loginBase.getChildren().add(FXMLLoader.load((new File("src/UI/Member/MemberUI.fxml")).toURL()));
+                            loginBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/MemberUI.fxml")).toURL()));
                            break;
                         case HotelWorker:
                             loginBase.getChildren().clear();
                             System.out.println("HotelWork");
-                            loginBase.getChildren().add(FXMLLoader.load((new File("src/UI/Hotel/HotelUI.fxml")).toURL()));
+                            loginBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Hotel/HotelUI.fxml")).toURL()));
                             break;
                         case Sales:
                             loginBase.getChildren().clear();
                             System.out.println("Sales");
-                            loginBase.getChildren().add(FXMLLoader.load((new File("src/UI/SaleMan/SaleFrame.fxml")).toURL()));
+                            loginBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/SaleMan/SaleFrame.fxml")).toURL()));
                             break;
                         case Manager:
                             loginBase.getChildren().clear();
                             System.out.println("Manager");
-                            loginBase.getChildren().add(FXMLLoader.load((new File("src/UI/Manager/ManagerFrame.fxml")).toURL()));
+                            loginBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Manager/ManagerFrame.fxml")).toURL()));
                             break;
                     }
-                    System.out.println("登录成功");
                     }
                 /*else{
 			
@@ -82,10 +79,10 @@ public class LoginController {
 	}
         @FXML
 	void cancelButtonHandler()throws IOException{
-		//返回开启界面
+		//锟斤拷锟截匡拷锟斤拷锟斤拷锟斤拷
                 loginBase.getChildren().clear(  );
                 loginBase.getChildren().add(FXMLLoader.load((new File("src/UI/Runner/Runner.fxml")).toURL()));
-                System.out.println("取消");
+                System.out.println("cancelButton");
                 
 	}
 
@@ -94,17 +91,16 @@ public class LoginController {
         RadioButton[] arr={ memberRadButton,ManagerRadButton,salesRadButton,adRadButton};
         RadioButton getButton=(RadioButton)event.getSource();
         switch(getButton.getText()){
-            case "会员":
-                System.out.println("选择客户");
+            case "浼氬憳":
+                System.out.println("浼氬憳");
                 break;
-            case"酒店管理人员":
+            case"閰掑簵绠＄悊浜哄憳":
                 break;
-            case"网站营销人员":
+            case"缃戠珯钀ラ攢浜哄憳":
                 break;
-            case"网站管理人员":
+            case"缃戠珯绠＄悊浜哄憳":
                 break;
             default:
-                    System.out.println("无正确选项");
         }
          for (int i = 0; i < 4; i++) {
              if (arr[i]!=getButton&&arr[i].isSelected()) {

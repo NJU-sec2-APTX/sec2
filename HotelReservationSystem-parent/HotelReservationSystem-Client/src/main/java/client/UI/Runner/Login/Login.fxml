@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-<AnchorPane fx:id="loginBase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="1124.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Runner.Login.LoginController">
+<AnchorPane fx:id="loginBase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="1124.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Runner.Login.LoginController">
    <children>
       <Button fx:id="okButton" layoutX="427.0" layoutY="404.0" mnemonicParsing="false" onAction="#okButtonHandler" prefHeight="46.0" prefWidth="125.0" text="确认" />
       <Button fx:id="cancelButton" layoutX="602.0" layoutY="404.0" mnemonicParsing="false" onAction="#cancelButtonHandler" prefHeight="46.0" prefWidth="125.0" text="取消" />

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI.Member;
+package client.UI.Member;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import javafx.scene.layout.Pane;
 /**
  * FXML Controller class
  *
- * @author 陈长生
+ * @author zhuyingshan
  */
 public class MemberUIController  {
 
@@ -55,41 +55,41 @@ public class MemberUIController  {
 
     @FXML
    private void exitButtonHandler(ActionEvent event) throws IOException{
-        System.out.println("退出登录状态");
+        System.out.println("exitButton");
         base.getChildren().clear();
-        base.getChildren().add(FXMLLoader.load((new File("src/UI/Runner/Runner.fxml").toURL())));
+        base.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Runner/Runner.fxml").toURL())));
     }
 
     @FXML
     private void memberInfoButtonHandler(ActionEvent event)throws IOException{
-        System.out.println("进入memeberinfo");
+        System.out.println("memberInfoButton");
         replacePane.getChildren().clear();
-        replacePane.getChildren().add(FXMLLoader.load((new File("src/UI/Member/MemberInfo/MemberInfoRep.fxml")).toURL()));
+        replacePane.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/MemberInfo/MemberInfoRep.fxml")).toURL()));
     }
 
     @FXML
     private void searchHotelButtonHandler(ActionEvent event)throws IOException {
-        System.out.println("进入searchHotel");
+        System.out.println("searchHotelButton");
         replacePane.getChildren().clear();
-         replacePane.getChildren().add(FXMLLoader.load((new File("src/UI/Member/SearchHotel/SearchHotel.fxml")).toURL()));
+         replacePane.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/SearchHotel/SearchHotel.fxml")).toURL()));
     }
 
     @FXML
     private void orderButtonHandler(ActionEvent event)throws IOException{
-        System.out.println("查看订单");
+        System.out.println("orderButton");
         replacePane.getChildren().clear();
-        replacePane.getChildren().add(FXMLLoader.load((new File("src/UI/Member/OrderBrowse/OrderUI.fxml")).toURL()));
+        replacePane.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/OrderBrowse/OrderUI.fxml")).toURL()));
     }
 
     @FXML
     private void creditButtonHandler(ActionEvent event) throws IOException{
-        System.out.println("进入查看信用值");
+        System.out.println("creditButton");
         
     }
 
     @FXML
     private void correctInfoButtonHandler(ActionEvent event) {
-        System.out.println("修改个人信息");
+        System.out.println("correctInfoButton");
     }
     
 }

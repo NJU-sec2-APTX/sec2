@@ -1,4 +1,4 @@
-package UI.Runner;
+package client.UI.Runner;
 import java.io.File;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -9,23 +9,21 @@ import javafx.stage.StageStyle;
 
 /**
  *
- * @author ³Â³¤Éú
+ * @author ï¿½ zhuyingshan
  */
 public class Start extends Application  {
 
 	public static void main(String[] args) {
 		Application.launch(Start.class,args);
-                
-
 	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent root=FXMLLoader.load((new File("src/UI/Runner/Runner.fxml")).toURL());
+		Parent root=FXMLLoader.load((new File("src/main/java/client/UI/Runner/Runner.fxml")).toURL());
 		Scene scene=new Scene(root);
 		primaryStage.initStyle(StageStyle.DECORATED);
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("öÁ³Ì");
+		primaryStage.setTitle("éš½ç¨‹é…’åº—ç®¡ç†ç³»ç»Ÿ");
 		primaryStage.show();
 	}
 }

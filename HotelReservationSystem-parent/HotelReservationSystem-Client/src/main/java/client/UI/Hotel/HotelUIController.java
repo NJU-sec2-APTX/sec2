@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI.Hotel;
+package client.UI.Hotel;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +19,7 @@ import javafx.scene.layout.AnchorPane;
 /**
  * FXML Controller class
  *
- * @author 陈长生
+ * @author zhuyingshan
  */
 public class HotelUIController {
 
@@ -52,42 +52,42 @@ public class HotelUIController {
 
     @FXML
     private void exitButtonHandler(ActionEvent event)throws IOException {
-        System.out.println("退出");
+        System.out.println("exitButton");
         base.getChildren().clear();
-        base.getChildren().add(FXMLLoader.load((new File("src/UI/Runner/Runner.fxml").toURL())));
+        base.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Runner/Runner.fxml").toURL())));
     }
 
 
     @FXML
     private void HotelInfoButtonHandler(ActionEvent event)throws  IOException{
-        System.out.println("查看酒店信息");
+        System.out.println("HotelInfoButton");
         rep.getChildren().clear();
-        rep.getChildren().add(FXMLLoader.load((new File("src/UI/Hotel/HotelInfo/HotelInfo.fxml").toURL())));
+        rep.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Hotel/HotelInfo/HotelInfo.fxml").toURL())));
     }
 
     @FXML
     private void StrategyAddButtonHandler(ActionEvent event) throws IOException{
-        System.out.println("查看酒店策略");
+        System.out.println("StrategyAddButton");
         rep.getChildren().clear();
-        rep.getChildren().add(FXMLLoader.load((new File("src/UI/Hotel/HotelStrategyInput/HotelStrategyInput.fxml").toURL())));
+        rep.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Hotel/HotelStrategyInput/HotelStrategyInput.fxml").toURL())));
     }
     
     @FXML
     private void executeOrderButtonHandler(ActionEvent event) throws  IOException{
-        System.out.println("执行订单");
+        System.out.println("executeOrderButton");
          rep.getChildren().clear();
-        rep.getChildren().add(FXMLLoader.load((new File("src/UI/Hotel/ExecuteOrder/ExecuteReplace.fxml").toURL())));
+        rep.getChildren().add(FXMLLoader.load((new File("ssrc/main/java/client/UI/Hotel/ExecuteOrder/ExecuteReplace.fxml").toURL())));
         
     }
 
     @FXML
     private void searchButtonHandler(ActionEvent event) {
-        System.out.println("搜索订单");
+        System.out.println("searchButton");
     }
 
     @FXML
     private void checkOrderButtonHandler(ActionEvent event)throws  IOException{
-        System.out.println("查看订单");
+        System.out.println("checkOrderButton");
         rep.getChildren().clear();
         rep.getChildren().add(FXMLLoader.load((new File("src/UI/Hotel/OrderInHotel/OrderInHotel.fxml").toURL())));
         

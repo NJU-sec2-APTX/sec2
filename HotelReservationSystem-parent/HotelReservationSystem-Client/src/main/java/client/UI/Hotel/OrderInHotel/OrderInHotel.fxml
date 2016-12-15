@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Hotel.OrderInHotel.OrderInHotelController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Hotel.OrderInHotel.OrderInHotelController">
    <children>
       <GridPane layoutX="14.0" layoutY="161.0" prefHeight="547.0" prefWidth="222.0">
         <columnConstraints>

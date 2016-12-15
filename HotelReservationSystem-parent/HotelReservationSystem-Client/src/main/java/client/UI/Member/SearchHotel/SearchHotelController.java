@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI.Member.SearchHotel;
+package client.UI.Member.SearchHotel;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +14,7 @@ import javafx.scene.control.ScrollPane;
 /**
  * FXML Controller class
  *
- * @author ³Â³¤Éú
+ * @author zhuyingshan
  */
 public class SearchHotelController {
 

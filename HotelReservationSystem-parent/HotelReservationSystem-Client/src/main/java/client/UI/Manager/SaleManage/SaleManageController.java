@@ -1,4 +1,4 @@
-package UI.Manager.SaleManage;
+package client.UI.Manager.SaleManage;
 
 import java.io.IOException;
 
@@ -10,32 +10,32 @@ import javafx.scene.layout.StackPane;
 
 public class SaleManageController {
 	@FXML
-	Button  添加营销人员,删除营销人员,修改营销人员权限,查看营销人员;
+	Button  AddSale,DeleteSale,ChangeSale,GetSale;
 	@FXML
 	StackPane change;
 	@FXML
 	AnchorPane all;
 	
 	AnchorPane add;
-	public void  click添加营销人员() throws IOException {
+	public void  AddSale() throws IOException {
 		all.getChildren().clear();
 		add=FXMLLoader.load(getClass().getResource(".fxml"));
                 all.getChildren().add(add );
 	}
 	
-	public void click删除营销人员() throws IOException{
+	public void DeleteSale() throws IOException{
 		all.getChildren().clear();
                 add=FXMLLoader.load(getClass().getResource(".fxml"));
                 all.getChildren().add(add);
 	}
         
-        public void click修改营销人员权限() throws IOException{
+        public void ChangeSale() throws IOException{
                 all.getChildren().clear();
                 add=FXMLLoader.load(getClass().getResource(".fxml"));
                 all.getChildren().add(add);
         }
           
-        public void click查看营销人员() throws IOException{
+        public void GetSale() throws IOException{
                 all.getChildren().clear();
                 add=FXMLLoader.load(getClass().getResource(".fxml"));
                 all.getChildren().add(add);

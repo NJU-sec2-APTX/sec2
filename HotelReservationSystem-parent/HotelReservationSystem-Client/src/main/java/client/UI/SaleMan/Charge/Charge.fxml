@@ -8,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-<AnchorPane fx:id="add" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.SaleMan.Charge.ChargeController">
+<AnchorPane fx:id="add" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.SaleMan.Charge.ChargeController">
    <children>
       <Pane fx:id="change" prefHeight="550.0" prefWidth="870.0">
          <opaqueInsets>
@@ -18,7 +18,7 @@
             <TextField layoutX="410.0" layoutY="82.0" />
             <TextField layoutX="410.0" layoutY="142.0" />
             <TextField layoutX="410.0" layoutY="202.0" />
-            <Button layoutX="223.0" layoutY="317.0" mnemonicParsing="false" text="充值" />
+            <Button fx:id="Charge" layoutX="223.0" layoutY="317.0" mnemonicParsing="false" onAction="#Charge" text="充值" />
             <Button layoutX="470.0" layoutY="317.0" mnemonicParsing="false" text="取消" />
             <Label layoutX="225.0" layoutY="86.0" text="客户ID" />
             <Label layoutX="219.0" layoutY="146.0" text="充值金额" />
