@@ -3,12 +3,16 @@ package client.businessLogicService.orderblService;
 import java.util.ArrayList;
 import java.util.Date;
 
+import common.otherEnumClasses.OrderState;
 import common.otherEnumClasses.Person;
+import common.vo.HotelVO;
 import common.vo.OrderVO;
 
 public interface orderblService {
 	
-	public ArrayList<OrderVO> searchOrderListFromData(Person person);
+	public ArrayList<HotelVO> searchReservedHotel(Person person);
+	
+	public ArrayList<OrderVO> searchOrderListFromData(Person person,OrderState state, HotelVO vo);
 	
 	public boolean createOrder(OrderVO vo, Person person);
 	

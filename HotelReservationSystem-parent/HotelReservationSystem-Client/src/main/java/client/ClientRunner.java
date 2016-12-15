@@ -2,8 +2,7 @@ package client;
 
 public class ClientRunner {
 
-	public static void main(String[] args) {
+	public ClientRunner(){
 		new Client();
 	}
-
 }

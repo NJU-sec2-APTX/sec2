@@ -8,24 +8,27 @@ import client.businessLogicService.orderblService.orderblService;
 import common.otherEnumClasses.CreditChange;
 import common.otherEnumClasses.OrderState;
 import common.otherEnumClasses.Person;
+import common.po.HotelPO;
 import common.po.OrderPO;
+import common.vo.HotelVO;
 import common.vo.OrderVO;
 
 public class OrderOperation implements orderblService{
 
-	ArrayList<OrderVO> searchOrderListSortedByTime(){
-		ArrayList<>
+	public ArrayList<HotelVO> searchReservedHotel(Person person) {
+		ArrayList<HotelPO> pos = Client.getOrderDataService().searchReservedHotel(person);
+		ArrayList<HotelVO> vos = new ArrayList<HotelVO>();
+		for(HotelPO hotelPO : pos){
+			vos.add(new HotelVO(hotelPO));
+		}
+		return vos;
 	}
 	
-	ArrayList<OrderVO> searchOrderListSortedByHotel(){
-		
-	}
-	
-	public ArrayList<OrderVO> searchOrderListFromData(Person person){
-		ArrayList<OrderPO> pos = Client.getOrderDataService().findOrderList(person);
+	public ArrayList<OrderVO> searchOrderListFromData(Person person, OrderState state, HotelVO hotelVO){
+		ArrayList<OrderPO> pos = Client.getOrderDataService().findOrderList(person,state,hotelVO);
 		ArrayList<OrderVO> vos = new ArrayList<OrderVO>();
-		for (OrderPO orderPO : pos) {
-			vos.add(new OrderVO(orderPO));
+		for(OrderPO OrderPO : pos){
+			vos.add(new OrderVO(OrderPO));
 		}
 		return vos;
 	}
@@ -85,6 +88,6 @@ public class OrderOperation implements orderblService{
 		}
 		return false;
 	}
-	
+
 	
 }

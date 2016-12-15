@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import javax.security.auth.PrivateCredentialPermission;
-
 import client.Client;
 import common.otherEnumClasses.HotelSearchConditions;
 import common.otherEnumClasses.Person;

@@ -14,7 +14,7 @@ public class OrderVO {
 	public OrderState state;
 	public double mark;
 	public Person person;
-	public String hotel;
+	public HotelVO hotel;
 	public Date createdTime;
 	public Date latestDoneTime;
 	public Date checkInTime;

@@ -6,6 +6,7 @@ import java.util.Date;
 import common.otherEnumClasses.CreditChange;
 import common.otherEnumClasses.OrderState;
 import common.otherEnumClasses.Person;
+import common.vo.HotelVO;
 import common.vo.OrderVO;
 
 public class OrderPO {
@@ -16,7 +17,7 @@ public class OrderPO {
 	private OrderState state;
 	private double mark;
 	private Person person;
-	private	String hotel;
+	private	HotelVO hotel;
 	private Date createdTime;
 	private Date latestDoneTime;
 	private Date checkInTime;
@@ -36,7 +37,7 @@ public class OrderPO {
 		state = vo.state;
 		mark = vo.mark;
 		person = vo.person;
-		hotel = vo.hotel;
+		setHotel(vo.hotel);
 		createdTime = vo.checkInTime;
 		latestDoneTime = vo.latestDoneTime;
 		checkInTime = vo.checkInTime;
@@ -87,12 +88,6 @@ public class OrderPO {
 	}
 	public void setState(OrderState state) {
 		this.state = state;
-	}
-	public String getHotel() {
-		return hotel;
-	}
-	public void setHotel(String hotel) {
-		this.hotel = hotel;
 	}
 	public Date getCreatedTime() {
 		return createdTime;
@@ -149,5 +144,13 @@ public class OrderPO {
 
 	public void setCancelTime(Date cancelTime) {
 		this.cancelTime = cancelTime;
+	}
+
+	public HotelVO getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(HotelVO hotel) {
+		this.hotel = hotel;
 	}
 }

@@ -1,16 +1,22 @@
 package common.dataService;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import common.otherEnumClasses.OrderState;
 import common.otherEnumClasses.Person;
+import common.po.HotelPO;
 import common.po.OrderPO;
+import common.vo.HotelVO;
 
 public interface OrderDataService extends Remote{
 
-	ArrayList<OrderPO> findOrderList(Person person);
-
-	boolean updateOrder(OrderPO po);
+	public ArrayList<HotelPO> searchReservedHotel(Person person) throws RemoteException;
 	
-	boolean addOrder(OrderPO po);
+	public ArrayList<OrderPO> findOrderList(Person person,OrderState state, HotelVO hotelVO) throws RemoteException;
+
+	boolean updateOrder(OrderPO po) throws RemoteException;
+	
+	boolean addOrder(OrderPO po) throws RemoteException;
 }
