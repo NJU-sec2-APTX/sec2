@@ -20,4 +20,6 @@ public interface WebsiteManagerMaintainService {
 	public ResultMessage addUser(UserPO po) throws Exception;
 	
 	public ResultMessage recoverCredit(String id,double credit) throws Exception;
+	
+	public ResultMessage removeUser(String id,UserRole ur) throws Exception;
 }

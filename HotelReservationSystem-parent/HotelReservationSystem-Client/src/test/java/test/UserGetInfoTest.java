@@ -60,7 +60,7 @@ public class UserGetInfoTest extends TestCase{
 			MemberVO vo=managermaintain.getMemberInfo("000001",UserRole.Enterprise);
 			assertNotNull(vo);
 			assertEquals(vo.getCredit(),20000.0);
-			assertEquals(vo.getLevel(),5);
+			assertEquals(vo.getLevel(),3);
 			assertEquals(vo.getName(),"苏宁");
 			assertEquals(vo.getBirthday(),null);
 			UserVO vo1=managermaintain.getUserInfo("000002",UserRole.Sales);

@@ -60,6 +60,7 @@ public class UserModifyTest extends TestCase{
 			po.setContact("fuck");
 			po.setName("杰克俊逸");
 			po.setPassword("123456");
+			po.setbelonghotel("隽诚");
 			assertEquals(ResultMessage.Success,hotelmaintain.modifyUserInfo(po));
 			po.setContact("fuck");
 			po.setName("张隽诚");
@@ -84,7 +85,6 @@ public class UserModifyTest extends TestCase{
 			po1.setBirthday(new Date(1996-1900,9-1,7));
 			po1.setContact("红色鲱鱼");
 			po1.setCredit(5000);
-			po1.setLevel(9);
 			po1.setName("杨子航");
 			po1.setPassword("fuckyou");
 			UserPO po=new UserPO("000001",UserRole.HotelWorker);

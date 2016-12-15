@@ -19,4 +19,6 @@ public interface UserDataService extends Remote{
 	public ResultMessage updatecredit(String id,double money) throws RemoteException;
 	
 	public ResultMessage checkoutuser(String ID,UserRole ur) throws RemoteException;
+	
+	public ResultMessage remove(String ID,UserRole ur) throws RemoteException;
 }

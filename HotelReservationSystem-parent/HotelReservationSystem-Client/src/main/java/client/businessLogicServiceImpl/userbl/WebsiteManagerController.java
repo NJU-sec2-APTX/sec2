@@ -53,4 +53,9 @@ public class WebsiteManagerController implements WebsiteManagerMaintainService{
 			return u.recharge(id, credit/100);
 		}
 	}
+	
+	@Override
+	public ResultMessage removeUser(String id, UserRole ur) throws Exception {
+		return u.removeUser(id, ur);
+	}
 }

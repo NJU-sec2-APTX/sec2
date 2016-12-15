@@ -36,7 +36,7 @@ public class MemberTest extends TestCase{
 			assertEquals("151250183@smail.nju.edu.cn",vo.getContact());
 			assertEquals(20000.0,vo.getCredit());
 			assertEquals("苏宁",vo.getName());
-			assertEquals(5,vo.getLevel());
+			assertEquals(3,vo.getLevel());
 			assertNull(vo.getBirthday());
 			assertEquals(UserRole.Enterprise,vo.getUserRole());
 		} catch (Exception e) {
@@ -84,19 +84,10 @@ public class MemberTest extends TestCase{
 			MemberPO po=new MemberPO("000001",UserRole.Enterprise);
 			po.setContact("151250183@smail.nju.edu.cn");
 			po.setCredit(15000);
-			po.setLevel(5);
 			po.setName("苏宁");
 			po.setPassword("123456");
 			po.setBirthday(null);
 			assertEquals(ResultMessage.Failure,membermaintain.modifyInfo(po));
-			MemberPO po1=new MemberPO("000001",UserRole.Enterprise);
-			po1.setBirthday(null);
-			po1.setContact("151250183@smail.nju.edu.cn");
-			po1.setLevel(4);
-			po1.setName("苏宁");
-			po1.setPassword("123456");
-			po1.setCredit(20000.0);
-			assertEquals(ResultMessage.Failure,membermaintain.modifyInfo(po1));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

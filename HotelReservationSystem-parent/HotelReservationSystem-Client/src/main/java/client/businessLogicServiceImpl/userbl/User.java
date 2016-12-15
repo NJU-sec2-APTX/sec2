@@ -45,6 +45,7 @@ public class User {
 		if(userpo.getUserRole()==UserRole.Sales||userpo.getUserRole()==UserRole.Manager){
 			MemberPO po;
 			try {
+				System.out.println(Client.getUserDataService()==null);
 				if(Client.getUserDataService().find(userpo.getId(),userpo.getUserRole())!=null){
 					po = Client.getMemberDataService().find(id);
 					if(po==null){
@@ -150,6 +151,23 @@ public class User {
 			}
 		}else{
 			return ResultMessage.Failure;
+		}
+	}
+	
+	public ResultMessage removeUser(String id,UserRole ur){
+		if(userpo.getUserRole()!=UserRole.Manager||ur==UserRole.Manager){
+			return ResultMessage.Failure;
+		}else{
+			try {
+				if(Client.getUserDataService().find(id,ur)!=null){
+					return Client.getUserDataService().remove(id, ur);
+				}else{
+					return ResultMessage.Failure;
+				}
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				return ResultMessage.Failure;
+			}
 		}
 	}
 }

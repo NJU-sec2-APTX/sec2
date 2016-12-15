@@ -16,8 +16,37 @@ public class UserDataServiceImpl extends UnicastRemoteObject implements UserData
 	 * 
 	 */
 	private static final long serialVersionUID = -8731398660645877605L;
-
+	private int level[];
 	public UserDataServiceImpl() throws RemoteException {
+		sql="select * from strategy where id='000001'&&userrole='Sales'&&name='MemberLevel';";
+		databasehelper=new DBHelper(sql);
+		try {
+			resultset=databasehelper.pst.executeQuery();
+			if(resultset.next()){
+				String temp=resultset.getString(11);
+				String[]list=temp.split("/");
+				level=new int[list.length];
+				for(int i=0;i<list.length;i++){
+					level[i]=Integer.parseInt(list[i]);
+				}
+			}else{
+				level=new int[6];
+				for(int i=0;i<6;i++){
+					level[i]=100;
+					for(int j=1;j<i+1;j++){
+						level[i]*=10;
+					}
+				}
+			}
+		} catch (SQLException e) {
+			level=new int[6];
+			for(int i=0;i<6;i++){
+				level[i]=100;
+				for(int j=1;j<i+1;j++){
+					level[i]*=10;
+				}
+			}
+		}
 	}
 
 	private DBHelper databasehelper;
@@ -140,7 +169,17 @@ public class UserDataServiceImpl extends UnicastRemoteObject implements UserData
 				databasehelper.pst.execute(sql1);
 				databasehelper.close();
 				credit+=money*100;
+				int l=0;
+				for(int i=0;i<level.length;i++){
+					if(credit<level[i]){
+						break;
+					}
+					l++;
+				}
 				sql="update member set credit="+credit+" where id='"+id+"';";
+				databasehelper=new DBHelper(sql);
+				databasehelper.pst.execute();
+				sql="update member set level="+l+" where id='"+id+"';";
 				databasehelper=new DBHelper(sql);
 				databasehelper.pst.execute();
 				databasehelper.close();
@@ -170,6 +209,20 @@ public class UserDataServiceImpl extends UnicastRemoteObject implements UserData
 			}else{
 				return ResultMessage.Failure;
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return ResultMessage.Failure;
+		}
+	}
+
+	@Override
+	public ResultMessage remove(String id, UserRole ur) throws RemoteException {
+		sql="delete from user where id='"+id+"'&&userrole='"+ur.toString()+"';";
+		databasehelper=new DBHelper(sql);
+		try {
+			databasehelper.pst.execute();
+			databasehelper.close();
+			return ResultMessage.Success;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return ResultMessage.Failure;

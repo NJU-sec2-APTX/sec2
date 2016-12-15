@@ -11,27 +11,28 @@ import common.otherEnumClasses.UserRole;
 import common.po.UserPO;
 import junit.framework.TestCase;
 
-public class UserManagerAddTest extends TestCase{
+public class UserManagerDeleteTest extends TestCase{
 	WebsiteManagerMaintainService managermaintain;
-	
 	@Before
 	public void setUp(){
 		new Client();
 	}
 	
 	@Test
-	public void testadd(){
+	public void testDelete(){
 		managermaintain=new WebsiteManagerController("000001");
 		try {
-			assertEquals(ResultMessage.Failure,managermaintain.addUser(new UserPO("000004",UserRole.HotelWorker)));
+			assertEquals(ResultMessage.Failure,managermaintain.removeUser("000001", UserRole.Sales));
 			managermaintain=new WebsiteManagerController("000000");
-			UserPO po=new UserPO("000004",UserRole.Sales);
-			po.setContact("hhhh");
-			po.setName("杨子脏");
-			po.setPassword("干死扬子脏");
-			assertEquals(ResultMessage.Success,managermaintain.addUser(po));
-			assertEquals(ResultMessage.Registered,managermaintain.addUser(po));
-			Client.getUserDataService().remove("000004", UserRole.Sales);
+			assertEquals(ResultMessage.Failure,managermaintain.removeUser("000001", UserRole.Sales));
+			assertEquals(ResultMessage.Failure,managermaintain.removeUser("000000",UserRole.Manager));
+			assertEquals(ResultMessage.Success,managermaintain.removeUser("000001", UserRole.HotelWorker));
+			UserPO po=new UserPO("000001",UserRole.HotelWorker);
+			po.setbelonghotel("隽诚");
+			po.setContact("fuck");
+			po.setName("张隽诚");
+			po.setPassword("123456789");
+			Client.getUserDataService().insert(po);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

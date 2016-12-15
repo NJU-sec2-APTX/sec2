@@ -66,7 +66,6 @@ public class MemberDataServiceImpl extends UnicastRemoteObject implements Member
 			String name=null;
 			String password=null;
 			Date birthday=null;
-			int level=0;
 			String contact=null;
 			double credit=0;
 			while (resultset.next()) {
@@ -77,7 +76,6 @@ public class MemberDataServiceImpl extends UnicastRemoteObject implements Member
 				credit=resultset.getDouble(5);
 				birthday=resultset.getDate(6);
 				contact=resultset.getString(7);
-				level=resultset.getInt(8);
             }
 			if(id==null){
 				return null;
@@ -88,7 +86,6 @@ public class MemberDataServiceImpl extends UnicastRemoteObject implements Member
 			memberpo.setName(name);
 			memberpo.setPassword(password);
 			memberpo.setContact(contact);
-			memberpo.setLevel(level);
 			databasehelper.close();
 			
 			databasehelper=new DBHelper(sql1);

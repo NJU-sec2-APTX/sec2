@@ -23,7 +23,6 @@ public class UserFactoryTest extends TestCase{
 		member1.setPassword("123456");
 		member1.setContact("151250183@smail.nju.edu.cn");
 		member1.setCredit(20000);
-		member1.setLevel(5);
 		member1.setName("苏宁");
 		member2=new MemberPO("000002",UserRole.Member);
 		member2.setPassword("jubaoriben");
