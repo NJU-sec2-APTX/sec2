@@ -26,11 +26,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="memberInfoButton" mnemonicParsing="false" onAction="#memberInfoButtonHandler" prefHeight="84.0" prefWidth="170.0" text="个人信息">
-               <font>
-                  <Font size="30.0" />
-               </font></Button>
-            <Button fx:id="searchHotelButton" mnemonicParsing="false" onAction="#searchHotelButtonHandler" prefHeight="84.0" prefWidth="170.0" text="浏览酒店" GridPane.rowIndex="1">
+            <Button fx:id="searchHotelButton" mnemonicParsing="false" onAction="#searchHotelButtonHandler" prefHeight="84.0" prefWidth="170.0" text="浏览酒店">
                <font>
                   <Font size="30.0" />
                </font>
@@ -40,102 +36,12 @@
                   <Font size="30.0" />
                </font>
             </Button>
+            <Button fx:id="memberInfoButton" mnemonicParsing="false" onAction="#memberInfoButtonHandler" prefHeight="84.0" prefWidth="170.0" text="个人信息" GridPane.rowIndex="1">
+               <font>
+                  <Font size="30.0" />
+               </font></Button>
          </children>
       </GridPane>
-      <Pane fx:id="replacePane" layoutX="265.0" layoutY="161.0" prefHeight="550.0" prefWidth="870.0">
-         <children>
-            <Label layoutX="189.0" layoutY="57.0" text="ID：">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-            <Label layoutX="189.0" layoutY="126.0" text="姓名：">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-            <Label layoutX="189.0" layoutY="338.0" text="会员等级：">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-            <Label layoutX="189.0" layoutY="265.0" text="信用：">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-            <Label layoutX="189.0" layoutY="194.0" text="联系方式：">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-            <Button fx:id="creditButton" layoutX="566.0" layoutY="270.0" mnemonicParsing="false" onAction="#creditButtonHandler" text="查看信用值变化记录" />
-            <Button fx:id="correctInfoButton" layoutX="566.0" layoutY="343.0" mnemonicParsing="false" onAction="#correctInfoButtonHandler" text="修改个人信息" />
-            <Label fx:id="idField" layoutX="339.0" layoutY="58.0" prefHeight="37.0" prefWidth="233.0" text="id">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="nameField" layoutX="339.0" layoutY="127.0" prefHeight="37.0" prefWidth="233.0" text="赵日天">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="contactField" layoutX="345.0" layoutY="195.0" prefHeight="37.0" prefWidth="233.0" text="110">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="creditField" layoutX="345.0" layoutY="266.0" prefHeight="37.0" prefWidth="196.0" text="100">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="rankField" layoutX="345.0" layoutY="339.0" prefHeight="37.0" prefWidth="150.0" text="1">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Group layoutX="114.0" layoutY="401.0">
-               <children>
-                  <Label layoutX="78.0" layoutY="1.0" prefHeight="39.0" prefWidth="553.0" text="生日：">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="yearLabel" layoutX="235.0" layoutY="2.0" prefHeight="37.0" prefWidth="57.0" text="2010">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="rankField11" layoutX="306.0" layoutY="2.0" prefHeight="37.0" prefWidth="57.0" text="年">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="monthLabel" layoutX="355.0" layoutY="2.0" prefHeight="37.0" prefWidth="57.0" text="12">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="rankField111" layoutX="419.0" layoutY="2.0" prefHeight="37.0" prefWidth="57.0" text="月">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="dayLabel" layoutX="458.0" layoutY="2.0" prefHeight="37.0" prefWidth="57.0" text="12">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="rankField1111" layoutX="529.0" layoutY="2.0" prefHeight="37.0" prefWidth="57.0" text="日">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Group>
-         </children>
-      </Pane>
+      <Pane fx:id="replacePane" layoutX="265.0" layoutY="161.0" prefHeight="550.0" prefWidth="870.0" />
    </children>
 </AnchorPane>

@@ -28,38 +28,27 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="checkOrderButton" mnemonicParsing="false" onAction="#checkOrderButtonHandler" prefHeight="121.0" prefWidth="222.0" text="查看订单" GridPane.rowIndex="3">
+            <Button fx:id="checkOrderButton" mnemonicParsing="false" onAction="#checkOrderButtonHandler" prefHeight="84.0" prefWidth="175.0" text="查看订单" GridPane.rowIndex="3">
                <font>
                   <Font size="30.0" />
                </font></Button>
-            <Button fx:id="HotelInfoButton" mnemonicParsing="false" onAction="#HotelInfoButtonHandler" prefHeight="121.0" prefWidth="222.0" text="酒店信息" GridPane.rowIndex="1">
+            <Button fx:id="HotelInfoButton" mnemonicParsing="false" onAction="#HotelInfoButtonHandler" prefHeight="84.0" prefWidth="175.0" text="酒店信息" GridPane.rowIndex="1">
                <font>
                   <Font size="30.0" />
                </font>
             </Button>
-            <Button fx:id="strategyAddButton" mnemonicParsing="false" onAction="#StrategyAddButtonHandler" prefHeight="121.0" prefWidth="222.0" text="录入策略" GridPane.rowIndex="2">
+            <Button fx:id="strategyAddButton" mnemonicParsing="false" onAction="#StrategyAddButtonHandler" prefHeight="84.0" prefWidth="175.0" text="录入策略" GridPane.rowIndex="2">
                <font>
                   <Font size="30.0" />
                </font>
             </Button>
-            <Button fx:id="executeOrderButton" mnemonicParsing="false" onAction="#executeOrderButtonHandler" prefHeight="121.0" prefWidth="222.0" text="执行订单">
+            <Button fx:id="executeOrderButton" mnemonicParsing="false" onAction="#executeOrderButtonHandler" prefHeight="84.0" prefWidth="175.0" text="执行订单">
                <font>
                   <Font size="30.0" />
                </font>
             </Button>
          </children>
       </GridPane>
-      <AnchorPane fx:id="rep" layoutX="245.0" layoutY="166.0" prefHeight="550.0" prefWidth="870.0">
-         <children>
-            <TextField fx:id="searchArea" layoutX="25.0" layoutY="27.0" prefHeight="45.0" prefWidth="728.0" />
-            <ScrollPane fx:id="showPane" layoutX="25.0" layoutY="86.0" prefHeight="406.0" prefWidth="818.0" />
-            <Button fx:id="searchButton" layoutX="769.0" layoutY="27.0" mnemonicParsing="false" onAction="#searchButtonHandler" text="搜索">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Button>
-            <Button fx:id="confirmOrderButton" layoutX="363.0" layoutY="501.0" mnemonicParsing="false" onAction="#confirmOrderButtonHandler" prefHeight="45.0" prefWidth="80.0" text="执行订单" />
-         </children>
-      </AnchorPane>
+      <AnchorPane fx:id="rep" layoutX="236.0" layoutY="160.0" prefHeight="550.0" prefWidth="870.0" />
    </children>
 </AnchorPane>

@@ -7,17 +7,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 /**
  *
  * @author � zhuyingshan
  */
 public class Start extends Application  {
-        public static Person preson;
+        public static Person person=new Person();
+        
 	public static void main(String[] args) {
-            File f=new File("src/main/java/client/UI/Runner/Runner.fxml");
-            System .out.println(f.exists());
-		//Application.launch(Start.class,args);
+            
+		Application.launch(Start.class,args);
 	}
 
 	@Override

@@ -17,7 +17,6 @@ import javafx.scene.control.ScrollPane;
  * @author zhuyingshan
  */
 public class SearchHotelController {
-
     @FXML
     private ScrollPane showPane;
     @FXML

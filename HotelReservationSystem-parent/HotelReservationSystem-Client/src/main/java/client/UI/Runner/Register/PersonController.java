@@ -5,9 +5,15 @@
  */
 package client.UI.Runner.Register;
 
+import client.businessLogicService.userblService.UserIFactory;
+import client.businessLogicServiceImpl.userbl.UserFactory;
+import common.otherEnumClasses.ResultMessage;
+import common.otherEnumClasses.UserRole;
+import common.po.MemberPO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
@@ -35,14 +41,31 @@ public class PersonController  {
     private TextField dayField;
     @FXML
     private Button okButton;
+    @FXML
+    private Label tipLabel;
 
-    /**
-     * Initializes the controller class.
-     */    
 
     @FXML
     private void okButton(ActionEvent event) {
+         String account=accountField.getText();
+        String passWord=passWordField.getText();
+        String nameString=nameField.getText();
+        String contString=contactField.getText();
+        UserIFactory uif=new UserFactory();
+        MemberPO po=new MemberPO(account,UserRole.Member);
         
+        ResultMessage result=uif.register(account, po);
+        switch(result){
+            case Success:
+                tipLabel.setText("注册成功");
+                break;
+            case Failure:
+                tipLabel.setText("注册失败");
+                break;
+            case  Registered:
+                tipLabel.setText("该ID已被注册过");
+                break;
+        }
     }
 
     

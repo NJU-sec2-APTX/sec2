@@ -5,9 +5,11 @@
  */
 package client.UI.Hotel.ExecuteOrder;
 
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -18,7 +20,6 @@ import javafx.scene.layout.AnchorPane;
  * @author zhuyingshan
  */
 public class ExecuteReplaceController {
-
     @FXML
     private AnchorPane basePane;
     @FXML
@@ -35,10 +36,12 @@ public class ExecuteReplaceController {
   
     @FXML
     private void searchButtonHandler(ActionEvent event) {
+        ArrayList<Label> orderList=new ArrayList();
+        //添加label的数组
+        
     }
 
     @FXML
     private void executeOrderButtonHandler(ActionEvent event) {
     }
-    
 }

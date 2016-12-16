@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 
 public class RegisterController {
 
+
     public RegisterController() throws IOException {
         
     }
@@ -24,25 +25,9 @@ public class RegisterController {
     @FXML
     private Button cancelButton;
     @FXML
-    private Button okButton;
-    @FXML
     private Pane repPane;
     @FXML
     private AnchorPane base;
-    @FXML
-    private TextField accountField;
-    @FXML
-    private TextField passwordField;
-    @FXML
-    private TextField contactField;
-    @FXML
-    private TextField nameField;
-    @FXML
-    private TextField yearField;
-    @FXML
-    private TextField monthField;
-    @FXML
-    private TextField dayField;
 
     @FXML
     private void personButtonHandler  ()throws  IOException{
@@ -56,7 +41,6 @@ public class RegisterController {
         System.out.println("corporate");
         repPane.getChildren().clear();
         repPane.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Runner/Register/Company.fxml")).toURL()));
-        //�滻panel
         
     }
 
@@ -67,10 +51,10 @@ public class RegisterController {
                 System.out.println("cancelButton");
     }
 
-    @FXML
-    private void okButton(ActionEvent event) {
-        
-        System.out.println("okButton");
+    public void initialize(  )throws IOException{
+        System.out.println("personButton");
+        repPane.getChildren().clear();
+        repPane.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Runner/Register/Person.fxml")).toURL()));
     }
 
 }

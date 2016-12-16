@@ -5,6 +5,12 @@
  */
 package client.UI.Member;
 
+import client.UI.Runner.RunnerController;
+import client.UI.Runner.Start;
+import client.businessLogicService.userblService.UserIFactory;
+import client.businessLogicServiceImpl.userbl.UserFactory;
+import common.otherEnumClasses.UserRole;
+import common.po.MemberPO;
 import java.io.File;
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -21,7 +27,7 @@ import javafx.scene.layout.Pane;
  * @author zhuyingshan
  */
 public class MemberUIController  {
-
+    UserIFactory uif=new UserFactory();
     @FXML
     private AnchorPane base;
     @FXML
@@ -36,20 +42,6 @@ public class MemberUIController  {
     private Button orderButton;
     @FXML
     private Pane replacePane;
-    @FXML
-    private Button creditButton;
-    @FXML
-    private Button correctInfoButton;
-    @FXML
-    private Label idField;
-    @FXML
-    private Label nameField;
-    @FXML
-    private Label contactField;
-    @FXML
-    private Label creditField;
-    @FXML
-    private Label rankField;
 
   
 
@@ -62,9 +54,16 @@ public class MemberUIController  {
 
     @FXML
     private void memberInfoButtonHandler(ActionEvent event)throws IOException{
-        System.out.println("memberInfoButton");
-        replacePane.getChildren().clear();
-        replacePane.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/MemberInfo/MemberInfoRep.fxml")).toURL()));
+        if(Start.person.role==UserRole.Member){
+            System.out.println("memberInfoButton");
+            replacePane.getChildren().clear();
+            replacePane.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/MemberInfo/MemberInfoRep.fxml")).toURL()));
+        }else{
+            System.out.println("memberInfoButton");
+            replacePane.getChildren().clear();
+            replacePane.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/MemberInfo/EnterpriseInfoRep.fxml")).toURL()));
+        }
+        
     }
 
     @FXML
@@ -80,16 +79,10 @@ public class MemberUIController  {
         replacePane.getChildren().clear();
         replacePane.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/OrderBrowse/OrderUI.fxml")).toURL()));
     }
-
     @FXML
-    private void creditButtonHandler(ActionEvent event) throws IOException{
-        System.out.println("creditButton");
-        
-    }
-
-    @FXML
-    private void correctInfoButtonHandler(ActionEvent event) {
-        System.out.println("correctInfoButton");
+    public  void initialize()throws IOException{
+        replacePane.getChildren().clear();
+         replacePane.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/SearchHotel/SearchHotel.fxml")).toURL()));
     }
     
 }

@@ -12,8 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -34,19 +32,11 @@ public class HotelUIController {
     @FXML
     private Button executeOrderButton;
     @FXML
-    private Button searchButton;
-    @FXML
-    private TextField searchArea;
-    @FXML
-    private ScrollPane showPane;
-    @FXML
     private AnchorPane base;
     @FXML
     private AnchorPane rep;
     @FXML
     private Button checkOrderButton;
-    @FXML
-    private Button confirmOrderButton;
 
     
 
@@ -79,12 +69,6 @@ public class HotelUIController {
         rep.getChildren().add(FXMLLoader.load((new File("ssrc/main/java/client/UI/Hotel/ExecuteOrder/ExecuteReplace.fxml").toURL())));
         
     }
-
-    @FXML
-    private void searchButtonHandler(ActionEvent event) {
-        System.out.println("searchButton");
-    }
-
     @FXML
     private void checkOrderButtonHandler(ActionEvent event)throws  IOException{
         System.out.println("checkOrderButton");
@@ -92,10 +76,11 @@ public class HotelUIController {
         rep.getChildren().add(FXMLLoader.load((new File("src/UI/Hotel/OrderInHotel/OrderInHotel.fxml").toURL())));
         
     }
-
-    @FXML
-    private void confirmOrderButtonHandler(ActionEvent event) {
-        
+    @FXML 
+    public void initialize()throws IOException{
+         System.out.println("executeOrderButton");
+         rep.getChildren().clear();
+        rep.getChildren().add(FXMLLoader.load((new File("ssrc/main/java/client/UI/Hotel/ExecuteOrder/ExecuteReplace.fxml").toURL())));
     }
     
 }
