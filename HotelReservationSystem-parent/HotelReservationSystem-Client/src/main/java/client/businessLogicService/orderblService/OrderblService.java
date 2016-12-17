@@ -8,7 +8,7 @@ import common.otherEnumClasses.Person;
 import common.vo.HotelVO;
 import common.vo.OrderVO;
 
-public interface orderblService {
+public interface OrderblService {
 	
 	public ArrayList<HotelVO> searchReservedHotel(String clientId);
 	
@@ -16,7 +16,7 @@ public interface orderblService {
 	
 	public boolean createOrder(OrderVO vo, String clientId);
 	
-	public boolean executeOrder(OrderVO vo, String clientId, Date checkInTime);
+	public boolean executeOrder(String orderId, String clientId, Date checkInTime);
 	
 	public boolean assessOrder(OrderVO vo, double mark);
 	

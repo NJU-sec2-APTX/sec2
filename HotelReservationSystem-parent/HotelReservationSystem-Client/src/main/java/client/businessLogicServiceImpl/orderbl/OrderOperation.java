@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import client.Client;
+import client.businessLogicService.orderblService.OrderblService;
 import client.businessLogicService.orderblService.orderblService;
+import client.businessLogicService.strategyblService.StrategyPriceService;
+import client.businessLogicServiceImpl.strategybl.PriceController;
 import common.otherEnumClasses.CreditChange;
 import common.otherEnumClasses.CreditOperation;
 import common.otherEnumClasses.OrderState;
@@ -15,7 +18,7 @@ import common.po.OrderPO;
 import common.vo.HotelVO;
 import common.vo.OrderVO;
 
-public class OrderOperation implements orderblService{
+public class OrderOperation implements OrderblService{
 
 	public ArrayList<HotelVO> searchReservedHotel(String clientId){
 		ArrayList<HotelVO> vos = new ArrayList<HotelVO>();
@@ -43,6 +46,8 @@ public class OrderOperation implements orderblService{
 		OrderPO po = new OrderPO(vo);
 		po.setClientId(clientId);
 		try {
+			StrategyPriceService calprice = new PriceController(ID, ur);
+			po.setPrice(calprice.calPrice(new OrderVO(po)).);
 			return Client.getOrderDataService().addOrder(po);
 		} catch (RemoteException e) {
 			return false;
@@ -53,15 +58,14 @@ public class OrderOperation implements orderblService{
 		try {
 			OrderPO po = Client.getOrderDataService().findOrderFromData(orderId);
 			if(po.getState()==OrderState.NotDone||po.getState()==OrderState.Exceptional){
-				po.setPrice(             );
 				if(po.getState() == OrderState.Exceptional){
-					CreditChange cc = new CreditChange(clientId, po.getPrice(), endNum, CreditOperation.Execute, orderId);
+					Client.getUserDataService().updatecredit(clientId, , orderId, CreditOperation.Execute);
 				}
 				po.setState(OrderState.Done);
 				po.setCheckInTime(checkInTime);
 				return Client.getOrderDataService().updateOrder(po);
 			}
-		} catch (RemoteException e1) {}
+		} catch (RemoteException e) {}
 		return false;
 	}
 	
