@@ -3,6 +3,7 @@ package client.businessLogicServiceImpl.userbl;
 import java.rmi.RemoteException;
 
 import client.Client;
+import common.otherEnumClasses.CreditOperation;
 import common.otherEnumClasses.ResultMessage;
 import common.otherEnumClasses.UserRole;
 import common.po.MemberPO;
@@ -45,14 +46,12 @@ public class User {
 		if(userpo.getUserRole()==UserRole.Sales||userpo.getUserRole()==UserRole.Manager){
 			MemberPO po;
 			try {
-				System.out.println(Client.getUserDataService()==null);
 				if(Client.getUserDataService().find(userpo.getId(),userpo.getUserRole())!=null){
 					po = Client.getMemberDataService().find(id);
 					if(po==null){
 						return ResultMessage.Failure;
 					}else{
-						po.setCredit(po.getCredit()+money*100);
-						return Client.getUserDataService().updatecredit(id, money);
+						return Client.getUserDataService().updatecredit(id, money*100,null,CreditOperation.Recharge);
 					}
 				}else{
 					return ResultMessage.Failure;

@@ -113,7 +113,7 @@ public class Member{
 			return null;
 		}else{
 			memberpo=Client.getMemberDataService().find(memberpo.getId());
-			memberlist=Client.getMemberDataService().findCredit(memberpo.getId());
+			memberlist=memberpo.getCreditList();
 			return memberlist;
 		}
 	}

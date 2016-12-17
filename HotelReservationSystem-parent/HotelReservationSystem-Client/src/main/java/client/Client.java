@@ -25,7 +25,6 @@ public class Client {
             orderDataService = (OrderDataService) Naming.lookup("rmi://localhost:8888/OrderDataService");
             strategyDataService = (StrategyDataService) Naming.lookup("rmi://localhost:8888/StrategyDataService");
             userDataService = (UserDataService) Naming.lookup("rmi://localhost:8888/UserDataService");
-            System.out.println("连接成功");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (RemoteException e) {

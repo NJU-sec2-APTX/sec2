@@ -3,6 +3,7 @@ package common.dataService;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+import common.otherEnumClasses.CreditOperation;
 import common.otherEnumClasses.ResultMessage;
 import common.otherEnumClasses.UserRole;
 import common.po.UserPO;
@@ -16,7 +17,7 @@ public interface UserDataService extends Remote{
 	
 	public ResultMessage update(UserPO po) throws RemoteException;
 	
-	public ResultMessage updatecredit(String id,double money) throws RemoteException;
+	public ResultMessage updatecredit(String id,double credit,String OrderID,CreditOperation operation) throws RemoteException;
 	
 	public ResultMessage checkoutuser(String ID,UserRole ur) throws RemoteException;
 	

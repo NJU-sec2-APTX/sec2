@@ -3,6 +3,7 @@ package common.po;
 import java.io.Serializable;
 import java.util.Date;
 
+import common.otherEnumClasses.CreditOperation;
 import common.otherEnumClasses.MemberItem;
 import common.otherEnumClasses.MemberList;
 import common.otherEnumClasses.UserRole;
@@ -22,13 +23,6 @@ public class MemberPO implements Serializable{
 	private int level;
 	private String contact;
 	
-	@SuppressWarnings("deprecation")
-	public void print(){
-		System.out.println(Id+"\t"+name+"\t"+password+"\t"+role+"\t"+credit+"\t"+
-				(birthday.getYear()+1900)+"-"+(birthday.getMonth()+1)+"-"+birthday.getDate()+"\t"
-				+contact+"\t"+level);
-	}
-	
 	public int getLevel(){
 		return level;
 	}
@@ -39,6 +33,10 @@ public class MemberPO implements Serializable{
 	
 	public Date getBirthday(){
 		return birthday;
+	}
+	
+	public void setLevel(int l){
+		level=l;
 	}
 	
 	public MemberPO(String id,UserRole ur){
@@ -53,10 +51,10 @@ public class MemberPO implements Serializable{
 		contact=null;
 	}
 	
-	public void addCreditItem(Date date,double changes){
+	public void addCreditItem(Date date,double changes,String OrderID,double credit,CreditOperation ope){
 		if(creditlist==null)
 			creditlist=new MemberList();
-		creditlist.addMemberItem(new MemberItem(date,changes));
+		creditlist.addMemberItem(new MemberItem(date,changes,OrderID,credit,ope));
 	}
 	
 	public MemberList getCreditList(){

@@ -13,7 +13,7 @@ public class MemberController implements MemberMaintainService{
 	public MemberController(String ID,UserRole ur){
 		m=new Member(ID,ur);
 	}
-	
+
 	public MemberVO getInfo() throws Exception{
 		return m.getMemberInfo();
 	}

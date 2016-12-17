@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.Date;
 
 import common.dataService.UserDataService;
+import common.otherEnumClasses.CreditOperation;
+import common.otherEnumClasses.MemberLevel;
 import common.otherEnumClasses.ResultMessage;
 import common.otherEnumClasses.UserRole;
 import common.po.UserPO;
@@ -16,38 +18,7 @@ public class UserDataServiceImpl extends UnicastRemoteObject implements UserData
 	 * 
 	 */
 	private static final long serialVersionUID = -8731398660645877605L;
-	private int level[];
-	public UserDataServiceImpl() throws RemoteException {
-		sql="select * from strategy where id='000001'&&userrole='Sales'&&name='MemberLevel';";
-		databasehelper=new DBHelper(sql);
-		try {
-			resultset=databasehelper.pst.executeQuery();
-			if(resultset.next()){
-				String temp=resultset.getString(11);
-				String[]list=temp.split("/");
-				level=new int[list.length];
-				for(int i=0;i<list.length;i++){
-					level[i]=Integer.parseInt(list[i]);
-				}
-			}else{
-				level=new int[6];
-				for(int i=0;i<6;i++){
-					level[i]=100;
-					for(int j=1;j<i+1;j++){
-						level[i]*=10;
-					}
-				}
-			}
-		} catch (SQLException e) {
-			level=new int[6];
-			for(int i=0;i<6;i++){
-				level[i]=100;
-				for(int j=1;j<i+1;j++){
-					level[i]*=10;
-				}
-			}
-		}
-	}
+	public UserDataServiceImpl() throws RemoteException {}
 
 	private DBHelper databasehelper;
 	private String sql;
@@ -150,7 +121,8 @@ public class UserDataServiceImpl extends UnicastRemoteObject implements UserData
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public ResultMessage updatecredit(String id, double money) throws RemoteException {
+	public ResultMessage updatecredit(String id,double newcredit,String OrderID,CreditOperation operation) throws RemoteException {
+		//先找到当前用户的信用总值
 		sql="select credit from member where id='"+id+"';";
 		databasehelper=new DBHelper(sql);
 		try {
@@ -160,26 +132,24 @@ public class UserDataServiceImpl extends UnicastRemoteObject implements UserData
 				credit=resultset.getDouble(1);
 			}
 			String sql1="";
-			if(money!=0){
+			if(newcredit!=0){
 				Date d=new Date();
-				sql1="insert into credit(id,date,changes)"+"value('"+id+"','"
+				credit+=newcredit;
+				sql1="insert into credit(id,date,changes,credit,orderid,creditoperation)"+"value('"+id+"','"
 				+(d.getYear()+1900)+"-"+(d.getMonth()+1)+"-"+d.getDate()+" "+d.getHours()+":"+d.getMinutes()+"',"
-						+(money*100)+");";
+						+(newcredit)+","+credit+",'"+OrderID+"','"+operation.toString()+"');";
 				databasehelper=new DBHelper(sql1);
 				databasehelper.pst.execute(sql1);
 				databasehelper.close();
-				credit+=money*100;
-				int l=0;
-				for(int i=0;i<level.length;i++){
-					if(credit<level[i]){
-						break;
-					}
-					l++;
-				}
-				sql="update member set credit="+credit+" where id='"+id+"';";
+				sql="select * from strategy where id='000001'&&userrole='Sales'&&name='MemberLevel';";
 				databasehelper=new DBHelper(sql);
-				databasehelper.pst.execute();
-				sql="update member set level="+l+" where id='"+id+"';";
+				resultset=databasehelper.pst.executeQuery();
+				MemberLevel memberlevel=null;
+				if(resultset.next()){
+					memberlevel=new MemberLevel(resultset.getString(10),resultset.getString(11));
+				}
+				int l=memberlevel.getMemberLevel(credit);
+				sql="update member set credit="+credit+",level="+l+" where id='"+id+"';";
 				databasehelper=new DBHelper(sql);
 				databasehelper.pst.execute();
 				databasehelper.close();

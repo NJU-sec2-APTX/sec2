@@ -2,6 +2,7 @@ package client.businessLogicServiceImpl.strategybl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import common.otherEnumClasses.ResultMessage;
 import common.otherEnumClasses.StrategyList;
 import common.otherEnumClasses.UserRole;
 import common.po.StrategyPO;
+import common.vo.MemberVO;
 import common.vo.OrderVO;
 import common.vo.StrategyVO;
 
@@ -148,18 +150,72 @@ public class Strategy {
 	 * @return
 	 * @throws RemoteException
 	 */
+	@SuppressWarnings("deprecation")
 	public StrategyList calPrice(OrderVO vo) throws RemoteException{
 		if(vo!=null&&strategylist!=null){
 			strategy_price=new StrategyList(id,ur);
-			/*
-			 * while(strategy_price!=null)*/
 			ArrayList<StrategyVO> list=Client.getStrategyDataService().findAll(id,ur);
 			for(int i=0;i<list.size();i++){
 				StrategyVO tempvo=list.get(i);
-				//如果vo的商圈，期间，会员等级符合要求			
-				double order_price=100.0;
-				double p=order_price*tempvo.getCount();
-				strategy_price.addLineItem(p,tempvo);
+				MemberVO membervo=new MemberVO(Client.getMemberDataService().find(tempvo.getID()));
+				if(tempvo.getName().equals("MemberLevel")){
+					if(tempvo.getLevel()<=membervo.getLevel()){
+						double p=vo.price*tempvo.getCount();
+						strategy_price.addLineItem(p,tempvo);
+					}
+				}else{
+					//判断生日
+					if(tempvo.IsMemberBirth()&&membervo.getUserRole()==UserRole.Member){
+						Date d=new Date();
+						if(membervo.getBirthday().getMonth()!=d.getMonth()||membervo.getBirthday().getDate()!=d.getDate()){
+							break;
+						}
+					}
+					//判断商圈
+					if(tempvo.getArea()!=null){
+						if(!tempvo.getArea().contains(Client.getHotelDataService().getHotelInfo(vo.hotel).getArea())){
+							break;
+						}
+					}
+					//判断时间
+					if(tempvo.getStartDate()!=null){
+						if(tempvo.getEndDate()!=null){
+							if(!tempvo.getStartDate().before(vo.checkInTime)||!tempvo.getEndDate().after(vo.checkOutTime)){
+								break;
+							}
+						}else{
+							if(!tempvo.getStartDate().before(vo.checkInTime)){
+								break;
+							}
+						}
+					}
+					//判断房间数
+					if(tempvo.getRoomNumber()!=0){
+						String []sum=vo.numOfRoom.split("/");
+						int number=0;
+						for(int j=0;j<sum.length;j++){
+							number+=Integer.parseInt(sum[i]);
+						}
+						if(tempvo.getRoomNumber()>number){
+							break;
+						}
+					}
+					//判断等级
+					if(tempvo.getLevel()!=0){
+						if(tempvo.getLevel()>membervo.getLevel()){
+							break;
+						}
+					}
+					//判断合作企业
+					if(tempvo.getEnterprise()!=null&&membervo.getUserRole()==UserRole.Enterprise){
+						if(!tempvo.getEnterprise().contains(membervo.getName())){
+							break;
+						}
+					}
+					double p=vo.price*tempvo.getCount();
+					strategy_price.addLineItem(p,tempvo);
+				}
+				
 			}
 			return strategy_price;
 		}else{

@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.Date;
 
 import common.dataService.MemberDataService;
+import common.otherEnumClasses.CreditOperation;
+import common.otherEnumClasses.MemberLevel;
 import common.otherEnumClasses.MemberList;
 import common.otherEnumClasses.ResultMessage;
 import common.otherEnumClasses.UserRole;
@@ -22,20 +24,27 @@ public class MemberDataServiceImpl extends UnicastRemoteObject implements Member
 	private String sql1;
 	private ResultSet resultset;
 	
-	public MemberDataServiceImpl() throws RemoteException{
-		
-	}
+	public MemberDataServiceImpl() throws RemoteException{}
 	
 	@SuppressWarnings("deprecation")
 	@Override
 	public ResultMessage insert(MemberPO mpo) throws RemoteException{
-		sql="insert into member(id,name,password,userrole,credit,birthday,contact,level)"+
-				" value('"+mpo.getId()+"','"+mpo.getName()+"','"+mpo.getPassword()+"','"+
-				(""+mpo.getUserRole())+"',"+mpo.getCredit()+",'"+(mpo.getBirthday().getYear()+1900)
-				+"-"+(mpo.getBirthday().getMonth()+1)+"-"+mpo.getBirthday().getDate()+
-				"','"+mpo.getContact()+"',"+mpo.getLevel()+");";
+		sql="select * from strategy where id='000001'&&userrole='Sales'&&name='MemberLevel';";
 		databasehelper=new DBHelper(sql);
 		try {
+			databasehelper=new DBHelper(sql);
+			resultset=databasehelper.pst.executeQuery();
+			MemberLevel memberlevel=null;
+			if(resultset.next()){
+				memberlevel=new MemberLevel(resultset.getString(10),resultset.getString(11));
+			}
+			int l=memberlevel.getMemberLevel(mpo.getCredit());
+			sql="insert into member(id,name,password,userrole,credit,birthday,contact,level)"+
+					" value('"+mpo.getId()+"','"+mpo.getName()+"','"+mpo.getPassword()+"','"+
+					(""+mpo.getUserRole())+"',"+mpo.getCredit()+",'"+(mpo.getBirthday().getYear()+1900)
+					+"-"+(mpo.getBirthday().getMonth()+1)+"-"+mpo.getBirthday().getDate()+
+					"','"+mpo.getContact()+"',"+l+");";
+			databasehelper=new DBHelper(sql);
 			databasehelper.pst.execute();
 			databasehelper.close();
 			return ResultMessage.Success;
@@ -86,12 +95,23 @@ public class MemberDataServiceImpl extends UnicastRemoteObject implements Member
 			memberpo.setName(name);
 			memberpo.setPassword(password);
 			memberpo.setContact(contact);
+			
+			sql="select * from strategy where id='000001'&&userrole='Sales'&&name='MemberLevel';";
+			databasehelper=new DBHelper(sql);
+			resultset=databasehelper.pst.executeQuery();
+			MemberLevel memberlevel=null;
+			if(resultset.next()){
+				memberlevel=new MemberLevel(resultset.getString(10),resultset.getString(11));
+			}
+			int l=memberlevel.getMemberLevel(memberpo.getCredit());
+			memberpo.setLevel(l);
 			databasehelper.close();
 			
 			databasehelper=new DBHelper(sql1);
 			resultset=databasehelper.pst.executeQuery();
 			while(resultset.next()){
-				memberpo.addCreditItem(resultset.getDate(2), resultset.getDouble(3));
+				memberpo.addCreditItem(resultset.getDate(2), resultset.getDouble(3),resultset.getString(5),
+						resultset.getDouble(4),CreditOperation.getCreditOperation(resultset.getString(6)));
 			}
 			databasehelper.close();
 			resultset.close();
@@ -108,17 +128,11 @@ public class MemberDataServiceImpl extends UnicastRemoteObject implements Member
 		sql1="";
 		try {
 			if(find(po.getId()).getCredit()!=po.getCredit()){
-				Date d=new Date();
-				sql1="insert into credit(id,date,changes)"+"value('"+po.getId()+"','"
-				+(d.getYear()+1900)+"-"+(d.getMonth()+1)+"-"+d.getDate()+" "+d.getHours()+":"+d.getMinutes()+"',"
-						+(po.getCredit()-find(po.getId()).getCredit())+");";
-				databasehelper=new DBHelper(sql1);
-				databasehelper.pst.execute(sql1);
-				databasehelper.close();
+				return ResultMessage.Failure;
 			}
-			sql="update member set name='"+po.getName()+"',password='"+po.getPassword()+"',credit="+po.getCredit()
-			+",birthday='"+(po.getBirthday().getYear()+1900)+"-"+(po.getBirthday().getMonth()+1)+"-"
-				+po.getBirthday().getDate()+"',contact='"+po.getContact()+"',level="+po.getLevel()+" where id='"+po.getId()+"';";
+			sql="update member set name='"+po.getName()+"',password='"+po.getPassword()+"',birthday"
+					+ "='"+(po.getBirthday().getYear()+1900)+"-"+(po.getBirthday().getMonth()+1)+"-"
+				+po.getBirthday().getDate()+"',contact='"+po.getContact()+"' where id='"+po.getId()+"';";
 			databasehelper=new DBHelper(sql);
 			databasehelper.pst.execute(sql);
 			databasehelper.close();

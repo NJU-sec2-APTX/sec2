@@ -34,10 +34,6 @@ public class MemberVO {
 		contact=null;
 	}
 	
-	public void print(){
-		System.out.println(Id+"\t"+name+"\t"+role+"\t"+credit+"\t"+birthday+"\t"+contact+"\t"+level);
-	}
-	
 	public MemberVO(MemberPO po){
 		super();
 		Id=po.getId();

@@ -6,7 +6,6 @@ import common.vo.MemberVO;
 import common.otherEnumClasses.MemberList;
 
 public interface MemberMaintainService {
-
 	public MemberVO getInfo () throws Exception;
 
 	public ResultMessage modifyInfo(MemberPO po) throws Exception;
