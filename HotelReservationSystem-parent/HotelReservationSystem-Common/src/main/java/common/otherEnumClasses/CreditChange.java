@@ -1,20 +1,18 @@
 package common.otherEnumClasses;
 
-import common.po.OrderPO;
-
 public class CreditChange {
 
-	public Person person;
+	public String clientId;
 	public double changeNum;
-	public OrderPO po;
-	public OrderState fromState;
-	public OrderState toState;
+	public double endNum;
+	public CreditOperation op;
+	public String orderId;
 	
-	public CreditChange(Person person, double changeNum, OrderPO po, OrderState fromState, OrderState toState){
-		this.person = person;
+	public CreditChange(String clientId, double changeNum, double endNum, CreditOperation op, String orderId){
+		this.clientId = clientId;
 		this.changeNum = changeNum;
-		this.po = po;
-		this.fromState = fromState;
-		this.toState = toState;
+		this.endNum = endNum;
+		this.op = op;
+		this.orderId = orderId;
 	}
 }

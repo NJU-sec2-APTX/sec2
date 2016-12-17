@@ -21,6 +21,7 @@ public class OrderVO {
 	public Date cancelTime;
 	public int numberOfPerson;
 	public boolean hasChild;
+	public String numOfRoom;
 	
 	public OrderVO(){
 		

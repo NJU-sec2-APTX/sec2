@@ -30,7 +30,9 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 		database = new DBHelper(sql);
 		try {
 			rs = database.conn.createStatement().executeQuery(sql);
-			
+			while(rs.next()){
+				
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

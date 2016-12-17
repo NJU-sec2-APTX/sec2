@@ -1,9 +1,7 @@
 package common.po;
 
-import java.util.ArrayList;
 import java.util.Date;
 
-import common.otherEnumClasses.CreditChange;
 import common.otherEnumClasses.OrderState;
 import common.vo.OrderVO;
 
@@ -15,7 +13,7 @@ public class OrderPO {
 	private OrderState state;
 	private double mark;
 	private String clientId;
-	private	String hotel;	
+	private	String hotel;
 	private Date createdTime;
 	private Date latestDoneTime;
 	private Date checkInTime;
@@ -23,7 +21,7 @@ public class OrderPO {
 	private Date cancelTime;
 	private int numberOfPerson;
 	private boolean hasChild;
-	ArrayList<CreditChange> creditChangeList;
+	private String numOfRoom;
 	
 	public OrderPO(){
 		
@@ -42,11 +40,7 @@ public class OrderPO {
 		checkOutTime = vo.checkOutTime;
 		numberOfPerson = vo.numberOfPerson;
 		hasChild = vo.hasChild;
-	}
-	
-	public void addCreditChange(CreditChange oneRecord){
-		this.creditChange += oneRecord.changeNum;
-		this.creditChangeList.add(oneRecord);
+		numOfRoom = vo.numOfRoom;
 	}
 	
 	public String getId() {
@@ -65,15 +59,7 @@ public class OrderPO {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-
-	public ArrayList<CreditChange> getCreditChangeList() {
-		return creditChangeList;
-	}
-
-	public void setCreditChangeList(ArrayList<CreditChange> creditChangeList) {
-		this.creditChangeList = creditChangeList;
-	}
-
+	
 	public void setCreditChange(double creditChange) {
 		this.creditChange = creditChange;
 	}
@@ -151,5 +137,13 @@ public class OrderPO {
 
 	public void setClientId(String clientId) {
 		this.clientId = clientId;
+	}
+
+	public String getNumOfRoom() {
+		return numOfRoom;
+	}
+
+	public void setNumOfRoom(String numOfRoom) {
+		this.numOfRoom = numOfRoom;
 	}
 }
