@@ -7,24 +7,35 @@ import java.util.Comparator;
 
 import client.Client;
 import common.otherEnumClasses.HotelSearchConditions;
-import common.otherEnumClasses.Person;
 import common.otherEnumClasses.SortFlag;
 import common.po.HotelPO;
-import common.po.OrderPO;
 import common.vo.HotelVO;
 
 public class BrowseHotel {
 
 	ArrayList<HotelVO> browse(String area, String address, HotelSearchConditions searchItems, String clientId){
-		ArrayList<HotelVO> hotelsVO = new ArrayList<HotelVO>();
+		ArrayList<HotelVO> hotelVOs = new ArrayList<HotelVO>();
 		try {
+			ArrayList<HotelPO> reservedHotels = Client.getOrderDataService().searchReservedHotel(clientId);
 			ArrayList<HotelPO> hotelsPO = Client.getHotelDataService().getHotelList(area, address, searchItems);
 			for (HotelPO hotelPO : hotelsPO) {
-				
-				hotelsVO.add(new HotelVO(hotelPO));
+				if(reservedHotels.contains(hotelPO)){
+					hotelVOs.add(new HotelVO(hotelPO,true));
+				}else{
+					hotelVOs.add(new HotelVO(hotelPO,false));
+				}
+			}
+			if(searchItems.onlyEverReserved){
+				ArrayList<HotelVO> vos = new ArrayList<HotelVO>();
+				for(HotelVO hotelVO : hotelVOs){
+					if(hotelVO.isEverReserved){
+						vos.add(hotelVO);
+					}
+				}
+				hotelVOs = vos;
 			}
 		} catch (RemoteException e) {}
-		return hotelsVO;
+		return hotelVOs;
 	}
 	
 	@SuppressWarnings("unchecked")

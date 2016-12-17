@@ -24,5 +24,17 @@ public class HotelVO {
 		star = hotelPO.getStar();
 		mark = hotelPO.getMark();
 		rooms = hotelPO.getRooms();
+		isEverReserved = false;
+	}
+	
+	public HotelVO(HotelPO hotelPO, boolean isEverReserved){
+		name = hotelPO.getName();
+		area = hotelPO.getArea();
+		address = hotelPO.getAddress();
+		introduction = hotelPO.getIntroduction();
+		star = hotelPO.getStar();
+		mark = hotelPO.getMark();
+		rooms = hotelPO.getRooms();
+		this.isEverReserved = isEverReserved;
 	}
 }

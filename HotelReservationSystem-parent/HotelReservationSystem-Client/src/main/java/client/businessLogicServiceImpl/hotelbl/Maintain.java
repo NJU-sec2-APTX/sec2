@@ -11,9 +11,9 @@ import common.vo.HotelVO;
 public class Maintain implements HotelblMaintainService {
 
 	@Override
-	public HotelVO getHotelInfo(Person person) {
+	public HotelVO getHotelInfo(String hotelId) {
 		try {
-			return new HotelVO(Client.getHotelDataService().getHotelInfo(person.id));
+			return new HotelVO(Client.getHotelDataService().getHotelInfo(hotelId));
 		} catch (RemoteException e) {}
 		return null;
 	}

@@ -1,11 +1,10 @@
 package client.businessLogicService.hotelblService;
 
-import common.otherEnumClasses.Person;
 import common.vo.HotelVO;
 
 public interface HotelblMaintainService {
 	
-	public HotelVO getHotelInfo(Person person);
+	public HotelVO getHotelInfo(String hotelId);
 	
 	public boolean setHotelInfo(HotelVO hotelInfoVO);
 }

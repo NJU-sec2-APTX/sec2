@@ -12,7 +12,9 @@ import common.vo.HotelVO;
 
 public interface OrderDataService extends Remote{
 
-	public ArrayList<HotelPO> searchReservedHotel(Person person) throws RemoteException;
+	public ArrayList<HotelPO> searchReservedHotel(String clientId) throws RemoteException;
+	
+	public OrderPO findOrderFromData(String orderId) throws RemoteException;
 	
 	public ArrayList<OrderPO> findOrderList(Person person,OrderState state, HotelVO hotelVO) throws RemoteException;
 

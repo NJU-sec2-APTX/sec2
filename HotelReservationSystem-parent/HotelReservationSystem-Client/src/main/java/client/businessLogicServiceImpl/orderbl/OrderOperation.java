@@ -7,6 +7,7 @@ import java.util.Date;
 import client.Client;
 import client.businessLogicService.orderblService.orderblService;
 import common.otherEnumClasses.CreditChange;
+import common.otherEnumClasses.CreditOperation;
 import common.otherEnumClasses.OrderState;
 import common.otherEnumClasses.Person;
 import common.po.HotelPO;
@@ -16,12 +17,12 @@ import common.vo.OrderVO;
 
 public class OrderOperation implements orderblService{
 
-	public ArrayList<HotelVO> searchReservedHotel(Person person){
+	public ArrayList<HotelVO> searchReservedHotel(String clientId){
 		ArrayList<HotelVO> vos = new ArrayList<HotelVO>();
 		try {
-			ArrayList<HotelPO> pos = Client.getOrderDataService().searchReservedHotel(person);
+			ArrayList<HotelPO> pos = Client.getOrderDataService().searchReservedHotel(clientId);
 			for(HotelPO hotelPO : pos){
-				vos.add(new HotelVO(hotelPO));
+				vos.add(new HotelVO(hotelPO, true));
 			}
 		} catch (RemoteException e) {}
 		return vos;
@@ -34,15 +35,13 @@ public class OrderOperation implements orderblService{
 			for(OrderPO OrderPO : pos){
 				vos.add(new OrderVO(OrderPO));
 			}
-		} catch (RemoteException e) {
-			
-		}
+		} catch (RemoteException e) {}
 		return vos;
 	}
 	
-	public boolean createOrder(OrderVO vo, Person person){
+	public boolean createOrder(OrderVO vo, String clientId){
 		OrderPO po = new OrderPO(vo);
-		po.setPerson(person);
+		po.setClientId(clientId);
 		try {
 			return Client.getOrderDataService().addOrder(po);
 		} catch (RemoteException e) {
@@ -50,21 +49,19 @@ public class OrderOperation implements orderblService{
 		}
 	}
 	
-	public boolean executeOrder(OrderVO vo, Person person, Date checkInTime){
-		if(vo.state==OrderState.NotDone||vo.state==OrderState.Exceptional){
-			OrderPO po = new OrderPO(vo);
-			if(vo.state == OrderState.Exceptional){
-				po.addCreditChange(new CreditChange(person, 0-po.getCreditChange(), po, vo.state, OrderState.Done));
-			}
-			po.setState(OrderState.Done);
-			po.setCheckInTime(checkInTime);
-			po.addCreditChange(new CreditChange(person, po.getPrice(), po, vo.state, OrderState.Done));
-			try {
+	public boolean executeOrder(String orderId, String clientId, Date checkInTime){
+		try {
+			OrderPO po = Client.getOrderDataService().findOrderFromData(orderId);
+			if(po.getState()==OrderState.NotDone||po.getState()==OrderState.Exceptional){
+				po.setPrice(             );
+				if(po.getState() == OrderState.Exceptional){
+					CreditChange cc = new CreditChange(clientId, po.getPrice(), endNum, CreditOperation.Execute, orderId);
+				}
+				po.setState(OrderState.Done);
+				po.setCheckInTime(checkInTime);
 				return Client.getOrderDataService().updateOrder(po);
-			} catch (RemoteException e) {
-				return false;
 			}
-		}
+		} catch (RemoteException e1) {}
 		return false;
 	}
 	
