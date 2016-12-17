@@ -9,13 +9,13 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 /**
  *
- * @author � zhuyingshan
+ * @author zhuyingshan
  */
+
 public class Start extends Application  {
         public static Person person=new Person();
         
 	public static void main(String[] args) {
-            
 		Application.launch(Start.class,args);
 	}
 
