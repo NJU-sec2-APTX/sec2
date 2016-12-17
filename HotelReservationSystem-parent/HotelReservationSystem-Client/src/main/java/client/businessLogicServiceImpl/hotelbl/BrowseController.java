@@ -12,13 +12,13 @@ public class BrowseController implements HotelblBrowseService{
 	
 	BrowseHotel bh;
 	@Override
-	public ArrayList<HotelVO> getHotelList(String area, String address, HotelSearchConditions searchItems, Person person) {
-		return bh.browse(area, address, searchItems, person);
+	public ArrayList<HotelVO> getHotelList(String area, String address, HotelSearchConditions searchItems, String clientId) {
+		return bh.browse(area, address, searchItems, clientId);
 	}
 
 	@Override
-	public ArrayList<HotelVO> sortHotelList(String area, String address, HotelSearchConditions searchItems, Person person, SortFlag flag, boolean isIncrease) {
+	public ArrayList<HotelVO> sortHotelList(String area, String address, HotelSearchConditions searchItems, String clientId, SortFlag flag, boolean isIncrease) {
 		
-		return bh.sort(bh.browse(area, address, searchItems,person), flag, isIncrease);
+		return bh.sort(bh.browse(area, address, searchItems, clientId), flag, isIncrease);
 	}
 }

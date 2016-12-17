@@ -19,7 +19,7 @@ public class DBHelper {
 	            conn = DriverManager.getConnection(url, user, password);//��ȡ����
 	            pst = conn.prepareStatement(sql);//׼��ִ�����
 	        } catch (Exception e) {  
-	            e.printStackTrace();  
+	            e.printStackTrace();
 	        }  
 	    }  
 	  

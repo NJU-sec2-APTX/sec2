@@ -9,7 +9,7 @@ import common.vo.HotelVO;
 
 public interface HotelblBrowseService {
 	
-	public ArrayList<HotelVO> getHotelList(String area, String address, HotelSearchConditions searchItems, Person person);
+	public ArrayList<HotelVO> getHotelList(String area, String address, HotelSearchConditions searchItems, String clientId);
 	
-	public ArrayList<HotelVO> sortHotelList(String area, String address, HotelSearchConditions searchItems, Person person, SortFlag flag, boolean isIncrease);
+	public ArrayList<HotelVO> sortHotelList(String area, String address, HotelSearchConditions searchItems, String clientId, SortFlag flag, boolean isIncrease);
 }
