@@ -5,8 +5,6 @@ import java.util.Date;
 
 import common.otherEnumClasses.CreditChange;
 import common.otherEnumClasses.OrderState;
-import common.otherEnumClasses.Person;
-import common.vo.HotelVO;
 import common.vo.OrderVO;
 
 public class OrderPO {
@@ -16,15 +14,15 @@ public class OrderPO {
 	private double price;
 	private OrderState state;
 	private double mark;
-	private Person person;
-	private	HotelVO hotel;
+	private String clientId;
+	private	String hotel;	
 	private Date createdTime;
 	private Date latestDoneTime;
 	private Date checkInTime;
 	private Date checkOutTime;
 	private Date cancelTime;
 	private int numberOfPerson;
-	private boolean haschild;
+	private boolean hasChild;
 	ArrayList<CreditChange> creditChangeList;
 	
 	public OrderPO(){
@@ -36,14 +34,14 @@ public class OrderPO {
 		creditChange = vo.creditChange;
 		state = vo.state;
 		mark = vo.mark;
-		person = vo.person;
+		setClientId(vo.clientId);
 		setHotel(vo.hotel);
 		createdTime = vo.checkInTime;
 		latestDoneTime = vo.latestDoneTime;
 		checkInTime = vo.checkInTime;
 		checkOutTime = vo.checkOutTime;
 		numberOfPerson = vo.numberOfPerson;
-		haschild = vo.haschild;
+		hasChild = vo.hasChild;
 	}
 	
 	public void addCreditChange(CreditChange oneRecord){
@@ -119,17 +117,11 @@ public class OrderPO {
 	public void setNumberOfPerson(int numberOfPerson) {
 		this.numberOfPerson = numberOfPerson;
 	}
-	public boolean isHaschild() {
-		return haschild;
+	public boolean isHasChild() {
+		return hasChild;
 	}
-	public void setHaschild(boolean haschild) {
-		this.haschild = haschild;
-	}
-	public Person getPerson() {
-		return person;
-	}
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setHasChild(boolean haschild) {
+		this.hasChild = haschild;
 	}
 	public double getMark() {
 		return mark;
@@ -146,11 +138,18 @@ public class OrderPO {
 		this.cancelTime = cancelTime;
 	}
 
-	public HotelVO getHotel() {
+	public String getHotel() {
 		return hotel;
 	}
 
-	public void setHotel(HotelVO hotel) {
+	public void setHotel(String hotel) {
 		this.hotel = hotel;
+	}
+	public String getClientId() {
+		return clientId;
+	}
+
+	public void setClientId(String clientId) {
+		this.clientId = clientId;
 	}
 }

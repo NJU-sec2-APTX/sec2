@@ -23,9 +23,7 @@ public class OrderOperation implements orderblService{
 			for(HotelPO hotelPO : pos){
 				vos.add(new HotelVO(hotelPO));
 			}
-		} catch (RemoteException e) {
-			
-		}
+		} catch (RemoteException e) {}
 		return vos;
 	}
 	

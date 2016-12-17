@@ -2,6 +2,8 @@ package server.dataServiceImpl;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import common.dataService.HotelDataService;
@@ -14,6 +16,8 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 	 * 
 	 */
 	private static final long serialVersionUID = 6160639426085817165L;
+	private DBHelper database;
+	private ResultSet rs;
 
 	public HotelDataServiceImpl() throws RemoteException {
 		super();
@@ -21,7 +25,15 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 
 	@Override
 	public HotelPO getHotelInfo(String id) {
-		// TODO Auto-generated method stub
+		HotelPO po = new HotelPO();
+		String sql = "select * from hotel where id="+id;
+		database = new DBHelper(sql);
+		try {
+			rs = database.conn.createStatement().executeQuery(sql);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 

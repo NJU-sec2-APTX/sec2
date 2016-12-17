@@ -3,7 +3,6 @@ package common.vo;
 import java.util.Date;
 
 import common.otherEnumClasses.OrderState;
-import common.otherEnumClasses.Person;
 import common.po.OrderPO;
 
 public class OrderVO {
@@ -13,15 +12,15 @@ public class OrderVO {
 	public double price;
 	public OrderState state;
 	public double mark;
-	public Person person;
-	public HotelVO hotel;
+	public String clientId;
+	public String hotel;
 	public Date createdTime;
 	public Date latestDoneTime;
 	public Date checkInTime;
 	public Date checkOutTime;
 	public Date cancelTime;
 	public int numberOfPerson;
-	public boolean haschild;
+	public boolean hasChild;
 	
 	public OrderVO(){
 		
@@ -32,7 +31,7 @@ public class OrderVO {
 		creditChange = po.getCreditChange();
 		state = po.getState();
 		mark = po.getMark();
-		person = po.getPerson();
+		clientId = po.getClientId();
 		hotel = po.getHotel();
 		createdTime = po.getCheckInTime();
 		latestDoneTime = po.getLatestDoneTime();
@@ -40,6 +39,6 @@ public class OrderVO {
 		checkOutTime = po.getCheckOutTime();
 		cancelTime = po.getCancelTime();
 		numberOfPerson = po.getNumberOfPerson();
-		haschild = po.isHaschild();
+		hasChild = po.isHasChild();
 	}
 }
