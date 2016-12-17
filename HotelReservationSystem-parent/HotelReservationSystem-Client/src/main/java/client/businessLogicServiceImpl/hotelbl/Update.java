@@ -19,10 +19,7 @@ public class Update implements HotelblUpdateService{
 				room.beginTime = beginTime;
 				return Client.getHotelDataService().setRoom(room);
 			}
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (RemoteException e) {}
 		return false;
 	}
 

@@ -14,5 +14,5 @@ public class HotelSearchConditions {
 	public Date dateUp = null;
 	public Date dateDown = null;
 	public int restHotelNumber = 0;
-	public boolean onlyEverReserved = false;
+	public boolean onlyEverReserved;
 }
