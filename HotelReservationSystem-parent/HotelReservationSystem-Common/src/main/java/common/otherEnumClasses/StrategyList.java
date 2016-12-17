@@ -44,6 +44,10 @@ public class StrategyList {
 		number++;
 	}
 	
+	public StrategyLineItem getfirstStrategy(){
+		return list.get(0);
+	}
+	
 	public StrategyLineItem getStrategy(String StrategyName,UserRole ur){
 		for(int i=0;i<list.size();i++){
 			if(list.get(i).getStrategy().getName().equals(StrategyName)){
