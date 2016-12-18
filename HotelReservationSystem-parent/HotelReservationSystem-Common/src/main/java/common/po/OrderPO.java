@@ -14,14 +14,17 @@ public class OrderPO {
 	private double mark;
 	private String clientId;
 	private	String hotel;
+	private int day;
 	private Date createdTime;
+	private Date planTime;
 	private Date latestDoneTime;
 	private Date checkInTime;
 	private Date checkOutTime;
 	private Date cancelTime;
 	private int numberOfPerson;
 	private boolean hasChild;
-	private String numOfRoom;
+	private String numOfRoom;//按照RoomType类拼接，以'/'间隔
+	private int[] roomIds;
 	
 	public OrderPO(){
 		
@@ -30,17 +33,22 @@ public class OrderPO {
 	public OrderPO(OrderVO vo){
 		id = vo.id;
 		creditChange = vo.creditChange;
+		price = vo.price;
 		state = vo.state;
 		mark = vo.mark;
-		setClientId(vo.clientId);
-		setHotel(vo.hotel);
-		createdTime = vo.checkInTime;
+		clientId = vo.clientId;
+		hotel = vo.hotel;
+		day = vo.day;
+		createdTime = vo.createdTime;
+		planTime = vo.planTime;
 		latestDoneTime = vo.latestDoneTime;
 		checkInTime = vo.checkInTime;
 		checkOutTime = vo.checkOutTime;
+		cancelTime = vo.cancelTime;
 		numberOfPerson = vo.numberOfPerson;
 		hasChild = vo.hasChild;
 		numOfRoom = vo.numOfRoom;
+		roomIds = vo.roomIds;
 	}
 	
 	public String getId() {
@@ -145,5 +153,29 @@ public class OrderPO {
 
 	public void setNumOfRoom(String numOfRoom) {
 		this.numOfRoom = numOfRoom;
+	}
+
+	public int[] getRoomIds() {
+		return roomIds;
+	}
+
+	public void setRoomIds(int[] roomIds) {
+		this.roomIds = roomIds;
+	}
+
+	public Date getPlanTime() {
+		return planTime;
+	}
+
+	public void setPlanTime(Date planTime) {
+		this.planTime = planTime;
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
 	}
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import common.otherEnumClasses.HotelSearchConditions;
 import common.otherEnumClasses.Room;
 import common.po.HotelPO;
+import common.po.OrderPO;
 
 public interface HotelDataService extends Remote{
 	
@@ -16,7 +17,9 @@ public interface HotelDataService extends Remote{
 	
 	public ArrayList<HotelPO> getHotelList(String area, String address, HotelSearchConditions searchItems) throws RemoteException;
 	
-	public Room getRoom(int id) throws RemoteException;
+	public Room getRoom(String hotelId, int id) throws RemoteException;
 	
 	public boolean setRoom(Room room) throws RemoteException;
+	
+	public ArrayList<Room> findRoom(OrderPO po) throws RemoteException;
 }

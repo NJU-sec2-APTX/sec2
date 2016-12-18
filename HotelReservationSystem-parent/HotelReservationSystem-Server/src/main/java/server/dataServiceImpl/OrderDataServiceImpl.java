@@ -23,7 +23,7 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 	}
 
 	@Override
-	public ArrayList<HotelPO> searchReservedHotel(Person person) throws RemoteException {
+	public ArrayList<HotelPO> searchReservedHotel(String clientId) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

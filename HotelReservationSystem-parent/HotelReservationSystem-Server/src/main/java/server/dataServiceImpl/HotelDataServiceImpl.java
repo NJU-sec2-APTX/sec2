@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import common.dataService.HotelDataService;
+import common.otherEnumClasses.HotelSearchConditions;
 import common.otherEnumClasses.Room;
 import common.po.HotelPO;
 
@@ -46,13 +47,13 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 	}
 
 	@Override
-	public ArrayList<HotelPO> getHotelList(String area, String address) {
+	public ArrayList<HotelPO> getHotelList(String area, String address, HotelSearchConditions searchItems) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Room getRoom(int id) {
+	public Room getRoom(String hotelId, int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

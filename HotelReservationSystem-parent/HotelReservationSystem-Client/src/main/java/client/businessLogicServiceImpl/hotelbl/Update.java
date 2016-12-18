@@ -5,18 +5,19 @@ import java.util.Date;
 
 import client.Client;
 import client.businessLogicService.hotelblService.HotelblUpdateService;
-import common.otherEnumClasses.Person;
 import common.otherEnumClasses.Room;
+import common.otherEnumClasses.RoomState;
 
 public class Update implements HotelblUpdateService{
 	
 	@Override
-	public boolean checkIn(Person person, int roomId, Date beginTime, int dayNum) {
+	public boolean checkIn(String hotelId, int roomId, Date beginTime, int day) {
 		try {
-			Room room = Client.getHotelDataService().getRoom(roomId);
-			if(!room.isUsed){
-				room.isUsed = true;
+			Room room = Client.getHotelDataService().getRoom(hotelId, roomId);
+			if(room.state != RoomState.Used){
+				room.state = RoomState.Used;
 				room.beginTime = beginTime;
+				room.day = day;
 				return Client.getHotelDataService().setRoom(room);
 			}
 		} catch (RemoteException e) {}
@@ -24,12 +25,13 @@ public class Update implements HotelblUpdateService{
 	}
 
 	@Override
-	public boolean checkOut(Person person, int roomID, Date endTime) {
+	public boolean checkOut(String hotelId, int roomId, Date endTime) {
 		try {
-			Room room = Client.getHotelDataService().getRoom(roomID);	
-			if(room.isUsed){
-				room.isUsed = false;
+			Room room = Client.getHotelDataService().getRoom(hotelId, roomId);
+			if(room.state == RoomState.Used){
+				room.state = RoomState.Empty;
 				room.beginTime = null;
+				room.day = 0;
 				room.endTime = endTime;
 				return Client.getHotelDataService().setRoom(room);
 			}

@@ -8,10 +8,11 @@ import client.Client;
 import client.businessLogicService.orderblService.OrderblService;
 import client.businessLogicService.strategyblService.StrategyPriceService;
 import client.businessLogicServiceImpl.strategybl.PriceController;
-import common.otherEnumClasses.CreditChange;
 import common.otherEnumClasses.CreditOperation;
 import common.otherEnumClasses.OrderState;
 import common.otherEnumClasses.Person;
+import common.otherEnumClasses.Room;
+import common.otherEnumClasses.RoomState;
 import common.po.HotelPO;
 import common.po.OrderPO;
 import common.vo.HotelVO;
@@ -45,6 +46,18 @@ public class OrderOperation implements OrderblService{
 		OrderPO po = new OrderPO(vo);
 		po.setClientId(clientId);
 		try {
+			ArrayList<Room> rooms = Client.getHotelDataService().findRoom(po);
+			int[] roomIds = new int[rooms.size()];
+			int i = 0;
+			for(Room room : rooms){
+				roomIds[i] = room.id;
+				room.state = RoomState.Reserved;
+				room.beginTime = vo.planTime;
+				room.day = vo.day;
+				room.endTime.setTime(room.beginTime.getTime()/1000+60*60*24*vo.day);
+				Client.getHotelDataService().setRoom(room);
+				i++;
+			}
 			StrategyPriceService calprice = new PriceController();
 			po.setPrice(calprice.calPrice(new OrderVO(po)).getfirstStrategy().getPrice());
 			return Client.getOrderDataService().addOrder(po);
