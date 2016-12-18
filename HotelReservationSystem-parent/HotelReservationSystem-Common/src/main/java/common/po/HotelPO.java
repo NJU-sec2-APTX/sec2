@@ -11,6 +11,7 @@ public class HotelPO {
 	private String area;
 	private String address;
 	private String introduction;
+	private double price;
 	private int star;
 	private double mark;
 	private ArrayList<Room> rooms;
@@ -24,6 +25,7 @@ public class HotelPO {
 		area = hotelVO.area;
 		address = hotelVO.address;
 		introduction = hotelVO.introduction;
+		setPrice(hotelVO.price);
 		setStar(hotelVO.star);
 		mark = hotelVO.mark;
 	}
@@ -82,5 +84,13 @@ public class HotelPO {
 
 	public void setStar(int star) {
 		this.star = star;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 }

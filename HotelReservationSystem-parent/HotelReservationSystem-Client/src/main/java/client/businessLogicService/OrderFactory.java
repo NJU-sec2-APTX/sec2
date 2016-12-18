@@ -5,7 +5,7 @@ import client.businessLogicServiceImpl.orderbl.OrderOperation;
 
 public class OrderFactory {
 
-	public OrderblService getOrderService(){
+	public static OrderblService getOrderService(){
 		return new OrderOperation();
 	}
 }

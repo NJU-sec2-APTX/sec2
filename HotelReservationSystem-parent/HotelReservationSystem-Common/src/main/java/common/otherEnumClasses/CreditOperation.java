@@ -1,7 +1,7 @@
 package common.otherEnumClasses;
 
 public enum CreditOperation {
-	Execute, Exception, Cancel, Recharge;
+	Execute, Exception, Cancel, ExceptionCancel, Recharge;
 	public static CreditOperation getCreditOperation(String s){
 		if(s.equals("Execute")){
 			return Execute;
@@ -11,6 +11,8 @@ public enum CreditOperation {
 			return Cancel;
 		}else if(s.equals("Recharge")){
 			return Recharge;
+		}else if(s.equals("ExceptionCancel")){
+			return ExceptionCancel;
 		}else{
 			return null;
 		}

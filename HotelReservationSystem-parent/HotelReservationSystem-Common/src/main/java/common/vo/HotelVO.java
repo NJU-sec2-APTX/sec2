@@ -11,6 +11,7 @@ public class HotelVO {
 	public String area;
 	public String address;
 	public String introduction;
+	public double price;
 	public int star;
 	public double mark;
 	public ArrayList<Room> rooms;

@@ -9,15 +9,15 @@ import client.businessLogicServiceImpl.hotelbl.Update;
 
 public class HotelFactory {
 
-	public HotelblBrowseService getHotelBrowseService(){
+	public static HotelblBrowseService getHotelBrowseService(){
 		return new BrowseController();
 	}
 	
-	public HotelblMaintainService getHotelMaintainService(){
+	public static HotelblMaintainService getHotelMaintainService(){
 		return new Maintain();
 	}
 	
-	public HotelblUpdateService getHotelUpdateService(){
+	public static HotelblUpdateService getHotelUpdateService(){
 		return new Update();
 	}
 }

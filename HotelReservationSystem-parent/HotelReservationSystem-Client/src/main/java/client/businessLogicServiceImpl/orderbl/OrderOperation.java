@@ -6,7 +6,6 @@ import java.util.Date;
 
 import client.Client;
 import client.businessLogicService.orderblService.OrderblService;
-import client.businessLogicService.orderblService.orderblService;
 import client.businessLogicService.strategyblService.StrategyPriceService;
 import client.businessLogicServiceImpl.strategybl.PriceController;
 import common.otherEnumClasses.CreditChange;
@@ -46,8 +45,8 @@ public class OrderOperation implements OrderblService{
 		OrderPO po = new OrderPO(vo);
 		po.setClientId(clientId);
 		try {
-			StrategyPriceService calprice = new PriceController(ID, ur);
-			po.setPrice(calprice.calPrice(new OrderVO(po)).);
+			StrategyPriceService calprice = new PriceController();
+			po.setPrice(calprice.calPrice(new OrderVO(po)).getfirstStrategy().getPrice());
 			return Client.getOrderDataService().addOrder(po);
 		} catch (RemoteException e) {
 			return false;
@@ -59,10 +58,11 @@ public class OrderOperation implements OrderblService{
 			OrderPO po = Client.getOrderDataService().findOrderFromData(orderId);
 			if(po.getState()==OrderState.NotDone||po.getState()==OrderState.Exceptional){
 				if(po.getState() == OrderState.Exceptional){
-					Client.getUserDataService().updatecredit(clientId, , orderId, CreditOperation.Execute);
+					Client.getUserDataService().updatecredit(clientId, po.getPrice(), po.getId(), CreditOperation.ExceptionCancel);
 				}
 				po.setState(OrderState.Done);
 				po.setCheckInTime(checkInTime);
+				Client.getUserDataService().updatecredit(clientId, po.getPrice(), po.getId(), CreditOperation.Execute);
 				return Client.getOrderDataService().updateOrder(po);
 			}
 		} catch (RemoteException e) {}
@@ -88,12 +88,12 @@ public class OrderOperation implements OrderblService{
 			Date latestTime = po.getLatestDoneTime();
 			Date date = new Date();
 			long between = latestTime.getTime()-date.getTime();
-			if(between/(1000*60*60)<6.0){
-				po.addCreditChange(new CreditChange(po.getPerson(), 0-po.getPrice()/2, po, OrderState.NotDone, OrderState.Canceled));
-			}
-			po.setCancelTime(date);
-			po.setState(OrderState.Canceled);
 			try {
+				if(between/(1000*60*60)<6.0){
+					Client.getUserDataService().updatecredit(po.getClientId(),0-po.getPrice()/2, po.getId(), CreditOperation.Cancel);
+				}
+				po.setCancelTime(date);
+				po.setState(OrderState.Canceled);
 				return Client.getOrderDataService().updateOrder(po);
 			} catch (RemoteException e) {
 				return false;
@@ -104,11 +104,11 @@ public class OrderOperation implements OrderblService{
 	
 	public boolean managerCancalOrder(OrderVO vo, boolean isAll){
 		if(vo.state==OrderState.Exceptional){
-			OrderPO po = new OrderPO(vo);
-			po.addCreditChange(new CreditChange(po.getPerson(), (isAll?1:0.5)*po.getPrice(), po, OrderState.Exceptional, OrderState.ExceptionalCanceled));
-			po.setCancelTime(new Date());
-			po.setState(OrderState.ExceptionalCanceled);
 			try {
+				OrderPO po = new OrderPO(vo);
+				Client.getUserDataService().updatecredit(po.getClientId(), (isAll?1:0.5)*po.getPrice(), po.getId(), CreditOperation.ExceptionCancel);
+				po.setCancelTime(new Date());
+				po.setState(OrderState.ExceptionalCanceled);
 				return Client.getOrderDataService().updateOrder(po);
 			} catch (RemoteException e) {
 				return false;
