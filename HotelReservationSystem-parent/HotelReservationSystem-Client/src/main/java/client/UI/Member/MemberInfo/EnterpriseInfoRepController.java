@@ -5,6 +5,12 @@
  */
 package client.UI.Member.MemberInfo;
 
+import client.UI.Runner.Start;
+import client.businessLogicService.memberblService.MemberMaintainService;
+import client.businessLogicService.userblService.UserIFactory;
+import client.businessLogicServiceImpl.memberbl.MemberController;
+import client.businessLogicServiceImpl.userbl.UserFactory;
+import common.otherEnumClasses.UserRole;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -14,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import oracle.jrockit.jfr.parser.ChunkParser;
 
 /**
  * FXML Controller class
@@ -21,7 +28,6 @@ import javafx.scene.layout.Pane;
  * @author zhuyingshan
  */
 public class EnterpriseInfoRepController {
-
     @FXML
     private AnchorPane repBase;
     @FXML
@@ -46,7 +52,10 @@ public class EnterpriseInfoRepController {
      */
     @FXML
     public void initialize() {
-        // TODO
+        String id=Start.person.id;
+        
+        MemberMaintainService uif=new MemberController(id, UserRole.Enterprise);
+        
     }    
 
     @FXML

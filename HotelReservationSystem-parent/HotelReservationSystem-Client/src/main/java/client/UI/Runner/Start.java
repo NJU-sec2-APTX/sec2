@@ -5,6 +5,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.BackgroundImage;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 /**
@@ -22,7 +24,9 @@ public class Start extends Application  {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Parent root=FXMLLoader.load((new File("src/main/java/client/UI/Runner/Runner.fxml")).toURL());
-		Scene scene=new Scene(root);
+		
+                Scene scene=new Scene(root);
+                
 		primaryStage.initStyle(StageStyle.DECORATED);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("隽程酒店管理系统");
