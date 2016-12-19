@@ -14,12 +14,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
+//完成
 public class LoginController {
     Stage pStage;
     @FXML
@@ -45,6 +46,8 @@ public class LoginController {
         UserIFactory uif=new UserFactory() ;
     @FXML
     private RadioButton enterpriseRadButton;
+    @FXML
+    private Label tipLabel;
         UserRole checkRole(){
             if(memberRadButton.isSelected()){
                 return  UserRole.Member;
@@ -98,8 +101,11 @@ public class LoginController {
                             System.out.println("Manager");
                             loginBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Manager/ManagerFrame.fxml")).toURL()));
                             break;
-                    }
-                    }
+                        }
+                    }else{
+                       tipLabel.setText("密码或账户信息错误");
+                     }         
+                            
                } catch (Exception e) { 
                    //System.out.println(userRole);
                    e.printStackTrace();

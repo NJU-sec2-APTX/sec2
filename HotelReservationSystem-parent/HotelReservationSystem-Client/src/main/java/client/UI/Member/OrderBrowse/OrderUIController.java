@@ -5,10 +5,18 @@
  */
 package client.UI.Member.OrderBrowse;
 
+import client.UI.Runner.Start;
+import client.businessLogicService.OrderFactory;
+import common.otherEnumClasses.OrderState;
+import common.vo.OrderVO;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -41,7 +49,6 @@ public class OrderUIController  {
 
     @FXML
     private void hotelNameButtonHandler(ActionEvent event) {
-        
     }
 
     @FXML
@@ -57,5 +64,13 @@ public class OrderUIController  {
     private void operateButtonHandler(ActionEvent event) {
         
     }
-    
+    @FXML
+    public void initialize() {
+        ArrayList<OrderVO> OrderList = OrderFactory.getOrderService().searchOrderListFromData(Start.person, null, null);
+        if(OrderList.isEmpty()){
+            for(int i=0;i<OrderList.size();i++){
+                //table view
+            }
+        }
+    }
 }

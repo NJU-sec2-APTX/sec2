@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.layout.*?>
@@ -37,5 +38,10 @@
             <RadioButton fx:id="adRadButton" mnemonicParsing="false" text="网站管理人员" />
          </items>
       </ToolBar>
+      <Label fx:id="tipLabel" layoutX="704.0" layoutY="308.0" textFill="#f50000">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

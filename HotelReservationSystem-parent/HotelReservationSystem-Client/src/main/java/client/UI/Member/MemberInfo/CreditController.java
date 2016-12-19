@@ -61,5 +61,8 @@ public class CreditController  {
     @FXML
     private void operateButtonHandler(ActionEvent event) {
     }
-    
+     @FXML
+     public void initialize (  ){
+         //添加操作
+     }
 }
