@@ -24,7 +24,6 @@ public class OrderPO {
 	private int numberOfPerson;
 	private boolean hasChild;
 	private String numOfRoom;//按照RoomType类拼接，以'/'间隔
-	private int[] roomIds;
 	
 	public OrderPO(){
 		
@@ -48,7 +47,6 @@ public class OrderPO {
 		numberOfPerson = vo.numberOfPerson;
 		hasChild = vo.hasChild;
 		numOfRoom = vo.numOfRoom;
-		roomIds = vo.roomIds;
 	}
 	
 	public String getId() {
@@ -154,15 +152,7 @@ public class OrderPO {
 	public void setNumOfRoom(String numOfRoom) {
 		this.numOfRoom = numOfRoom;
 	}
-
-	public int[] getRoomIds() {
-		return roomIds;
-	}
-
-	public void setRoomIds(int[] roomIds) {
-		this.roomIds = roomIds;
-	}
-
+	
 	public Date getPlanTime() {
 		return planTime;
 	}

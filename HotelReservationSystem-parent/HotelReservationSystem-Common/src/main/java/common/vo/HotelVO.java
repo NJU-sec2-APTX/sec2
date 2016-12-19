@@ -2,7 +2,7 @@ package common.vo;
 
 import java.util.ArrayList;
 
-import common.otherEnumClasses.Room;
+import common.otherEnumClasses.RoomCondition;
 import common.po.HotelPO;
 
 public class HotelVO {
@@ -14,8 +14,12 @@ public class HotelVO {
 	public double price;
 	public int star;
 	public double mark;
-	public ArrayList<Room> rooms;
+	public ArrayList<RoomCondition> rooms;
 	public boolean isEverReserved;
+	
+	public HotelVO(){
+		
+	}
 	
 	public HotelVO(HotelPO hotelPO){
 		name = hotelPO.getName();

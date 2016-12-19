@@ -2,7 +2,7 @@ package common.po;
 
 import java.util.ArrayList;
 
-import common.otherEnumClasses.Room;
+import common.otherEnumClasses.RoomCondition;
 import common.vo.HotelVO;
 
 public class HotelPO {
@@ -14,7 +14,7 @@ public class HotelPO {
 	private double price;
 	private int star;
 	private double mark;
-	private ArrayList<Room> rooms;
+	private ArrayList<RoomCondition> rooms;
 	
 	public HotelPO() {
 		
@@ -28,6 +28,7 @@ public class HotelPO {
 		setPrice(hotelVO.price);
 		setStar(hotelVO.star);
 		mark = hotelVO.mark;
+		rooms = hotelVO.rooms;
 	}
 
 	public String getName() {
@@ -70,14 +71,6 @@ public class HotelPO {
 		this.mark = mark;
 	}
 
-	public ArrayList<Room> getRooms() {
-		return rooms;
-	}
-
-	public void setRooms(ArrayList<Room> rooms) {
-		this.rooms = rooms;
-	}
-
 	public int getStar() {
 		return star;
 	}
@@ -92,5 +85,13 @@ public class HotelPO {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public ArrayList<RoomCondition> getRooms() {
+		return rooms;
+	}
+
+	public void setRooms(ArrayList<RoomCondition> rooms) {
+		this.rooms = rooms;
 	}
 }

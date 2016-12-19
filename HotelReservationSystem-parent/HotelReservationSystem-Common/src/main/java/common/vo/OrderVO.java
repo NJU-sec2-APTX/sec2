@@ -24,7 +24,6 @@ public class OrderVO {
 	public int numberOfPerson;
 	public boolean hasChild;
 	public String numOfRoom;//按照RoomType类拼接，以'/'间隔
-	public int[] roomIds;
 	
 	public OrderVO(){
 		
@@ -48,6 +47,5 @@ public class OrderVO {
 		numberOfPerson = po.getNumberOfPerson();
 		hasChild = po.isHasChild();
 		numOfRoom = po.getNumOfRoom();
-		roomIds = po.getRoomIds();
 	}
 }

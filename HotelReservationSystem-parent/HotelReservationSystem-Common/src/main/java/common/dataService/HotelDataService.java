@@ -5,21 +5,13 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import common.otherEnumClasses.HotelSearchConditions;
-import common.otherEnumClasses.Room;
 import common.po.HotelPO;
-import common.po.OrderPO;
 
 public interface HotelDataService extends Remote{
 	
 	public HotelPO getHotelInfo(String id) throws RemoteException;
 	
-	public boolean setHotelInfo(HotelPO hotelInfoPO) throws RemoteException;
+	public boolean setHotelInfo(HotelPO hotelPO) throws RemoteException;
 	
 	public ArrayList<HotelPO> getHotelList(String area, String address, HotelSearchConditions searchItems) throws RemoteException;
-	
-	public Room getRoom(String hotelId, int id) throws RemoteException;
-	
-	public boolean setRoom(Room room) throws RemoteException;
-	
-	public ArrayList<Room> findRoom(OrderPO po) throws RemoteException;
 }
