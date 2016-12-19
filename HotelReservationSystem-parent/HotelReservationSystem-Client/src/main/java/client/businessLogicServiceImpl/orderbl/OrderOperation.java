@@ -13,6 +13,7 @@ import client.businessLogicServiceImpl.strategybl.PriceController;
 import common.otherEnumClasses.CreditOperation;
 import common.otherEnumClasses.OrderState;
 import common.otherEnumClasses.Person;
+import common.otherEnumClasses.RoomCondition;
 import common.otherEnumClasses.RoomState;
 import common.po.HotelPO;
 import common.po.OrderPO;
@@ -50,7 +51,8 @@ public class OrderOperation implements OrderblService{
 			vo.state = OrderState.NotDone;
 			vo.price = calprice.calPrice(vo).getfirstStrategy().getPrice();
 			HotelPO hotel= Client.getHotelDataService().getHotelInfo(vo.hotel);
-			hotel.s
+			ArrayList<RoomCondition> rooms = hotel.getRooms();
+			
 			OrderPO po = new OrderPO(vo);
 			return Client.getOrderDataService().addOrder(po);
 		} catch (RemoteException e) {
