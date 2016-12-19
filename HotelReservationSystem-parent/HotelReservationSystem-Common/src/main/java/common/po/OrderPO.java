@@ -23,7 +23,7 @@ public class OrderPO {
 	private Date cancelTime;
 	private int numberOfPerson;
 	private boolean hasChild;
-	private String numOfRoom;//按照RoomType类拼接，以'/'间隔
+	private String numOfRoom;//按照RoomType类顺序拼接，以'/'间隔
 	
 	public OrderPO(){
 		

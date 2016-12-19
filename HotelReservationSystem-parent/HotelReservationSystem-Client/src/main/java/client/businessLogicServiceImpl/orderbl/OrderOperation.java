@@ -2,9 +2,8 @@ package client.businessLogicServiceImpl.orderbl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
-
-import org.omg.PortableServer.POA;
 
 import client.Client;
 import client.businessLogicService.orderblService.OrderblService;
@@ -14,7 +13,6 @@ import common.otherEnumClasses.CreditOperation;
 import common.otherEnumClasses.OrderState;
 import common.otherEnumClasses.Person;
 import common.otherEnumClasses.RoomCondition;
-import common.otherEnumClasses.RoomState;
 import common.po.HotelPO;
 import common.po.OrderPO;
 import common.vo.HotelVO;
@@ -50,11 +48,27 @@ public class OrderOperation implements OrderblService{
 			vo.clientId = clientId;
 			vo.state = OrderState.NotDone;
 			vo.price = calprice.calPrice(vo).getfirstStrategy().getPrice();
+			Date date = new Date();
+			vo.createdTime = date;
+			Calendar cal = Calendar.getInstance();
+			vo.id = clientId+cal.get(Calendar.YEAR)+cal.get(Calendar.MONTH)+cal.get(Calendar.DATE)+cal.get(Calendar.HOUR)+cal.get(Calendar.MINUTE);
+			
 			HotelPO hotel= Client.getHotelDataService().getHotelInfo(vo.hotel);
 			ArrayList<RoomCondition> rooms = hotel.getRooms();
-			
-			OrderPO po = new OrderPO(vo);
-			return Client.getOrderDataService().addOrder(po);
+			String num = vo.numOfRoom;
+			int temp =  num.indexOf('/');
+			rooms.get(0).restNum -= Integer.parseInt(num.substring(0,temp));
+			num = num.substring(temp+1);
+			temp = num.indexOf('/');
+			rooms.get(1).restNum -= Integer.parseInt(num.substring(0,temp));
+			rooms.get(2).restNum -= Integer.parseInt(num.substring(temp+1));
+			hotel.setRooms(rooms);
+			if(!Client.getHotelDataService().setHotelInfo(hotel)){
+				return false;
+			}else{
+				OrderPO po = new OrderPO(vo);
+				return Client.getOrderDataService().addOrder(po);
+			}
 		} catch (RemoteException e) {
 			return false;
 		}
