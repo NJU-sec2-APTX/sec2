@@ -4,14 +4,13 @@ import java.rmi.RemoteException;
 
 import client.businessLogicService.strategyblService.StrategyPriceService;
 import common.otherEnumClasses.StrategyList;
-import common.otherEnumClasses.UserRole;
 import common.vo.OrderVO;
 
 public class PriceController implements StrategyPriceService{
-	private Strategy strategy;
+	private PriceHelper price;
 	
 	public StrategyList calPrice(OrderVO vo) throws RemoteException{
-		strategy=new Strategy(vo.clientId,UserRole.HotelWorker);
-		return strategy.calPrice(vo);
+		price=new PriceHelper();
+		return price.calPrice(vo);
 	}
 }
