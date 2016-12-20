@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Member.SearchHotel.SingleController">
+   <children>
+      <ToolBar prefHeight="44.0" prefWidth="870.0">
+        <items>
+          <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="184.0" text="酒店名称" />
+            <Button mnemonicParsing="false" text="星级" />
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="237.0" text="地址" />
+            <Button mnemonicParsing="false" text="空房数" />
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="112.0" text="价格区间" />
+            <Button mnemonicParsing="false" text="评分" />
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="119.0" text="是否曾预定" />
+        </items>
+      </ToolBar>
+   </children>
+</AnchorPane>

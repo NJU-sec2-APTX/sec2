@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane fx:id="repBase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Member.MemberInfo.EnterpriseCorrectController">
+   <children>
+      <Pane fx:id="replacePane" prefHeight="550.0" prefWidth="870.0">
+         <children>
+            <Label layoutX="189.0" layoutY="57.0" text="ID：">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="189.0" layoutY="126.0" text="企业名称：">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="189.0" layoutY="265.0" text="密码：">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="189.0" layoutY="194.0" text="联系方式：">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Button fx:id="okButton" layoutX="732.0" layoutY="373.0" mnemonicParsing="false" onAction="#okButtonHandler" prefHeight="39.0" prefWidth="90.0" text="确定" />
+            <Button fx:id="cancelButton" layoutX="732.0" layoutY="456.0" mnemonicParsing="false" onAction="#cancelButtonHandler" prefHeight="39.0" prefWidth="90.0" text="取消" />
+            <TextField fx:id="idField" layoutX="334.0" layoutY="62.0" />
+            <TextField fx:id="nameField" layoutX="334.0" layoutY="135.0" />
+            <TextField fx:id="contactField" layoutX="334.0" layoutY="199.0" />
+            <TextField fx:id="passwordField" layoutX="334.0" layoutY="270.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

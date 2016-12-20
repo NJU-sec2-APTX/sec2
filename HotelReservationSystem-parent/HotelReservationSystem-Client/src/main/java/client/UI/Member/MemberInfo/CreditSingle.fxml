@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane fx:id="repBase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Member.MemberInfo.CreditController">
+   <children>
+      <ToolBar layoutY="3.0" prefHeight="42.0" prefWidth="870.0">
+         <items>
+            <Label fx:id="idLabel" prefHeight="30.0" prefWidth="123.0" text="id">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="hotelLabel" prefHeight="30.0" prefWidth="221.0" text="酒店">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="makeLabel" prefHeight="30.0" prefWidth="105.0" text="生成时间">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="executeLabel" prefHeight="30.0" prefWidth="98.0" text="生效时间">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="statueLabel" prefHeight="30.0" prefWidth="132.0" text="状态">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="creditLabel" prefHeight="30.0" prefWidth="118.0" text="信用值变化">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+         </items>
+      </ToolBar>
+   </children>
+</AnchorPane>

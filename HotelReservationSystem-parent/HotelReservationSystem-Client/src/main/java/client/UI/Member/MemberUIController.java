@@ -83,6 +83,7 @@ public class MemberUIController  {
     public  void initialize()throws IOException{
         replacePane.getChildren().clear();
          replacePane.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/SearchHotel/SearchHotel.fxml")).toURL()));
+         accountField.setText(Start.person.id);
     }
     
 }

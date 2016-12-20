@@ -11,13 +11,15 @@
    <children>
       <ToolBar prefHeight="44.0" prefWidth="870.0">
         <items>
-            <Button fx:id="makeOrderTimeButton1" mnemonicParsing="false" onAction="#makeOrderTimeButtonHandler" prefHeight="30.0" prefWidth="118.0" text="订单记录" />
+            <Label prefHeight="20.0" prefWidth="508.0" />
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="118.0" text="订单记录" />
             <ChoiceBox fx:id="orderStatuechooseButton" prefHeight="30.0" prefWidth="91.0" />
+            <Button fx:id="cancelOrderTimeButton" mnemonicParsing="false" onAction="#cacnelOrderTimeButtonHandler" prefHeight="30.0" prefWidth="118.0" text="取消" />
         </items>
       </ToolBar>
-      <ScrollPane fx:id="showPane" layoutY="44.0" prefHeight="507.0" prefWidth="725.0">
+      <ScrollPane fx:id="showPane" layoutY="44.0" prefHeight="507.0" prefWidth="870.0">
          <content>
-            <TableView prefHeight="504.0" prefWidth="723.0">
+            <TableView fx:id="table" prefHeight="504.0" prefWidth="867.0">
               <columns>
                 <TableColumn prefWidth="138.0" text="订单号" />
                 <TableColumn minWidth="0.0" prefWidth="182.0" text="酒店名称" />
@@ -27,6 +29,5 @@
               </columns>
             </TableView>
          </content></ScrollPane>
-      <Button fx:id="cancelOrderTimeButton" layoutX="732.0" layoutY="484.0" mnemonicParsing="false" onAction="#cacnelOrderTimeButtonHandler" prefHeight="30.0" prefWidth="118.0" text="取消" />
    </children>
 </AnchorPane>

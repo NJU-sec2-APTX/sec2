@@ -1,0 +1,57 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package client.UI.Member.MemberInfo;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+
+/**
+ * FXML Controller class
+ *
+ * @author 陈长生
+ */
+public class EnterpriseCorrectController implements Initializable {
+
+    @FXML
+    private AnchorPane repBase;
+    @FXML
+    private Pane replacePane;
+    @FXML
+    private Button okButton;
+    @FXML
+    private Button cancelButton;
+    @FXML
+    private TextField idField;
+    @FXML
+    private TextField nameField;
+    @FXML
+    private TextField contactField;
+    @FXML
+    private TextField passwordField;
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
+    @FXML
+    private void okButtonHandler(ActionEvent event) {
+    }
+
+    @FXML
+    private void cancelButtonHandler(ActionEvent event) {
+    }
+    
+}

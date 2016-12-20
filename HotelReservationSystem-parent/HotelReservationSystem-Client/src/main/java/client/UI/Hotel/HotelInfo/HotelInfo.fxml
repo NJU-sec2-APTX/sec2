@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.*?>
@@ -12,18 +13,65 @@
    <children>
       <Pane prefHeight="550.0" prefWidth="870.0">
          <children>
-            <Label fx:id="hotelNameLabel" layoutX="47.0" layoutY="37.0" prefHeight="88.0" prefWidth="196.0" text="酒店Label">
+            <Label fx:id="hotelNameLabel" layoutX="47.0" layoutY="37.0" prefHeight="88.0" prefWidth="196.0" text="酒店信息">
                <font>
                   <Font size="39.0" />
                </font>
             </Label>
-            <Button fx:id="hotelInfoButton" layoutX="47.0" layoutY="150.0" mnemonicParsing="false" onAction="#hotelInfoButtonHandler" text="基本信息" />
-            <Button fx:id="hotelIntroduceButton" layoutX="47.0" layoutY="199.0" mnemonicParsing="false" onAction="#hotelIntroduceButtonHandler" text="酒店简介" />
-            <Button fx:id="hotelLocationButton" layoutX="47.0" layoutY="247.0" mnemonicParsing="false" onAction="#hotelLocationButtonHandler" text="地理信息" />
-            <Button fx:id="serviceButton" layoutX="47.0" layoutY="300.0" mnemonicParsing="false" onAction="#serviceButtonHandler" text="设施服务" />
-            <TextArea fx:id="showArea" layoutX="155.0" layoutY="129.0" prefHeight="356.0" prefWidth="681.0" />
+            <Button fx:id="hotelInfoButton" layoutX="47.0" layoutY="252.0" mnemonicParsing="false" onAction="#hotelInfoButtonHandler" text="基本信息" />
+            <Button fx:id="hotelIntroduceButton" layoutX="47.0" layoutY="139.0" mnemonicParsing="false" text="酒店简介" />
+            <TextArea fx:id="showArea" layoutX="155.0" layoutY="129.0" prefHeight="113.0" prefWidth="692.0" />
             <Button fx:id="correctButton" layoutX="398.0" layoutY="497.0" mnemonicParsing="false" onAction="#correctButtonHandler" text="更改" />
             <Button fx:id="cancelButton" layoutX="534.0" layoutY="497.0" mnemonicParsing="false" onAction="#cancelButtonHandler" text="取消" />
+            <Label layoutX="162.0" layoutY="257.0" prefHeight="29.0" prefWidth="72.0" text="名称：">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nameField" layoutX="243.0" layoutY="257.0" prefHeight="30.0" prefWidth="152.0" />
+            <Label layoutX="162.0" layoutY="307.0" prefHeight="29.0" prefWidth="72.0" text="商圈：">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="areaField" layoutX="243.0" layoutY="307.0" prefHeight="30.0" prefWidth="152.0" />
+            <Label layoutX="423.0" layoutY="257.0" prefHeight="29.0" prefWidth="72.0" text="星级：">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="starLabel" layoutX="487.0" layoutY="257.0" prefHeight="29.0" prefWidth="57.0" text="1">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="423.0" layoutY="307.0" prefHeight="29.0" prefWidth="72.0" text="地址：">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="addressField" layoutX="501.0" layoutY="304.0" prefHeight="30.0" prefWidth="261.0" />
+            <Label layoutX="162.0" layoutY="355.0" prefHeight="29.0" prefWidth="124.0" text="设施服务：">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="serviceField" layoutX="269.0" layoutY="359.0" prefHeight="30.0" prefWidth="488.0" />
+            <Label fx:id="tipLabel" layoutX="155.0" layoutY="412.0" prefHeight="29.0" prefWidth="124.0" textFill="#e10b33db">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="544.0" layoutY="258.0" prefHeight="29.0" prefWidth="72.0" text="评分：">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="markField" layoutX="616.0" layoutY="257.0" prefHeight="29.0" prefWidth="57.0" text="1">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

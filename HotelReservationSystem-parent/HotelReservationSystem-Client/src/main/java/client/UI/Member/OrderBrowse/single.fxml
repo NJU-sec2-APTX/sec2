@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane fx:id="basePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Member.OrderBrowse.SingleController">
+   <children>
+      <ToolBar prefHeight="44.0" prefWidth="870.0">
+        <items>
+            <Label fx:id="IDLabel" prefHeight="20.0" prefWidth="133.0" text="ID" />
+            <Label fx:id="hotelLabel" prefHeight="20.0" prefWidth="175.0" text="酒店" />
+            <Label fx:id="makeTimeLabel" prefHeight="20.0" prefWidth="121.0" text="生成日期" />
+            <Label fx:id="executeTimeLabel" prefHeight="20.0" prefWidth="111.0" text="生效日期" />
+            <Label fx:id="statueLabel" prefHeight="20.0" prefWidth="154.0" text="状态" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonHandler" prefHeight="30.0" prefWidth="101.0" text="取消" />
+        </items>
+      </ToolBar>
+   </children>
+</AnchorPane>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="basePane" prefHeight="46.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Hotel.ExecuteOrder.ExecuteSingleController">
+   <children>
+      <ToolBar prefHeight="30.0" prefWidth="814.0">
+         <items>
+            <Label fx:id="orderID" prefHeight="33.0" prefWidth="115.0" text="OrderID">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="makeLabel" prefHeight="33.0" prefWidth="88.0" text="maketime">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="memberLabel" prefHeight="33.0" prefWidth="103.0" text="member">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="moneyLabel" prefHeight="33.0" prefWidth="95.0" text="金额">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="roomInfo" prefHeight="33.0" prefWidth="374.0" text="房间信息">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+         </items>
+      </ToolBar>
+   </children>
+</AnchorPane>

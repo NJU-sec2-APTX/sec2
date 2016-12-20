@@ -5,13 +5,8 @@
  */
 package client.UI.Member.MemberInfo;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -24,45 +19,19 @@ public class CreditController  {
     @FXML
     private AnchorPane repBase;
     @FXML
-    private Button backButton;
+    private Label idLabel;
     @FXML
-    private ScrollPane showPane;
+    private Label hotelLabel;
     @FXML
-    private Button orderNumButton;
+    private Label makeLabel;
     @FXML
-    private Button hotelNameButton;
+    private Label executeLabel;
     @FXML
-    private Button makeOrderTimeButton;
+    private Label statueLabel;
     @FXML
-    private Button ExecuteOrderTimeButton;
-    @FXML
-    private Button operateButton;
-
-    @FXML
-    private void backButtonHandler(ActionEvent event) {
-    }
-
-    @FXML
-    private void orderNumButtonHandler(ActionEvent event) {
-    }
-
-    @FXML
-    private void hotelNameButtonHandler(ActionEvent event) {
-    }
-
-    @FXML
-    private void makeOrderTimeButtonHandler(ActionEvent event) {
-    }
-
-    @FXML
-    private void ExecuteOrderTimeButtonHandler(ActionEvent event) {
-    }
-
-    @FXML
-    private void operateButtonHandler(ActionEvent event) {
-    }
-     @FXML
-     public void initialize (  ){
+    private Label creditLabel;
+    
+     public void initialize (){
          //添加操作
      }
 }

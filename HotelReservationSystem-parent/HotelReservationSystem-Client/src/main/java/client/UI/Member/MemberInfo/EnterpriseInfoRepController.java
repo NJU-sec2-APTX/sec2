@@ -11,10 +11,14 @@ import client.businessLogicService.userblService.UserIFactory;
 import client.businessLogicServiceImpl.memberbl.MemberController;
 import client.businessLogicServiceImpl.userbl.UserFactory;
 import common.otherEnumClasses.UserRole;
+import common.vo.MemberVO;
+import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -51,15 +55,17 @@ public class EnterpriseInfoRepController {
      * Initializes the controller class.
      */
     @FXML
-    public void initialize() {
-        String id=Start.person.id;
-        
-        MemberMaintainService uif=new MemberController(id, UserRole.Enterprise);
+    public void initialize() throws Exception{
+        MemberMaintainService uif=new MemberController(Start.person.id, UserRole.Enterprise);
         
     }    
 
     @FXML
-    private void creditButtonHandler(ActionEvent event) {
+    private void creditButtonHandler(ActionEvent event) throws Exception {
+        FXMLLoader fXMLLoader=new FXMLLoader();
+        fXMLLoader.setLocation(new File("src/main/java/client/UI/Runner/Runner.fxml").toURL());
+        fXMLLoader.load();
+        CreditController cc=fXMLLoader.getController();
         
     }
 
