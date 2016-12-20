@@ -119,5 +119,5 @@ public class HotelInfoController {
         starLabel.setText(hotelVO.star+"");
         markField.setText(hotelVO.mark+"");
         serviceField.setText(hotelVO.rooms.size()+"");
-            }
+    }
 }

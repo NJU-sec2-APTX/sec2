@@ -5,13 +5,16 @@
  */
 package client.UI.Hotel.ExecuteOrder;
 
+import client.UI.Runner.Start;
+import client.businessLogicService.OrderFactory;
+import common.otherEnumClasses.OrderState;
+import common.otherEnumClasses.Person;
+import common.vo.OrderVO;
+import java.io.File;
 import java.util.ArrayList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -23,25 +26,33 @@ public class ExecuteReplaceController {
     @FXML
     private AnchorPane basePane;
     @FXML
-    private Button searchButton;
-    @FXML
-    private TextField searchArea;
-    @FXML
     private ScrollPane showPane;
     @FXML
     private AnchorPane rep;
-    @FXML
-    private Button executeOrderButton1;
-
   
-    @FXML
-    private void searchButtonHandler(ActionEvent event) {
-        ArrayList<Label> orderList=new ArrayList();
-        //添加label的数组
-        
+    /*
+    *用于showpanel中添加
+    */
+    private void add( Person p)throws Exception{
+        ArrayList <OrderVO> orderInHotelList=OrderFactory.getOrderService().searchOrderListFromData(p, OrderState.NotDone, null);
+        if(orderInHotelList.isEmpty()){
+            FXMLLoader fxmll=new FXMLLoader();
+            AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Hotel/ExecuteOrder/ExecuteSingle.fxml").toURL()));
+            ExecuteSingleController esc=fxmll.getController();
+            esc.show(null);
+            showPane.getChildrenUnmodifiable().add(addAnchorPane);
+        }else{
+                 for(int i=0;i<orderInHotelList.size();i++){
+                    FXMLLoader fxmll=new FXMLLoader();
+                    AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Hotel/ExecuteOrder/ExecuteSingle.fxml").toURL()));
+                    ExecuteSingleController esc=fxmll.getController();
+                    esc.show(orderInHotelList.get(i));
+                    showPane.getChildrenUnmodifiable().add(addAnchorPane);
+                }
+        }
     }
-
-    @FXML
-    private void executeOrderButtonHandler(ActionEvent event) {
+    
+    public void initialize() throws Exception{
+        this.add(Start.person);
     }
 }

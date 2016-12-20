@@ -1,10 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+完成
  */
 package client.UI.Hotel;
 
+import client.UI.Runner.Start;
+import client.businessLogicService.userblService.UserIFactory;
 import java.io.File;
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -77,8 +77,8 @@ public class HotelUIController {
     @FXML 
     public void initialize()throws IOException{
          System.out.println("executeOrderButton");
-         rep.getChildren().clear();
-        rep.getChildren().add(FXMLLoader.load((new File("ssrc/main/java/client/UI/Hotel/ExecuteOrder/ExecuteReplace.fxml").toURL())));
+         accountLabel.setText(Start.person.role+Start.person.id);
+        rep.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Hotel/ExecuteOrder/ExecuteReplace.fxml").toURL())));
     }
     
 }

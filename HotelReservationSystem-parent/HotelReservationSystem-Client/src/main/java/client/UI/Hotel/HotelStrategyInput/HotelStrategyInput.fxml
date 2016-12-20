@@ -7,40 +7,64 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-<AnchorPane fx:id="basePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Hotel.HotelStrategyInput.HotelStrategyInputController">
+<AnchorPane fx:id="repPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Hotel.HotelStrategyInput.HotelStrategyInputController">
    <children>
       <Pane layoutY="6.0" prefHeight="550.0" prefWidth="870.0">
          <children>
-            <ScrollPane fx:id="showPane" layoutX="16.0" layoutY="20.0" prefHeight="440.0" prefWidth="824.0">
-               <content>
-                  <ToolBar prefHeight="44.0" prefWidth="820.0">
-                    <items>
-                      <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="127.0" text="优惠策略" />
+            <Button fx:id="correctButton" layoutX="275.0" layoutY="472.0" mnemonicParsing="false" onAction="#correctButtonHandler" text="更改">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="cancelButton" layoutX="398.0" layoutY="472.0" mnemonicParsing="false" onAction="#cancelButtonHandler" text="返回">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <AnchorPane layoutX="2.0" layoutY="-7.0" prefHeight="465.0" prefWidth="870.0">
+               <children>
+                  <ToolBar layoutX="-1.0" prefHeight="44.0" prefWidth="870.0">
+                     <items>
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="127.0" text="优惠策略" />
                         <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="127.0" text="优惠折扣" />
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="533.0" text="优惠策略" />
-                    </items>
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="337.0" text="优惠描述" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="215.0" text="操作" />
+                     </items>
                   </ToolBar>
-               </content></ScrollPane>
-            <Button fx:id="addButton" layoutX="171.0" layoutY="472.0" mnemonicParsing="false" onAction="#addButtonHandler" text="新增">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Button>
-            <Button fx:id="deleteButton" layoutX="297.0" layoutY="472.0" mnemonicParsing="false" onAction="#deleteButtonHandler" text="删除">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Button>
-            <Button fx:id="correctButton" layoutX="428.0" layoutY="472.0" mnemonicParsing="false" onAction="#correctButtonHandler" text="更改">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Button>
-            <Button fx:id="cancelButton" layoutX="562.0" layoutY="472.0" mnemonicParsing="false" onAction="#cancelButtonHandler" text="返回">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Button>
+                  <Pane layoutX="-3.0" layoutY="44.0" prefHeight="52.0" prefWidth="857.0">
+                     <children>
+                        <Label layoutX="29.0" layoutY="11.0" prefHeight="30.0" prefWidth="110.0" text="生日特惠折扣" />
+                        <Label layoutX="288.0" layoutY="8.0" prefHeight="30.0" prefWidth="324.0" text="生日当天入住酒店可享受" />
+                        <Button fx:id="addBirthdayButton" layoutX="647.0" layoutY="11.0" mnemonicParsing="false" onAction="#addBirthdayButtonHandler" text="添加" />
+                        <TextField fx:id="birthField" layoutX="155.0" layoutY="11.0" prefHeight="30.0" prefWidth="110.0" text="70%" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="-3.0" layoutY="96.0" prefHeight="52.0" prefWidth="857.0">
+                     <children>
+                        <Label layoutX="29.0" layoutY="11.0" prefHeight="30.0" prefWidth="127.0" text="三间以上预定折扣" />
+                        <Label layoutX="288.0" layoutY="8.0" prefHeight="30.0" prefWidth="324.0" text="预定三间以上可享受" />
+                        <TextField fx:id="threeField" layoutX="157.0" layoutY="11.0" prefHeight="30.0" prefWidth="110.0" text="70%" />
+                        <Button fx:id="addThreeButton" layoutX="650.0" layoutY="8.0" mnemonicParsing="false" onAction="#addThreeButtonHandler" text="添加" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="-3.0" layoutY="148.0" prefHeight="52.0" prefWidth="857.0">
+                     <children>
+                        <Label layoutX="29.0" layoutY="11.0" prefHeight="30.0" prefWidth="127.0" text="合作企业客户折扣" />
+                        <Label layoutX="288.0" layoutY="8.0" prefHeight="30.0" prefWidth="324.0" text="合作企业入住酒店可享受" />
+                        <TextField fx:id="enterpriseField" layoutX="157.0" layoutY="11.0" prefHeight="30.0" prefWidth="110.0" text="70%" />
+                        <Button fx:id="addEnterpriseButton" layoutX="650.0" layoutY="8.0" mnemonicParsing="false" onAction="#addEnterpriseButtonHandler" text="添加" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="-3.0" layoutY="200.0" prefHeight="52.0" prefWidth="857.0">
+                     <children>
+                        <Label layoutX="29.0" layoutY="11.0" prefHeight="30.0" prefWidth="110.0" text="双十一活动折扣" />
+                        <Label layoutX="288.0" layoutY="8.0" prefHeight="30.0" prefWidth="324.0" text="双十一入住酒店可享受" />
+                        <TextField fx:id="douElevenField" layoutX="157.0" layoutY="11.0" prefHeight="30.0" prefWidth="110.0" text="70%" />
+                        <Button fx:id="addDouElevenButton" layoutX="650.0" layoutY="8.0" mnemonicParsing="false" onAction="#addDouElevenButtonHandler" text="添加" />
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
          </children>
       </Pane>
    </children>
