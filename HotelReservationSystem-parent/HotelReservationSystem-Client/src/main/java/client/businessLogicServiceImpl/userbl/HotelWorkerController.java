@@ -23,4 +23,5 @@ public class HotelWorkerController implements HotelWorkerMaintainService{
 	public ResultMessage modifyUserInfo(UserPO po) throws Exception {
 		return u.modifyUser(po);
 	}
+	
 }

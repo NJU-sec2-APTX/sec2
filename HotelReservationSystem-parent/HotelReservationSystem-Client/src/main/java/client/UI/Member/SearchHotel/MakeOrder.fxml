@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Member.SearchHotel.MakeOrderController">
+   <children>
+      <Pane prefHeight="550.0" prefWidth="870.0">
+         <children>
+            <Label layoutX="230.0" layoutY="33.0" prefHeight="28.0" prefWidth="95.0" style="-fx-background-color: white;" text="酒店名称：" textAlignment="CENTER">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Button fx:id="okButton" layoutX="269.0" layoutY="368.0" mnemonicParsing="false" onAction="#okButtonHandler" prefHeight="30.0" prefWidth="82.0" style="-fx-background-color: #b3e6b3;" text="确定" />
+            <TextField fx:id="hotelNameField" layoutX="324.0" layoutY="32.0" prefHeight="30.0" prefWidth="133.0" />
+            <Label layoutX="227.0" layoutY="177.0" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: white;" text="家庭套房：" textAlignment="CENTER">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="famBox" layoutX="323.0" layoutY="176.0" prefHeight="30.0" prefWidth="133.0" />
+            <Label layoutX="230.0" layoutY="77.0" prefHeight="28.0" prefWidth="82.0" style="-fx-background-color: white;" text="单人房：" textAlignment="CENTER">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="singleBox" layoutX="324.0" layoutY="76.0" prefHeight="30.0" prefWidth="133.0" />
+            <Label layoutX="227.0" layoutY="247.0" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: white;" text="入住时间：" textAlignment="CENTER">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="227.0" layoutY="303.0" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: white;" text="离开时间：" textAlignment="CENTER">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="227.0" layoutY="125.0" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: white;" text="双人房：" textAlignment="CENTER">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Button fx:id="cancelButton" layoutX="435.0" layoutY="368.0" mnemonicParsing="false" onAction="#cancelButtonHandler" prefHeight="30.0" prefWidth="82.0" style="-fx-background-color: #b3e6b3;" text="取消" />
+            <ChoiceBox fx:id="douBox" layoutX="323.0" layoutY="124.0" prefHeight="30.0" prefWidth="133.0" />
+            <DatePicker fx:id="inDatepicker" layoutX="324.0" layoutY="254.0" prefHeight="30.0" prefWidth="175.0" />
+            <DatePicker fx:id="outDatePicker" layoutX="324.0" layoutY="302.0" prefHeight="30.0" prefWidth="175.0" />
+            <Button fx:id="calButton" layoutX="585.0" layoutY="283.0" mnemonicParsing="false" onAction="#calButtonHandler" prefHeight="30.0" prefWidth="82.0" style="-fx-background-color: #b3e6b3;" text="计算金额" />
+            <Label fx:id="moneyLabel" layoutX="695.0" layoutY="284.0" prefHeight="28.0" prefWidth="95.0" style="-fx-background-color: white;" text="0" textAlignment="CENTER" textFill="#d71010">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

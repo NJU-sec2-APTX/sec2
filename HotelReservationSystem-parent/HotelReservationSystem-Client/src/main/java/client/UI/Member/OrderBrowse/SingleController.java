@@ -5,7 +5,11 @@
  */
 package client.UI.Member.OrderBrowse;
 
+import client.businessLogicService.OrderFactory;
+import common.otherEnumClasses.OrderState;
+import common.vo.OrderVO;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,15 +39,29 @@ public class SingleController  {
     private Label statueLabel;
     @FXML
     private Button cancelButton;
-
-    /**
-     * Initializes the controller class.
-     */@FXML
-    public void initialize() {
-    }    
-    @FXML
-    private void cancelButtonHandler(ActionEvent event) {
+   public void show( OrderVO orderVO){
+        if(orderVO == null){
+            IDLabel.setText("无");
+            cancelButton.setVisible(false);
+        }else{
+            IDLabel.setText(orderVO.id);
+            makeTimeLabel.setText(orderVO.createdTime.toString());
+            hotelLabel.setText(orderVO.hotel);
+            executeTimeLabel.setText(orderVO.checkInTime.toString());
+            statueLabel.setText(orderVO.state+"");
+            if(orderVO.state==OrderState.NotDone){
+                cancelButton.setVisible(true);
+            }else{
+                cancelButton.setVisible(false);
+            }
+        }
         
     }
     
+    @FXML
+    private void cancelButtonHandler(ActionEvent event) {
+        OrderFactory.getOrderService().clientCancelOrder(null);
+        statueLabel.setText(OrderState.Canceled+""); 
+        cancelButton.setVisible(false);
+    }
 }

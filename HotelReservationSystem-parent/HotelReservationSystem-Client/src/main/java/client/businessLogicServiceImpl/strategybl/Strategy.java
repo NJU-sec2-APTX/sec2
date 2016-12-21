@@ -2,19 +2,24 @@ package client.businessLogicServiceImpl.strategybl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import client.Client;
 import common.otherEnumClasses.ResultMessage;
+import common.otherEnumClasses.StrategyList;
 import common.otherEnumClasses.UserRole;
 import common.po.StrategyPO;
+import common.vo.MemberVO;
+import common.vo.OrderVO;
 import common.vo.StrategyVO;
 
 public class Strategy {
 	private String id;
 	private UserRole ur;
 	//这个是用来存strategylineitem容器类的列表，其中存的是持有某个strategy对象以及其根据订单用该strategy所计算出的总价
+	private StrategyList strategy_price;
 	
 	//这个是用来存某个ID所有的strategy，其中存的是StrategyVO对象
 	private Map<String,StrategyVO> strategylist;
@@ -145,6 +150,78 @@ public class Strategy {
 	 * @return
 	 * @throws RemoteException
 	 */
+	@SuppressWarnings("deprecation")
+	public StrategyList calPrice(OrderVO vo) throws RemoteException{
+		if(vo!=null&&strategylist!=null){
+			strategy_price=new StrategyList(id,ur);
+			ArrayList<StrategyVO> list=Client.getStrategyDataService().findAll(id,ur);
+			for(int i=0;i<list.size();i++){
+				StrategyVO tempvo=list.get(i);
+				MemberVO membervo=new MemberVO(Client.getMemberDataService().find(tempvo.getID()));
+				if(tempvo.getName().equals("MemberLevel")){
+					if(tempvo.getLevel()<=membervo.getLevel()){
+						double p=vo.price*tempvo.getCount();
+						strategy_price.addLineItem(p,tempvo);
+					}
+				}else{
+					//判断生日
+					if(tempvo.IsMemberBirth()&&membervo.getUserRole()==UserRole.Member){
+						Date d=new Date();
+						if(membervo.getBirthday().getMonth()!=d.getMonth()||membervo.getBirthday().getDate()!=d.getDate()){
+							break;
+						}
+					}
+					//判断商圈
+					if(tempvo.getArea()!=null){
+						if(!tempvo.getArea().contains(Client.getHotelDataService().getHotelInfo(vo.hotel).getArea())){
+							break;
+						}
+					}
+					//判断时间
+					if(tempvo.getStartDate()!=null){
+						if(tempvo.getEndDate()!=null){
+							if(!tempvo.getStartDate().before(vo.checkInTime)||!tempvo.getEndDate().after(vo.checkOutTime)){
+								break;
+							}
+						}else{
+							if(!tempvo.getStartDate().before(vo.checkInTime)){
+								break;
+							}
+						}
+					}
+					//判断房间数
+					if(tempvo.getRoomNumber()!=0){
+						String []sum=vo.numOfRoom.split("/");
+						int number=0;
+						for(int j=0;j<sum.length;j++){
+							number+=Integer.parseInt(sum[i]);
+						}
+						if(tempvo.getRoomNumber()>number){
+							break;
+						}
+					}
+					//判断等级
+					if(tempvo.getLevel()!=0){
+						if(tempvo.getLevel()>membervo.getLevel()){
+							break;
+						}
+					}
+					//判断合作企业
+					if(tempvo.getEnterprise()!=null&&membervo.getUserRole()==UserRole.Enterprise){
+						if(!tempvo.getEnterprise().contains(membervo.getName())){
+							break;
+						}
+					}
+					double p=vo.price*tempvo.getCount();
+					strategy_price.addLineItem(p,tempvo);
+				}
+				
+			}
+			return strategy_price;
+		}else{
+			return null;
+		}
+	}
 	
 	public void print(){
 		if(strategylist.size()!=0){

@@ -5,6 +5,7 @@
  */
 package client.UI.Member.OrderBrowse;
 
+import client.UI.Hotel.ExecuteOrder.ExecuteSingleController;
 import client.UI.Runner.Start;
 import client.businessLogicService.OrderFactory;
 import common.otherEnumClasses.OrderState;
@@ -53,9 +54,17 @@ public class OrderUIController  {
     public void initialize()throws Exception  {
         ArrayList<OrderVO> OrderList = OrderFactory.getOrderService().searchOrderListFromData(Start.person, null, null);
         if(OrderList.isEmpty()){
-            for(int i=0;i<OrderList.size();i++){
-                AnchorPane addAnchorPane=FXMLLoader.load((new File("src/main/java/client/UI/Hotel/HotelUI.fxml")).toURL());
-                
+                FXMLLoader fxmll=new FXMLLoader();
+                AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Hotel/ExecuteOrder/ExecuteSingle.fxml").toURL()));
+                SingleController sc=fxmll.getController();
+                sc.show(null);
+                showPane.getChildrenUnmodifiable().add(addAnchorPane);
+        }else{  
+                for(int i=0;i<OrderList.size();i++){
+                FXMLLoader fxmll=new FXMLLoader();
+                AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Hotel/ExecuteOrder/ExecuteSingle.fxml").toURL()));
+                SingleController sc=fxmll.getController();
+                sc.show(OrderList.get(i));
                 showPane.getChildrenUnmodifiable().add(addAnchorPane);
             }
         }

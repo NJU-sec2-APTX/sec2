@@ -18,7 +18,5 @@ public interface StrategyDataService extends Remote{
 	public ResultMessage delete(StrategyPO spo)throws RemoteException;
 	
 	public ArrayList<StrategyVO> findAll(String ID,UserRole ur) throws RemoteException;
-	
-	public ArrayList<StrategyVO> CalAll() throws RemoteException;
 }
 
