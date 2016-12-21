@@ -9,89 +9,61 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Member.SearchHotel.SearchHotelController">
    <children>
-      <Pane prefHeight="191.0" prefWidth="870.0">
+      <Pane prefHeight="550.0" prefWidth="870.0">
          <children>
-            <ToolBar layoutY="188.0" prefHeight="44.0" prefWidth="870.0">
+            <ToolBar layoutY="147.0" prefHeight="44.0" prefWidth="870.0">
               <items>
                 <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="184.0" text="酒店名称" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="196.0" text="地址" />
-                  <Button fx:id="priceButton" mnemonicParsing="false" onAction="#markButtonHandler" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: #b3e6b3;" text="价格区间▼" />
-                  <Button fx:id="starButton" mnemonicParsing="false" onAction="#starButtonHandler" style="-fx-background-color: #b3e6b3;" text="星级▼" />
-                  <Button fx:id="markButton" mnemonicParsing="false" onAction="#markButtonHandler" prefHeight="30.0" prefWidth="78.0" style="-fx-background-color: #b3e6b3;" text="评分▼" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="114.0" style="-fx-background-color: ;" text="历史订单状态" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="68.0" text="操作" />
+                  <Button mnemonicParsing="false" text="星级" />
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="237.0" text="地址" />
+                  <Button mnemonicParsing="false" text="空房数" />
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="112.0" text="价格区间" />
+                  <Button mnemonicParsing="false" text="评分" />
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="119.0" text="是否曾预定" />
               </items>
             </ToolBar>
-            <ScrollPane fx:id="showPane" layoutY="232.0" prefHeight="304.0" prefWidth="870.0" />
+            <ScrollPane fx:id="showPane" layoutY="194.0" prefHeight="355.0" prefWidth="870.0" />
             <Label layoutX="25.0" layoutY="26.0" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: white;" text="商圈：" textAlignment="CENTER">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label layoutX="25.0" layoutY="78.0" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: white;" text="星级：" textAlignment="CENTER">
+            <Label fx:id="areaField" layoutX="95.0" layoutY="26.0" prefHeight="28.0" prefWidth="184.0" style="-fx-background-color: gray;" text="0">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label layoutX="247.0" layoutY="26.0" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: white;" text="地址：" textAlignment="CENTER">
+            <Label layoutX="25.0" layoutY="76.0" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: white;" text="星级：" textAlignment="CENTER">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label layoutX="516.0" layoutY="26.0" prefHeight="28.0" prefWidth="95.0" style="-fx-background-color: white;" text="酒店名称：" textAlignment="CENTER">
+            <Label fx:id="rankField" layoutX="95.0" layoutY="76.0" prefHeight="28.0" prefWidth="184.0" style="-fx-background-color: gray;" text="0">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Button fx:id="clearSearchButton" layoutX="775.0" layoutY="25.0" mnemonicParsing="false" onAction="#clearSearchButtonHandler" prefHeight="30.0" prefWidth="82.0" style="-fx-background-color: #b3e6b3;" text="明确搜索" />
-            <ChoiceBox fx:id="areaBox" layoutX="93.0" layoutY="24.0" prefHeight="30.0" prefWidth="127.0" />
-            <ChoiceBox fx:id="starBox" layoutX="93.0" layoutY="77.0" prefHeight="30.0" prefWidth="127.0" />
-            <TextField fx:id="addressField" layoutX="305.0" layoutY="25.0" prefHeight="30.0" prefWidth="163.0" />
-            <TextField fx:id="hotelNameField" layoutX="618.0" layoutY="25.0" prefHeight="30.0" prefWidth="133.0" />
-            <CheckBox fx:id="isRerveredCheeckBox" layoutX="707.0" layoutY="157.0" mnemonicParsing="false" text="只搜索预定过的酒店" />
-            <Label layoutX="25.0" layoutY="128.0" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: white;" text="房间类型：" textAlignment="CENTER">
+            <Label layoutX="291.0" layoutY="25.0" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: white;" text="地址：" textAlignment="CENTER">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="roomTypeBox" layoutX="118.0" layoutY="127.0" prefHeight="30.0" prefWidth="102.0" />
-            <Label layoutX="429.0" layoutY="78.0" prefHeight="28.0" prefWidth="133.0" style="-fx-background-color: white;" text="价格区间：" textAlignment="CENTER">
+            <Label layoutX="291.0" layoutY="75.0" prefHeight="28.0" prefWidth="95.0" style="-fx-background-color: white;" text="酒店名称：" textAlignment="CENTER">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="priceBox" layoutX="519.0" layoutY="77.0" prefHeight="30.0" prefWidth="175.0" />
-            <Label layoutX="248.0" layoutY="78.0" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: white;" text="评分：" textAlignment="CENTER">
+            <Label fx:id="adressField" layoutX="363.0" layoutY="25.0" prefHeight="28.0" prefWidth="307.0" style="-fx-background-color: gray;" text="0">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="markBox" layoutX="305.0" layoutY="77.0" prefHeight="30.0" prefWidth="102.0" />
-            <Label layoutX="429.0" layoutY="111.0" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: white;" text="入住时间：" textAlignment="CENTER">
+            <Label fx:id="hotelNameField" layoutX="403.0" layoutY="76.0" prefHeight="28.0" prefWidth="267.0" style="-fx-background-color: gray;" text="0">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label layoutX="429.0" layoutY="153.0" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: white;" text="离开时间：" textAlignment="CENTER">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Label>
-            <Label layoutX="248.0" layoutY="125.0" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: white;" text="房间数量：" textAlignment="CENTER">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Label>
-            <Button fx:id="roughSearchButton" layoutX="775.0" layoutY="113.0" mnemonicParsing="false" onAction="#roughSearchButtonHandler" prefHeight="30.0" prefWidth="82.0" style="-fx-background-color: #b3e6b3;" text="大致搜索" />
-            <Line endX="775.0" layoutX="101.0" layoutY="65.0" startX="-100.0" />
-            <DatePicker fx:id="inDatepicker" layoutX="518.0" layoutY="109.0" prefHeight="30.0" prefWidth="175.0" />
-            <DatePicker fx:id="outDatePicker" layoutX="518.0" layoutY="152.0" prefHeight="30.0" prefWidth="175.0" />
-            <TextField fx:id="numOfHotelField" layoutX="350.0" layoutY="128.0" prefHeight="30.0" prefWidth="58.0" />
-            <Label fx:id="tipLabel" layoutX="722.0" layoutY="78.0" prefHeight="28.0" prefWidth="133.0" style="-fx-background-color: white;" text="请先明确商圈" textAlignment="CENTER" textFill="#e81212">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Label>
+            <Button fx:id="searchButton" layoutX="730.0" layoutY="74.0" mnemonicParsing="false" onAction="#searchButtonHandler" text="搜索" />
          </children>
       </Pane>
    </children>

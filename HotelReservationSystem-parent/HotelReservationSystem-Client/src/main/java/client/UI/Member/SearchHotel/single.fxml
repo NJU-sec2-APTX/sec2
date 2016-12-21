@@ -11,13 +11,13 @@
    <children>
       <ToolBar prefHeight="44.0" prefWidth="870.0">
         <items>
-            <Label fx:id="hotelNameLabel" prefHeight="20.0" prefWidth="183.0" />
-            <Label fx:id="addressLabel" prefHeight="20.0" prefWidth="199.0" />
-            <Label fx:id="priceLabel" prefHeight="20.0" prefWidth="107.0" />
-            <Label fx:id="starLabel" prefHeight="20.0" prefWidth="65.0" />
-            <Label fx:id="markLabel" prefHeight="20.0" prefWidth="80.0" />
-            <Label fx:id="statueLabel" prefHeight="20.0" prefWidth="113.0" />
-            <Button fx:id="bookButton" mnemonicParsing="false" onAction="#bookButtonHandler" prefHeight="30.0" prefWidth="58.0" text="预定" />
+          <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="184.0" text="酒店名称" />
+            <Button mnemonicParsing="false" text="星级" />
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="237.0" text="地址" />
+            <Button mnemonicParsing="false" text="空房数" />
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="112.0" text="价格区间" />
+            <Button mnemonicParsing="false" text="评分" />
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="119.0" text="是否曾预定" />
         </items>
       </ToolBar>
    </children>
