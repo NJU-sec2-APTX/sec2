@@ -11,7 +11,7 @@
    <children>
       <AnchorPane fx:id="rep" prefHeight="550.0" prefWidth="870.0">
          <children>
-            <ScrollPane fx:id="showPane" layoutX="25.0" layoutY="13.0" prefHeight="479.0" prefWidth="818.0">
+            <ScrollPane fx:id="showPane" layoutX="23.0" layoutY="13.0" prefHeight="525.0" prefWidth="825.0">
                <content>
                   <ToolBar prefHeight="30.0" prefWidth="814.0">
                      <items>

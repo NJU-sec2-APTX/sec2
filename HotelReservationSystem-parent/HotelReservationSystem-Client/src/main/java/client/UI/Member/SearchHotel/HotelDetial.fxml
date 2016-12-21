@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Member.SearchHotel.HotelDetialController">
+   <children>
+      <Pane prefHeight="550.0" prefWidth="870.0">
+         <children>
+            <Label fx:id="hotelNameLabel" layoutX="12.0" prefHeight="88.0" prefWidth="161.0" text="酒店信息">
+               <font>
+                  <Font size="39.0" />
+               </font>
+            </Label>
+            <Button layoutX="173.0" layoutY="128.0" mnemonicParsing="false" style="-fx-background-color: #b3e6b3;" text="基本信息" />
+            <Button layoutX="173.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #b3e6b3;" text="酒店简介" />
+            <TextArea fx:id="showArea" layoutX="276.0" layoutY="8.0" prefHeight="113.0" prefWidth="559.0" />
+            <Button fx:id="bookButton" layoutX="719.0" layoutY="496.0" mnemonicParsing="false" onAction="#correctButtonHandler" text="预定" />
+            <Button fx:id="cancelButton" layoutX="792.0" layoutY="496.0" mnemonicParsing="false" onAction="#cancelButtonHandler" text="返回" />
+            <Label layoutX="281.0" layoutY="129.0" prefHeight="29.0" prefWidth="72.0" text="名称：">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="281.0" layoutY="170.0" prefHeight="29.0" prefWidth="72.0" text="商圈：">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="431.0" layoutY="129.0" prefHeight="29.0" prefWidth="72.0" text="星级：">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="starLabel" layoutX="495.0" layoutY="130.0" prefHeight="29.0" prefWidth="57.0" text="1">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="431.0" layoutY="170.0" prefHeight="29.0" prefWidth="72.0" text="地址：">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="710.0" layoutY="129.0" prefHeight="29.0" prefWidth="91.0" text="单人房：">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="tipLabel" layoutX="710.0" layoutY="170.0" prefHeight="29.0" prefWidth="100.0" text="双人房：" textFill="#0d0d0ddb">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="544.0" layoutY="130.0" prefHeight="29.0" prefWidth="72.0" text="评分：">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="markField" layoutX="605.0" layoutY="130.0" prefHeight="29.0" prefWidth="57.0" text="1">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="nameLabel" layoutX="343.0" layoutY="129.0" prefHeight="30.0" prefWidth="72.0" text="Label" />
+            <Label fx:id="areaLabel" layoutX="343.0" layoutY="170.0" prefHeight="30.0" prefWidth="72.0" text="Label" />
+            <Label fx:id="addressLabel" layoutX="492.0" layoutY="170.0" prefHeight="30.0" prefWidth="196.0" text="Label" />
+            <Label fx:id="tipLabel1" layoutX="713.0" layoutY="208.0" prefHeight="29.0" prefWidth="113.0" text="家庭套房：" textFill="#0d0d0ddb">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="singleLabel" layoutX="792.0" layoutY="130.0" prefHeight="30.0" prefWidth="64.0" text="Label" />
+            <Label fx:id="douLabel" layoutX="799.0" layoutY="170.0" prefHeight="29.0" prefWidth="72.0" text="Label" />
+            <Label fx:id="famLabel" layoutX="817.0" layoutY="208.0" prefHeight="29.0" prefWidth="50.0" text="Label" />
+            <Button layoutX="622.0" layoutY="128.0" mnemonicParsing="false" style="-fx-background-color: #b3e6b3;" text="剩余房间" />
+            <ScrollPane layoutX="72.0" layoutY="282.0" prefHeight="211.0" prefWidth="744.0" />
+            <ToolBar layoutX="72.0" layoutY="248.0" prefHeight="0.0" prefWidth="744.0">
+               <items>
+                  <Label fx:id="IDLabel" prefHeight="20.0" prefWidth="133.0" text="ID" />
+                  <Label fx:id="hotelLabel" prefHeight="20.0" prefWidth="128.0" text="酒店" />
+                  <Label fx:id="makeTimeLabel" prefHeight="20.0" prefWidth="121.0" text="生成日期" />
+                  <Label fx:id="executeTimeLabel" prefHeight="20.0" prefWidth="111.0" text="生效日期" />
+                  <Label fx:id="statueLabel" prefHeight="20.0" prefWidth="110.0" text="状态" />
+               </items>
+            </ToolBar>
+            <Button layoutX="173.0" layoutY="208.0" mnemonicParsing="false" style="-fx-background-color: #b3e6b3;" text="历史订单" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

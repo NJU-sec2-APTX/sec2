@@ -11,10 +11,9 @@
    <children>
       <ToolBar prefHeight="44.0" prefWidth="870.0">
         <items>
-            <Label prefHeight="20.0" prefWidth="508.0" />
+            <Label prefHeight="20.0" prefWidth="633.0" />
             <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="118.0" text="订单记录" />
             <ChoiceBox fx:id="orderStatuechooseButton" prefHeight="30.0" prefWidth="91.0" />
-            <Button fx:id="cancelOrderTimeButton" mnemonicParsing="false" onAction="#cacnelOrderTimeButtonHandler" prefHeight="30.0" prefWidth="118.0" text="取消" />
         </items>
       </ToolBar>
       <ScrollPane fx:id="showPane" layoutY="44.0" prefHeight="507.0" prefWidth="870.0">

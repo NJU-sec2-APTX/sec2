@@ -106,68 +106,7 @@ public class StrategyDataServiceImpl extends UnicastRemoteObject implements Stra
 	
 //	String id,UserRole ur,String strategy_name,ArrayList<String> enterpriseList,int roomNumber,
 //	Date start_date,Date end_date,ArrayList<String> businessarea,int level,double count,boolean IsBirthday
-	public ArrayList<StrategyVO> CalAll(){
-		sql="select * from strategy where name !='MemberLevel';";
-		ArrayList<StrategyVO> allStrategy=null;
-		try {
-			databasehelper=new DBHelper(sql);
-			resultset=databasehelper.pst.executeQuery(sql);
-			if(resultset.next()){
-				allStrategy=new ArrayList<StrategyVO>();
-				do{
-					String name=null;
-					String ID=resultset.getString(1);
-					UserRole ur=UserRole.getUserRole(resultset.getString(2));
-					boolean isBirthday=false;
-					int room=0;
-					Date startdate=null;
-					Date enddate=null;
-					int level=0;
-					double count=0;
-					String enterprise=null;
-					String area=null;
-					if(resultset.getString(3)!=null){
-						name=resultset.getString(3);
-					}
-					if(resultset.getString(4)!=null){
-						isBirthday=resultset.getBoolean(4);
-					}
-					if(resultset.getString(5)!=null){
-						room=resultset.getInt(5);
-					}
-					if(resultset.getString(6)!=null){
-						startdate=resultset.getDate(6);
-					}
-					if(resultset.getString(7)!=null){
-						enddate=resultset.getDate(7);
-					}
-					if(resultset.getString(8)!=null){
-						level=resultset.getShort(8);
-					}
-					if(resultset.getString(9)!=null){
-						count=resultset.getDouble(9);
-					}
-					if(resultset.getString(10)!=null){
-						enterprise=resultset.getString(10);
-					}
-					if(resultset.getString(11)!=null){
-						area=resultset.getString(11);
-					}
-					StrategyPO po=new StrategyPO(ID,ur,name,enterprise,room,startdate,
-							enddate,area,level,count,isBirthday);
-					allStrategy.add(new StrategyVO(po));
-				}while(resultset.next());
-			}else{
-				return null;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-		return allStrategy;
-	}
-	
+
 	public ArrayList<StrategyVO> findAll(String ID,UserRole ur){
 		sql="select * from strategy where id='"+ID+"'&&userrole='"+ur+"';";
 		ArrayList<StrategyVO> allStrategy=null;
@@ -228,6 +167,4 @@ public class StrategyDataServiceImpl extends UnicastRemoteObject implements Stra
 		return allStrategy;
 	}
 	//其实都不用find，只要一开始findall就可以，然后在里面查找，只要每次更新都调用findall就ok
-
-
 }
