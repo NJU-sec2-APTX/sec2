@@ -10,6 +10,7 @@ import client.businessLogicServiceImpl.userbl.WebsiteManagerController;
 import client.businessLogicServiceImpl.userbl.WebsiteSalesController;
 
 public class User_Factory {
+
 	public static UserIFactory getUserService(){
 		return new UserFactory();
 	}

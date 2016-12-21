@@ -9,19 +9,14 @@ public class UserVO{
 	UserRole role;
 	String contact;
 	String belonghotel;
-	String password;
 	public UserVO(UserPO po){
 		Id=po.getId();
 		name=po.getName();
 		role=po.getUserRole();
 		contact=po.getContact();
 		belonghotel=po.getHotel();
-		password=po.getPassword();
 	}
 	
-	public String getPassword(){
-		return password;
-	}
 	public String getId(){
 		return Id;
 	}

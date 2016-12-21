@@ -24,6 +24,26 @@ public class UserDataServiceImpl extends UnicastRemoteObject implements UserData
 	private String sql;
 	private ResultSet resultset;
 	
+	public String pushpassword(String s){
+		char[]list=s.toCharArray();
+		String Result="";
+		int random=(int)(Math.random()*9)+1;
+		for(int i=0;i<list.length;i++){
+			Result+=(char)((list[i]+random*random)%127);
+		}
+		return Result+random;
+	}
+	
+	public String pullpassword(String s){
+		char[]list=s.substring(0,s.length()-1).toCharArray();
+		String Result="";
+		int random=Integer.parseInt(s.charAt(s.length()-1)+"");
+		for(int i=0;i<list.length;i++){
+			Result+=(char)((list[i]-random*random+127)%127);
+		}
+		return Result;
+	}
+	
 	@Override
 	public ResultMessage checkinuser(String ID, UserRole ur, String password) throws RemoteException {
 		sql="select * from onlinelist where id='"+ID+"'&&userrole='"+ur.toString()+"';";
@@ -34,18 +54,23 @@ public class UserDataServiceImpl extends UnicastRemoteObject implements UserData
 				databasehelper.close();
 				return ResultMessage.Logged;
 			}else{
-				sql="select * from user where id='"+ID+"'&&password='"+password+"'&&userrole='"+ur.toString()+"';";
+				sql="select * from user where id='"+ID+"'&&userrole='"+ur.toString()+"';";
 				databasehelper=new DBHelper(sql);
 				resultset=databasehelper.pst.executeQuery();
 				if(resultset.next()){
-					sql="insert into onlinelist(id,userrole)value('"+ID+"','"+ur.toString()+"');";
-					databasehelper=new DBHelper(sql);
-					databasehelper.pst.execute();
-					resultset.close();
-					databasehelper.close();
-					return ResultMessage.Success;
+					if(password.equals(pullpassword(resultset.getString(3)))){
+						sql="insert into onlinelist(id,userrole)value('"+ID+"','"+ur.toString()+"');";
+						databasehelper=new DBHelper(sql);
+						databasehelper.pst.execute();
+						resultset.close();
+						databasehelper.close();
+						return ResultMessage.Success;
+					}else{
+						return ResultMessage.Failure;
+					}
 				}else{
 					databasehelper.close();
+					System.out.println("here?");
 					return ResultMessage.Failure;
 				}
 			}
@@ -67,7 +92,7 @@ public class UserDataServiceImpl extends UnicastRemoteObject implements UserData
 			String contact=null;
 			while(resultset.next()){
 				name=resultset.getString(2);
-				password=resultset.getString(3);
+				password=pullpassword(resultset.getString(3));
 				contact=resultset.getString(5);
 				hotel=resultset.getString(6);
 			}
@@ -91,7 +116,7 @@ public class UserDataServiceImpl extends UnicastRemoteObject implements UserData
 	@Override
 	public ResultMessage insert(UserPO po) throws RemoteException {
 		sql="insert into user(id,name,password,userrole,contact,belonghotel)"+
-				" value('"+po.getId()+"','"+po.getName()+"','"+po.getPassword()+"','"+
+				" value('"+po.getId()+"','"+po.getName()+"','"+pushpassword(po.getPassword())+"','"+
 				(""+po.getUserRole())+"','"+po.getContact()+"','"+po.getHotel()+"');";
 		databasehelper=new DBHelper(sql);
 		try {
@@ -106,7 +131,7 @@ public class UserDataServiceImpl extends UnicastRemoteObject implements UserData
 
 	@Override
 	public ResultMessage update(UserPO po) throws RemoteException {
-		sql="update user set name='"+po.getName()+"',password='"+po.getPassword()+"',belonghotel='"+po.getHotel()
+		sql="update user set name='"+po.getName()+"',password='"+pushpassword(po.getPassword())+"',belonghotel='"+po.getHotel()
 		+"',contact='"+po.getContact()+"' where id='"+po.getId()+"'&&userrole='"+po.getUserRole().toString()+"';";
 		databasehelper=new DBHelper(sql);
 		try{
