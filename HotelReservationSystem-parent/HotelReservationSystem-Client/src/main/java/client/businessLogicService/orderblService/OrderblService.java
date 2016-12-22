@@ -14,9 +14,9 @@ public interface OrderblService {
 	
 	public ArrayList<OrderVO> searchOrderListFromData(Person person, OrderState state, HotelVO hotelVO);
 	
-	public boolean createOrder(OrderVO vo, String clientId);
+	public OrderVO createOrder(OrderVO vo, String clientId);
 	
-	public boolean executeOrder(String orderId, String clientId, Date checkInTime, Date planCheckOutTime);
+	public OrderVO executeOrder(String orderId, String clientId, Date checkInTime, Date planCheckOutTime);
 	
 	public boolean assessOrder(OrderVO vo, double mark);
 	

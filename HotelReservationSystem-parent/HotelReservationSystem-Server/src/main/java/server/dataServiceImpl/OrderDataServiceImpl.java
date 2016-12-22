@@ -46,4 +46,10 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 		return false;
 	}
 
+	@Override
+	public OrderPO findOrderFromData(String orderId) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

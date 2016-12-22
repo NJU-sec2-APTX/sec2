@@ -11,6 +11,7 @@ public class HotelPO {
 	private String area;
 	private String address;
 	private String introduction;
+	private long assessNum;
 	private double price;
 	private int star;
 	private double mark;
@@ -93,5 +94,13 @@ public class HotelPO {
 
 	public void setRooms(ArrayList<RoomCondition> rooms) {
 		this.rooms = rooms;
+	}
+
+	public long getAssessNum() {
+		return assessNum;
+	}
+
+	public void setAssessNum(long assessNum) {
+		this.assessNum = assessNum;
 	}
 }

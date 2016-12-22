@@ -51,17 +51,4 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public Room getRoom(String hotelId, int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean setRoom(Room room) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }
