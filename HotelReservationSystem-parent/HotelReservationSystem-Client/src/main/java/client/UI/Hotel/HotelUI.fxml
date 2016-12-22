@@ -42,7 +42,7 @@
                   <Font size="30.0" />
                </font>
             </Button>
-            <Button fx:id="executeOrderButton" mnemonicParsing="false" onAction="#executeOrderButtonHandler" prefHeight="84.0" prefWidth="175.0" text="执行订单">
+            <Button fx:id="executeOrderButton" mnemonicParsing="false" onAction="#executeOrderButtonHandler" prefHeight="84.0" prefWidth="175.0" text="更新客房">
                <font>
                   <Font size="30.0" />
                </font>

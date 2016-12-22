@@ -13,13 +13,13 @@
          <children>
             <ToolBar layoutY="188.0" prefHeight="44.0" prefWidth="870.0">
               <items>
-                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="184.0" text="酒店名称" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="196.0" text="地址" />
+                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="142.0" text="酒店名称" />
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="171.0" text="地址" />
                   <Button fx:id="priceButton" mnemonicParsing="false" onAction="#markButtonHandler" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: #b3e6b3;" text="价格区间▼" />
                   <Button fx:id="starButton" mnemonicParsing="false" onAction="#starButtonHandler" style="-fx-background-color: #b3e6b3;" text="星级▼" />
                   <Button fx:id="markButton" mnemonicParsing="false" onAction="#markButtonHandler" prefHeight="30.0" prefWidth="78.0" style="-fx-background-color: #b3e6b3;" text="评分▼" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="114.0" style="-fx-background-color: ;" text="历史订单状态" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="68.0" text="操作" />
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="115.0" style="-fx-background-color: ;" text="历史订单状态" />
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="127.0" text="操作" />
               </items>
             </ToolBar>
             <ScrollPane fx:id="showPane" layoutY="232.0" prefHeight="304.0" prefWidth="870.0" />

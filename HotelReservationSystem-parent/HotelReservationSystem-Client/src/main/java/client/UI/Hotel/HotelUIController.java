@@ -64,7 +64,7 @@ public class HotelUIController {
     private void executeOrderButtonHandler(ActionEvent event) throws  IOException{
         System.out.println("executeOrderButton");
          rep.getChildren().clear();
-        rep.getChildren().add(FXMLLoader.load((new File("ssrc/main/java/client/UI/Hotel/ExecuteOrder/ExecuteReplace.fxml").toURL())));
+        rep.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Hotel/ExecuteOrder/RoomBase.fxml").toURL())));
         
     }
     @FXML

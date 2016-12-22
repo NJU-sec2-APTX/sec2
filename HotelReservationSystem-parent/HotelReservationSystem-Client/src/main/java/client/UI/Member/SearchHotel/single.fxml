@@ -7,17 +7,18 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Member.SearchHotel.SingleController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Member.SearchHotel.SingleController">
    <children>
       <ToolBar prefHeight="44.0" prefWidth="870.0">
         <items>
-            <Label fx:id="hotelNameLabel" prefHeight="20.0" prefWidth="183.0" />
-            <Label fx:id="addressLabel" prefHeight="20.0" prefWidth="199.0" />
+            <Label fx:id="hotelNameLabel" prefHeight="20.0" prefWidth="143.0" />
+            <Label fx:id="addressLabel" prefHeight="20.0" prefWidth="166.0" />
             <Label fx:id="priceLabel" prefHeight="20.0" prefWidth="107.0" />
             <Label fx:id="starLabel" prefHeight="20.0" prefWidth="65.0" />
             <Label fx:id="markLabel" prefHeight="20.0" prefWidth="80.0" />
-            <Label fx:id="statueLabel" prefHeight="20.0" prefWidth="113.0" />
-            <Button fx:id="bookButton" mnemonicParsing="false" onAction="#bookButtonHandler" prefHeight="30.0" prefWidth="58.0" text="预定" />
+            <Label fx:id="statueLabel" prefHeight="20.0" prefWidth="125.0" />
+            <Button fx:id="bookButton" mnemonicParsing="false" onAction="#bookButtonHandler" prefHeight="30.0" prefWidth="58.0" style="-fx-background-color: #b3e6b3;" text="预定" />
+            <Button fx:id="browseButton" mnemonicParsing="false" onAction="#browseButtonHandler" prefHeight="30.0" prefWidth="58.0" style="-fx-background-color: #b3e6b3;" text="查看" />
         </items>
       </ToolBar>
    </children>

@@ -48,8 +48,12 @@ public class ExecuteSingleController  {
             memberLabel.setText(orderVO.clientId);
             moneyLabel.setText(orderVO.price+"");
             roomInfo.setText(orderVO.numOfRoom);
+            if (orderVO.checkInTime==null) {
+                executeOrderButton.setText("执行");
+            }else if(orderVO.checkOutTime==null){
+                executeOrderButton.setText("取消");
+            }
         }
-        
     }
     
     @FXML
@@ -57,7 +61,7 @@ public class ExecuteSingleController  {
         executeOrderButton.setText("已执行");
         executeOrderButton.setDisable(true);
         Date time=new Date();
-        OrderFactory.getOrderService().executeOrder(orderID.getText(), memberLabel.getText(), time);
+        OrderFactory.getOrderService().executeOrder(orderID.getText(), memberLabel.getText(), time,null);
     }
     
 }

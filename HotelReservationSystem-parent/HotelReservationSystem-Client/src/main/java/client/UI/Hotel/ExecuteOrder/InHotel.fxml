@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="basePane" prefHeight="486.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Hotel.ExecuteOrder.InHotelController">
+   <children>
+      <Label layoutX="190.0" layoutY="40.0" text="单人房：">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="190.0" layoutY="92.0" text="双人房：">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="190.0" layoutY="143.0" text="家庭房：">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="inButton" layoutX="377.0" layoutY="283.0" mnemonicParsing="false" onAction="#inButtonHandler" prefHeight="42.0" prefWidth="96.0" style="-fx-background-color: #b3e6b3;" text="退房" />
+      <DatePicker fx:id="outPicker" layoutX="377.0" layoutY="207.0" />
+      <Label layoutX="190.0" layoutY="211.0" text="离开时间：">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="sinBox" layoutX="377.0" layoutY="41.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="douBox" layoutX="377.0" layoutY="93.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="famBox" layoutX="377.0" layoutY="144.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>

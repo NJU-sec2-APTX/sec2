@@ -7,10 +7,7 @@ package client.UI.Member.SearchHotel;
 
 import common.otherEnumClasses.OrderState;
 import common.vo.OrderVO;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
 /**
@@ -31,16 +28,21 @@ public class ReveredOrderController  {
     @FXML
     private Label statueLabel;
     public void show(OrderVO o){
-        IDLabel.setText(o.id);
-        hotelLabel.setText(o.hotel);
-        makeTimeLabel.setText(o.createdTime.toString());
-        if(o.state==OrderState.Done){
+        if (o==null) {
+            IDLabel.setText("无");
+        }else{
+            IDLabel.setText(o.id);
+            hotelLabel.setText(o.hotel);
+            makeTimeLabel.setText(o.createdTime.toString());
+            if(o.state==OrderState.Done){
             statueLabel.setText(o.state.toString());
             executeTimeLabel.setText(o.checkInTime.toString());
-        }else {
-             statueLabel.setText(o.state.toString());
+            }else {
+            statueLabel.setText(o.state.toString());
             executeTimeLabel.setText("");
         }
+        }
+        
     }
     @FXML
     public void initialize() {

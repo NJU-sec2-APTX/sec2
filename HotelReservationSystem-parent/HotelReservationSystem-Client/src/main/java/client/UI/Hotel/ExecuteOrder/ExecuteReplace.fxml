@@ -11,7 +11,7 @@
    <children>
       <AnchorPane fx:id="rep" prefHeight="550.0" prefWidth="870.0">
          <children>
-            <ScrollPane fx:id="showPane" layoutX="23.0" layoutY="13.0" prefHeight="525.0" prefWidth="825.0">
+            <ScrollPane fx:id="orderPane" layoutX="31.0" layoutY="84.0" prefHeight="303.0" prefWidth="825.0">
                <content>
                   <ToolBar prefHeight="30.0" prefWidth="814.0">
                      <items>
@@ -24,6 +24,8 @@
                      </items>
                   </ToolBar>
                </content></ScrollPane>
+            <TextField fx:id="searchField" layoutX="127.0" layoutY="31.0" prefHeight="40.0" prefWidth="522.0" promptText="请输入订单号" />
+            <Button fx:id="searchButton" layoutX="693.0" layoutY="36.0" mnemonicParsing="false" onAction="#searchButtonHandler" style="-fx-background-color: #b3e6b3;" text="搜索" />
          </children>
       </AnchorPane>
    </children>

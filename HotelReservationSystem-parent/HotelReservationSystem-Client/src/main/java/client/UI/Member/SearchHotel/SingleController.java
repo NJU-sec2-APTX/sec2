@@ -6,13 +6,16 @@
 package client.UI.Member.SearchHotel;
 
 import common.vo.HotelVO;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -35,15 +38,21 @@ public class SingleController  {
     private Label statueLabel;
     @FXML
     private Button bookButton;
+    @FXML
+    private Button browseButton;
 
-   
+    private HotelVO hotelVO;
 
     @FXML
-    private void bookButtonHandler(ActionEvent event) {
-        
+    private void bookButtonHandler(ActionEvent event) throws Exception{
+        FXMLLoader fxmll=new FXMLLoader();
+        AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Member/OrderBrowse/MakeOrder.fxml").toURL()));
+        MakeOrderController moc=fxmll.getController();
+        moc.show(hotelVO);
     }
 
-    void show(HotelVO hotelVO) {
+    void show(HotelVO h) {
+        hotelVO=h;
         if (hotelVO==null) {
             hotelNameLabel.setText("无");
         }else{
@@ -55,6 +64,14 @@ public class SingleController  {
             statueLabel.setText(hotelVO.isEverReserved+"");
         }
         
+    }
+
+    @FXML
+    private void browseButtonHandler(ActionEvent event)throws  Exception{
+        FXMLLoader fxmll=new FXMLLoader();
+        AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Member/OrderBrowse/HotelDetial.fxml").toURL()));
+        HotelDetialController hdc=fxmll.getController();
+        hdc.show(hotelVO);
     }
     
 }

@@ -10,11 +10,11 @@
    <children>
       <ToolBar prefHeight="0.0" prefWidth="744.0">
          <items>
-            <Label fx:id="IDLabel" prefHeight="20.0" prefWidth="133.0" text="ID" />
-            <Label fx:id="hotelLabel" prefHeight="20.0" prefWidth="128.0" text="酒店" />
-            <Label fx:id="makeTimeLabel" prefHeight="20.0" prefWidth="121.0" text="生成日期" />
-            <Label fx:id="executeTimeLabel" prefHeight="20.0" prefWidth="111.0" text="生效日期" />
-            <Label fx:id="statueLabel" prefHeight="20.0" prefWidth="110.0" text="状态" />
+            <Label fx:id="IDLabel" prefHeight="20.0" prefWidth="133.0" />
+            <Label fx:id="hotelLabel" prefHeight="20.0" prefWidth="128.0" />
+            <Label fx:id="makeTimeLabel" prefHeight="20.0" prefWidth="121.0" />
+            <Label fx:id="executeTimeLabel" prefHeight="20.0" prefWidth="111.0" />
+            <Label fx:id="statueLabel" prefHeight="20.0" prefWidth="110.0" />
          </items>
       </ToolBar>
    </children>

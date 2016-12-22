@@ -5,21 +5,32 @@
  */
 package client.UI.Member.SearchHotel;
 
+import client.UI.Runner.Start;
+import client.businessLogicService.HotelFactory;
+import client.businessLogicService.OrderFactory;
+import common.otherEnumClasses.OrderState;
+import common.vo.HotelVO;
+import common.vo.OrderVO;
+import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
  *
  * @author 陈长生
  */
-public class HotelDetialController implements Initializable {
+public class HotelDetialController {
 
     @FXML
     private Label hotelNameLabel;
@@ -59,21 +70,56 @@ public class HotelDetialController implements Initializable {
     private Label executeTimeLabel;
     @FXML
     private Label statueLabel;
-
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+    @FXML
+    private AnchorPane basePanel;
+    @FXML
+    private ScrollPane orderPanel;
+    HotelVO hotelVO;
+ 
 
     @FXML
-    private void correctButtonHandler(ActionEvent event) {
+    private void cancelButtonHandler(ActionEvent event)throws Exception {
+        basePanel.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/SearchHotel/SearchHotel.fxml")).toURL()));
     }
 
     @FXML
-    private void cancelButtonHandler(ActionEvent event) {
+    private void bookButtonHandler(ActionEvent event)throws Exception {
+        FXMLLoader fxmll=new FXMLLoader();
+        AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Member/OrderBrowse/MakeOrder.fxml").toURL()));
+        MakeOrderController moc=fxmll.getController();
+        moc.show(hotelVO);
+    }
+    private void add(HotelVO hotelVO)throws Exception{//添加历史订单
+        ArrayList<OrderVO> orderVOs=OrderFactory.getOrderService().searchOrderListFromData(Start.person,null, hotelVO);
+        if (orderVOs.size()==0) {
+                FXMLLoader fxmll=new FXMLLoader();
+                AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Member/OrderBrowse/ReveredOrder.fxml").toURL()));
+                ReveredOrderController sc=fxmll.getController();
+                sc.show(null);
+        }else{
+            for(int i=0;i<orderVOs.size();i++){
+                FXMLLoader fxmll=new FXMLLoader();
+                AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Member/OrderBrowse/ReveredOrder.fxml").toURL()));
+                ReveredOrderController sc=fxmll.getController();
+                sc.show(orderVOs.get(i));
+            }
+        }
+       
+        
+    }
+    void show(HotelVO h) throws Exception{//初始化载入
+       hotelVO=h;
+       hotelNameLabel.setText(hotelVO.name);
+       showArea.setText(hotelVO.introduction);
+       showArea.setEditable(false);
+       nameLabel.setText(hotelVO.name);
+       markField.setText(hotelVO.mark+"");
+       starLabel.setText(hotelVO.star+"");
+       singleLabel.setText(hotelVO.rooms.get(0).restNum+"");
+       douLabel.setText(hotelVO.rooms.get(1).restNum+"");
+       areaLabel.setText(hotelVO.area);
+       addressLabel.setText(hotelVO.address);
+       add(hotelVO);
     }
     
 }
