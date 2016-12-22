@@ -9,7 +9,7 @@ public class StrategyList {
 	
 	private int number;
 	
-	public StrategyList(String ID,UserRole ur){
+	public StrategyList(){
 		list=new ArrayList<StrategyLineItem>();
 		number=0;
 	}
@@ -45,6 +45,9 @@ public class StrategyList {
 	}
 	
 	public StrategyLineItem getfirstStrategy(){
+		if(number==0){
+			return null;
+		}
 		return list.get(0);
 	}
 	

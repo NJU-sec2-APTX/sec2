@@ -14,69 +14,73 @@ import common.vo.StrategyVO;
 public class PriceHelper {
 	private StrategyList strategy_price;
 	@SuppressWarnings("deprecation")
-	public StrategyList calPrice(OrderVO vo) throws RemoteException{
-		if(vo!=null){
+	
+	public StrategyList calPrice(OrderVO OrderVO) throws RemoteException{
+		if(OrderVO!=null){
 			strategy_price=new StrategyList();
 			ArrayList<StrategyVO> list=Client.getStrategyDataService().CalAll();
 			for(int i=0;i<list.size();i++){
-				StrategyVO tempvo=list.get(i);
-				MemberVO membervo=new MemberVO(Client.getMemberDataService().find(tempvo.getID()));
-				if(tempvo.getName().equals("MemberLevel")){
-					if(tempvo.getLevel()<=membervo.getLevel()){
-						double p=vo.price*tempvo.getCount();
-						strategy_price.addLineItem(p,tempvo);
+				StrategyVO TempStrategy=list.get(i);
+				MemberVO membervo=new MemberVO(Client.getMemberDataService().find(TempStrategy.getID()));
+				if(TempStrategy.getName().equals("MemberLevel")){
+					if(TempStrategy.getLevel()<=membervo.getLevel()){
+						double p=OrderVO.price*TempStrategy.getCount();
+						strategy_price.addLineItem(p,TempStrategy);
 					}
 				}else{
-					//判断生日
-					if(tempvo.IsMemberBirth()&&membervo.getUserRole()==UserRole.Member){
+					switch(TempStrategy.getStrategyType()){
+					case Birthday:
 						Date d=new Date();
-						if(membervo.getBirthday().getMonth()!=d.getMonth()||membervo.getBirthday().getDate()!=d.getDate()){
-							continue;
+						if(membervo.getBirthday().getMonth()==d.getMonth()&&membervo.getBirthday().getDate()==d.getDate()){
+							double p=OrderVO.price*TempStrategy.getCount();
+							strategy_price.addLineItem(p,TempStrategy);
 						}
-					}
-//					//判断商圈
-//					if(tempvo.getArea()!=null){
-//						if(!tempvo.getArea().contains(Client.getHotelDataService().getHotelInfo(vo.hotel).getArea())){
-//							break;
-//						}
-//					}
-					//判断时间
-					if(tempvo.getStartDate()!=null){
-						if(tempvo.getEndDate()!=null){
-							if(tempvo.getStartDate().compareTo(vo.checkInTime)>0||tempvo.getEndDate().compareTo(vo.checkOutTime)<0){
-								continue;
-							}
-						}else{
-							if(!tempvo.getStartDate().before(vo.checkInTime)){
-								continue;
-							}
+						break;
+					case CorporationEnterPrise:
+						if(membervo.getUserRole()==UserRole.Enterprise&&TempStrategy.getEnterprise().contains(membervo.getName())){
+							double p=OrderVO.price*TempStrategy.getCount();
+							strategy_price.addLineItem(p,TempStrategy);
 						}
-					}
-					//判断房间数
-					if(tempvo.getRoomNumber()!=0){
-						String []sum=vo.numOfRoom.split("/");
+						break;
+					case MemberLevel:
+						break;
+					case RoomNumber:
+						String []sum=OrderVO.numOfRoom.split("/");
 						int number=0;
 						for(int j=0;j<sum.length;j++){
 							number+=Integer.parseInt(sum[j]);
 						}
-						if(tempvo.getRoomNumber()>number){
-							continue;
+						if(TempStrategy.getRoomNumber()<=number){
+							double p=OrderVO.price*TempStrategy.getCount();
+							strategy_price.addLineItem(p,TempStrategy);
 						}
-					}
-					//判断等级
-					if(tempvo.getLevel()!=0){
-						if(tempvo.getLevel()>membervo.getLevel()){
-							continue;
+						break;
+					case SpecialDate:
+						if(TempStrategy.getEndDate()!=null){
+							if(TempStrategy.getStartDate().compareTo(OrderVO.checkInTime)<=0&&TempStrategy.getEndDate().compareTo(OrderVO.checkOutTime)>=0){
+								double p=OrderVO.price*TempStrategy.getCount();
+								strategy_price.addLineItem(p,TempStrategy);
+							}
+						}else{
+							if(TempStrategy.getStartDate().compareTo(OrderVO.checkInTime)<=0){
+								double p=OrderVO.price*TempStrategy.getCount();
+								strategy_price.addLineItem(p,TempStrategy);
+							}
 						}
-					}
-					//判断合作企业
-					if(!tempvo.getEnterprise().equals("null")&&membervo.getUserRole()==UserRole.Enterprise){
-						if(!tempvo.getEnterprise().contains(membervo.getName())){
-							continue;
+						break;
+					case VipandArea:
+						if(TempStrategy.getArea().equals(Client.getHotelDataService().getHotelInfo(OrderVO.hotel).getArea())){
+							String[] discount=TempStrategy.getEnterprise().split("/");
+							for(int j=0;j<discount.length;j++){
+								if(membervo.getLevel()>=j+1){
+									double p=OrderVO.price*Double.parseDouble(discount[j]);
+									strategy_price.addLineItem(p,TempStrategy);
+									break;
+								}
+							}
 						}
+						break;
 					}
-					double p=vo.price*tempvo.getCount();
-					strategy_price.addLineItem(p,tempvo);
 				}
 			}
 			return strategy_price;

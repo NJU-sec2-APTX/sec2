@@ -3,6 +3,7 @@ package common.po;
 import java.io.Serializable;
 import java.util.Date;
 
+import common.otherEnumClasses.StrategyType;
 import common.otherEnumClasses.UserRole;
 
 public class StrategyPO  implements Serializable{
@@ -17,10 +18,8 @@ public class StrategyPO  implements Serializable{
 	private String id;
 	
 	private String strategy_name;
-	//可以是专门为了房间数，也可以是专门为了生日，例如strategyForRoomnumber
-	//如何理解呢，就是只要这里的变量不为空，那么就必须满足条件
 	
-	private boolean IsMemberBirthday;
+	private StrategyType type;
 	
 	//用于记录合作企业名称，不为空表示只适用于这些企业，只要用创建者的ID和UserRole即可确定列表，因为合作企业属于该ID
 	private String enterpriseList;
@@ -44,7 +43,7 @@ public class StrategyPO  implements Serializable{
 	private double count;
 	
 	public StrategyPO(String id,UserRole ur,String strategy_name,String enterpriseList,int roomNumber,
-			Date start_date,Date end_date,String businessarea,int level,double count,boolean IsBirthday){
+			Date start_date,Date end_date,String businessarea,int level,double count,StrategyType type){
 		this.ur=ur;
 		this.id=id;
 		this.strategy_name=strategy_name;
@@ -55,15 +54,11 @@ public class StrategyPO  implements Serializable{
 		this.count=count;
 		this.enterpriseList=enterpriseList;
 		this.roomNumber=roomNumber;
-		this.IsMemberBirthday=IsBirthday;
+		this.type=type;
 	}
 	
 	public String getID(){
 		return id;
-	}
-	
-	public void setBirthday(boolean b){
-		this.IsMemberBirthday=b;
 	}
 	
 	public void setCount(double c){
@@ -102,8 +97,8 @@ public class StrategyPO  implements Serializable{
 		return start_date;
 	}
 	
-	public boolean IsMemberBirth(){
-		return IsMemberBirthday;
+	public StrategyType getStrategyType(){
+		return type;
 	}
 	
 	public Date getEndDate(){

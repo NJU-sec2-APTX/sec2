@@ -24,6 +24,26 @@ public class MemberDataServiceImpl extends UnicastRemoteObject implements Member
 	private String sql1;
 	private ResultSet resultset;
 	
+	public String pushpassword(String s){
+		char[]list=s.toCharArray();
+		String Result="";
+		int random=(int)(Math.random()*9)+1;
+		for(int i=0;i<list.length;i++){
+			Result+=(char)((list[i]+random*random)%127);
+		}
+		return Result+random;
+	}
+	
+	public String pullpassword(String s){
+		char[]list=s.substring(0,s.length()-1).toCharArray();
+		String Result="";
+		int random=Integer.parseInt(s.charAt(s.length()-1)+"");
+		for(int i=0;i<list.length;i++){
+			Result+=(char)((list[i]-random*random+127)%127);
+		}
+		return Result;
+	}
+	
 	public MemberDataServiceImpl() throws RemoteException{}
 	
 	@SuppressWarnings("deprecation")
@@ -40,7 +60,7 @@ public class MemberDataServiceImpl extends UnicastRemoteObject implements Member
 			}
 			int l=memberlevel.getMemberLevel(mpo.getCredit());
 			sql="insert into member(id,name,password,userrole,credit,birthday,contact,level)"+
-					" value('"+mpo.getId()+"','"+mpo.getName()+"','"+mpo.getPassword()+"','"+
+					" value('"+mpo.getId()+"','"+mpo.getName()+"','"+pushpassword(mpo.getPassword())+"','"+
 					(""+mpo.getUserRole())+"',"+mpo.getCredit()+",'"+(mpo.getBirthday().getYear()+1900)
 					+"-"+(mpo.getBirthday().getMonth()+1)+"-"+mpo.getBirthday().getDate()+
 					"','"+mpo.getContact()+"',"+l+");";
@@ -80,7 +100,7 @@ public class MemberDataServiceImpl extends UnicastRemoteObject implements Member
 			while (resultset.next()) {
 				id=resultset.getString(1);
 				name=resultset.getString(2);
-				password=resultset.getString(3);
+				password=pullpassword(resultset.getString(3));
 				userrole=change(resultset.getString(4));
 				credit=resultset.getDouble(5);
 				birthday=resultset.getDate(6);
@@ -130,7 +150,7 @@ public class MemberDataServiceImpl extends UnicastRemoteObject implements Member
 			if(find(po.getId()).getCredit()!=po.getCredit()){
 				return ResultMessage.Failure;
 			}
-			sql="update member set name='"+po.getName()+"',password='"+po.getPassword()+"',birthday"
+			sql="update member set name='"+po.getName()+"',password='"+pushpassword(po.getPassword())+"',birthday"
 					+ "='"+(po.getBirthday().getYear()+1900)+"-"+(po.getBirthday().getMonth()+1)+"-"
 				+po.getBirthday().getDate()+"',contact='"+po.getContact()+"' where id='"+po.getId()+"';";
 			databasehelper=new DBHelper(sql);
@@ -151,7 +171,7 @@ public class MemberDataServiceImpl extends UnicastRemoteObject implements Member
 		}
 		return po.getCreditList();
 	}
-
+	
 	@Override
 	public ResultMessage checkinmember(String ID, UserRole ur, String password) throws RemoteException {
 		
@@ -163,16 +183,20 @@ public class MemberDataServiceImpl extends UnicastRemoteObject implements Member
 				databasehelper.close();
 				return ResultMessage.Logged;
 			}else{
-				sql="select * from member where id='"+ID+"'&&password='"+password+"'&&userrole='"+ur.toString()+"';";
+				sql="select * from member where id='"+ID+"'&&userrole='"+ur.toString()+"';";
 				databasehelper=new DBHelper(sql);
 				resultset=databasehelper.pst.executeQuery();
 				if(resultset.next()){
-					sql="insert into onlinelist(id,userrole)value('"+ID+"','"+ur.toString()+"');";
-					databasehelper=new DBHelper(sql);
-					databasehelper.pst.execute();
-					resultset.close();
-					databasehelper.close();
-					return ResultMessage.Success;
+					if(password.equals(pullpassword(resultset.getString(3)))){
+						sql="insert into onlinelist(id,userrole)value('"+ID+"','"+ur.toString()+"');";
+						databasehelper=new DBHelper(sql);
+						databasehelper.pst.execute();
+						resultset.close();
+						databasehelper.close();
+						return ResultMessage.Success;
+					}else{
+						return ResultMessage.Failure;
+					}
 				}else{
 					databasehelper.close();
 					return ResultMessage.Failure;

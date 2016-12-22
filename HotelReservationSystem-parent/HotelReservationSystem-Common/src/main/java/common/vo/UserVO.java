@@ -16,6 +16,7 @@ public class UserVO{
 		contact=po.getContact();
 		belonghotel=po.getHotel();
 	}
+	
 	public String getId(){
 		return Id;
 	}

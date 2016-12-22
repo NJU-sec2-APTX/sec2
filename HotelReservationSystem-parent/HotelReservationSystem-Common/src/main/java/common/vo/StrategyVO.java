@@ -3,6 +3,7 @@ package common.vo;
 import java.io.Serializable;
 import java.util.Date;
 
+import common.otherEnumClasses.StrategyType;
 import common.otherEnumClasses.UserRole;
 import common.po.StrategyPO;
 
@@ -21,7 +22,7 @@ public class StrategyVO implements Serializable{
 	//可以是专门为了房间数，也可以是专门为了生日，例如strategyForRoomnumber
 	//如何理解呢，就是只要这里的变量不为空，那么就必须满足条件
 	
-	private boolean IsMemberBirthday;
+	private StrategyType type;
 	
 	//用于记录合作企业名称，不为空表示只适用于这些企业
 	private String enterpriseList;
@@ -55,12 +56,12 @@ public class StrategyVO implements Serializable{
 		this.count=po.getCount();
 		this.enterpriseList=po.getEnterprise();
 		this.roomNumber=po.getRoomNumber();
-		this.IsMemberBirthday=po.IsMemberBirth();
+		this.type=po.getStrategyType();
 	}
 	
 	public void print(){
 		System.out.println(id+"\t"+strategy_name+"\t"+start_date+"\t"+end_date+"\t"+businessarea+"\t"+level+"\t"
-				+count+"\t"+enterpriseList+"\t"+roomNumber+"\t"+IsMemberBirthday);
+				+count+"\t"+enterpriseList+"\t"+roomNumber+"\t"+type);
 	}
 	
 	public String getID(){
@@ -85,8 +86,8 @@ public class StrategyVO implements Serializable{
 		return start_date;
 	}
 		
-	public boolean IsMemberBirth(){
-		return IsMemberBirthday;
+	public StrategyType getStrategyType(){
+		return type;
 	}
 		
 	public Date getEndDate(){
