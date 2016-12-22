@@ -65,11 +65,9 @@ public class OrderPO {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	
 	public void setCreditChange(double creditChange) {
 		this.creditChange = creditChange;
 	}
-
 	public void setCreditChange(int creditChange) {
 		this.creditChange = creditChange;
 	}
@@ -121,11 +119,9 @@ public class OrderPO {
 	public void setMark(double mark) {
 		this.mark = mark;
 	}
-
 	public Date getCancelTime() {
 		return cancelTime;
 	}
-
 	public void setCancelTime(Date cancelTime) {
 		this.cancelTime = cancelTime;
 	}
@@ -140,7 +136,6 @@ public class OrderPO {
 	public String getClientId() {
 		return clientId;
 	}
-
 	public void setClientId(String clientId) {
 		this.clientId = clientId;
 	}

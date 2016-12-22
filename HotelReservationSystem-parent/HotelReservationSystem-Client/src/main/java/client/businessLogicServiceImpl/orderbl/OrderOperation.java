@@ -63,6 +63,7 @@ public class OrderOperation implements OrderblService{
 			rooms.get(1).restNum -= Integer.parseInt(num.substring(0,temp));
 			rooms.get(2).restNum -= Integer.parseInt(num.substring(temp+1));
 			hotel.setRooms(rooms);
+			
 			if(!Client.getHotelDataService().setHotelInfo(hotel)){
 				return false;
 			}else{
@@ -74,7 +75,7 @@ public class OrderOperation implements OrderblService{
 		}
 	}
 	
-	public boolean executeOrder(String orderId, String clientId, Date checkInTime){
+	public boolean executeOrder(String orderId, String clientId, Date checkInTime, Date planCheckOutTime){
 		try {
 			OrderPO po = Client.getOrderDataService().findOrderFromData(orderId);
 			if(po.getState()==OrderState.NotDone||po.getState()==OrderState.Exceptional){
@@ -83,6 +84,7 @@ public class OrderOperation implements OrderblService{
 				}
 				po.setState(OrderState.Done);
 				po.setCheckInTime(checkInTime);
+				po.setCheckOutTime(planCheckOutTime);
 				Client.getUserDataService().updatecredit(clientId, po.getPrice(), po.getId(), CreditOperation.Execute);
 				return Client.getOrderDataService().updateOrder(po);
 			}
@@ -115,6 +117,12 @@ public class OrderOperation implements OrderblService{
 				}
 				po.setCancelTime(date);
 				po.setState(OrderState.Canceled);
+				
+				HotelPO hotel= Client.getHotelDataService().getHotelInfo(vo.hotel);
+				ArrayList<RoomCondition> rooms = hotel.getRooms();
+				hotel.setRooms(increaseRoom(rooms, vo.numOfRoom));
+				Client.getHotelDataService().setHotelInfo(hotel);
+				
 				return Client.getOrderDataService().updateOrder(po);
 			} catch (RemoteException e) {
 				return false;
@@ -130,6 +138,12 @@ public class OrderOperation implements OrderblService{
 				Client.getUserDataService().updatecredit(po.getClientId(), (isAll?1:0.5)*po.getPrice(), po.getId(), CreditOperation.ExceptionCancel);
 				po.setCancelTime(new Date());
 				po.setState(OrderState.ExceptionalCanceled);
+				
+				HotelPO hotel= Client.getHotelDataService().getHotelInfo(vo.hotel);
+				ArrayList<RoomCondition> rooms = hotel.getRooms();
+				hotel.setRooms(increaseRoom(rooms, vo.numOfRoom));
+				Client.getHotelDataService().setHotelInfo(hotel);
+				
 				return Client.getOrderDataService().updateOrder(po);
 			} catch (RemoteException e) {
 				return false;
@@ -138,5 +152,13 @@ public class OrderOperation implements OrderblService{
 		return false;
 	}
 
-	
+	public ArrayList<RoomCondition> increaseRoom(ArrayList<RoomCondition> rooms, String num){
+		int temp =  num.indexOf('/');
+		rooms.get(0).restNum += Integer.parseInt(num.substring(0,temp));
+		num = num.substring(temp+1);
+		temp = num.indexOf('/');
+		rooms.get(1).restNum += Integer.parseInt(num.substring(0,temp));
+		rooms.get(2).restNum += Integer.parseInt(num.substring(temp+1));
+		return rooms;
+	}
 }
