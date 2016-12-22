@@ -9,6 +9,8 @@ import common.po.HotelPO;
 
 public interface HotelDataService extends Remote{
 	
+	public boolean addHotel(HotelPO po) throws RemoteException;
+	
 	public HotelPO getHotelInfo(String id) throws RemoteException;
 	
 	public boolean setHotelInfo(HotelPO hotelPO) throws RemoteException;

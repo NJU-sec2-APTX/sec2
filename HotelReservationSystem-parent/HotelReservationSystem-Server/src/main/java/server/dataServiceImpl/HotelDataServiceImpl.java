@@ -51,4 +51,10 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public boolean addHotel(HotelPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
