@@ -16,9 +16,10 @@ public class OrderPO {
 	private	String hotel;
 	private int day;
 	private Date createdTime;
-	private Date planTime;
+	private Date planExecuteTime;
 	private Date latestDoneTime;
 	private Date checkInTime;
+	private Date planDepartTime;
 	private Date checkOutTime;
 	private Date cancelTime;
 	private int numberOfPerson;
@@ -39,9 +40,10 @@ public class OrderPO {
 		hotel = vo.hotel;
 		day = vo.day;
 		createdTime = vo.createdTime;
-		planTime = vo.planTime;
+		planExecuteTime = vo.planExecuteTime;
 		latestDoneTime = vo.latestDoneTime;
 		checkInTime = vo.checkInTime;
+		planDepartTime = vo.planDepartTime;
 		checkOutTime = vo.checkOutTime;
 		cancelTime = vo.cancelTime;
 		numberOfPerson = vo.numberOfPerson;
@@ -147,20 +149,27 @@ public class OrderPO {
 	public void setNumOfRoom(String numOfRoom) {
 		this.numOfRoom = numOfRoom;
 	}
-	
-	public Date getPlanTime() {
-		return planTime;
-	}
-
-	public void setPlanTime(Date planTime) {
-		this.planTime = planTime;
-	}
-
 	public int getDay() {
 		return day;
 	}
 
 	public void setDay(int day) {
 		this.day = day;
+	}
+
+	public Date getPlanDepartTime() {
+		return planDepartTime;
+	}
+
+	public void setPlanDepartTime(Date planDepartTime) {
+		this.planDepartTime = planDepartTime;
+	}
+
+	public Date getPlanExecuteTime() {
+		return planExecuteTime;
+	}
+
+	public void setPlanExecuteTime(Date planExecuteTime) {
+		this.planExecuteTime = planExecuteTime;
 	}
 }

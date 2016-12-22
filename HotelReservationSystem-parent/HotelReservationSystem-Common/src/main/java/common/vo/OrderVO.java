@@ -16,9 +16,10 @@ public class OrderVO {
 	public String hotel;
 	public int day;
 	public Date createdTime;
-	public Date planTime;
+	public Date planExecuteTime;
 	public Date latestDoneTime;
 	public Date checkInTime;
+	public Date planDepartTime;
 	public Date checkOutTime;
 	public Date cancelTime;
 	public int numberOfPerson;
@@ -39,9 +40,10 @@ public class OrderVO {
 		hotel = po.getHotel();
 		day = po.getDay();
 		createdTime = po.getCheckInTime();
-		planTime = po.getPlanTime();
+		planExecuteTime = po.getPlanExecuteTime();
 		latestDoneTime = po.getLatestDoneTime();
 		checkInTime = po.getCheckInTime();
+		planDepartTime = po.getPlanDepartTime();
 		checkOutTime = po.getCheckOutTime();
 		cancelTime = po.getCancelTime();
 		numberOfPerson = po.getNumberOfPerson();
