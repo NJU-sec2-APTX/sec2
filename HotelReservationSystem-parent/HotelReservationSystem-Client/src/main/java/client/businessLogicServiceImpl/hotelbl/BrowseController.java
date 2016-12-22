@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import client.businessLogicService.hotelblService.HotelblBrowseService;
 import common.otherEnumClasses.HotelSearchConditions;
-import common.otherEnumClasses.Person;
 import common.otherEnumClasses.SortFlag;
 import common.vo.HotelVO;
 

@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 
 import client.Client;
 import client.businessLogicService.hotelblService.HotelblMaintainService;
-import common.otherEnumClasses.Person;
 import common.po.HotelPO;
 import common.vo.HotelVO;
 
