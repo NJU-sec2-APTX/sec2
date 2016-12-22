@@ -22,7 +22,7 @@ public interface StrategyMaintainService {
 	
 	public ResultMessage addCorporationEnterPriseStrategy(String ID,UserRole ur,String Strategy_name,double count,String enterprise)throws RemoteException;
 	
-	public ResultMessage addMemberLevelStrategy(String ID,UserRole ur,double count,String countList,String credit)throws RemoteException;
+	public ResultMessage addMemberLevelStrategy(String ID,UserRole ur,double count,String credit)throws RemoteException;
 	
 	public ResultMessage addRoomNumberStrategyPO(String ID,UserRole ur,String Strategy_name,double count,int number)throws RemoteException;
 	

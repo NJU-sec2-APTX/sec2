@@ -44,8 +44,8 @@ public class StrategyController implements StrategyMaintainService{
 		return strategy.addStrategy(po);
 	}
 	
-	public ResultMessage addMemberLevelStrategy(String ID,UserRole ur,double count,String countList,String credit)throws RemoteException{
-		StrategyPO po=new StrategyPO(ID,ur,"MemberLevel",countList,0,null,null,credit,0,count,StrategyType.MemberLevel);
+	public ResultMessage addMemberLevelStrategy(String ID,UserRole ur,double count,String credit)throws RemoteException{
+		StrategyPO po=new StrategyPO(ID,ur,"MemberLevel",null,0,null,null,credit,0,count,StrategyType.MemberLevel);
 		return strategy.addStrategy(po);
 	}
 	

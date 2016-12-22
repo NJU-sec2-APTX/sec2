@@ -31,30 +31,31 @@ public class StrategyDataServiceImpl extends UnicastRemoteObject implements Stra
 	
 	@SuppressWarnings("deprecation")
 	public ResultMessage insert(StrategyPO spo){
-		sql="select * from strategy where strategytype='MemberLevel';";
-		databasehelper=new DBHelper(sql);
 		try {
-			resultset=databasehelper.pst.executeQuery();
-			if(resultset.next()){
-				return ResultMessage.Failure;
-			}else{
-				sql="insert into strategy(id,userrole,name,strategytype,room,startdate,enddate,level,count,enterprise,area)"+
-					"value('"+spo.getID()+"','"+spo.getUserRole()+"','"+spo.getName()+"','"+spo.getStrategyType()+"',";
-				sql+=spo.getRoomNumber()+",";
-				if(spo.getStartDate()==null){
-					sql+="null,";
-				}else{
-					sql+="'"+(spo.getStartDate().getYear()+1900)+"-"+(spo.getStartDate().getMonth()+1)+"-"+spo.getStartDate().getDate()+"',";
-				}
-				if(spo.getEndDate()==null){
-					sql+="null,";
-				}else{
-					sql+="'"+(spo.getEndDate().getYear()+1900)+"-"+(spo.getEndDate().getMonth()+1)+"-"+spo.getEndDate().getDate()+"',";
-				}
-				sql+=spo.getLevel()+","+spo.getCount()+",'"+spo.getEnterprise()+"','"+spo.getArea()+"');";
+			if(spo.getStrategyType()==StrategyType.MemberLevel){
+				sql="select * from strategy where strategytype='MemberLevel';";
 				databasehelper=new DBHelper(sql);
-				databasehelper.pst.execute(sql);
+				resultset=databasehelper.pst.executeQuery();
+				if(resultset.next()){
+					return ResultMessage.Failure;
+				}
 			}
+			sql="insert into strategy(id,userrole,name,strategytype,room,startdate,enddate,level,count,enterprise,area)"+
+				"value('"+spo.getID()+"','"+spo.getUserRole()+"','"+spo.getName()+"','"+spo.getStrategyType()+"',";
+			sql+=spo.getRoomNumber()+",";
+			if(spo.getStartDate()==null){
+				sql+="null,";
+			}else{
+				sql+="'"+(spo.getStartDate().getYear()+1900)+"-"+(spo.getStartDate().getMonth()+1)+"-"+spo.getStartDate().getDate()+"',";
+			}
+			if(spo.getEndDate()==null){
+				sql+="null,";
+			}else{
+				sql+="'"+(spo.getEndDate().getYear()+1900)+"-"+(spo.getEndDate().getMonth()+1)+"-"+spo.getEndDate().getDate()+"',";
+			}
+			sql+=spo.getLevel()+","+spo.getCount()+",'"+spo.getEnterprise()+"','"+spo.getArea()+"');";
+			databasehelper=new DBHelper(sql);
+			databasehelper.pst.execute(sql);
 			return ResultMessage.Success;
 		} catch (SQLException e) {
 			e.printStackTrace();
