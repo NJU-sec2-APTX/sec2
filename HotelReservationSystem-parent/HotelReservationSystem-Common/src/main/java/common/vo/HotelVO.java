@@ -7,6 +7,7 @@ import common.po.HotelPO;
 
 public class HotelVO {
 	
+	public String id;
 	public String name;
 	public String area;
 	public String address;
@@ -22,6 +23,7 @@ public class HotelVO {
 	}
 	
 	public HotelVO(HotelPO hotelPO){
+		id = hotelPO.getId();
 		name = hotelPO.getName();
 		area = hotelPO.getArea();
 		address = hotelPO.getAddress();

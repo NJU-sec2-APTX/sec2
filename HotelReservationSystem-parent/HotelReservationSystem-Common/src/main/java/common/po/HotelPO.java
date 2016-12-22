@@ -7,6 +7,7 @@ import common.vo.HotelVO;
 
 public class HotelPO {
 	
+	private String id;
 	private String name;
 	private String area;
 	private String address;
@@ -22,6 +23,7 @@ public class HotelPO {
 	}
 	
 	public HotelPO(HotelVO hotelVO){
+		id = hotelVO.id;
 		name = hotelVO.name;
 		area = hotelVO.area;
 		address = hotelVO.address;
@@ -102,5 +104,13 @@ public class HotelPO {
 
 	public void setAssessNum(long assessNum) {
 		this.assessNum = assessNum;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 }
