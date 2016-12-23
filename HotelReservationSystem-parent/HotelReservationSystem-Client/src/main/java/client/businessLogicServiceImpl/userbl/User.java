@@ -78,7 +78,10 @@ public class User {
 						(userpo.getUserRole()==UserRole.HotelWorker&&ur==UserRole.HotelWorker)||
 						(userpo.getUserRole()==UserRole.Sales&&ur==UserRole.Sales)){
 					UserPO po=Client.getUserDataService().find(id, ur);
-					return new UserVO(po);
+					if(po!=null)
+						return new UserVO(po);
+					else
+						return null;
 				}else{
 					return null;
 				}

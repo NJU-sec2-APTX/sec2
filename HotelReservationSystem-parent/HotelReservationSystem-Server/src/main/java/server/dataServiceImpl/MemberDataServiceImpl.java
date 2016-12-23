@@ -49,14 +49,14 @@ public class MemberDataServiceImpl extends UnicastRemoteObject implements Member
 	@SuppressWarnings("deprecation")
 	@Override
 	public ResultMessage insert(MemberPO mpo) throws RemoteException{
-		sql="select * from strategy where id='000001'&&userrole='Sales'&&name='MemberLevel';";
+		sql="select * from strategy where userrole='Sales'&&strategyType='MemberLevel';";
 		databasehelper=new DBHelper(sql);
 		try {
 			databasehelper=new DBHelper(sql);
 			resultset=databasehelper.pst.executeQuery();
 			MemberLevel memberlevel=null;
 			if(resultset.next()){
-				memberlevel=new MemberLevel(resultset.getString(10),resultset.getString(11));
+				memberlevel=new MemberLevel(resultset.getString(11));
 			}
 			int l=memberlevel.getMemberLevel(mpo.getCredit());
 			sql="insert into member(id,name,password,userrole,credit,birthday,contact,level)"+
@@ -107,12 +107,12 @@ public class MemberDataServiceImpl extends UnicastRemoteObject implements Member
 			memberpo.setPassword(password);
 			memberpo.setContact(contact);
 			
-			sql="select * from strategy where id='000001'&&userrole='Sales'&&name='MemberLevel';";
+			sql="select * from strategy where userrole='Sales'&&strategyType='MemberLevel';";
 			databasehelper=new DBHelper(sql);
 			resultset=databasehelper.pst.executeQuery();
 			MemberLevel memberlevel=null;
 			if(resultset.next()){
-				memberlevel=new MemberLevel(resultset.getString(10),resultset.getString(11));
+				memberlevel=new MemberLevel(resultset.getString(11));
 			}
 			int l=memberlevel.getMemberLevel(memberpo.getCredit());
 			memberpo.setLevel(l);

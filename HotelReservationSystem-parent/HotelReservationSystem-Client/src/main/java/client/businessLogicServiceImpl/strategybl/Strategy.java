@@ -20,9 +20,6 @@ public class Strategy {
 	private UserRole ur;
 	//这个是用来存strategylineitem容器类的列表，其中存的是持有某个strategy对象以及其根据订单用该strategy所计算出的总价
 	
-	//这个是用来存某个ID所有的strategy，其中存的是StrategyVO对象
-	private Map<String,StrategyVO> strategylist;
-	
 	private StrategyList strategy_price;
 	@SuppressWarnings("deprecation")
 	
@@ -126,11 +123,10 @@ public class Strategy {
 	 */
 	public Map<String,StrategyVO> getStrategyList() throws RemoteException{
 		if(Client.getStrategyDataService().findAll(id,ur)==null){
-			strategylist=new HashMap<String,StrategyVO>();
 			return null;
 		}else{
 			ArrayList<StrategyVO> templist=Client.getStrategyDataService().findAll(id,ur);
-			strategylist=new HashMap<String,StrategyVO>();
+			Map<String,StrategyVO>strategylist=new HashMap<String,StrategyVO>();
 			for(int i=0;i<templist.size();i++){
 				strategylist.put(templist.get(i).getName(), templist.get(i));
 			}
@@ -146,6 +142,7 @@ public class Strategy {
 	 * @throws RemoteException 
 	 */
 	public StrategyVO getStrategy (String StrategyName) throws RemoteException{
+		Map<String,StrategyVO>strategylist=getStrategyList();
 		if(strategylist.size()!=0){
 			return strategylist.get(StrategyName);
 		}else{
@@ -164,16 +161,13 @@ public class Strategy {
 	 * @throws RemoteException
 	 */
 	public ResultMessage modifyStrategy(StrategyPO po) throws RemoteException{
-		if(po.getID()!=id||po.getUserRole()!=ur){
+		getStrategyList();
+		if(!po.getID().equals(id)||!po.getUserRole().equals(ur)){
 			return ResultMessage.Failure;
 		}
-		if(strategylist.get(po.getName())!=null&&strategylist.get(po.getName()).getUserRole()==ur){
-			if(Client.getStrategyDataService().update(id,po.getName(),po)==ResultMessage.Success){
-				strategylist.replace(po.getName(), new StrategyVO(po));
-				return ResultMessage.Success;
-			}else{
-				return ResultMessage.Failure;
-			}
+		Map<String,StrategyVO>strategylist=getStrategyList();
+		if(strategylist.get(po.getName())!=null&&strategylist.get(po.getName()).getUserRole().equals(ur)){
+			return Client.getStrategyDataService().update(id,po.getName(),po);
 		}
 		return ResultMessage.Failure;
 	}
@@ -187,16 +181,12 @@ public class Strategy {
 	 * @throws RemoteException
 	 */
 	public ResultMessage removeStrategy (StrategyPO po) throws RemoteException{
-		if(po.getID()!=id||po.getUserRole()!=ur){
+		if(!po.getID().equals(id)||!po.getUserRole().equals(ur)){
 			return ResultMessage.Failure;
 		}
-		if(strategylist.get(po.getName())!=null&&strategylist.get(po.getName()).getUserRole()==ur){
-			if(Client.getStrategyDataService().delete(po)==ResultMessage.Success){
-				strategylist.remove(po.getName());
-				return ResultMessage.Success;
-			}else{
-				return ResultMessage.Failure;
-			}
+		Map<String,StrategyVO>strategylist=getStrategyList();
+		if(strategylist.get(po.getName())!=null&&strategylist.get(po.getName()).getUserRole().equals(ur)){
+			return Client.getStrategyDataService().delete(po);
 		}
 		return ResultMessage.Failure;
 	}
@@ -210,16 +200,12 @@ public class Strategy {
 	 * @throws RemoteException
 	 */
 	public ResultMessage addStrategy(StrategyPO po) throws RemoteException{
-		if(po.getID()!=id||po.getUserRole()!=ur){
+		if(!po.getID().equals(id)||!po.getUserRole().equals(ur)){
 			return ResultMessage.Failure;
 		}
+		Map<String,StrategyVO>strategylist=getStrategyList();
 		if(strategylist.get(po.getName())==null){
-			if(Client.getStrategyDataService().insert(po)==ResultMessage.Success){
-				strategylist.put(po.getName(),new StrategyVO(po));
-				return ResultMessage.Success;
-			}else{
-				return ResultMessage.Failure;
-			}
+			return Client.getStrategyDataService().insert(po);
 		}
 		return ResultMessage.Failure;
 	}
@@ -235,7 +221,8 @@ public class Strategy {
 	 * @throws RemoteException
 	 */
 	
-	public void print(){
+	public void print()throws RemoteException{
+		Map<String,StrategyVO>strategylist=getStrategyList();
 		if(strategylist.size()!=0){
 			for(StrategyVO vo:strategylist.values()){
 				vo.print();

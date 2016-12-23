@@ -1,8 +1,6 @@
 package common.otherEnumClasses;
 
 public class MemberLevel {
-	//0.95/0.9/0.85/0.8/0.75
-	private double[] Mydiscount;
 	
 	//100/1000/10000/100000/1000000
 	private int[] MycreditLevel;
@@ -26,13 +24,10 @@ public class MemberLevel {
 	 * @param discount
 	 * @param credit
 	 */
-	public MemberLevel(String discount,String credit){
-		String[] dis=discount.split("/");
+	public MemberLevel(String credit){
 		String[] cre=credit.split("/");
-		Mydiscount=new double[dis.length];
-		MycreditLevel=new int[dis.length];
-		for(int i=0;i<dis.length;i++){
-			Mydiscount[i]=Double.parseDouble(dis[i]);
+		MycreditLevel=new int[cre.length];
+		for(int i=0;i<cre.length;i++){
 			MycreditLevel[i]=Integer.parseInt(cre[i]);
 		}
 	}

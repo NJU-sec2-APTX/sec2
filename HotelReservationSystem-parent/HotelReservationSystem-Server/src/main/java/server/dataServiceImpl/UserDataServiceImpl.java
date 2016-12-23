@@ -166,12 +166,12 @@ public class UserDataServiceImpl extends UnicastRemoteObject implements UserData
 				databasehelper=new DBHelper(sql1);
 				databasehelper.pst.execute(sql1);
 				databasehelper.close();
-				sql="select * from strategy where id='000001'&&userrole='Sales'&&name='MemberLevel';";
+				sql="select * from strategy where userrole='Sales'&&strategyType='MemberLevel';";
 				databasehelper=new DBHelper(sql);
 				resultset=databasehelper.pst.executeQuery();
 				MemberLevel memberlevel=null;
 				if(resultset.next()){
-					memberlevel=new MemberLevel(resultset.getString(10),resultset.getString(11));
+					memberlevel=new MemberLevel(resultset.getString(11));
 				}
 				int l=memberlevel.getMemberLevel(credit);
 				sql="update member set credit="+credit+",level="+l+" where id='"+id+"';";
