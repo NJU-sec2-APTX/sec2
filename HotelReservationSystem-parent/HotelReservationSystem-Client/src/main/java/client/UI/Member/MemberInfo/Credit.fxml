@@ -10,18 +10,15 @@
 <AnchorPane fx:id="repBase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Member.MemberInfo.CreditController">
    <children>
       <Button fx:id="backButton" layoutX="29.0" layoutY="512.0" mnemonicParsing="false" onAction="#backButtonHandler" prefHeight="37.0" prefWidth="90.0" text="返回" />
-      <ScrollPane fx:id="showPane" prefHeight="505.0" prefWidth="870.0">
-         <content>
-            <ToolBar prefHeight="44.0" prefWidth="875.0">
-              <items>
-                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="118.0" text="订单号" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="215.0" text="酒店名称" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="103.0" text="生成时间" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="101.0" text="生效时间" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" text="状态" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="151.0" text="信用值变化" />
-              </items>
-            </ToolBar>
-         </content></ScrollPane>
+      <ScrollPane fx:id="showPane" layoutY="45.0" prefHeight="460.0" prefWidth="870.0" />
+      <ToolBar layoutX="-2.0" prefHeight="44.0" prefWidth="875.0">
+        <items>
+          <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="211.0" text="订单号" />
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="215.0" text="生成时间" />
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="103.0" text="操作" />
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="126.0" text="信用值变化" />
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="151.0" text="剩余信用值" />
+        </items>
+      </ToolBar>
    </children>
 </AnchorPane>

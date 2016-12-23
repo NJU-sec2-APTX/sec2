@@ -5,17 +5,20 @@
  */
 package client.UI.Hotel.ExecuteOrder;
 
+import client.LocalDateToDate;
 import client.UI.Runner.Start;
 import client.businessLogicService.HotelFactory;
 import client.businessLogicService.OrderFactory;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -35,6 +38,8 @@ public class OutHotelController  {
     private ChoiceBox<Integer> famBox;
     @FXML
     private Button outButton;
+    @FXML
+    private Label tipLabel;
 
     /**
      * Initializes the controller class.
@@ -66,7 +71,11 @@ public class OutHotelController  {
         }else{
             fam=famBox.getValue();
         }
-        LocalDate now=LocalDate.now();
-        HotelFactory.getHotelUpdateService().checkOut(Start.person.id, "/"+sin+"/"+dou+"/"+fam+"/", now);
+        Date now=LocalDateToDate.instantDate();
+        if(HotelFactory.getHotelUpdateService().offlineCheckOut(Start.person.id,sin+"/"+dou+"/"+fam, now)){
+            tipLabel.setText("退房成功");
+        }else{
+            tipLabel.setText("退房失败");
+        }
     }
 }

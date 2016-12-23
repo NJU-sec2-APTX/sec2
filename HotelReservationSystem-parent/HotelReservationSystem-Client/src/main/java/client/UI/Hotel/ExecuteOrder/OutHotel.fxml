@@ -24,9 +24,14 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="outButton" layoutX="377.0" layoutY="215.0" mnemonicParsing="false" onAction="#outButtonHandler" prefHeight="42.0" prefWidth="96.0" style="-fx-background-color: #b3e6b3;" text="离开" />
+      <Button fx:id="outButton" layoutX="377.0" layoutY="215.0" mnemonicParsing="false" onAction="#outButtonHandler" prefHeight="42.0" prefWidth="96.0" style="-fx-background-color: #b3e6b3;" text="退房" />
       <ChoiceBox fx:id="sinBox" layoutX="377.0" layoutY="41.0" prefWidth="150.0" />
       <ChoiceBox fx:id="douBox" layoutX="377.0" layoutY="93.0" prefWidth="150.0" />
       <ChoiceBox fx:id="famBox" layoutX="377.0" layoutY="144.0" prefWidth="150.0" />
+      <Label fx:id="tipLabel" layoutX="518.0" layoutY="220.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

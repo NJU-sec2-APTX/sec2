@@ -34,20 +34,20 @@
             <Button fx:id="okButton" layoutX="732.0" layoutY="373.0" mnemonicParsing="false" onAction="#okButtonHandler" prefHeight="39.0" prefWidth="90.0" text="确定" />
             <Button fx:id="cancelButton" layoutX="732.0" layoutY="456.0" mnemonicParsing="false" onAction="#cancelButtonHandler" prefHeight="39.0" prefWidth="90.0" text="取消" />
             <TextField fx:id="idField" layoutX="334.0" layoutY="62.0" />
-            <TextField fx:id="yearField" layoutX="334.0" layoutY="135.0" prefHeight="30.0" prefWidth="54.0" />
             <TextField fx:id="passwordField" layoutX="334.0" layoutY="199.0" />
-            <TextField fx:id="creditField" layoutX="334.0" layoutY="270.0" />
-            <Label layoutX="397.0" layoutY="135.0" prefHeight="30.0" prefWidth="26.0" text="年" />
-            <TextField fx:id="monthField" layoutX="423.0" layoutY="135.0" prefHeight="30.0" prefWidth="54.0" />
-            <Label layoutX="485.0" layoutY="135.0" prefHeight="30.0" prefWidth="26.0" text="月" />
-            <TextField fx:id="dayField" layoutX="508.0" layoutY="135.0" prefHeight="30.0" prefWidth="54.0" />
-            <Label layoutX="568.0" layoutY="134.0" prefHeight="30.0" prefWidth="26.0" text="日" />
+            <TextField fx:id="nameField" layoutX="334.0" layoutY="270.0" />
             <Label layoutX="189.0" layoutY="343.0" text="联系方式：">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
             <TextField fx:id="contactField" layoutX="334.0" layoutY="348.0" />
+            <DatePicker fx:id="birPicker" layoutX="334.0" layoutY="131.0" prefHeight="30.0" prefWidth="201.0" />
+            <Label fx:id="tipLabel" layoutX="695.0" layoutY="315.0" prefHeight="39.0" prefWidth="134.0" textFill="#e40505">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

@@ -5,6 +5,7 @@
  */
 package client.UI.Member.SearchHotel;
 
+import client.LocalDateToDate;
 import client.UI.Hotel.ExecuteOrder.ExecuteSingleController;
 import client.UI.Runner.Start;
 import client.businessLogicService.HotelFactory;
@@ -13,7 +14,6 @@ import common.otherEnumClasses.RoomType;
 import common.otherEnumClasses.SortFlag;
 import common.vo.HotelVO;
 import java.io.File;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import javafx.event.ActionEvent;
@@ -147,8 +147,8 @@ public class SearchHotelController {
                 String name=hotelNameField.getText();
                 String address=addressField.getText();
                 HotelSearchConditions searchItems=new HotelSearchConditions();
-                hotelSearchConditions.dateDown=outDatePicker.getValue();
-                hotelSearchConditions.dateUp=inDatepicker.getValue();
+                hotelSearchConditions.dateDown=LocalDateToDate.localDateToDate(outDatePicker.getValue());
+                hotelSearchConditions.dateUp=LocalDateToDate.localDateToDate(inDatepicker.getValue());
                 hotelSearchConditions.hotelName=hotelNameField.getText();
                 hotelSearchConditions.onlyEverReserved=isRerveredCheeckBox.isSelected();
                 hotelSearchConditions.restHotelNumber=(numOfHotelField.getText()==null?0:Integer.parseInt(numOfHotelField.getText()));

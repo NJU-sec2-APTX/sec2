@@ -5,6 +5,7 @@
  */
 package client.UI.Member.SearchHotel;
 
+import client.LocalDateToDate;
 import client.UI.Runner.Start;
 import client.businessLogicService.HotelFactory;
 import client.businessLogicService.MemberFactory;
@@ -116,8 +117,8 @@ public class MakeOrderController {
                 }
                 addOrderVO.numOfRoom=room;
                 addOrderVO.numberOfPerson=Integer.parseInt(numOfPersonField.getText());
-                addOrderVO.createdTime=inDatepicker.getValue();
-                addOrderVO.planTime=outDatePicker.getValue();
+                addOrderVO.createdTime=LocalDateToDate.localDateToDate(inDatepicker.getValue());
+                addOrderVO.planExecuteTime=LocalDateToDate.localDateToDate(outDatePicker.getValue());
                 addOrderVO.hasChild=childrenCheckButton.isSelected();
                 moneyLabel.setText("");//
                 return true;

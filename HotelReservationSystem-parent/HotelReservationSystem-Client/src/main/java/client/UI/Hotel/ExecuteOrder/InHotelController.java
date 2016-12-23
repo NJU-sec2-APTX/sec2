@@ -5,6 +5,8 @@
  */
 package client.UI.Hotel.ExecuteOrder;
 
+import client.LocalDateToDate;
+import static client.LocalDateToDate.localDateToDate;
 import client.UI.Runner.Start;
 import client.businessLogicService.HotelFactory;
 import client.businessLogicService.OrderFactory;
@@ -12,6 +14,7 @@ import common.vo.OrderVO;
 import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -70,9 +73,11 @@ public class InHotelController {
 
     @FXML
     private void inButtonHandler(ActionEvent event)throws  Exception {
-        LocalDate left=inPicker.getValue();//离开时间
-        LocalDate date=LocalDate.now();//实现当前日期
-        if (left.isBefore(date)||(sinBox.getValue().equals(0)&&douBox.getValue().equals(0)&&
+         
+        
+        Date left=localDateToDate(inPicker.getValue());//离开时间
+        Date date=LocalDateToDate.instantDate();//实现当前日期
+        if (left.before(date)||(sinBox.getValue().equals(0)&&douBox.getValue().equals(0)&&
             famBox.getValue().equals(0))) {
             tipLabel.setText("请正确输入信息");
         }else{

@@ -37,6 +37,11 @@
             <TextField fx:id="nameField" layoutX="334.0" layoutY="135.0" />
             <TextField fx:id="contactField" layoutX="334.0" layoutY="199.0" />
             <TextField fx:id="passwordField" layoutX="334.0" layoutY="270.0" />
+            <Label fx:id="tipLabel" layoutX="721.0" layoutY="304.0" prefHeight="39.0" prefWidth="118.0" textFill="#d00101">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

@@ -11,32 +11,27 @@
    <children>
       <ToolBar layoutY="3.0" prefHeight="42.0" prefWidth="870.0">
          <items>
-            <Label fx:id="idLabel" prefHeight="30.0" prefWidth="123.0" text="id">
+            <Label fx:id="idLabel" prefHeight="30.0" prefWidth="211.0" text="id">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
-            <Label fx:id="hotelLabel" prefHeight="30.0" prefWidth="221.0" text="酒店">
+            <Label fx:id="makeLabel" prefHeight="30.0" prefWidth="260.0" text="生成时间">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
-            <Label fx:id="makeLabel" prefHeight="30.0" prefWidth="105.0" text="生成时间">
+            <Label fx:id="oprationLabel" prefHeight="30.0" prefWidth="108.0" text="操作">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
-            <Label fx:id="executeLabel" prefHeight="30.0" prefWidth="98.0" text="生效时间">
+            <Label fx:id="changeLabel" prefHeight="30.0" prefWidth="118.0" text="信用值变化">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
-            <Label fx:id="statueLabel" prefHeight="30.0" prefWidth="132.0" text="状态">
-               <font>
-                  <Font size="23.0" />
-               </font>
-            </Label>
-            <Label fx:id="creditLabel" prefHeight="30.0" prefWidth="118.0" text="信用值变化">
+            <Label fx:id="creditLabel" prefHeight="30.0" prefWidth="132.0" text="信用值变化">
                <font>
                   <Font size="23.0" />
                </font>
