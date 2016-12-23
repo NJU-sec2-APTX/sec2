@@ -44,13 +44,19 @@ public class OrderOperation implements OrderblService {
 		}
 		return vos;
 	}
+	
+	public OrderVO calPrice(OrderVO vo){
+		StrategyPriceService calprice = new PriceController();
+		try {
+			vo.price = calprice.calPrice(vo).getfirstStrategy().getPrice();
+		} catch (RemoteException e) {}
+		return vo;
+	}
 
 	public OrderVO createOrder(OrderVO vo, String clientId) {
 		try {
-			StrategyPriceService calprice = new PriceController();
 			vo.clientId = clientId;
 			vo.state = OrderState.NotDone;
-			vo.price = calprice.calPrice(vo).getfirstStrategy().getPrice();
 			Date date = new Date();
 			vo.createdTime = date;
 			Calendar cal = Calendar.getInstance();
@@ -77,21 +83,23 @@ public class OrderOperation implements OrderblService {
 		return null;
 	}
 
-	public OrderVO executeOrder(String orderId, String clientId, Date checkInTime, Date planCheckOutTime) {
+	public OrderVO executeOrder(String orderId, String hotelId, Date checkInTime, Date planCheckOutTime) {
 		try {
 			OrderPO po = Client.getOrderDataService().findOrderFromData(orderId);
-			if (po.getState() == OrderState.NotDone || po.getState() == OrderState.Exceptional) {
-				if (po.getState() == OrderState.Exceptional) {
-					Client.getUserDataService().updatecredit(clientId, po.getPrice(), po.getId(),
-							CreditOperation.ExceptionCancel);
-				}
-				po.setState(OrderState.Done);
-				po.setCheckInTime(checkInTime);
-				po.setCheckOutTime(planCheckOutTime);
-				if (Client.getUserDataService().updatecredit(clientId, po.getPrice(), po.getId(),
-						CreditOperation.Execute) == ResultMessage.Success
-						&& Client.getOrderDataService().updateOrder(po)) {
-					return new OrderVO(po);
+			if (po.getHotel() == Client.getHotelDataService().getHotelInfo(hotelId).getName()) {
+				if (po.getState() == OrderState.NotDone || po.getState() == OrderState.Exceptional) {
+					if (po.getState() == OrderState.Exceptional) {
+						Client.getUserDataService().updatecredit(po.getClientId(), po.getPrice(), po.getId(),
+								CreditOperation.ExceptionCancel);
+					}
+					po.setState(OrderState.Done);
+					po.setCheckInTime(checkInTime);
+					po.setCheckOutTime(planCheckOutTime);
+					if (Client.getUserDataService().updatecredit(po.getClientId(), po.getPrice(), po.getId(),
+							CreditOperation.Execute) == ResultMessage.Success
+							&& Client.getOrderDataService().updateOrder(po)) {
+						return new OrderVO(po);
+					}
 				}
 			}
 		} catch (RemoteException e) {

@@ -17,6 +17,7 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 	 * 
 	 */
 	private static final long serialVersionUID = 4026471108382528596L;
+	private DBHelper data;
 
 	public OrderDataServiceImpl() throws RemoteException {
 		super();
@@ -24,7 +25,6 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 
 	@Override
 	public ArrayList<HotelPO> searchReservedHotel(String clientId) throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
