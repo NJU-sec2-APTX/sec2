@@ -16,7 +16,7 @@ public interface OrderblService {
 	
 	public OrderVO createOrder(OrderVO vo, String clientId);
 	
-	public OrderVO executeOrder(String orderId, String clientId, Date checkInTime, Date planCheckOutTime);
+	public OrderVO executeOrder(String orderId, String hotelId, Date checkInTime, Date planCheckOutTime);
 	
 	public boolean assessOrder(OrderVO vo, double mark);
 	

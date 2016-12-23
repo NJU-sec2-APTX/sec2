@@ -77,21 +77,23 @@ public class OrderOperation implements OrderblService {
 		return null;
 	}
 
-	public OrderVO executeOrder(String orderId, String clientId, Date checkInTime, Date planCheckOutTime) {
+	public OrderVO executeOrder(String orderId, String hotelId, Date checkInTime, Date planCheckOutTime) {
 		try {
 			OrderPO po = Client.getOrderDataService().findOrderFromData(orderId);
-			if (po.getState() == OrderState.NotDone || po.getState() == OrderState.Exceptional) {
-				if (po.getState() == OrderState.Exceptional) {
-					Client.getUserDataService().updatecredit(clientId, po.getPrice(), po.getId(),
-							CreditOperation.ExceptionCancel);
-				}
-				po.setState(OrderState.Done);
-				po.setCheckInTime(checkInTime);
-				po.setCheckOutTime(planCheckOutTime);
-				if (Client.getUserDataService().updatecredit(clientId, po.getPrice(), po.getId(),
-						CreditOperation.Execute) == ResultMessage.Success
-						&& Client.getOrderDataService().updateOrder(po)) {
-					return new OrderVO(po);
+			if (po.getHotel() == Client.getHotelDataService().getHotelInfo(hotelId).getName()) {
+				if (po.getState() == OrderState.NotDone || po.getState() == OrderState.Exceptional) {
+					if (po.getState() == OrderState.Exceptional) {
+						Client.getUserDataService().updatecredit(po.getClientId(), po.getPrice(), po.getId(),
+								CreditOperation.ExceptionCancel);
+					}
+					po.setState(OrderState.Done);
+					po.setCheckInTime(checkInTime);
+					po.setCheckOutTime(planCheckOutTime);
+					if (Client.getUserDataService().updatecredit(po.getClientId(), po.getPrice(), po.getId(),
+							CreditOperation.Execute) == ResultMessage.Success
+							&& Client.getOrderDataService().updateOrder(po)) {
+						return new OrderVO(po);
+					}
 				}
 			}
 		} catch (RemoteException e) {
