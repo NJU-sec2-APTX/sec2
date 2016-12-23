@@ -15,6 +15,7 @@ public class MemberVO {
 	private Date birthday;
 	private int level;
 	private String contact;
+	private String password;
 	
 	public int getLevel(){
 		return level;
@@ -32,6 +33,7 @@ public class MemberVO {
 		creditList=null;
 		level=0;
 		contact=null;
+		password=null;
 	}
 	
 	public MemberVO(MemberPO po){
@@ -44,6 +46,11 @@ public class MemberVO {
 		birthday=po.getBirthday();
 		contact=po.getContact();
 		level=po.getLevel();
+		password=po.getPassword();
+	}
+	
+	public String getPassword(){
+		return password;
 	}
 	public String getId(){
 		return Id;

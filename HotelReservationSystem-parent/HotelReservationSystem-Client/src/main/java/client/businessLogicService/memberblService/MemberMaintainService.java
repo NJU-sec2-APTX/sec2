@@ -1,9 +1,8 @@
 package client.businessLogicService.memberblService;
 
-import common.otherEnumClasses.ResultMessage;
-import common.po.MemberPO;
-import common.vo.MemberVO;
 import common.otherEnumClasses.MemberList;
+import common.otherEnumClasses.ResultMessage;
+import common.vo.MemberVO;
 
 public interface MemberMaintainService {
 	/**
@@ -21,7 +20,7 @@ public interface MemberMaintainService {
 	 * @return
 	 * @throws Exception
 	 */
-	public ResultMessage modifyInfo(MemberPO po) throws Exception;
+	public ResultMessage modifyInfo(MemberVO vo) throws Exception;
 	
 	/**
 	 * 返回一个memberlist，其中memberlist里面有个ArrayList，里面装的是memberitem

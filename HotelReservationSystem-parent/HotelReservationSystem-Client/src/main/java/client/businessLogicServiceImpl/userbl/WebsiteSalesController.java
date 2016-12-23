@@ -25,7 +25,12 @@ public class WebsiteSalesController implements WebsiteSalesMaintainService{
 	}
 
 	@Override
-	public ResultMessage modifyUserInfo(UserPO po) throws Exception {
+	public ResultMessage modifyUserInfo(UserVO vo) throws Exception {
+		UserPO po=new UserPO(vo.getId(),vo.getUserRole());
+		po.setbelonghotel(vo.getBelongHotel());
+		po.setContact(vo.getContact());
+		po.setName(vo.getName());
+		po.setPassword(vo.getPassword());
 		return u.modifyUser(po);
 	}
 	

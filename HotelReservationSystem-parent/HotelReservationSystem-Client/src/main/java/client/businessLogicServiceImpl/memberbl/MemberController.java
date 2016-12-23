@@ -1,11 +1,11 @@
 package client.businessLogicServiceImpl.memberbl;
 
 import client.businessLogicService.memberblService.MemberMaintainService;
+import common.otherEnumClasses.MemberList;
 import common.otherEnumClasses.ResultMessage;
 import common.otherEnumClasses.UserRole;
 import common.po.MemberPO;
 import common.vo.MemberVO;
-import common.otherEnumClasses.MemberList;
 
 public class MemberController implements MemberMaintainService{
 	private Member m;
@@ -18,7 +18,13 @@ public class MemberController implements MemberMaintainService{
 		return m.getMemberInfo();
 	}
 	
-	public ResultMessage modifyInfo(MemberPO po) throws Exception{
+	public ResultMessage modifyInfo(MemberVO vo) throws Exception{
+		MemberPO po=new MemberPO(vo.getId(),vo.getUserRole());
+		po.setBirthday(vo.getBirthday());
+		po.setContact(vo.getContact());
+		po.setCredit(vo.getCredit());
+		po.setName(vo.getName());
+		po.setPassword(vo.getPassword());
 		return m.modifyMemberInfo(po);
 	}
 	

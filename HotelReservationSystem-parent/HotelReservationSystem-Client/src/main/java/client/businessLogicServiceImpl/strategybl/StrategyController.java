@@ -33,11 +33,15 @@ public class StrategyController implements StrategyMaintainService{
 		return strategy.getStrategyList();
 	}
 	
-	public ResultMessage modifyStrategy(StrategyPO po)throws RemoteException{
+	public ResultMessage modifyStrategy(StrategyVO vo)throws RemoteException{
+		StrategyPO po=new StrategyPO(vo.getID(),vo.getUserRole(),vo.getName(),vo.getEnterprise(),
+				vo.getRoomNumber(),vo.getStartDate(),vo.getEndDate(),vo.getArea(),vo.getLevel(),vo.getCount(),vo.getStrategyType());
 		return strategy.modifyStrategy(po);
 	}
 	
-	public ResultMessage removeStrategy (StrategyPO po) throws RemoteException{
+	public ResultMessage removeStrategy (StrategyVO vo) throws RemoteException{
+		StrategyPO po=new StrategyPO(vo.getID(),vo.getUserRole(),vo.getName(),vo.getEnterprise(),
+				vo.getRoomNumber(),vo.getStartDate(),vo.getEndDate(),vo.getArea(),vo.getLevel(),vo.getCount(),vo.getStrategyType());
 		return strategy.removeStrategy(po);
 	}
 	

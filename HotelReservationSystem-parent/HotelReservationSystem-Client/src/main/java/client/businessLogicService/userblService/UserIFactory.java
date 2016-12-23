@@ -2,7 +2,7 @@ package client.businessLogicService.userblService;
 
 import common.otherEnumClasses.ResultMessage;
 import common.otherEnumClasses.UserRole;
-import common.po.MemberPO;
+import common.vo.MemberVO;
 
 public interface UserIFactory {
 	/**
@@ -22,7 +22,7 @@ public interface UserIFactory {
 	 * @param po
 	 * @return
 	 */
-	public ResultMessage register(String id,MemberPO po);
+	public ResultMessage register(String id,MemberVO vo);
 	
 	/**
 	 * 传入id和UserRole用来登出，记得关闭窗口要登出

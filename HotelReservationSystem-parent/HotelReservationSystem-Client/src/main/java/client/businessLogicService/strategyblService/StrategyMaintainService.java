@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.Map;
 
 import common.otherEnumClasses.ResultMessage;
-import common.po.StrategyPO;
 import common.vo.StrategyVO;
 
 public interface StrategyMaintainService {
@@ -20,16 +19,16 @@ public interface StrategyMaintainService {
 	public Map<String,StrategyVO> getStrategyList()throws RemoteException;
 	
 	/**
-	 * 修改策略时，已经拿到一个策略VO了，这时候再根据修改的值和VO重新构造一个PO传入即可
+	 * 修改策略时，已经拿到一个策略VO了，这时候再根据修改的值和VO重新构造一个VO传入即可
 	 * @param Strategypo
 	 */
-	public ResultMessage modifyStrategy(StrategyPO po)throws RemoteException;
+	public ResultMessage modifyStrategy(StrategyVO vo)throws RemoteException;
 	
 	/**
-	 * 根据已经拿到的策略VO，传入一个策略PO删掉他
+	 * 根据已经拿到的策略VO，传入一个策略VO删掉他
 	 * @param Strategypo
 	 */
-	public ResultMessage removeStrategy (StrategyPO po) throws RemoteException;
+	public ResultMessage removeStrategy (StrategyVO vo) throws RemoteException;
 	
 	/**
 	 * 新增一个生日策略，只要传入策略名和策略折扣即可

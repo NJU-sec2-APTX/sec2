@@ -4,17 +4,23 @@ import common.otherEnumClasses.UserRole;
 import common.po.UserPO;
 
 public class UserVO{
-	String Id;
-	String name;
-	UserRole role;
-	String contact;
-	String belonghotel;
+	private String Id;
+	private String name;
+	private UserRole role;
+	private String contact;
+	private String belonghotel;
+	private String password;
 	public UserVO(UserPO po){
 		Id=po.getId();
 		name=po.getName();
 		role=po.getUserRole();
 		contact=po.getContact();
 		belonghotel=po.getHotel();
+		password=po.getPassword();
+	}
+	
+	public String getPassword(){
+		return password;
 	}
 	
 	public String getId(){

@@ -2,8 +2,6 @@ package client.businessLogicService.userblService;
 
 import common.otherEnumClasses.ResultMessage;
 import common.otherEnumClasses.UserRole;
-import common.po.MemberPO;
-import common.po.UserPO;
 import common.vo.MemberVO;
 import common.vo.UserVO;
 
@@ -35,7 +33,7 @@ public interface WebsiteManagerMaintainService {
 	 * @return
 	 * @throws Exception
 	 */
-	public ResultMessage modifyUserInfo(UserPO po) throws Exception;
+	public ResultMessage modifyUserInfo(UserVO vo) throws Exception;
 	
 	/**
 	 * 由于可以得到membervo，根据vo和修改的信息可以构造一个po传入，同样，这里不能改变信用值
@@ -45,7 +43,7 @@ public interface WebsiteManagerMaintainService {
 	 * @return
 	 * @throws Exception
 	 */
-	public ResultMessage modifyMemberInfo(String id,MemberPO po) throws Exception;
+	public ResultMessage modifyMemberInfo(String id,MemberVO vo) throws Exception;
 	
 	/**
 	 * 传入一个userpo，可以新增一个user
@@ -54,7 +52,7 @@ public interface WebsiteManagerMaintainService {
 	 * @return
 	 * @throws Exception
 	 */
-	public ResultMessage addUser(UserPO po) throws Exception;
+	public ResultMessage addUser(UserVO vo) throws Exception;
 	
 	/**
 	 * 传入id和恢复的信用值

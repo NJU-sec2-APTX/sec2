@@ -2,7 +2,6 @@ package client.businessLogicService.userblService;
 
 import common.otherEnumClasses.ResultMessage;
 import common.otherEnumClasses.UserRole;
-import common.po.UserPO;
 import common.vo.UserVO;
 
 public interface HotelWorkerMaintainService {
@@ -22,5 +21,5 @@ public interface HotelWorkerMaintainService {
 	 * @return
 	 * @throws Exception
 	 */
-	public ResultMessage modifyUserInfo(UserPO po) throws Exception;
+	public ResultMessage modifyUserInfo(UserVO vo) throws Exception;
 }
