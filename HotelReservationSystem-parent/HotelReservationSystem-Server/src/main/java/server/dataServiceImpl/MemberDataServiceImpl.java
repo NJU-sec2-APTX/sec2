@@ -73,16 +73,7 @@ public class MemberDataServiceImpl extends UnicastRemoteObject implements Member
 			return ResultMessage.Failure;
 		}
 	}
-	
-	private UserRole change(String s){
-		if(s.equals("Member")){
-			return UserRole.Member;
-		}else if(s.equals("Enterprise")){
-			return UserRole.Enterprise;
-		}
-		return null;
-	}
-	
+
 	@Override
 	public MemberPO find(String ID) throws RemoteException{
 		sql="select * from member where id='"+ID+"';";
@@ -101,7 +92,7 @@ public class MemberDataServiceImpl extends UnicastRemoteObject implements Member
 				id=resultset.getString(1);
 				name=resultset.getString(2);
 				password=pullpassword(resultset.getString(3));
-				userrole=change(resultset.getString(4));
+				userrole=UserRole.getUserRole(resultset.getString(4));
 				credit=resultset.getDouble(5);
 				birthday=resultset.getDate(6);
 				contact=resultset.getString(7);
@@ -174,7 +165,6 @@ public class MemberDataServiceImpl extends UnicastRemoteObject implements Member
 	
 	@Override
 	public ResultMessage checkinmember(String ID, UserRole ur, String password) throws RemoteException {
-		
 		sql="select * from onlinelist where id='"+ID+"'&&userrole='"+ur.toString()+"';";
 		try {
 			databasehelper=new DBHelper(sql);
