@@ -7,10 +7,10 @@ import common.otherEnumClasses.StrategyList;
 import common.vo.OrderVO;
 
 public class PriceController implements StrategyPriceService{
-	private PriceHelper price;
+	private Strategy price;
 	
 	public StrategyList calPrice(OrderVO vo) throws RemoteException{
-		price=new PriceHelper();
+		price=new Strategy(null,null);
 		return price.calPrice(vo);
 	}
 }
