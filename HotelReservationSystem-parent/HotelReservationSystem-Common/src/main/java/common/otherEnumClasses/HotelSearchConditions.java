@@ -13,6 +13,6 @@ public class HotelSearchConditions {
 	public double markDown = 0.0;
 	public Date dateUp = null;
 	public Date dateDown = null;
-	public int restHotelNumber = 0;
-	public boolean onlyEverReserved;
+	public int restHotelNumber = 0;//空房总数，忽略房间类型
+	public boolean onlyEverReserved;//逻辑层已筛选
 }

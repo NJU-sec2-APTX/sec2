@@ -6,17 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.swing.plaf.basic.BasicTreeUI.TreeCancelEditingAction;
-
 import common.dataService.HotelDataService;
 import common.otherEnumClasses.HotelSearchConditions;
 import common.po.HotelPO;
 
 public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDataService {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 6160639426085817165L;
 	private DBHelper data;
 	private ResultSet rs;
@@ -42,8 +37,8 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 				po.setPrice(rs.getDouble(7));
 				po.setAssessNum(rs.getInt(8));
 			}
+			sql = "select * from room where id='";
 		} catch (SQLException e) {
-
 		}
 		return null;
 	}
@@ -64,7 +59,7 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 	@Override
 	public ArrayList<HotelPO> getHotelList(String area, String address, HotelSearchConditions searchItems) {
 		ArrayList<HotelPO> pos = new ArrayList<HotelPO>();
-		String sql = "select * from hotel where area='"+"area'&&address"
+		String sql = "select * from hotel where area='"+"area'&&address";
 		return null;
 	}
 

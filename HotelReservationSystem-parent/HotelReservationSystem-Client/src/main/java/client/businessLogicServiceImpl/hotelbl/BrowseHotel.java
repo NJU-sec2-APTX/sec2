@@ -24,7 +24,7 @@ public class BrowseHotel {
 				}else{
 					hotelVOs.add(new HotelVO(hotelPO,false));
 				}
-			}
+			}//标记每个酒店是否曾预定过
 			if(searchItems.onlyEverReserved){
 				ArrayList<HotelVO> vos = new ArrayList<HotelVO>();
 				for(HotelVO hotelVO : hotelVOs){
@@ -38,10 +38,17 @@ public class BrowseHotel {
 		return hotelVOs;
 	}
 	
+	/**
+	 * 
+	 *@description 将酒店列表按要求排序
+	 *@param 初始酒店VO列表，排序指标，是否升序
+	 *@return 排序后的酒店VO列表
+	 */
 	@SuppressWarnings("unchecked")
 	ArrayList<HotelVO> sort(ArrayList<HotelVO> hotelList, SortFlag flag, boolean isIncrease) {
 		Comparator<HotelVO> comp;
 		try {
+			//通过反射获取排序指标对应的comparator
 			comp = (Comparator<HotelVO>) Class.forName("client.businessLogicServiceImpl.hotelbl."+flag+"Comparator").newInstance();
 			if(!isIncrease){
 				comp = comp.reversed();

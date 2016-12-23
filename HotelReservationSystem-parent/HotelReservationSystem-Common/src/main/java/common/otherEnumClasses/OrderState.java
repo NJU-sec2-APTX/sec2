@@ -3,7 +3,7 @@ package common.otherEnumClasses;
 public enum OrderState {
 	NotDone, Done, Exceptional, Commented, Canceled, ExceptionalCanceled;
 	
-	//
+	//将字符串转换为OrderState枚举类
 	public static OrderState get(String s){
 		switch (s) {
 		case "NotDone":return OrderState.NotDone;
