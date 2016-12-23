@@ -2,6 +2,7 @@ package common.dataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import common.otherEnumClasses.OrderState;
@@ -16,7 +17,7 @@ public interface OrderDataService extends Remote{
 	
 	public OrderPO findOrderFromData(String orderId) throws RemoteException;
 	
-	public ArrayList<OrderPO> findOrderList(Person person,OrderState state, HotelVO hotelVO) throws RemoteException;
+	public ArrayList<OrderPO> findOrderList(Person person,OrderState state, HotelVO hotelVO) throws RemoteException, ParseException;
 
 	boolean updateOrder(OrderPO po) throws RemoteException;
 	

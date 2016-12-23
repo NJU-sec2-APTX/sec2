@@ -70,9 +70,6 @@ public class OrderPO {
 	public void setCreditChange(double creditChange) {
 		this.creditChange = creditChange;
 	}
-	public void setCreditChange(int creditChange) {
-		this.creditChange = creditChange;
-	}
 	public OrderState getState() {
 		return state;
 	}
