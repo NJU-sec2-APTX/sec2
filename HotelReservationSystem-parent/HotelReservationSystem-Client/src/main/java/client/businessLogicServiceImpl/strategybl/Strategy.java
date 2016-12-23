@@ -30,6 +30,14 @@ public class Strategy {
 		}
 	}
 	
+	public String getID(){
+		return id;
+	}
+	
+	public UserRole getUserRole(){
+		return ur;
+	}
+	
 	/**
 	 * 获得属于该ID和userRole的所有strategy列表,并且在strategy类中持久持有该列表
 	 * @return

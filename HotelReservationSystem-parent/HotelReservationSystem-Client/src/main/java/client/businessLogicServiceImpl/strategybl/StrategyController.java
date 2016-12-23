@@ -13,11 +13,18 @@ import common.vo.StrategyVO;
 
 public class StrategyController implements StrategyMaintainService{
 	private Strategy strategy;
+	
+	/**
+	 * 获得Controller时就要输入当前用户的ID和UserRole，这样就限制了他不能拿到别人的策略
+	 * @param ID
+	 * @param ur
+	 */
 	public StrategyController(String ID,UserRole ur){
 		if(strategy==null){
 			strategy=new Strategy(ID,ur);
 		}
 	}
+	
 	public StrategyVO getStrategy (String StrategyName) throws RemoteException{
 		return strategy.getStrategy(StrategyName);
 	}
@@ -34,33 +41,33 @@ public class StrategyController implements StrategyMaintainService{
 		return strategy.removeStrategy(po);
 	}
 	
-	public ResultMessage addBirthdayStrategy(String ID,UserRole ur,String Strategy_name,double count)throws RemoteException{
-		StrategyPO po=new StrategyPO(ID,ur,Strategy_name,null,0,null,null,null,0,count,StrategyType.Birthday);
+	public ResultMessage addBirthdayStrategy(String Strategy_name,double count)throws RemoteException{
+		StrategyPO po=new StrategyPO(strategy.getID(),strategy.getUserRole(),Strategy_name,null,0,null,null,null,0,count,StrategyType.Birthday);
 		return strategy.addStrategy(po);
 	}
 	
-	public ResultMessage addCorporationEnterPriseStrategy(String ID,UserRole ur,String Strategy_name,double count,String enterprise)throws RemoteException{
-		StrategyPO po=new StrategyPO(ID,ur,Strategy_name,enterprise,0,null,null,null,0,count,StrategyType.CorporationEnterPrise);
+	public ResultMessage addCorporationEnterPriseStrategy(String Strategy_name,double count,String enterprise)throws RemoteException{
+		StrategyPO po=new StrategyPO(strategy.getID(),strategy.getUserRole(),Strategy_name,enterprise,0,null,null,null,0,count,StrategyType.CorporationEnterPrise);
 		return strategy.addStrategy(po);
 	}
 	
-	public ResultMessage addMemberLevelStrategy(String ID,UserRole ur,double count,String credit)throws RemoteException{
-		StrategyPO po=new StrategyPO(ID,ur,"MemberLevel",null,0,null,null,credit,0,count,StrategyType.MemberLevel);
+	public ResultMessage addMemberLevelStrategy(String credit)throws RemoteException{
+		StrategyPO po=new StrategyPO(strategy.getID(),strategy.getUserRole(),"MemberLevel",null,0,null,null,credit,0,0.0,StrategyType.MemberLevel);
 		return strategy.addStrategy(po);
 	}
 	
-	public ResultMessage addRoomNumberStrategyPO(String ID,UserRole ur,String Strategy_name,double count,int number)throws RemoteException{
-		StrategyPO po=new StrategyPO(ID,ur,Strategy_name,null,number,null,null,null,0,count,StrategyType.RoomNumber);
+	public ResultMessage addRoomNumberStrategyPO(String Strategy_name,double count,int number)throws RemoteException{
+		StrategyPO po=new StrategyPO(strategy.getID(),strategy.getUserRole(),Strategy_name,null,number,null,null,null,0,count,StrategyType.RoomNumber);
 		return strategy.addStrategy(po);
 	}
 	
-	public ResultMessage addSpecialDateStrategyPO(String ID,UserRole ur,String Strategy_name,double count,Date s,Date e)throws RemoteException{
-		StrategyPO po=new StrategyPO(ID,ur,Strategy_name,null,0,s,e,null,0,count,StrategyType.SpecialDate);
+	public ResultMessage addSpecialDateStrategyPO(String Strategy_name,double count,Date s,Date e)throws RemoteException{
+		StrategyPO po=new StrategyPO(strategy.getID(),strategy.getUserRole(),Strategy_name,null,0,s,e,null,0,count,StrategyType.SpecialDate);
 		return strategy.addStrategy(po);
 	}
 	
-	public ResultMessage addVipandAreaStrategyPO(String ID,UserRole ur,String Strategy_name,String discountlist,String area)throws RemoteException{
-		StrategyPO po=new StrategyPO(ID,ur,Strategy_name,discountlist,0,null,null,area,0,0,StrategyType.VipandArea);
+	public ResultMessage addVipandAreaStrategyPO(String Strategy_name,String discountlist,String area)throws RemoteException{
+		StrategyPO po=new StrategyPO(strategy.getID(),strategy.getUserRole(),Strategy_name,discountlist,0,null,null,area,0,0,StrategyType.VipandArea);
 		return strategy.addStrategy(po);
 	}
 }
