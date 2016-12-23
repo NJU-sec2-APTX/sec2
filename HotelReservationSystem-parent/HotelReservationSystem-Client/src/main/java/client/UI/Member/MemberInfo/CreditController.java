@@ -5,8 +5,17 @@
  */
 package client.UI.Member.MemberInfo;
 
+import client.UI.Runner.Start;
+import client.businessLogicService.MemberFactory;
+import common.otherEnumClasses.MemberItem;
+import common.otherEnumClasses.MemberList;
+import common.otherEnumClasses.UserRole;
+import java.util.ArrayList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -19,19 +28,20 @@ public class CreditController  {
     @FXML
     private AnchorPane repBase;
     @FXML
-    private Label idLabel;
+    private Button backButton;
     @FXML
-    private Label hotelLabel;
+    private ScrollPane showPane;
     @FXML
-    private Label makeLabel;
-    @FXML
-    private Label executeLabel;
-    @FXML
-    private Label statueLabel;
-    @FXML
-    private Label creditLabel;
-    
-     public void initialize (){
-         //添加操作
+     public void initialize ()throws Exception{
+         MemberList memberItem=MemberFactory.getMemberMaintainService(Start.person.id, Start.person.role).getMemberCreditInfo();
+         ArrayList<MemberItem> creditList=memberItem.getMemberList();
+         int size=creditList.size();
+         while(size!=0){
+             
+         }
      }
+
+    @FXML
+    private void backButtonHandler(ActionEvent event) {
+    }
 }

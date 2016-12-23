@@ -34,5 +34,6 @@
       <ChoiceBox fx:id="sinBox" layoutX="377.0" layoutY="41.0" prefWidth="150.0" />
       <ChoiceBox fx:id="douBox" layoutX="377.0" layoutY="93.0" prefWidth="150.0" />
       <ChoiceBox fx:id="famBox" layoutX="377.0" layoutY="144.0" prefWidth="150.0" />
+      <Label fx:id="tipLabel" layoutX="571.0" layoutY="149.0" prefHeight="30.0" prefWidth="90.0" textFill="RED" />
    </children>
 </AnchorPane>

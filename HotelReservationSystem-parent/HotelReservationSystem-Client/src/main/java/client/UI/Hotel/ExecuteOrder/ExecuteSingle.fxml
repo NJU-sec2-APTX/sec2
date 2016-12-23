@@ -11,27 +11,27 @@
    <children>
       <ToolBar prefHeight="30.0" prefWidth="814.0">
          <items>
-            <Label fx:id="orderID" prefHeight="33.0" prefWidth="115.0" text="OrderID">
+            <Label fx:id="orderID" prefHeight="33.0" prefWidth="115.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label fx:id="makeLabel" prefHeight="33.0" prefWidth="88.0" text="maketime">
+            <Label fx:id="makeLabel" prefHeight="33.0" prefWidth="88.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label fx:id="memberLabel" prefHeight="33.0" prefWidth="103.0" text="member">
+            <Label fx:id="memberLabel" prefHeight="33.0" prefWidth="103.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label fx:id="moneyLabel" prefHeight="33.0" prefWidth="95.0" text="金额">
+            <Label fx:id="moneyLabel" prefHeight="33.0" prefWidth="95.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label fx:id="roomInfo" prefHeight="33.0" prefWidth="263.0" text="房间信息（单/双/家庭）">
+            <Label fx:id="roomInfo" prefHeight="33.0" prefWidth="263.0">
                <font>
                   <Font size="17.0" />
                </font>

@@ -15,7 +15,7 @@
               <items>
                 <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="142.0" text="酒店名称" />
                   <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="171.0" text="地址" />
-                  <Button fx:id="priceButton" mnemonicParsing="false" onAction="#markButtonHandler" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: #b3e6b3;" text="价格区间▼" />
+                  <Button fx:id="priceButton" mnemonicParsing="false" onAction="#priceButtonHandler" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: #b3e6b3;" text="价格区间▼" />
                   <Button fx:id="starButton" mnemonicParsing="false" onAction="#starButtonHandler" style="-fx-background-color: #b3e6b3;" text="星级▼" />
                   <Button fx:id="markButton" mnemonicParsing="false" onAction="#markButtonHandler" prefHeight="30.0" prefWidth="78.0" style="-fx-background-color: #b3e6b3;" text="评分▼" />
                   <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="115.0" style="-fx-background-color: ;" text="历史订单状态" />
@@ -84,7 +84,7 @@
             </Label>
             <Button fx:id="roughSearchButton" layoutX="775.0" layoutY="113.0" mnemonicParsing="false" onAction="#roughSearchButtonHandler" prefHeight="30.0" prefWidth="82.0" style="-fx-background-color: #b3e6b3;" text="大致搜索" />
             <Line endX="775.0" layoutX="101.0" layoutY="65.0" startX="-100.0" />
-            <DatePicker fx:id="inDatepicker" layoutX="518.0" layoutY="109.0" prefHeight="30.0" prefWidth="175.0" />
+            <DatePicker fx:id="inDatepicker" layoutX="518.0" layoutY="113.0" prefHeight="30.0" prefWidth="175.0" />
             <DatePicker fx:id="outDatePicker" layoutX="518.0" layoutY="152.0" prefHeight="30.0" prefWidth="175.0" />
             <TextField fx:id="numOfHotelField" layoutX="350.0" layoutY="128.0" prefHeight="30.0" prefWidth="58.0" />
             <Label fx:id="tipLabel" layoutX="722.0" layoutY="78.0" prefHeight="28.0" prefWidth="133.0" style="-fx-background-color: white;" text="请先明确商圈" textAlignment="CENTER" textFill="#e81212">

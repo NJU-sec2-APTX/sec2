@@ -7,23 +7,43 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="basePane" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Hotel.ExecuteOrder.outWithOrderRepController">
+<AnchorPane id="AnchorPane" fx:id="basePane" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Hotel.ExecuteOrder.OutWithOrderRepController">
    <children>
       <ScrollPane fx:id="orderPane" layoutX="25.0" layoutY="105.0" prefHeight="338.0" prefWidth="825.0">
          <content>
-            <ToolBar prefHeight="30.0" prefWidth="814.0">
+            <ToolBar fx:id="orderBar" prefHeight="30.0" prefWidth="814.0">
                <items>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="102.0" text="订单号" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="99.0" text="生成时间" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="99.0" text="用户" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="99.0" text="金额" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="271.0" text="房间信息（单/双/家庭）" />
-                  <Button mnemonicParsing="false" prefHeight="11.0" prefWidth="80.0" text="操作" />
+                  <Label fx:id="orderID" prefHeight="33.0" prefWidth="115.0">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="makeLabel" prefHeight="33.0" prefWidth="88.0">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="memberLabel" prefHeight="33.0" prefWidth="103.0">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="moneyLabel" prefHeight="33.0" prefWidth="95.0">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="roomInfo" prefHeight="33.0" prefWidth="263.0">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="outOrderButton" mnemonicParsing="false" onAction="#outOrderButtonHandler" />
                </items>
             </ToolBar>
          </content>
       </ScrollPane>
       <TextField fx:id="searchField" layoutX="118.0" layoutY="35.0" prefHeight="40.0" prefWidth="522.0" promptText="请输入订单号" />
-      <Button fx:id="searchButton" layoutX="650.0" layoutY="40.0" mnemonicParsing="false" onAction="#searchButtonHandler" style="-fx-background-color: #b3e6b3;" text="搜索" />
+      <Button fx:id="searchButton" layoutX="650.0" layoutY="40.0" mnemonicParsing="false" onAction="#searchButtonHandler" style="-fx-background-color: #b3e6b3;" text="退房" />
    </children>
 </AnchorPane>

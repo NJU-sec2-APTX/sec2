@@ -12,6 +12,7 @@ import common.otherEnumClasses.Person;
 import common.vo.OrderVO;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +23,7 @@ import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
- *
+ *完成
  * @author zhuyingshan
  */
 public class ExecuteReplaceController {
@@ -37,26 +38,27 @@ public class ExecuteReplaceController {
     private TextField searchField;
     @FXML
     private Button searchButton;
-  
+    
     /*
     *用于showpanel中添加
     */
     private void add( String orderID)throws Exception{
-        ArrayList <OrderVO> orderInHotelList;//未执行的？和后面的相冲突
-        if(orderInHotelList.isEmpty()){
+        Date date=new Date();
+        OrderVO ov=OrderFactory.getOrderService().executeOrder(orderID, Start.person.id, date, null);
+        if(ov==null){
+            showPane.getChildrenUnmodifiable().clear();
             FXMLLoader fxmll=new FXMLLoader();
             AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Hotel/ExecuteOrder/ExecuteSingle.fxml").toURL()));
             ExecuteSingleController esc=fxmll.getController();
             esc.show(null);
             showPane.getChildrenUnmodifiable().add(addAnchorPane);
-        }else{
-                    for(int i=0;i<orderInHotelList.size();i++){
+        }else{     
+                    showPane.getChildrenUnmodifiable().clear();
                     FXMLLoader fxmll=new FXMLLoader();
                     AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Hotel/ExecuteOrder/ExecuteSingle.fxml").toURL()));
                     ExecuteSingleController esc=fxmll.getController();
-                    esc.show(orderInHotelList.get(i));
+                    esc.show(ov);
                     showPane.getChildrenUnmodifiable().add(addAnchorPane);
-                }
         }
     }
     public void initialize() {
@@ -65,7 +67,6 @@ public class ExecuteReplaceController {
 
     @FXML
     private void searchButtonHandler(ActionEvent event) throws Exception{//通过订单号返回
-        
         String orderID=searchField.getText();
         this.add(orderID);
     }

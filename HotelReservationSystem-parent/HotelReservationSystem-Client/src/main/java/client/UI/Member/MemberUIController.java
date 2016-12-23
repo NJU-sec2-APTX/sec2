@@ -57,7 +57,7 @@ public class MemberUIController  {
         if(Start.person.role==UserRole.Member){
             System.out.println("memberInfoButton");
             replacePane.getChildren().clear();
-            replacePane.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/MemberInfo/MemberInfoRep.fxml")).toURL()));
+            replacePane.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/MemberInfo/PersonInfoRep.fxml")).toURL()));
         }else{
             System.out.println("memberInfoButton");
             replacePane.getChildren().clear();

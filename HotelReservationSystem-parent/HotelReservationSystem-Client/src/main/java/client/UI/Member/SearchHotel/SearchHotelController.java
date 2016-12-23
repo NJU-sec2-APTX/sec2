@@ -71,17 +71,23 @@ public class SearchHotelController {
     private Label tipLabel;
     @FXML
     private TextField addressField;
-    
+    boolean isHaveHotel;
     @FXML
     private void markButtonHandler(ActionEvent event)throws Exception {//评分排序
-        hotelList=HotelFactory.getHotelBrowseService().sortHotelList(areaBox.getValue(),addressField.getText(), null, null , SortFlag.star, true);
-        show();
+        if (isHaveHotel) {
+            HotelSearchConditions searchConditions=makeConditions();
+            hotelList=HotelFactory.getHotelBrowseService().sortHotelList(areaBox.getValue(),addressField.getText(), searchConditions, Start.person.id , SortFlag.mark, true);
+            show();
+        }
     }
 
     @FXML
     private void starButtonHandler(ActionEvent event)throws Exception {//星级排序
-         hotelList=HotelFactory.getHotelBrowseService().sortHotelList(areaBox.getValue(),addressField.getText(), null, null , SortFlag.star, true);
-        show();
+        if (isHaveHotel) {
+            HotelSearchConditions searchConditions=makeConditions();
+            hotelList=HotelFactory.getHotelBrowseService().sortHotelList(areaBox.getValue(),addressField.getText(), searchConditions, Start.person.id , SortFlag.star, true);
+            show();
+        }
     }
 
 
@@ -90,7 +96,9 @@ public class SearchHotelController {
         String areaString=areaBox.getValue();
         if(areaString==null){
             tipLabel.setVisible(true);
+            isHaveHotel=false;
         }else{
+            isHaveHotel=true;
             tipLabel.setVisible(false);
             String name=hotelNameField.getText();
             String address=addressField.getText();
@@ -131,42 +139,52 @@ public class SearchHotelController {
                 }
             }
     }
-    @FXML
-    private void roughSearchButtonHandler(ActionEvent event) throws Exception{//大致搜索
-        String areaString=areaBox.getValue();
-        if(areaString==null){
-            tipLabel.setVisible(true);
-        }else{
-            tipLabel.setVisible(false);
-            String name=hotelNameField.getText();
-            String address=addressField.getText();
-            HotelSearchConditions searchItems=new HotelSearchConditions();
-           
+    
+    public HotelSearchConditions makeConditions(){
+        HotelSearchConditions hotelSearchConditions=new HotelSearchConditions();
             try{ 
-                searchItems.dateDown=outDatePicker.getValue();
-                searchItems.dateUp=inDatepicker.getValue();
-                searchItems.hotelName=hotelNameField.getText();
-                searchItems.onlyEverReserved=isRerveredCheeckBox.isSelected();
-                searchItems.restHotelNumber=(numOfHotelField.getText()==null?0:Integer.parseInt(numOfHotelField.getText()));
+                String areaString=areaBox.getValue();
+                String name=hotelNameField.getText();
+                String address=addressField.getText();
+                HotelSearchConditions searchItems=new HotelSearchConditions();
+                hotelSearchConditions.dateDown=outDatePicker.getValue();
+                hotelSearchConditions.dateUp=inDatepicker.getValue();
+                hotelSearchConditions.hotelName=hotelNameField.getText();
+                hotelSearchConditions.onlyEverReserved=isRerveredCheeckBox.isSelected();
+                hotelSearchConditions.restHotelNumber=(numOfHotelField.getText()==null?0:Integer.parseInt(numOfHotelField.getText()));
                 String star=starBox.getValue();//
                 String markString=markBox.getValue();//
                 String priceString=priceBox.getValue();//
                 String roomtypeString=roomTypeBox.getValue();//
-                searchItems.starDown=getStar(star);
-                searchItems.starUp=5;
-                searchItems.markDown=getMark(markString);
-                searchItems.markUp=5;
-                searchItems.priceDown=getPrice(priceString)[0];
-                searchItems.priceUp=getPrice(priceString)[1];
+                hotelSearchConditions.starDown=getStar(star);
+                hotelSearchConditions.starUp=5;
+                hotelSearchConditions.markDown=getMark(markString);
+                hotelSearchConditions.markUp=5;
+                hotelSearchConditions.priceDown=getPrice(priceString)[0];
+                hotelSearchConditions.priceUp=getPrice(priceString)[1];
                 hotelList=HotelFactory.getHotelBrowseService().getHotelList(areaString, address, searchItems, Start.person.id);
                 show();
             }catch (Exception e){
                 System.out.println("client.UI.Member.SearchHotel.SearchHotelController.roughSearchButtonHandler()");
                 tipLabel.setText("请正确输入信息");
-                return ;
+                return null;
             }
-            
-            
+                return null;
+    }
+    
+    @FXML
+    private void roughSearchButtonHandler(ActionEvent event) throws Exception{//大致搜索
+        String areaString=areaBox.getValue();
+        if(areaString==null){
+            tipLabel.setVisible(true);
+            isHaveHotel=false;
+        }else{
+            isHaveHotel=true;
+            tipLabel.setVisible(false);
+            String name=hotelNameField.getText();
+            String address=addressField.getText();
+            HotelSearchConditions searchItems=new HotelSearchConditions();
+            searchItems=makeConditions();
         }
     }
     
@@ -177,6 +195,7 @@ public class SearchHotelController {
         priceBox.getItems().addAll("200以下","200-300","300-400","500以上");
         roomTypeBox.getItems().addAll("单人","双人","家庭");
         tipLabel.setVisible(false);
+        isHaveHotel=false;
     }
     private RoomType getRoomType(){
         String s=roomTypeBox.getValue();
@@ -245,6 +264,15 @@ public class SearchHotelController {
             }
         }
         return 0;
+    }
+
+    @FXML
+    private void priceButtonHandler(ActionEvent event) throws Exception{
+        if (isHaveHotel) {
+            HotelSearchConditions searchConditions=makeConditions();
+            hotelList=HotelFactory.getHotelBrowseService().sortHotelList(areaBox.getValue(),addressField.getText(), searchConditions, Start.person.id , SortFlag.star, true);
+            show();
+        }
     }
     
     

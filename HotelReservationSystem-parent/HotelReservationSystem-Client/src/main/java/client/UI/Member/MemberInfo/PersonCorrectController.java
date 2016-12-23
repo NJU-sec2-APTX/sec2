@@ -20,7 +20,7 @@ import javafx.scene.layout.Pane;
  *
  * @author 陈长生
  */
-public class MemberCorrectController implements Initializable {
+public class PersonCorrectController implements Initializable {
 
     @FXML
     private AnchorPane repBase;

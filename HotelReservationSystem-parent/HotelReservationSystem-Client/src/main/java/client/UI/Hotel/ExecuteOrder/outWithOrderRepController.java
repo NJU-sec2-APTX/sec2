@@ -5,14 +5,21 @@
  */
 package client.UI.Hotel.ExecuteOrder;
 
+import client.UI.Runner.Start;
+import client.businessLogicService.HotelFactory;
+import com.sun.xml.internal.ws.message.stream.OutboundStreamHeader;
+import common.vo.OrderVO;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToolBar;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -20,7 +27,7 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author 陈长生
  */
-public class outWithOrderRepController implements Initializable {
+public class OutWithOrderRepController {
 
     @FXML
     private AnchorPane basePane;
@@ -30,17 +37,44 @@ public class outWithOrderRepController implements Initializable {
     private TextField searchField;
     @FXML
     private Button searchButton;
+    @FXML
+    private Label orderID;
+    @FXML
+    private Label makeLabel;
+    @FXML
+    private Label memberLabel;
+    @FXML
+    private Label moneyLabel;
+    @FXML
+    private Label roomInfo;
+    @FXML
+    private Button outOrderButton;
+    @FXML
+    private ToolBar orderBar;
 
     /**
      * Initializes the controller class.
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    public void initialize() {
+        orderBar.setVisible(false);
     }    
 
     @FXML
     private void searchButtonHandler(ActionEvent event) {
+        String orderidString=searchField.getText();
+        OrderVO orderVO=HotelFactory.getHotelUpdateService().checkOut(Start.person.id, orderidString, LocalDate.now());
+        if(orderVO == null){
+            orderID.setText("无");
+        }else{
+            orderID.setText(orderVO.id);
+            makeLabel.setText(orderVO.createdTime.toString());
+            memberLabel.setText(orderVO.clientId);
+            moneyLabel.setText(orderVO.price+"");
+            roomInfo.setText(orderVO.numOfRoom);
+            outOrderButton.setText("已退房");
+            outOrderButton.setDisable(true);
+        }
     }
+
     
 }
