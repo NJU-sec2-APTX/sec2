@@ -44,13 +44,19 @@ public class OrderOperation implements OrderblService {
 		}
 		return vos;
 	}
+	
+	public OrderVO calPrice(OrderVO vo){
+		StrategyPriceService calprice = new PriceController();
+		try {
+			vo.price = calprice.calPrice(vo).getfirstStrategy().getPrice();
+		} catch (RemoteException e) {}
+		return vo;
+	}
 
 	public OrderVO createOrder(OrderVO vo, String clientId) {
 		try {
-			StrategyPriceService calprice = new PriceController();
 			vo.clientId = clientId;
 			vo.state = OrderState.NotDone;
-			vo.price = calprice.calPrice(vo).getfirstStrategy().getPrice();
 			Date date = new Date();
 			vo.createdTime = date;
 			Calendar cal = Calendar.getInstance();

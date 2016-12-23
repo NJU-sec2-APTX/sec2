@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import common.dataService.HotelDataService;
 import common.otherEnumClasses.HotelSearchConditions;
-import common.otherEnumClasses.Room;
 import common.po.HotelPO;
 
 public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDataService{
@@ -17,7 +16,7 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 	 * 
 	 */
 	private static final long serialVersionUID = 6160639426085817165L;
-	private DBHelper database;
+	private DBHelper data;
 	private ResultSet rs;
 
 	public HotelDataServiceImpl() throws RemoteException {
@@ -28,9 +27,9 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 	public HotelPO getHotelInfo(String id) {
 		HotelPO po = new HotelPO();
 		String sql = "select * from hotel where id="+id;
-		database = new DBHelper(sql);
+		data = new DBHelper(sql);
 		try {
-			rs = database.conn.createStatement().executeQuery(sql);
+			rs = data.conn.createStatement().executeQuery(sql);
 			while(rs.next()){
 				
 			}
@@ -42,19 +41,16 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 
 	@Override
 	public boolean setHotelInfo(HotelPO hotelInfoPO) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public ArrayList<HotelPO> getHotelList(String area, String address, HotelSearchConditions searchItems) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean addHotel(HotelPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		return false;
 	}
 }
