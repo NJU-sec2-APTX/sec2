@@ -25,24 +25,24 @@ public class CreditSingleController  {
     @FXML
     private Label idLabel;
     @FXML
-    private Label hotelLabel;
-    @FXML
     private Label makeLabel;
     @FXML
-    private Label executeLabel;
-    @FXML
-    private Label statueLabel;
-    @FXML
     private Label creditLabel;
+    @FXML
+    private Label oprationLabel;
+    @FXML
+    private Label changeLabel;
 
     /**
      * Initializes the controller class.
      */
     public void show(MemberItem memberItem){
         idLabel.setText(memberItem.getOrderID());
-        hotelLabel.setText(memberItem.);
+        oprationLabel.setText(memberItem.getOperation().toString());
+        makeLabel.setText(memberItem.getDate().toString());
+        changeLabel.setText(memberItem.getChange()+"");
+        creditLabel.setText(memberItem.getCredit()+"");
     }
-    @FXML
     public void initialize() {
     }    
     

@@ -64,7 +64,7 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 	@Override
 	public ArrayList<HotelPO> getHotelList(String area, String address, HotelSearchConditions searchItems) {
 		ArrayList<HotelPO> pos = new ArrayList<HotelPO>();
-		String sql = "select * from hotel where area='"+"area'&&address"
+		String sql = "select * from hotel where area='"+"area'&&address";
 		return null;
 	}
 

@@ -62,16 +62,15 @@ public class EnterpriseInfoRepController {
 
     @FXML
     private void creditButtonHandler(ActionEvent event) throws Exception {
-        FXMLLoader fXMLLoader=new FXMLLoader();
-        fXMLLoader.setLocation(new File("src/main/java/client/UI/Runner/Runner.fxml").toURL());
-        fXMLLoader.load();
-        CreditController cc=fXMLLoader.getController();
-        
+        repBase.getChildren().clear();
+        repBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Mmeber/MmeberInfo/Credit.fxml").toURL())));
+    
     }
 
     @FXML
-    private void correctInfoButtonHandler(ActionEvent event) {
-        
+    private void correctInfoButtonHandler(ActionEvent event) throws Exception{
+        repBase.getChildren().clear();
+        repBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Mmeber/MemberInfo/EnterpriseCorrect.fxml").toURL())));
     }
     
 }

@@ -5,6 +5,7 @@
  */
 package client.UI.Hotel.ExecuteOrder;
 
+import client.LocalDateToDate;
 import client.UI.Runner.Start;
 import client.businessLogicService.OrderFactory;
 import common.otherEnumClasses.OrderState;
@@ -43,7 +44,7 @@ public class ExecuteReplaceController {
     *用于showpanel中添加
     */
     private void add( String orderID)throws Exception{
-        Date date=new Date();
+        Date date=LocalDateToDate.instantDate();
         OrderVO ov=OrderFactory.getOrderService().executeOrder(orderID, Start.person.id, date, null);
         if(ov==null){
             showPane.getChildrenUnmodifiable().clear();

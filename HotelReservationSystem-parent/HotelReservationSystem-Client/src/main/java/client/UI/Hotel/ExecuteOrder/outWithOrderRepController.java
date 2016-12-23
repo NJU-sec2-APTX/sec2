@@ -5,16 +5,12 @@
  */
 package client.UI.Hotel.ExecuteOrder;
 
+import client.LocalDateToDate;
 import client.UI.Runner.Start;
 import client.businessLogicService.HotelFactory;
-import com.sun.xml.internal.ws.message.stream.OutboundStreamHeader;
 import common.vo.OrderVO;
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -62,7 +58,7 @@ public class OutWithOrderRepController {
     @FXML
     private void searchButtonHandler(ActionEvent event) {
         String orderidString=searchField.getText();
-        OrderVO orderVO=HotelFactory.getHotelUpdateService().checkOut(Start.person.id, orderidString, LocalDate.now());
+        OrderVO orderVO=HotelFactory.getHotelUpdateService().onlineCheckOut(Start.person.id, orderidString, LocalDateToDate.instantDate());
         if(orderVO == null){
             orderID.setText("无");
         }else{

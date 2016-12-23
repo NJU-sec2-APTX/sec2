@@ -5,14 +5,17 @@
  */
 package client.UI.Member.MemberInfo;
 
+import client.UI.Member.SearchHotel.SingleController;
 import client.UI.Runner.Start;
 import client.businessLogicService.MemberFactory;
 import common.otherEnumClasses.MemberItem;
 import common.otherEnumClasses.MemberList;
 import common.otherEnumClasses.UserRole;
+import java.io.File;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -31,14 +34,19 @@ public class CreditController  {
     private Button backButton;
     @FXML
     private ScrollPane showPane;
-    @FXML
      public void initialize ()throws Exception{
          MemberList memberItem=MemberFactory.getMemberMaintainService(Start.person.id, Start.person.role).getMemberCreditInfo();
          ArrayList<MemberItem> creditList=memberItem.getMemberList();
          int size=creditList.size();
-         while(size!=0){
-             
-         }
+         if (size!=0) {
+            for(int i=0;i<size;i++){
+                FXMLLoader fxmll=new FXMLLoader();
+                AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Member/MmeberInfo/CreditSingle.fxml").toURL()));
+                CreditSingleController cc=fxmll.getController();
+                cc.show(creditList.get(i));
+                showPane.getChildrenUnmodifiable().add(addAnchorPane);
+            }
+        }
      }
 
     @FXML

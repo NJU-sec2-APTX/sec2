@@ -3,6 +3,7 @@
  */
 package client.UI.Hotel.ExecuteOrder;
 
+import client.LocalDateToDate;
 import client.businessLogicService.OrderFactory;
 import common.otherEnumClasses.OrderState;
 import common.vo.OrderVO;
@@ -60,7 +61,7 @@ public class ExecuteSingleController  {
     private void executeOrderButtonHandler(ActionEvent event) {
         executeOrderButton.setText("已执行");
         executeOrderButton.setDisable(true);
-        Date time=new Date();
+        Date time=LocalDateToDate.instantDate();
         OrderFactory.getOrderService().executeOrder(orderID.getText(), memberLabel.getText(), time,null);
     }
     
