@@ -1,18 +1,17 @@
 package client.businessLogicService.userblService;
 
 import common.otherEnumClasses.ResultMessage;
-import common.otherEnumClasses.UserRole;
 import common.vo.UserVO;
 
 public interface HotelWorkerMaintainService {
 	/**
-	 * 输入id和UserRole，即可获得一个uservo，如果不存在，则返回null
+	 * 获得一个uservo，如果不存在，则返回null
 	 * @param id
 	 * @param ur
 	 * @return
 	 * @throws Exception
 	 */
-	public UserVO getUserInfo(String id,UserRole ur) throws Exception;
+	public UserVO getUserInfo() throws Exception;
 	
 	/**
 	 * 由于可以拿到一个uservo，于是可以根据这个vo和新的属性构造一个userpo

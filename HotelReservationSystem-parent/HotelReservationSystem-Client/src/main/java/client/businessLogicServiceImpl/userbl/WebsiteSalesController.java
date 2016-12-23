@@ -20,8 +20,8 @@ public class WebsiteSalesController implements WebsiteSalesMaintainService{
 	}
 
 	@Override
-	public UserVO getUserInfo(String id, UserRole ur) throws Exception {
-		return u.getUserInf(id, ur);
+	public UserVO getUserInfo() throws Exception {
+		return u.getUserInf(u.getUserPO().getId(), UserRole.Sales);
 	}
 
 	@Override

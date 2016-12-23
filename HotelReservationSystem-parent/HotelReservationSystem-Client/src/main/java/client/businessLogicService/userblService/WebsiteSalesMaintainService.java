@@ -1,7 +1,6 @@
 package client.businessLogicService.userblService;
 
 import common.otherEnumClasses.ResultMessage;
-import common.otherEnumClasses.UserRole;
 import common.vo.UserVO;
 
 public interface WebsiteSalesMaintainService {
@@ -23,7 +22,7 @@ public interface WebsiteSalesMaintainService {
 	 * @return
 	 * @throws Exception
 	 */
-	public UserVO getUserInfo(String id,UserRole ur) throws Exception;
+	public UserVO getUserInfo() throws Exception;
 	
 	/**
 	 * 由于可以得到uservo，根据vo和修改的值构造一个po传入
