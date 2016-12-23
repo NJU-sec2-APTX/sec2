@@ -1,6 +1,7 @@
 package client.businessLogicServiceImpl.orderbl;
 
 import java.rmi.RemoteException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -20,6 +21,7 @@ import common.vo.HotelVO;
 import common.vo.OrderVO;
 
 public class OrderOperation implements OrderblService {
+	
 
 	public ArrayList<HotelVO> searchReservedHotel(String clientId) {
 		ArrayList<HotelVO> vos = new ArrayList<HotelVO>();
@@ -40,7 +42,7 @@ public class OrderOperation implements OrderblService {
 			for (OrderPO OrderPO : pos) {
 				vos.add(new OrderVO(OrderPO));
 			}
-		} catch (RemoteException e) {
+		} catch (RemoteException | ParseException e) {
 		}
 		return vos;
 	}
