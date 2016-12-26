@@ -44,8 +44,6 @@ public class PersonCorrectController  {
     @FXML
     private Button cancelButton;
     @FXML
-    private TextField idField;
-    @FXML
     private TextField passwordField;
     @FXML
     private TextField contactField;
@@ -61,19 +59,18 @@ public class PersonCorrectController  {
      */
     public void initialize()throws Exception {
         MemberVO personVO=MemberFactory.getMemberMaintainService(Start.person.id, UserRole.Member).getInfo();
-        idField.setText(personVO.getId());
+        
         nameField.setText(personVO.getName());
         contactField.setText(personVO.getContact());
     }    
 
     @FXML
     private void okButtonHandler(ActionEvent event)throws Exception {
-        String  id=idField.getText();
         String   password=passwordField.getText();
         String name=nameField.getText();
         Date bir=LocalDateToDate.localDateToDate(birPicker.getValue());
         String contact=contactField.getText();
-        if (bir.after(LocalDateToDate.instantDate())||id==null||password==null||name==null||contact==null) {
+        if (bir.after(LocalDateToDate.instantDate())||password==null||name==null||contact==null) {
             tipLabel.setText("信息错误");
         }else{
             MemberPO pO=new MemberPO(Start.person.id, UserRole.Member);
@@ -81,7 +78,8 @@ public class PersonCorrectController  {
             pO.setContact(contact);
             pO.setPassword(password);
             pO.setName(name);
-            ResultMessage re=MemberFactory.getMemberMaintainService(Start.person.id, UserRole.Member).modifyInfo(pO);
+            MemberVO vO=new MemberVO(pO);
+            ResultMessage re=MemberFactory.getMemberMaintainService(Start.person.id, UserRole.Member).modifyInfo(vO);
             if (re==ResultMessage.Failure) {
                 tipLabel.setText("更新错误");
             }else{

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="all" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.SaleMan.Strategy.StrategyController">
+   <children>
+      <Pane fx:id="change" prefHeight="550.0" prefWidth="870.0">
+         <children>
+            <GridPane gridLinesVisible="true" layoutX="74.0" layoutY="27.0" prefHeight="508.0" prefWidth="567.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="277.0" minWidth="10.0" prefWidth="111.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="479.0" minWidth="10.0" prefWidth="456.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="策略名称" />
+                  <Label GridPane.rowIndex="1" />
+                  <TextField fx:id="name" onAction="#GetName" GridPane.columnIndex="1" />
+                  <Label text="等级及对应折扣" GridPane.rowIndex="2" />
+                  <Label text="商圈" GridPane.rowIndex="1" />
+                  <GridPane gridLinesVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="等级一" />
+                        <Label text="等级二" GridPane.rowIndex="1" />
+                        <Label text="等级三" GridPane.rowIndex="2" />
+                        <Label text="等级四" GridPane.rowIndex="3" />
+                        <Label text="等级五" GridPane.rowIndex="4" />
+                        <TextField fx:id="count1" onAction="#GeCount" GridPane.columnIndex="1" />
+                        <TextField fx:id="count2" onAction="#GetCount" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="count3" onAction="#GetCount" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="count5" onAction="#GetCount" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="count4" onAction="#GetCount" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                     </children>
+                  </GridPane>
+                  <ChoiceBox fx:id="area" onDragDetected="#GetArea" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+            <Button fx:id="ChangeVipandAreaStrategyR" layoutX="712.0" layoutY="122.0" mnemonicParsing="false" onAction="#clickChangeVipandAreaStrategyR" text="确定" />
+            <Button layoutX="712.0" layoutY="179.0" mnemonicParsing="false" text="取消" />
+            <Label fx:id="result" layoutX="717.0" layoutY="78.0" textFill="RED" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

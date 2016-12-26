@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane fx:id="all" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.SaleMan.Strategy.StrategyController">
+   <children>
+      <Pane fx:id="change" onDragDetected="#DeleteHotel" prefHeight="550.0" prefWidth="870.0">
+         <children>
+            <Button fx:id="AddLevelStrategy" layoutX="320.0" layoutY="60.0" mnemonicParsing="false" onAction="#AddLevelStrategy" prefHeight="70.0" prefWidth="250.0" text="添加会员等级升级策略" />
+            <Button layoutX="805.0" layoutY="488.0" mnemonicParsing="false" text="取消" />
+            <Button fx:id="AddDateStrategy" layoutX="320.0" layoutY="200.0" mnemonicParsing="false" onAction="#AddDateStrategy" prefHeight="70.0" prefWidth="250.0" text="添加特殊时段优惠策略" />
+            <Button fx:id="AddVipandAreaStrategy" layoutX="320.0" layoutY="340.0" mnemonicParsing="false" onAction="#AddVipandAreaStrategy" prefHeight="70.0" prefWidth="250.0" text="添加VIP商圈优惠策略" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

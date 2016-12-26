@@ -13,9 +13,8 @@
       <Pane fx:id="change" prefHeight="550.0" prefWidth="870.0">
          <children>
             <Button fx:id="AddMember" layoutX="320.0" layoutY="40.0" mnemonicParsing="false" onAction="#AddMember" prefHeight="70.0" prefWidth="250.0" text="添加用户" />
-            <Button fx:id="DeleteMember" layoutX="320.0" layoutY="140.0" mnemonicParsing="false" onAction="#DeleteMember" prefHeight="70.0" prefWidth="250.0" text="删除用户" />
-            <Button fx:id="ChangeMember" layoutX="320.0" layoutY="240.0" mnemonicParsing="false" onAction="#ChangeMember" prefHeight="70.0" prefWidth="250.0" text="修改用户信息" />
-            <Button fx:id="GetMember" layoutX="320.0" layoutY="340.0" mnemonicParsing="false" onAction="#GetMember" prefHeight="70.0" prefWidth="250.0" text="查看用户" />
+            <Button fx:id="ChangeMember" layoutX="320.0" layoutY="180.0" mnemonicParsing="false" onAction="#ChangeMember" prefHeight="70.0" prefWidth="250.0" text="修改用户信息" />
+            <Button fx:id="GetMember" layoutX="320.0" layoutY="320.0" mnemonicParsing="false" onAction="#GetMember" prefHeight="70.0" prefWidth="250.0" text="查看用户" />
             <Button layoutX="800.0" layoutY="490.0" mnemonicParsing="false" text="取消" />
          </children>
       </Pane>

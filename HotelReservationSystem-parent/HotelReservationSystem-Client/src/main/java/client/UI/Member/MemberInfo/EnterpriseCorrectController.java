@@ -12,13 +12,9 @@ import common.otherEnumClasses.UserRole;
 import common.po.MemberPO;
 import common.vo.MemberVO;
 import java.io.File;
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -41,8 +37,6 @@ public class EnterpriseCorrectController  {
     @FXML
     private Button cancelButton;
     @FXML
-    private TextField idField;
-    @FXML
     private TextField nameField;
     @FXML
     private TextField contactField;
@@ -54,28 +48,27 @@ public class EnterpriseCorrectController  {
     /**
      * Initializes the controller class.
      */
-    @FXML
     public void initialize()throws Exception {
         MemberVO memberVO=MemberFactory.getMemberMaintainService(Start.person.id, UserRole.Enterprise).getInfo();
-        idField.setText(memberVO.getId());
+       
         nameField.setText(memberVO.getName());
         contactField.setText(memberVO.getContact());
     }    
     
     @FXML
     private void okButtonHandler(ActionEvent event)throws Exception {
-        String  id=idField.getText();
         String   password=passwordField.getText();
         String name=nameField.getText();
         String contact=contactField.getText();
-        if (id==null||password==null||name==null||contact==null) {
+        if (password==null||name==null||contact==null) {
             tipLabel.setText("信息错误");
         }else{
-            MemberPO pO=new MemberPO(Start.person.id, UserRole.Member);
-            pO.setContact(contact);
-            pO.setPassword(password);
-            pO.setName(name);
-            ResultMessage re=MemberFactory.getMemberMaintainService(Start.person.id, UserRole.Member).modifyInfo(pO);
+            MemberPO mpo=new MemberPO(Start.person.id, UserRole.Enterprise);
+            //修改ID
+            mpo.setPassword(password);
+            mpo.setName(name);
+            MemberVO vo=new MemberVO(mpo);
+            ResultMessage re=MemberFactory.getMemberMaintainService(Start.person.id, UserRole.Member).modifyInfo(vo);
             if (re==ResultMessage.Failure) {
                 tipLabel.setText("更新错误");
             }else{

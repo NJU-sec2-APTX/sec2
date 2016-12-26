@@ -7,9 +7,20 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-<AnchorPane fx:id="base" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="1124.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Runner.RunnerController">
+<AnchorPane fx:id="base" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="1124.0" style="-fx-background-color: #b3e6b3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Runner.RunnerController">
    <children>
-      <Button fx:id="loginButton" layoutX="500.0" layoutY="459.0" mnemonicParsing="false" onAction="#loginButtonHandler" prefHeight="46.0" prefWidth="125.0" text="登录" />
-      <Button fx:id="registerButton" layoutX="500.0" layoutY="521.0" mnemonicParsing="false" onAction="#registerButtonHandler" prefHeight="46.0" prefWidth="125.0" text="注册" />
+      <Button fx:id="loginButton" layoutX="500.0" layoutY="459.0" mnemonicParsing="false" onAction="#loginButtonHandler" prefHeight="46.0" prefWidth="125.0" text="登录" textFill="#4b2cc5">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button fx:id="registerButton" layoutX="500.0" layoutY="521.0" mnemonicParsing="false" onAction="#registerButtonHandler" prefHeight="46.0" prefWidth="125.0" text="注册" textFill="#4b2cc5">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font></Button>
+      <Label layoutX="389.0" layoutY="117.0" prefHeight="200.0" prefWidth="382.0" text="HBM" textFill="#e11010">
+         <font>
+            <Font name="Cambria Bold Italic" size="152.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

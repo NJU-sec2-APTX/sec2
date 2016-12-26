@@ -104,7 +104,7 @@ public class HotelInfoController {
     private void cancelButtonHandler(ActionEvent event) throws Exception{
          System.out.println("executeOrderButton");
          basePane.getChildren().clear();
-        basePane.getChildren().add(FXMLLoader.load((new File("ssrc/main/java/client/UI/Hotel/ExecuteOrder/ExecuteReplace.fxml").toURL())));
+        basePane.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Hotel/ExecuteOrder/ExecuteReplace.fxml").toURL())));
     }
     
     public void initialize(){

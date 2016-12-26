@@ -10,6 +10,7 @@ import client.businessLogicServiceImpl.userbl.UserFactory;
 import common.otherEnumClasses.ResultMessage;
 import common.otherEnumClasses.UserRole;
 import common.po.MemberPO;
+import common.vo.MemberVO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -46,7 +47,8 @@ public class CompanyController  {
         MemberPO po=new MemberPO(account,UserRole.Enterprise);
         po.setContact(contString);
         po.setPassword(passWord);
-        ResultMessage result=uif.register(account, po);
+        MemberVO vO=new MemberVO(po);
+        ResultMessage result=uif.register(account, vO);
         switch(result){
             case Success:
                 tipLabel.setText("注册成功");
