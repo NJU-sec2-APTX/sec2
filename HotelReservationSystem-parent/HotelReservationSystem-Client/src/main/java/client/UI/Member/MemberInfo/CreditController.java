@@ -34,15 +34,17 @@ public class CreditController  {
     private Button backButton;
     @FXML
     private ScrollPane showPane;
+    @FXML
      public void initialize ()throws Exception{
          MemberList memberItem=MemberFactory.getMemberMaintainService(Start.person.id, Start.person.role).getMemberCreditInfo();
          ArrayList<MemberItem> creditList=memberItem.getMemberList();
          int size=creditList.size();
          if (size!=0) {
             for(int i=0;i<size;i++){
-                FXMLLoader fxmll=new FXMLLoader();
-                AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Member/MmeberInfo/CreditSingle.fxml").toURL()));
-                CreditSingleController cc=fxmll.getController();
+                FXMLLoader fxml=new FXMLLoader();
+                AnchorPane addAnchorPane=fxml.load((new File("src/main/java/client/UI/Member/MemberInfo/CreditSingle.fxml").toURL()));
+                CreditSingleController cc=fxml.getController();
+                System.out.println(i);
                 cc.show(creditList.get(i));
                 showPane.getChildrenUnmodifiable().add(addAnchorPane);
             }

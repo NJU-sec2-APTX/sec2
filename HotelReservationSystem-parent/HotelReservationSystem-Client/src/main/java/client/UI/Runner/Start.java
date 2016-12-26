@@ -1,4 +1,5 @@
 package client.UI.Runner;
+import client.Client;
 import common.otherEnumClasses.Person;
 import java.io.File;
 import javafx.application.Application;
@@ -18,6 +19,7 @@ public class Start extends Application  {
         public static Person person=new Person();
         
 	public static void main(String[] args) {
+                new Client();
 		Application.launch(Start.class,args);
 	}
 

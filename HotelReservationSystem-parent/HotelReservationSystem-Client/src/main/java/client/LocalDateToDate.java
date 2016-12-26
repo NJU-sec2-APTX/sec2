@@ -21,8 +21,8 @@ public class LocalDateToDate {
  */
     public static Date localDateToDate(LocalDate localDate) {
         Date date=new Date();
-        date.setYear(localDate.getYear());
-        date.setMonth(localDate.getMonthValue());
+        date.setYear(localDate.getYear()-1900);
+        date.setMonth(localDate.getMonthValue()-1);
         date.setDate(localDate.getDayOfMonth());
         date.setHours(12);
         date.setMinutes(0);

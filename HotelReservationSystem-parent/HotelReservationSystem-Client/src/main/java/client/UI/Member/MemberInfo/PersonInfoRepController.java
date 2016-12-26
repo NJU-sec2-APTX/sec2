@@ -56,13 +56,13 @@ public class PersonInfoRepController {
     @FXML
     private void creditButtonHandler(ActionEvent event) throws Exception{
         basePane.getChildren().clear();
-        basePane.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Mmeber/MmeberInfo/Credit.fxml").toURL())));
+        basePane.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/MemberInfo/Credit.fxml").toURL())));
     }
 
     @FXML
     private void correctInfoButtonHandler(ActionEvent event) throws Exception{
         basePane.getChildren().clear();
-        basePane.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Mmeber/PersonCorrect/Credit.fxml").toURL())));
+        basePane.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/MemberInfo/PersonCorrect.fxml").toURL())));
         
     }
     

@@ -41,6 +41,8 @@ public class Member{
 	
 	public ResultMessage login(String id,UserRole ur,String password){
 		try {
+                    System.out.println(Client.getMemberDataService()==null);
+                    System.out.println(id+"*"+ur.toString()+"*"+password);
 			return Client.getMemberDataService().checkinmember(id, ur, password);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -82,7 +84,7 @@ public class Member{
 			return ResultMessage.Failure;
 		}else{
 			MemberPO temp=Client.getMemberDataService().find(memberpo.getId());
-			if(temp.getCredit()!=po.getCredit()||temp.getLevel()!=po.getLevel()){
+			if(temp.getCredit()!=po.getCredit()){
 				return ResultMessage.Failure;
 			}else if(temp.getName().equals(po.getName())
 					&&temp.getPassword().equals(po.getPassword())

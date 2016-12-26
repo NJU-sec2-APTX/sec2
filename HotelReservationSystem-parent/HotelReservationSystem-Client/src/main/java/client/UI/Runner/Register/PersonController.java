@@ -11,6 +11,7 @@ import common.otherEnumClasses.ResultMessage;
 import common.otherEnumClasses.UserRole;
 import common.po.MemberPO;
 import common.vo.MemberVO;
+import java.util.Date;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -55,6 +56,7 @@ public class PersonController  {
         UserIFactory uif=new UserFactory();
         MemberPO po=new MemberPO(account,UserRole.Member);
         po.setPassword(passWord);
+        po.setBirthday(new Date(Integer.parseInt(yearField.getText())-1900,Integer.parseInt(MonthField.getText())-1,Integer.parseInt(dayField.getText())));
         po.setName(nameString);
         po.setContact(contString);
         MemberVO vo=new MemberVO(po);

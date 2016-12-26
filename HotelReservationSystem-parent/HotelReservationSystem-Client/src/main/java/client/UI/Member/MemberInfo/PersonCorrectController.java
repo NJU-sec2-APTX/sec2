@@ -53,12 +53,12 @@ public class PersonCorrectController  {
     private DatePicker birPicker;
     @FXML
     private Label tipLabel;
-
+    private MemberVO personVO;
     /**
      * Initializes the controller class.
      */
     public void initialize()throws Exception {
-        MemberVO personVO=MemberFactory.getMemberMaintainService(Start.person.id, UserRole.Member).getInfo();
+        personVO=MemberFactory.getMemberMaintainService(Start.person.id, UserRole.Member).getInfo();
         
         nameField.setText(personVO.getName());
         contactField.setText(personVO.getContact());
@@ -70,6 +70,7 @@ public class PersonCorrectController  {
         String name=nameField.getText();
         Date bir=LocalDateToDate.localDateToDate(birPicker.getValue());
         String contact=contactField.getText();
+        System.out.println(bir+"\n"+LocalDateToDate.instantDate());
         if (bir.after(LocalDateToDate.instantDate())||password==null||name==null||contact==null) {
             tipLabel.setText("信息错误");
         }else{
@@ -78,6 +79,8 @@ public class PersonCorrectController  {
             pO.setContact(contact);
             pO.setPassword(password);
             pO.setName(name);
+            pO.setCredit(personVO.getCredit());
+            pO.setLevel(personVO.getLevel());
             MemberVO vO=new MemberVO(pO);
             ResultMessage re=MemberFactory.getMemberMaintainService(Start.person.id, UserRole.Member).modifyInfo(vO);
             if (re==ResultMessage.Failure) {

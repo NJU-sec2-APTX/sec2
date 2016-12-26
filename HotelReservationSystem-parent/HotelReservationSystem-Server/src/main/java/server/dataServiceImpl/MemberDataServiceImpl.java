@@ -59,11 +59,17 @@ public class MemberDataServiceImpl extends UnicastRemoteObject implements Member
 				memberlevel=new MemberLevel(resultset.getString(11));
 			}
 			int l=memberlevel.getMemberLevel(mpo.getCredit());
-			sql="insert into member(id,name,password,userrole,credit,birthday,contact,level)"+
+                        if(mpo.getUserRole().equals(UserRole.Member)){
+                            sql="insert into member(id,name,password,userrole,credit,birthday,contact,level)"+
 					" value('"+mpo.getId()+"','"+mpo.getName()+"','"+pushpassword(mpo.getPassword())+"','"+
 					(""+mpo.getUserRole())+"',"+mpo.getCredit()+",'"+(mpo.getBirthday().getYear()+1900)
 					+"-"+(mpo.getBirthday().getMonth()+1)+"-"+mpo.getBirthday().getDate()+
 					"','"+mpo.getContact()+"',"+l+");";
+                        }else{
+                            sql="insert into member(id,name,password,userrole,credit,birthday,contact,level)"+
+					" value('"+mpo.getId()+"','"+mpo.getName()+"','"+pushpassword(mpo.getPassword())+"','"+
+					(""+mpo.getUserRole())+"',"+mpo.getCredit()+",'null','"+mpo.getContact()+"',"+l+");";
+                        }
 			databasehelper=new DBHelper(sql);
 			databasehelper.pst.execute();
 			databasehelper.close();
