@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import common.dataService.HotelDataService;
 import common.otherEnumClasses.HotelSearchConditions;
+import common.otherEnumClasses.RoomCondition;
+import common.otherEnumClasses.RoomType;
 import common.po.HotelPO;
 
 public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDataService {
@@ -23,29 +25,54 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 	@Override
 	public HotelPO getHotelInfo(String id) {
 		HotelPO po = new HotelPO();
-		String sql = "select * from hotel where id='" + id + "';";
-		data = new DBHelper(sql);
 		try {
+			String sql = "select * from hotel where id='" + id + "';";
+			data = new DBHelper(sql);
 			rs = data.pst.executeQuery(sql);
 			while (rs.next()) {
-				po.setName(rs.getString(1));
-				po.setArea(rs.getString(2));
-				po.setAddress(rs.getString(3));
-				po.setIntroduction(rs.getString(4));
-				po.setStar(rs.getInt(5));
-				po.setMark(rs.getDouble(6));
-				po.setPrice(rs.getDouble(7));
-				po.setAssessNum(rs.getInt(8));
+				po.setId(rs.getString(1));
+				po.setName(rs.getString(2));
+				po.setArea(rs.getString(3));
+				po.setAddress(rs.getString(4));
+				po.setIntroduction(rs.getString(5));
+				po.setPrice(rs.getDouble(6));
+				po.setStar(rs.getInt(7));
+				po.setMark(rs.getDouble(8));
+				po.setAssessNum(rs.getInt(9));
 			}
-			sql = "select * from room where id='";
+			return getRoom(po);
 		} catch (SQLException e) {
 		}
 		return null;
 	}
 
+	private HotelPO getRoom(HotelPO po) {
+		ArrayList<RoomCondition> rooms = new ArrayList<RoomCondition>();
+		rooms.add(get(po, "SingleStd"));
+		rooms.add(get(po, "DoubleStd"));
+		rooms.add(get(po, "Family"));
+		po.setRooms(rooms);
+		return po;
+	}
+
+	private RoomCondition get(HotelPO po, String s) {
+		RoomCondition r = new RoomCondition();
+		try {
+			String sql = "select * from room where id='" + po.getId() + s + "'";
+			data = new DBHelper(sql);
+			rs = data.pst.executeQuery(sql);
+			if (rs.next()) {
+				r = new RoomCondition(rs.getString(2), RoomType.get(rs.getString(3)), rs.getDouble(4), rs.getInt(5));
+				r.restNum = rs.getInt(6);
+			}
+		} catch (SQLException e) {
+		}
+		return r;
+	}
+
 	@Override
 	public boolean setHotelInfo(HotelPO hotelInfoPO) {
-		String sql = "update * from hotel where id='" + hotelInfoPO.getId() + "';";
+		String sql = "update * from hotel where id='" + hotelInfoPO.getId() + "'";
 		data = new DBHelper(sql);
 		try {
 			if (data.pst.execute()) {
@@ -59,7 +86,7 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 	@Override
 	public ArrayList<HotelPO> getHotelList(String area, String address, HotelSearchConditions searchItems) {
 		ArrayList<HotelPO> pos = new ArrayList<HotelPO>();
-		String sql = "select * from hotel where area='"+"area'&&address";
+		String sql = "select * from hotel where area='" + "area'&&address";
 		return null;
 	}
 
@@ -69,10 +96,11 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 				+ "','" + po.getArea() + "','" + po.getAddress() + "','" + po.getStar() + "')";
 		data = new DBHelper(sql);
 		try {
-			if(data.pst.execute()){
+			if (data.pst.execute()) {
 				return true;
 			}
-		} catch (SQLException e) {}
+		} catch (SQLException e) {
+		}
 		return false;
 	}
 }

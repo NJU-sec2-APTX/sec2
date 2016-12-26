@@ -24,6 +24,7 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 	private static final long serialVersionUID = 4026471108382528596L;
 	private DBHelper data;
 	private ResultSet rs;
+	private HotelDataServiceImpl hotel = new HotelDataServiceImpl();
 
 	public OrderDataServiceImpl() throws RemoteException {
 		super();
@@ -32,54 +33,97 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 	@Override
 	public ArrayList<HotelPO> searchReservedHotel(String clientId) throws RemoteException {
 		ArrayList<HotelPO> hotels = new ArrayList<HotelPO>();
-		ArrayList<OrderPO> orders = new ArrayList<OrderPO>();
-		return null;
+		ArrayList<OrderPO> orders = findOrderList(new Person(UserRole.Member, clientId), null, null);
+		for (OrderPO orderPO : orders) {
+			HotelPO po = hotel.getHotelInfo(orderPO.getHotelId());
+			if (!hotels.contains(po)) {
+				hotels.add(po);
+			}
+		}
+		return hotels;
 	}
 
 	@Override
 	public ArrayList<OrderPO> findOrderList(Person person, OrderState state, HotelVO hotelVO) throws RemoteException {
-		try {
-			String sql = null;
-			if (person.role == UserRole.Member || person.role == UserRole.Enterprise) {
-				sql = "select * from order where id='" + person.id + "'";
-				ArrayList<OrderPO> orders = getIn(sql);
-				ArrayList<OrderPO> result = new ArrayList<OrderPO>();
-				if (state != null) {
-					for (OrderPO orderPO : orders) {
-						if (orderPO.getState() == state) {
-							result.add(orderPO);
-						}
+		String sql = null;
+		if (person.role == UserRole.Member || person.role == UserRole.Enterprise) {
+			sql = "select * from order where id='" + person.id + "'";
+			ArrayList<OrderPO> orders = getList(sql);
+			ArrayList<OrderPO> result = new ArrayList<OrderPO>();
+			if (state != null) {
+				for (OrderPO orderPO : orders) {
+					if (orderPO.getState() == state) {
+						result.add(orderPO);
 					}
-				} else if (hotelVO != null) {
-
 				}
 				return result;
-			} else if (person.role == UserRole.HotelWorker) {
-				String name = new HotelDataServiceImpl().getHotelInfo(person.id).getName();
-				sql = "select * from order where hotel='" + name + "'";
-				return getIn(sql);
-			} else if (person.role == UserRole.Sales) {
-				sql = "select * from order where state=Exceptional";
-				return getIn(sql);
+			} else if (hotelVO != null) {
+				for (OrderPO orderPO : orders) {
+					if (orderPO.getHotelId() == hotelVO.id) {
+						result.add(orderPO);
+					}
+				}
+				return result;
 			}
-		} catch (SQLException e) {
+			return orders;
+		} else if (person.role == UserRole.HotelWorker) {
+			String name = new HotelDataServiceImpl().getHotelInfo(person.id).getName();
+			sql = "select * from order where hotel='" + name + "'";
+			return getList(sql);
+		} else if (person.role == UserRole.Sales) {
+			sql = "select * from order where state=Exceptional";
+			return getList(sql);
 		}
+		data.close();
 		return null;
 	}
 
 	@Override
 	public boolean updateOrder(OrderPO po) throws RemoteException {
+		String sql = "update * from order where id='" + po.getId() + "'";
+		data = new DBHelper(sql);
+		try {
+			if (data.pst.execute()) {
+				return true;
+			}
+		} catch (SQLException e) {
+		}
+		data.close();
 		return false;
 	}
 
 	@Override
 	public boolean addOrder(OrderPO po) throws RemoteException {
+		String sql = "insert into order (id,hotelId,price,state,clientId,hotel,day,"
+				+ "createdTime,planExcuteTime,latesetDoneTime,numOfPerson,hasChild,numOfRoom) value ('" + po.getId()
+				+ "','" + po.getHotelId() + "','" + po.getPrice() + "','" + po.getState() + "','" + po.getClientId()
+				+ "','" + po.getHotel() + "','" + po.getDay() + "','" + po.getCreatedTime() + "','"
+				+ po.getPlanExecuteTime() + "','" + "','" + po.getLatestDoneTime() + "','" + po.getNumberOfPerson()
+				+ "','" + po.isHasChild() + "','" + po.getNumOfRoom() + "')";
+		data = new DBHelper(sql);
+		try {
+			if (data.pst.execute()) {
+				return true;
+			}
+		} catch (SQLException e) {
+		}
 		return false;
 	}
 
 	@Override
 	public OrderPO findOrderFromData(String orderId) throws RemoteException {
-		return null;
+		String sql = "select * from order where id='" + orderId + "'";
+		data = new DBHelper(sql);
+		OrderPO po = new OrderPO();
+		try {
+			rs = data.pst.executeQuery(sql);
+			if (rs.next()) {
+				po = getPO();
+			}
+		} catch (SQLException e) {
+		}
+		data.close();
+		return po;
 	}
 
 	/**
@@ -89,39 +133,51 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 	 * @param sql语句
 	 * @return OrderPO列表
 	 */
-	private ArrayList<OrderPO> getIn(String sql) throws SQLException {
+	private ArrayList<OrderPO> getList(String sql) {
 		ArrayList<OrderPO> pos = new ArrayList<OrderPO>();
 		if (sql == null)
 			return null;
 		data = new DBHelper(sql);
-		rs = data.pst.executeQuery(sql);
-		while (rs.next()) {
-			OrderPO po = new OrderPO();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH");
-			try {
-				po.setId(rs.getString(1));
-				po.setCreditChange(rs.getDouble(2));
-				po.setPrice(rs.getDouble(3));
-				po.setState(OrderState.get(rs.getString(4)));
-				po.setMark(rs.getDouble(5));
-				po.setClientId(rs.getString(6));
-				po.setHotel(rs.getString(7));
-				po.setDay(rs.getInt(8));
-				po.setCreatedTime(sdf.parse(rs.getString(9)));
-				po.setPlanExecuteTime(sdf.parse(rs.getString(10)));
-				po.setLatestDoneTime(sdf.parse(rs.getString(11)));
-				po.setCheckInTime(sdf.parse(rs.getString(12)));
-				po.setPlanDepartTime(sdf.parse(rs.getString(13)));
-				po.setCheckOutTime(sdf.parse(rs.getString(14)));
-				po.setCancelTime(sdf.parse(rs.getString(15)));
-				po.setNumberOfPerson(rs.getInt(16));
-				po.setHasChild(rs.getBoolean(17));
-				po.setNumOfRoom(rs.getString(18));
-			} catch (ParseException e) {
+		try {
+			rs = data.pst.executeQuery(sql);
+			while (rs.next()) {
+				pos.add(getPO());
 			}
-			pos.add(po);
+		} catch (SQLException e) {
 		}
 		return pos;
 	}
 
+	/**
+	 * 
+	 * @description 按照rs读入OrderPO
+	 * @param
+	 * @return OrderPO
+	 */
+	private OrderPO getPO() {
+		OrderPO po = new OrderPO();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH");
+		try {
+			po.setId(rs.getString(1));
+			po.setHotelId(rs.getString(2));
+			po.setPrice(rs.getDouble(3));
+			po.setState(OrderState.get(rs.getString(4)));
+			po.setMark(rs.getDouble(5));
+			po.setClientId(rs.getString(6));
+			po.setHotel(rs.getString(7));
+			po.setDay(rs.getInt(8));
+			po.setCreatedTime(sdf.parse(rs.getString(9)));
+			po.setPlanExecuteTime(sdf.parse(rs.getString(10)));
+			po.setLatestDoneTime(sdf.parse(rs.getString(11)));
+			po.setCheckInTime(sdf.parse(rs.getString(12)));
+			po.setPlanDepartTime(sdf.parse(rs.getString(13)));
+			po.setCheckOutTime(sdf.parse(rs.getString(14)));
+			po.setCancelTime(sdf.parse(rs.getString(15)));
+			po.setNumberOfPerson(rs.getInt(16));
+			po.setHasChild(rs.getBoolean(17));
+			po.setNumOfRoom(rs.getString(18));
+		} catch (SQLException | ParseException e) {
+		}
+		return po;
+	}
 }
