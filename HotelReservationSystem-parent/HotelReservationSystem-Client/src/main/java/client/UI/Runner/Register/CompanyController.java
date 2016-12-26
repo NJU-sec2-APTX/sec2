@@ -45,6 +45,7 @@ public class CompanyController  {
         String contString=contactField.getText();
         UserIFactory uif=new UserFactory();
         MemberPO po=new MemberPO(account,UserRole.Enterprise);
+        po.setName(nameString);
         po.setContact(contString);
         po.setPassword(passWord);
         MemberVO vO=new MemberVO(po);

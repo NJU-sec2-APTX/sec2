@@ -71,7 +71,7 @@ public class HotelUIController {
     private void checkOrderButtonHandler(ActionEvent event)throws  IOException{
         System.out.println("checkOrderButton");
         rep.getChildren().clear();
-        rep.getChildren().add(FXMLLoader.load((new File("src/UI/Hotel/OrderInHotel/OrderInHotel.fxml").toURL())));
+        rep.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Hotel/OrderInHotel.fxml").toURL())));
         
     }
     @FXML 

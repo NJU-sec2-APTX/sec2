@@ -45,11 +45,12 @@ public class LoginController {
     private RadioButton enterpriseRadButton;
     @FXML
     private Label tipLabel;
+    
         UserRole checkRole(){
             if(memberRadButton.isSelected()){
                 return  UserRole.Member;
             }else if(ManagerRadButton.isSelected()){
-                return UserRole.Manager;
+                return UserRole.HotelWorker;
             }else if(salesRadButton.isSelected( )){
                 return UserRole.Sales;
             }else if(adRadButton.isSelected()){
@@ -68,6 +69,7 @@ public class LoginController {
                 String account=accountField.getText();
 		String password=passwordField.getText();
                 UserRole userRole=checkRole();
+                System.out.println(userRole.toString());
                 ResultMessage result=uif.login(account, userRole, password);
                try {
                    if(result==ResultMessage.Success){
@@ -85,7 +87,7 @@ public class LoginController {
                            break;
                         case HotelWorker:
                             loginBase.getChildren().clear();
-                            System.out.println("HotelWork");
+                            System.out.println("HotelWorker");
                             loginBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Hotel/HotelUI.fxml")).toURL()));
                             break;
                         case Sales:
