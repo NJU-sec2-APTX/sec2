@@ -58,7 +58,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="tipLabel" layoutX="571.0" layoutY="322.0">
+            <Label fx:id="tipLabel" layoutX="571.0" layoutY="322.0" prefHeight="27.0" prefWidth="171.0">
                <font>
                   <Font size="20.0" />
                </font>

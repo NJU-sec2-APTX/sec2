@@ -1,7 +1,10 @@
 package client.UI.SaleMan;
 
+import static client.UI.Runner.Start.person;
+import client.businessLogicService.User_Factory;
 import java.io.File;
 import java.io.IOException;
+import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +21,8 @@ public class SaleFrameController {
 	AnchorPane all;
 	
 	AnchorPane add;
+    @FXML
+    private Button exitButton;
     @FXML
 	public void  clickStrategy() throws IOException {
 		change.getChildren().clear();
@@ -39,4 +44,15 @@ public class SaleFrameController {
                 change.getChildren().add(add);
              
         }
+
+    @FXML
+    private void exitButtonHander(ActionEvent event)throws Exception{
+        System.out.println("exitButton");
+        all.getChildren().clear();
+        all.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Runner/Runner.fxml").toURL())));
+        System.out.print("退出"+person.id);
+        if (null!=person.role)
+         User_Factory.getUserService().logout(person.id,person.role);
+         System.out.println("登出");
+    }
 }

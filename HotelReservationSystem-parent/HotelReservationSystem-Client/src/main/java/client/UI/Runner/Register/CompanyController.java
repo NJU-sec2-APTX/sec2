@@ -39,6 +39,7 @@ public class CompanyController  {
 
     @FXML
     private void okButton(ActionEvent event) {
+        try{
         String account=accountField.getText();
         String passWord=passWordField.getText();
         String nameString=nameField.getText();
@@ -60,6 +61,9 @@ public class CompanyController  {
             case  Registered:
                 tipLabel.setText("该ID已被注册过");
                 break;
+        }
+        }catch(Exception e){
+            tipLabel.setText("注册失败");
         }
     }
 

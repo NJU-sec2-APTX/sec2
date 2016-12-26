@@ -12,12 +12,6 @@ import javafx.scene.layout.Pane;
 
 public class RegisterController {
 
-
-    public RegisterController() throws IOException {
-        
-    }
-    
-
     @FXML
     private Button personButton;
     @FXML
@@ -50,7 +44,7 @@ public class RegisterController {
                 base.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Runner/Runner.fxml")).toURL()));
                 System.out.println("cancelButton");
     }
-
+    @FXML
     public void initialize(  )throws IOException{
         System.out.println("personButton");
         repPane.getChildren().clear();

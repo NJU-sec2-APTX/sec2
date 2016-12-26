@@ -1,5 +1,7 @@
 package client.UI.Manager;
 
+import static client.UI.Runner.Start.person;
+import client.businessLogicService.User_Factory;
 import java.io.File;
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -38,7 +40,14 @@ public class ManagerFrameController {
     private Button getHotelButton;
 
     @FXML
-    private void clickExitButton(ActionEvent event) {
+    private void clickExitButton(ActionEvent event) throws  Exception{
+        System.out.println("exitButton");
+        all.getChildren().clear();
+        all.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Runner/Runner.fxml").toURL())));
+        System.out.print("退出"+person.id);
+        if (null!=person.role)
+         User_Factory.getUserService().logout(person.id,person.role);
+         System.out.println("登出");
     }
 
     @FXML
@@ -76,5 +85,9 @@ public class ManagerFrameController {
 
     @FXML
     private void clickGetHotelButton(ActionEvent event) {
+    }
+    @FXML
+    public void initialize(){
+       
     }
 }

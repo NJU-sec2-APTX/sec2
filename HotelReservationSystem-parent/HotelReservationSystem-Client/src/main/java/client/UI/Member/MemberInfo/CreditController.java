@@ -44,7 +44,6 @@ public class CreditController  {
                 FXMLLoader fxml=new FXMLLoader();
                 AnchorPane addAnchorPane=fxml.load((new File("src/main/java/client/UI/Member/MemberInfo/CreditSingle.fxml").toURL()));
                 CreditSingleController cc=fxml.getController();
-                System.out.println(i);
                 cc.show(creditList.get(i));
                 showPane.getChildrenUnmodifiable().add(addAnchorPane);
             }
@@ -53,5 +52,6 @@ public class CreditController  {
 
     @FXML
     private void backButtonHandler(ActionEvent event) {
+        
     }
 }
