@@ -8,7 +8,7 @@ import common.vo.OrderVO;
 public class OrderPO {
 	
 	private String id;
-	private double creditChange;
+	private String hotelId;
 	private double price;
 	private OrderState state;
 	private double mark;
@@ -32,7 +32,7 @@ public class OrderPO {
 	
 	public OrderPO(OrderVO vo){
 		id = vo.id;
-		creditChange = vo.creditChange;
+		hotelId = vo.hotelId;
 		price = vo.price;
 		state = vo.state;
 		mark = vo.mark;
@@ -57,9 +57,6 @@ public class OrderPO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public double getCreditChange() {
-		return creditChange;
-	}
 	public double getPrice() {
 		return price;
 	}
@@ -67,9 +64,7 @@ public class OrderPO {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public void setCreditChange(double creditChange) {
-		this.creditChange = creditChange;
-	}
+	
 	public OrderState getState() {
 		return state;
 	}
@@ -168,5 +163,13 @@ public class OrderPO {
 
 	public void setPlanExecuteTime(Date planExecuteTime) {
 		this.planExecuteTime = planExecuteTime;
+	}
+
+	public String getHotelId() {
+		return hotelId;
+	}
+
+	public void setHotelId(String hotelId) {
+		this.hotelId = hotelId;
 	}
 }

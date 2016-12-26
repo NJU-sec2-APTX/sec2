@@ -21,8 +21,8 @@ import common.vo.HotelVO;
 import common.vo.OrderVO;
 
 public class OrderOperation implements OrderblService {
-	
 
+	@Override
 	public ArrayList<HotelVO> searchReservedHotel(String clientId) {
 		ArrayList<HotelVO> vos = new ArrayList<HotelVO>();
 		try {
@@ -35,6 +35,7 @@ public class OrderOperation implements OrderblService {
 		return vos;
 	}
 
+	@Override
 	public ArrayList<OrderVO> searchOrderListFromData(Person person, OrderState state, HotelVO hotelVO) {
 		ArrayList<OrderVO> vos = new ArrayList<OrderVO>();
 		try {
@@ -46,15 +47,18 @@ public class OrderOperation implements OrderblService {
 		}
 		return vos;
 	}
-	
-	public OrderVO calPrice(OrderVO vo){
+
+	@Override
+	public OrderVO calPrice(OrderVO vo) {
 		StrategyPriceService calprice = new PriceController();
 		try {
 			vo.price = calprice.calPrice(vo).getfirstStrategy().getPrice();
-		} catch (RemoteException e) {}
+		} catch (RemoteException e) {
+		}
 		return vo;
 	}
 
+	@Override
 	public OrderVO createOrder(OrderVO vo, String clientId) {
 		try {
 			vo.clientId = clientId;
@@ -85,6 +89,7 @@ public class OrderOperation implements OrderblService {
 		return null;
 	}
 
+	@Override
 	public OrderVO executeOrder(String orderId, String hotelId, Date checkInTime, Date planCheckOutTime) {
 		try {
 			OrderPO po = Client.getOrderDataService().findOrderFromData(orderId);
@@ -109,6 +114,7 @@ public class OrderOperation implements OrderblService {
 		return null;
 	}
 
+	@Override
 	public boolean assessOrder(OrderVO vo, double mark) {
 		if (vo.state != OrderState.Done) {
 			OrderPO po = new OrderPO(vo);
@@ -125,6 +131,7 @@ public class OrderOperation implements OrderblService {
 		return false;
 	}
 
+	@Override
 	public boolean clientCancelOrder(OrderVO vo) {
 		if (vo.state == OrderState.NotDone) {
 			OrderPO po = new OrderPO(vo);
@@ -152,6 +159,7 @@ public class OrderOperation implements OrderblService {
 		return false;
 	}
 
+	@Override
 	public boolean managerCancalOrder(OrderVO vo, boolean isAll) {
 		if (vo.state == OrderState.Exceptional) {
 			try {

@@ -12,10 +12,10 @@ public class HotelPO {
 	private String area;
 	private String address;
 	private String introduction;
-	private long assessNum;
 	private double price;//最低价格
 	private int star;//网站管理人员有权设置
 	private double mark;
+	private long assessNum;
 	private ArrayList<RoomCondition> rooms;
 	
 	public HotelPO() {

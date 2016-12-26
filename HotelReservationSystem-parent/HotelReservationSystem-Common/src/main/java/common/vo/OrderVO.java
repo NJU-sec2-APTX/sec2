@@ -8,7 +8,7 @@ import common.po.OrderPO;
 public class OrderVO {
 
 	public String id;
-	public double creditChange;
+	public String hotelId;
 	public double price;
 	public OrderState state;
 	public double mark;
@@ -32,7 +32,7 @@ public class OrderVO {
 	
 	public OrderVO(OrderPO po){
 		id = po.getId();
-		creditChange = po.getCreditChange();
+		hotelId = po.getHotelId();
 		price = po.getPrice();
 		state = po.getState();
 		mark = po.getMark();
