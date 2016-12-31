@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.print.attribute.standard.RequestingUserName;
+
 import org.omg.PortableServer.POA;
 
 import common.dataService.HotelDataService;
@@ -119,8 +121,19 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 	@Override
 	public ArrayList<HotelPO> getHotelList(String area, String address, HotelSearchConditions searchItems) {
 		ArrayList<HotelPO> pos = new ArrayList<HotelPO>();
-		String sql = "select * from hotel where area='" + "area'&&address";
-		return null;
+		String sql = "select * from hotel where area = '" + area +"'&&address = '" + address 
+				+ "'&&price <= '" + searchItems.priceUp + "'&&price >= '" + searchItems.priceDown
+				+ "'&&star <= '" + searchItems.starUp + "'&&star >= '" + searchItems.starDown
+				+ "'&&mark <= '" + searchItems.markUp + "'&&mark >= '" + searchItems.markDown
+				+ "'";
+		try {
+			data = new DBHelper(sql);
+			rs = data.pst.executeQuery(sql);
+			while(rs.next()){
+				pos.add(getHotel(rs));
+			}
+		} catch (SQLException e) {}
+		return pos;
 	}
 
 	@Override
@@ -129,7 +142,7 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 				+ "','" + po.getArea() + "','" + po.getAddress() + "','" + po.getStar() + "')";
 		data = new DBHelper(sql);
 		try {
-			if (data.pst.execute()) {
+			if (data.pst.execute()&&addRooms(po.getId())) {
 				return true;
 			}
 		} catch (SQLException e) {
@@ -137,7 +150,37 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 		return false;
 	}
 	
-//	private HotelPO getHotel(){
-//		
-//	}
+	private boolean addRooms(String hotelId){
+		if(addRoom(hotelId, "SingleStd")&&addRoom(hotelId, "DoubleStd")&&addRoom(hotelId, "Family")) return true;
+		return false;
+	}
+	
+	private boolean addRoom(String hotelId, String type){
+		String sql = "insert into room (id,hotelId,roomtype,price,totalNum,restNum) values ('" 
+				+ hotelId + type + "','" + hotelId + "','" + type + "','" 
+				+ "0.0" + "','" + "0" + "','" + "0" +"')";
+		data = new DBHelper(sql);
+		try {
+			if (data.pst.execute()) {
+				return true;
+			}
+		} catch (SQLException e) {}
+		return false;
+	}
+	
+	private HotelPO getHotel(ResultSet rs){
+		HotelPO po = new HotelPO();
+		try {
+			po.setId(rs.getString(1));
+			po.setName(rs.getString(2));
+			po.setArea(rs.getString(3));
+			po.setAddress(rs.getString(4));
+			po.setIntroduction(rs.getString(5));
+			po.setPrice(rs.getDouble(6));
+			po.setStar(rs.getInt(7));
+			po.setMark(rs.getDouble(8));
+			po.setAssessNum(rs.getInt(9));
+		} catch (SQLException e) {}
+		return po;
+	}
 }
