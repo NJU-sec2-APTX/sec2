@@ -1,6 +1,7 @@
 package client.businessLogicService.strategyblService;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
@@ -12,6 +13,8 @@ public interface StrategyMaintainService {
 	 * @param StrategyName
 	 */
 	public StrategyVO getStrategy (String StrategyName) throws RemoteException;
+	
+	public ArrayList<StrategyVO> getAllStrategy() throws RemoteException;
 	
 	/**
 	 * 获得所属当前用户的所有策略

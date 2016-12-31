@@ -1,6 +1,7 @@
 package client.businessLogicServiceImpl.strategybl;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
@@ -73,5 +74,10 @@ public class StrategyController implements StrategyMaintainService{
 	public ResultMessage addVipandAreaStrategyPO(String Strategy_name,String discountlist,String area)throws RemoteException{
 		StrategyPO po=new StrategyPO(strategy.getID(),strategy.getUserRole(),Strategy_name,discountlist,0,null,null,area,0,0,StrategyType.VipandArea);
 		return strategy.addStrategy(po);
+	}
+
+	@Override
+	public ArrayList<StrategyVO> getAllStrategy() throws RemoteException {
+		return strategy.getAllStrategy();
 	}
 }

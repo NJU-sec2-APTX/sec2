@@ -134,6 +134,14 @@ public class Strategy {
 		}
 	}
 	
+	public ArrayList<StrategyVO> getAllStrategy() throws RemoteException{
+		if(Client.getStrategyDataService().findAll(id,ur)==null){
+			return null;
+		}else{
+			return Client.getStrategyDataService().findAll(id,ur);
+		}
+	}
+	
 	/**
 	 * 获得某个策略
 	 * @param ID
