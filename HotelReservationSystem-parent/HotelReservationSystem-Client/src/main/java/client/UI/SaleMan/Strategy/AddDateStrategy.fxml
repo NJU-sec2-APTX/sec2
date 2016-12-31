@@ -65,7 +65,7 @@
             </GridPane>
             <Button fx:id="AddDateStrategyR" layoutX="712.0" layoutY="122.0" mnemonicParsing="false" onAction="#clickAddDateStrategyR" text="确定" />
             <Button layoutX="712.0" layoutY="179.0" mnemonicParsing="false" text="取消" />
-            <Label fx:id="result" layoutX="717.0" layoutY="74.0" textFill="#f20606" />
+            <Label fx:id="result" layoutX="717.0" layoutY="74.0" text="                          " textFill="#f20606" />
          </children>
       </Pane>
    </children>

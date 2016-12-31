@@ -35,7 +35,7 @@
             </GridPane>
             <Button layoutX="712.0" layoutY="233.0" mnemonicParsing="false" text="取消" />
             <Button fx:id="ChangeR" layoutX="712.0" layoutY="146.0" mnemonicParsing="false" onAction="#clickChangeR" text="确定修改" />
-            <Label fx:id="result" layoutX="717.0" layoutY="78.0" textFill="RED" />
+            <Label fx:id="result" layoutX="717.0" layoutY="78.0" text="                 " textFill="RED" />
          </children>
       </Pane>
    </children>

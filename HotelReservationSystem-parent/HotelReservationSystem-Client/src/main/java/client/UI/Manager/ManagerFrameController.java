@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import client.UI.Manager.HotelManage.HotelManageController;
 
 public class ManagerFrameController {
 	@FXML
@@ -38,12 +39,14 @@ public class ManagerFrameController {
     private Button modifyButton;
     @FXML
     private Button getHotelButton;
+    @FXML
+    private AnchorPane rep;
 
     @FXML
     private void clickExitButton(ActionEvent event) throws  Exception{
         System.out.println("exitButton");
-        all.getChildren().clear();
-        all.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Runner/Runner.fxml").toURL())));
+        rep.getChildren().clear();
+        rep.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Runner/Runner.fxml").toURL())));
         System.out.print("退出"+person.id);
         if (null!=person.role)
          User_Factory.getUserService().logout(person.id,person.role);
@@ -72,21 +75,23 @@ public class ManagerFrameController {
     }
 
     @FXML
-    private void clickAddButton(ActionEvent event) {
+    private void clickAddButton(ActionEvent event) throws IOException {
+        HotelManageController hmc=new HotelManageController();
+        hmc.AddHotel();
+    }
+
+
+    @FXML
+    private void clickModifyButton(ActionEvent event) throws IOException {
+        HotelManageController hmc=new HotelManageController();
+        hmc.ChangeHotel();
     }
 
     @FXML
-    private void clickDeleteButton(ActionEvent event) {
+    private void clickGetHotelButton(ActionEvent event) throws IOException {
+        HotelManageController hmc=new HotelManageController();
+        hmc.GetHotel();
     }
-
-    @FXML
-    private void clickModifyButton(ActionEvent event) {
-    }
-
-    @FXML
-    private void clickGetHotelButton(ActionEvent event) {
-    }
-    @FXML
     public void initialize(){
        
     }

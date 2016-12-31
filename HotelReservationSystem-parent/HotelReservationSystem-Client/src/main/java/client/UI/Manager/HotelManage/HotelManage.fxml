@@ -10,7 +10,7 @@
 
 <AnchorPane fx:id="all" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Manager.HotelManage.HotelManageController">
    <children>
-      <Pane fx:id="change" onDragDetected="#DeleteHotel" prefHeight="550.0" prefWidth="870.0">
+      <Pane fx:id="change" prefHeight="550.0" prefWidth="870.0">
          <children>
             <Button fx:id="AddHotel" layoutX="320.0" layoutY="60.0" mnemonicParsing="false" onAction="#AddHotel" prefHeight="70.0" prefWidth="250.0" text="上线酒店" />
             <Button fx:id="ChangeHotel" layoutX="320.0" layoutY="200.0" mnemonicParsing="false" onAction="#ChangeHotel" prefHeight="70.0" prefWidth="250.0" text="修改酒店信息" />

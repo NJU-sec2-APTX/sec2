@@ -8,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-<AnchorPane fx:id="all" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="1124.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Manager.ManagerFrameController">
+<AnchorPane fx:id="rep" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="1124.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Manager.ManagerFrameController">
    <children>
       <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="141.0" prefWidth="1104.0" style="-fx-background-color: gray;" text="酒店预订系统">
          <font>
@@ -37,8 +37,7 @@
             <Pane fx:id="change" layoutY="-8.0" prefHeight="550.0" prefWidth="870.0">
                <children>
                   <Button fx:id="addButton" layoutX="320.0" layoutY="40.0" mnemonicParsing="false" onAction="#clickAddButton" prefHeight="70.0" prefWidth="250.0" text="上线酒店" />
-                  <Button fx:id="deleteButton" layoutX="320.0" layoutY="140.0" mnemonicParsing="false" onAction="#clickDeleteButton" prefHeight="70.0" prefWidth="250.0" text="删除酒店" />
-                  <Button fx:id="modifyButton" layoutX="320.0" layoutY="240.0" mnemonicParsing="false" onAction="#clickModifyButton" prefHeight="70.0" prefWidth="250.0" text="修改酒店信息" />
+                  <Button fx:id="modifyButton" layoutX="320.0" layoutY="190.0" mnemonicParsing="false" onAction="#clickModifyButton" prefHeight="70.0" prefWidth="250.0" text="修改酒店信息" />
                   <Button fx:id="getHotelButton" layoutX="320.0" layoutY="340.0" mnemonicParsing="false" onAction="#clickGetHotelButton" prefHeight="70.0" prefWidth="250.0" text="查看酒店" />
                   <Button layoutX="805.0" layoutY="488.0" mnemonicParsing="false" text="取消" />
                </children>

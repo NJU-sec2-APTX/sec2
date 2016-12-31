@@ -11,7 +11,7 @@
       <Button layoutX="524.0" layoutY="380.0" mnemonicParsing="false" text="取消" />
       <Label layoutX="336.0" layoutY="206.0" text="ID" />
       <TextField fx:id="id" layoutX="427.0" layoutY="202.0" onAction="#GetId" />
-      <TextField fx:id="role" layoutX="427.0" layoutY="283.0" onAction="#GetRole" />
       <Label layoutX="327.0" layoutY="287.0" text="账号类型" />
+      <ChoiceBox fx:id="type" layoutX="427.0" layoutY="283.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
