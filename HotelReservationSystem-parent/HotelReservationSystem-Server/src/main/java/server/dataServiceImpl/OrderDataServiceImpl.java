@@ -80,7 +80,25 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 
 	@Override
 	public boolean updateOrder(OrderPO po) throws RemoteException {
-		String sql = "update * from order where id='" + po.getId() + "'";
+		String sql = "update order set"
+				+" hotelId = '"+po.getHotelId()+"'"
+				+", price = '"+po.getPrice()+"'"
+				+", state = '"+po.getState().toString()+"'"
+				+", mark = '"+po.getMark()+"'"
+				+", clientId = '"+po.getClientId()+"'"
+				+", hotel = '"+po.getHotel()+"'"
+				+", day = '"+po.getDay()+"'"
+				+", createdTime = '"+po.getCreatedTime()+"'"
+				+", planExecuteTime = '"+po.getPlanExecuteTime()+"'"
+				+", latestDoneTime = '"+po.getLatestDoneTime()+"'"
+				+", checkInTime = '"+po.getCheckInTime()+"'"
+				+", planDepartTime = '"+po.getPlanDepartTime()+"'"
+				+", checkOutTime = '"+po.getCheckOutTime()+"'"
+				+", cancelTime = '"+po.getCancelTime()+"'"
+				+", numberOfPerson = '"+po.getNumberOfPerson()+"'"
+				+", hasOfChild = '"+(po.isHasChild()?1:0)+"'"
+				+", numOfRoom = '"+po.getNumOfRoom()+"'"
+				+" where id='" + po.getId() + "'";
 		data = new DBHelper(sql);
 		try {
 			if (data.pst.execute()) {
