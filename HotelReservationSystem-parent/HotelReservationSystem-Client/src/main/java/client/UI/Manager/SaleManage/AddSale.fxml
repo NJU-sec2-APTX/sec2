@@ -6,7 +6,7 @@
 
 <AnchorPane fx:id="all" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Manager.SaleManage.SaleManageController">
    <children>
-      <Pane fx:id="change" prefHeight="550.0" prefWidth="870.0">
+      <Pane fx:id="change" layoutY="14.0" prefHeight="550.0" prefWidth="870.0">
          <children>
             <GridPane gridLinesVisible="true" layoutX="74.0" layoutY="27.0" prefHeight="484.0" prefWidth="567.0">
               <columnConstraints>
@@ -32,7 +32,7 @@
             </GridPane>
             <Button fx:id="AddSaleR" layoutX="712.0" layoutY="122.0" mnemonicParsing="false" onAction="#clickAddSaleR" text="确定" />
             <Button layoutX="712.0" layoutY="179.0" mnemonicParsing="false" text="取消" />
-            <Label fx:id="result" layoutX="712.0" layoutY="70.0" textFill="RED" />
+            <Label fx:id="result" layoutX="712.0" layoutY="70.0" text="                       " textFill="RED" />
          </children>
       </Pane>
    </children>

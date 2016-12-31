@@ -13,6 +13,6 @@
       <TextField fx:id="number" layoutX="427.0" layoutY="202.0" onAction="#GetNumber" />
       <Label layoutX="330.0" layoutY="268.0" text="信用恢复" />
       <ChoiceBox fx:id="isall" layoutX="427.0" layoutY="264.0" prefWidth="150.0" />
-      <Label fx:id="result" layoutX="435.0" layoutY="436.0" textFill="RED" />
+      <Label fx:id="result" layoutX="402.0" layoutY="436.0" text="                          " textFill="RED" />
    </children>
 </AnchorPane>

@@ -12,6 +12,7 @@ import common.vo.UserVO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -23,10 +24,11 @@ public class MemberManageController {
 	@FXML
 	Pane change;
         @FXML
-        TextField name,password,role,contact,hotel,id,Name,Role,Contact,Hotel,ID;
+        TextField name,password,contact,hotel,id,Name,Contact,Hotel,ID;
 	@FXML
 	AnchorPane all;
 	Label result;
+        ChoiceBox<String> type;
 	AnchorPane add;
     @FXML
     //新增用户
@@ -60,7 +62,8 @@ public class MemberManageController {
         }
 	
         public UserRole GetRole() throws IOException{
-                return UserRole.getUserRole(role.getText());
+            type.getItems().addAll("个人客户","企业客户","酒店工作人员","网站营销人员","网站管理人员");
+                return UserRole.getUserRole(type.getValue());
         }
         
         public String GetHotel() throws IOException{
@@ -84,19 +87,20 @@ public class MemberManageController {
         }
         
         public void clickChangeMemberR() throws IOException, Exception{
+            type.getItems().addAll("个人客户","企业客户","酒店工作人员","网站营销人员","网站管理人员");
                 all.getChildren().clear();
                 add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/MemberManage/Change.fxml").toURL()));
                 all.getChildren().add(add);
               
                 Name.setText(ShowName());
                 ID.setText(ShowID());
-                Role.setText(ShowRole().toString());
+                type.setAccessibleText(ShowRole().toString());
                 Hotel.setText(ShowHotel());
                 Contact.setText(ShowContact());
         }
         
         public void clickChangeR() throws IOException, Exception{
-                UserPO po=new UserPO(ID.getText(),UserRole.getUserRole(Role.getText()));
+                UserPO po=new UserPO(GetId(),GetRole());
                 po.setContact(Contact.getText());
                 po.setName(Name.getText());
                 po.setbelonghotel(Hotel.getText());
@@ -117,13 +121,14 @@ public class MemberManageController {
         }
 
         public void clickGetMemberR() throws IOException, Exception{
+            type.getItems().addAll("个人客户","企业客户","酒店工作人员","网站营销人员","网站管理人员");
                 all.getChildren().clear();
                 add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/MemberManage/ShowMember.fxml").toURL()));
                 all.getChildren().add(add);
                 //显示信息                                              
                     Name.setText(ShowName());
                     ID.setText(ShowID());
-                    Role.setText(ShowRole().toString());
+                    type.setAccessibleText(ShowRole().toString());
                     Hotel.setText(ShowHotel());
                     Contact.setText(ShowContact());
                 

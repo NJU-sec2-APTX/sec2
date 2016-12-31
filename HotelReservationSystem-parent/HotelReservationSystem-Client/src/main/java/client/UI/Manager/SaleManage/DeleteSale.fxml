@@ -11,6 +11,6 @@
       <Button layoutX="524.0" layoutY="380.0" mnemonicParsing="false" text="取消" />
       <Label layoutX="336.0" layoutY="206.0" text="ID" />
       <TextField fx:id="id" layoutX="427.0" layoutY="202.0" onAction="#GetId" />
-      <Label fx:id="result" layoutX="435.0" layoutY="428.0" textFill="RED" />
+      <Label fx:id="result" layoutX="435.0" layoutY="428.0" text="                                " textFill="RED" />
    </children>
 </AnchorPane>
