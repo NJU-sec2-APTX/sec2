@@ -1,12 +1,17 @@
 package common.po;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import common.otherEnumClasses.OrderState;
 import common.vo.OrderVO;
 
-public class OrderPO {
+public class OrderPO  implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4418625116144117845L;
 	private String id;
 	private String hotelId;
 	private double price;

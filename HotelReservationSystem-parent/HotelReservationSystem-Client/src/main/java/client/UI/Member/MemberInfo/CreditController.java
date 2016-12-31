@@ -41,9 +41,12 @@ public class CreditController  {
          int size=creditList.size();
          if (size!=0) {
             for(int i=0;i<size;i++){
-                FXMLLoader fxml=new FXMLLoader();
-                AnchorPane addAnchorPane=fxml.load((new File("src/main/java/client/UI/Member/MemberInfo/CreditSingle.fxml").toURL()));
+                FXMLLoader fxml=new FXMLLoader((new File("src/main/java/client/UI/Member/MemberInfo/CreditSingle.fxml").toURL()));
+                AnchorPane addAnchorPane=fxml.load();
+                System.out.println((addAnchorPane==null)+"134");
                 CreditSingleController cc=fxml.getController();
+                System.out.println(fxml.getController()==null);
+                System.out.println(cc==null);
                 cc.show(creditList.get(i));
                 showPane.getChildrenUnmodifiable().add(addAnchorPane);
             }

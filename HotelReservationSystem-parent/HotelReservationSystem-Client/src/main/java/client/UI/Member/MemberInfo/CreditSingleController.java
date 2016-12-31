@@ -43,6 +43,7 @@ public class CreditSingleController  {
         changeLabel.setText(memberItem.getChange()+"");
         creditLabel.setText(memberItem.getCredit()+"");
     }
+    @FXML
     public void initialize() {
     }    
     

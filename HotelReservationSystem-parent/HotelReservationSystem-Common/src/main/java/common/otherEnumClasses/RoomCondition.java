@@ -1,7 +1,13 @@
 package common.otherEnumClasses;
 
-public class RoomCondition {
+import java.io.Serializable;
 
+public class RoomCondition implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1705412326867711177L;
 	public String id;// 唯一标识，便于数据库查找
 	public String hotelId;
 	public RoomType type = null;

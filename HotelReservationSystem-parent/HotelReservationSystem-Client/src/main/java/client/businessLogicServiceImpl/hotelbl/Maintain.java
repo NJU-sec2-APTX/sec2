@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 
 import client.Client;
 import client.businessLogicService.hotelblService.HotelblMaintainService;
-import common.otherEnumClasses.RoomState;
 import common.po.HotelPO;
 import common.vo.HotelVO;
 
@@ -13,8 +12,14 @@ public class Maintain implements HotelblMaintainService {
 	@Override
 	public HotelVO getHotelInfo(String hotelId) {
 		try {
-			return new HotelVO(Client.getHotelDataService().getHotelInfo(hotelId));
-		} catch (RemoteException e) {}
+			HotelVO vo=new HotelVO(Client.getHotelDataService().getHotelInfo(hotelId));
+			System.out.println(vo==null);
+			System.out.println(vo.name);
+			return vo;
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		System.out.println("111");
 		return null;
 	}
 

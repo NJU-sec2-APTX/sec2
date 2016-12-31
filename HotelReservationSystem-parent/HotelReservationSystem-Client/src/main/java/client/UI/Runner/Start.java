@@ -42,7 +42,7 @@ public class Start extends Application  {
 		primaryStage.show();
                 primaryStage.setOnCloseRequest((WindowEvent event) -> {
                     System.out.print("监听到窗口关闭");
-                    if (person.id==null) {
+                    if (person.id!=null) {
                         System.out.print("退出"+person.id);
                         if (null!=person.role)
                             User_Factory.getUserService().logout(person.id,person.role);

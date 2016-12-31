@@ -74,8 +74,8 @@ public class PersonInfoRepController {
         contactLabel.setText(mvo.getContact());
         creditLabel.setText(mvo.getCredit()+"");
         rankLabel.setText(mvo.getLevel()+"");
-        yearLabel.setText(mvo.getBirthday().getYear()+"");
-        monthLabel.setText(mvo.getBirthday().getMonth()+"");
-        dayLabel.setText(mvo.getBirthday().getDay()+"");
+        yearLabel.setText(mvo.getBirthday().getYear()+1900+"");
+        monthLabel.setText(mvo.getBirthday().getMonth()+1+"");
+        dayLabel.setText(mvo.getBirthday().getDate()+"");
     }
 }

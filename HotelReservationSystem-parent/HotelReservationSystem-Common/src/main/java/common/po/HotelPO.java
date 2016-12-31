@@ -1,12 +1,17 @@
 package common.po;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import common.otherEnumClasses.RoomCondition;
 import common.vo.HotelVO;
 
-public class HotelPO {
+public class HotelPO implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2353712117069542017L;
 	private String id;
 	private String name;
 	private String area;

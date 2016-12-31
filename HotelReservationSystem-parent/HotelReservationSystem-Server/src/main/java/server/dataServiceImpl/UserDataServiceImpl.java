@@ -70,7 +70,6 @@ public class UserDataServiceImpl extends UnicastRemoteObject implements UserData
 					}
 				}else{
 					databasehelper.close();
-					System.out.println("here?");
 					return ResultMessage.Failure;
 				}
 			}

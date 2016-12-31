@@ -6,8 +6,10 @@ package client.UI.Hotel;
 import client.UI.Runner.Start;
 import static client.UI.Runner.Start.person;
 import client.businessLogicService.HotelFactory;
+import client.businessLogicService.MemberFactory;
 import client.businessLogicService.User_Factory;
 import client.businessLogicService.userblService.UserIFactory;
+import common.otherEnumClasses.UserRole;
 import common.vo.HotelVO;
 import java.io.File;
 import java.io.IOException;
@@ -85,6 +87,8 @@ public class HotelUIController {
     public void initialize()throws IOException{
          System.out.println("executeOrderButton");
          HotelVO hotelVO=HotelFactory.getHotelMaintainService().getHotelInfo(Start.person.id);
+         System.out.println(Start.person.id);
+         System.out.println(hotelVO==null);
          accountLabel.setText("Welcome"+hotelVO.name);
         rep.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Hotel/ExecuteOrder/RoomBase.fxml").toURL())));
     }
