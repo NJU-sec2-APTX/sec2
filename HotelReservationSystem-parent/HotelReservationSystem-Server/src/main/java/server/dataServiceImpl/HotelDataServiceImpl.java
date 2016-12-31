@@ -67,7 +67,7 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 			}
 		} catch (SQLException e) {
 		}
-		return r;
+		return r; 
 	}
 
 	@Override
