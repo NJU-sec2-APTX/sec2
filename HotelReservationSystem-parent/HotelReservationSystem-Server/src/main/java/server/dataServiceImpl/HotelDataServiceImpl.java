@@ -6,10 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.print.attribute.standard.RequestingUserName;
-
-import org.omg.PortableServer.POA;
-
 import common.dataService.HotelDataService;
 import common.otherEnumClasses.HotelSearchConditions;
 import common.otherEnumClasses.RoomCondition;
