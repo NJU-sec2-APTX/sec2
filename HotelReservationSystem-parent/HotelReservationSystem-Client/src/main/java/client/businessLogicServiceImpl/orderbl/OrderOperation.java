@@ -191,4 +191,15 @@ public class OrderOperation implements OrderblService {
 		rooms.get(2).restNum += Integer.parseInt(num.substring(temp + 1));
 		return rooms;
 	}
+
+	@Override
+	public OrderVO searchOrderById(String id) {
+		OrderVO vo = new OrderVO();
+		try {
+			vo = new OrderVO(Client.getOrderDataService().findOrderFromData(id));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return vo;
+	}
 }

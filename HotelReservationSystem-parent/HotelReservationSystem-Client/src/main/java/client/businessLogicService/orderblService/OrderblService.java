@@ -26,6 +26,13 @@ public interface OrderblService {
 	 */
 	public ArrayList<OrderVO> searchOrderListFromData(Person person, OrderState state, HotelVO hotelVO);
 	
+	/**
+	 * 
+	 *@description 根据订单号搜索订单信息
+	 *@param 订单号
+	 *@return 订单VO
+	 */
+	public OrderVO searchOrderById(String id);
 	
 	/**
 	 * 
