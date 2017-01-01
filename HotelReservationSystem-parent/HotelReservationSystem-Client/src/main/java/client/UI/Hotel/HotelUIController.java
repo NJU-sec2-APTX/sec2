@@ -85,7 +85,7 @@ public class HotelUIController {
     public void initialize()throws IOException{
          System.out.println("executeOrderButton");
          HotelVO hotelVO=HotelFactory.getHotelMaintainService().getHotelInfo(Start.person.id);
-         accountLabel.setText("Welcome"+hotelVO.name);
+         accountLabel.setText("Welcome! "+hotelVO.name);
         rep.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Hotel/ExecuteOrder/RoomBase.fxml").toURL())));
     }
     

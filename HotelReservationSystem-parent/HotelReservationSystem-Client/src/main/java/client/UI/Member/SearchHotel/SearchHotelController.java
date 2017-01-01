@@ -27,6 +27,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -69,9 +71,10 @@ public class SearchHotelController {
     public ArrayList<HotelVO> hotelList;
     @FXML
     private Label tipLabel;
-    @FXML
     private TextField addressField;
     boolean isHaveHotel;
+    @FXML
+    private ChoiceBox<String> addressChooseBox;
     @FXML
     private void markButtonHandler(ActionEvent event)throws Exception {//评分排序
         if (isHaveHotel) {
@@ -102,42 +105,44 @@ public class SearchHotelController {
             tipLabel.setVisible(false);
             String name=hotelNameField.getText();
             String address=addressField.getText();
-            hotelList=HotelFactory.getHotelBrowseService().getHotelList(name, address, null, null);
+            String areaString1=areaBox.getValue();
+            hotelList=HotelFactory.getHotelBrowseService().getHotelList(areaString,address, null, Start.person.id);
             show();
         }
     }
     
     
     private void show()throws Exception{//把得到的list输出
+         VBox box=new VBox();
         if (hotelList.isEmpty()) {
-                FXMLLoader fxmll=new FXMLLoader();
-                AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Member/OrderBrowse/Single.fxml").toURL()));
-               SingleController sc=fxmll.getController();
+                FXMLLoader fxmll=new FXMLLoader((new File("src/main/java/client/UI/Member/SearchHotel/Single.fxml").toURL()));
+                AnchorPane addAnchorPane=fxmll.load();
+                SingleController sc=fxmll.getController();
                 sc.show(null);
-                showPane.getChildrenUnmodifiable().add(addAnchorPane);
+                box.getChildren().add(addAnchorPane);
         }else{
                 for(int i=0;i<hotelList.size();i++){
-                    
                     if(isRerveredCheeckBox.isSelected()){
                         if (hotelList.get(i).isEverReserved) {
                             FXMLLoader fxmll=new FXMLLoader();
-                            AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Member/OrderBrowse/Single.fxml").toURL()));
+                            AnchorPane addAnchorPane=fxmll.load((new File("src/main/java/client/UI/Member/SearchHotel/Single.fxml").toURL()));
                             SingleController sc=fxmll.getController();
                             sc.show(hotelList.get(i));
-                            showPane.getChildrenUnmodifiable().add(addAnchorPane);
+                            box.getChildren().add(addAnchorPane);
                         }else{
                             continue;
                         }
                     }else{
                         FXMLLoader fxmll=new FXMLLoader();
-                        AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Member/OrderBrowse/Single.fxml").toURL()));
+                        AnchorPane addAnchorPane=fxmll.load((new File("src/main/java/client/UI/Member/SearchHotel/Single.fxml").toURL()));
                         SingleController sc=fxmll.getController();
                         sc.show(hotelList.get(i));
-                        showPane.getChildrenUnmodifiable().add(addAnchorPane);
+                        box.getChildren().add(addAnchorPane);
                     }
                     
                 }
             }
+        showPane.setContent(box);
     }
     
     public HotelSearchConditions makeConditions(){
@@ -189,7 +194,7 @@ public class SearchHotelController {
     }
     
     public void initialize(){//初始化
-        areaBox.getItems().addAll("栖霞","建邺","鼓楼","浦口","玄武");
+        areaBox.getItems().addAll("北京","上海","南京");
         starBox.getItems().addAll("一星以上","两星以上","三星以上","四星以上","五星");
         markBox.getItems().addAll("一分以上","两分以上","三分以上","四分以上","五分");
         priceBox.getItems().addAll("200以下","200-300","300-400","500以上");

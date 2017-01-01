@@ -5,6 +5,7 @@
  */
 package client.UI.Member.MemberInfo;
 
+import static common.otherEnumClasses.CreditOperation.Recharge;
 import common.otherEnumClasses.MemberItem;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,8 +41,30 @@ public class CreditSingleController  {
      * Initializes the controller class.
      */
     public void show(MemberItem memberItem){
-        idLabel.setText(memberItem.getOrderID());
-        oprationLabel.setText(memberItem.getOperation().toString());
+        if (memberItem.getOrderID()==null||memberItem.getOrderID().equals("null")) {
+            System.out.println("1");
+             idLabel.setText("无");
+        }else{
+            System.out.println("2");
+             idLabel.setText(memberItem.getOrderID());
+        }
+        switch(memberItem.getOperation()){
+            case Recharge:
+                 oprationLabel.setText("充值");
+                break;
+            case Exception:
+                 oprationLabel.setText("异常");
+                break;
+            case Cancel:
+                 oprationLabel.setText("取消订单");
+                break;
+            case ExceptionCancel:
+                 oprationLabel.setText("异常订单取消");
+                break;
+            case Execute:
+                 oprationLabel.setText("执行");
+                break;
+        }
         makeLabel.setText(memberItem.getDate().toString());
         changeLabel.setText(memberItem.getChange()+"");
         creditLabel.setText(memberItem.getCredit()+"");

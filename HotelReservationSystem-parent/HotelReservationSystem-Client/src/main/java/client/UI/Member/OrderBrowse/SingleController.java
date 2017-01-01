@@ -42,6 +42,10 @@ public class SingleController  {
    public void show( OrderVO orderVO){
         if(orderVO == null){
             IDLabel.setText("无");
+            makeTimeLabel.setText("");
+            hotelLabel.setText("");
+            executeTimeLabel.setText("");
+            statueLabel.setText("");
             cancelButton.setVisible(false);
         }else{
             IDLabel.setText(orderVO.id);

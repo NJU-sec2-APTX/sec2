@@ -49,7 +49,7 @@ public class CreditController  {
                 AnchorPane addAnchorPane=fxml.load();
                 CreditSingleController cc=fxml.getController();
                 cc.show(creditList.get(i));
-                box.getChildrenUnmodifiable().add(addAnchorPane);
+                box.getChildren().add(addAnchorPane);
             }
             showPane.setContent(box);
             }
@@ -59,7 +59,15 @@ public class CreditController  {
      }
 
     @FXML
-    private void backButtonHandler(ActionEvent event) {
-        
+    private void backButtonHandler(ActionEvent event)throws Exception {
+         if(Start.person.role==UserRole.Member){
+            System.out.println("memberInfoButton");
+            repBase.getChildren().clear();
+            repBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/MemberInfo/PersonInfoRep.fxml")).toURL()));
+        }else{
+            System.out.println("memberInfoButton");
+            repBase.getChildren().clear();
+            repBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/MemberInfo/EnterpriseInfoRep.fxml")).toURL()));
+        }
     }
 }

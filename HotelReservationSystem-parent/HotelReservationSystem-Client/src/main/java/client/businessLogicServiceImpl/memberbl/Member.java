@@ -60,9 +60,12 @@ public class Member{
 	 */
 	public MemberVO getMemberInfo() throws Exception{
 		if(Client.getMemberDataService().find(memberpo.getId())==null){
+			System.out.println(memberpo.getId());
+			System.out.println("111");
 			return null;
 		}else{
 			if(memberpo.getUserRole()!=Client.getMemberDataService().find(memberpo.getId()).getUserRole()){
+				System.out.println("222");
 				return null;
 			}
 			memberpo=Client.getMemberDataService().find(memberpo.getId());

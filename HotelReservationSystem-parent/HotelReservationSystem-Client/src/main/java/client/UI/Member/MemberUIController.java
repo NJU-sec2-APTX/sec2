@@ -54,9 +54,11 @@ public class MemberUIController  {
         base.getChildren().clear();
         base.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Runner/Runner.fxml").toURL())));
         System.out.print("退出"+person.id);
-        if (null!=person.role)
+        if (null!=person.role){
          User_Factory.getUserService().logout(person.id,person.role);
          System.out.println("登出");
+        }
+        
     }
 
     @FXML
@@ -90,8 +92,9 @@ public class MemberUIController  {
     public  void initialize()throws Exception{
         replacePane.getChildren().clear();
         replacePane.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/SearchHotel/SearchHotel.fxml")).toURL()));
-        MemberVO vO=MemberFactory.getMemberMaintainService(person.id, UserRole.Member).getInfo();
-        accountField.setText("Welcome"+vO.getName());
+        System.err.println(person.id);
+        MemberVO vO=MemberFactory.getMemberMaintainService(Start.person.id, UserRole.Member).getInfo();
+        accountField.setText("Welcome! "+vO.getName());
     }
     
 }

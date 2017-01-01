@@ -12,6 +12,8 @@ public class BrowseController implements HotelblBrowseService{
 	BrowseHotel bh;
 	@Override
 	public ArrayList<HotelVO> getHotelList(String area, String address, HotelSearchConditions searchItems, String clientId) {
+                System.out.println(area==null+"1");
+                System.out.println(area==null+"2");
 		return bh.browse(area, address, searchItems, clientId);
 	}
 

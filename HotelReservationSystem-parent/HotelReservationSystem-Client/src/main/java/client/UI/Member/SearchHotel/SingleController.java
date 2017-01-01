@@ -46,7 +46,7 @@ public class SingleController  {
     @FXML
     private void bookButtonHandler(ActionEvent event) throws Exception{
         FXMLLoader fxmll=new FXMLLoader();
-        AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Member/OrderBrowse/MakeOrder.fxml").toURL()));
+        AnchorPane addAnchorPane=fxmll.load((new File("src/main/java/client/UI/Member/OrderBrowse/MakeOrder.fxml").toURL()));
         MakeOrderController moc=fxmll.getController();
         moc.show(hotelVO);
     }
@@ -69,7 +69,7 @@ public class SingleController  {
     @FXML
     private void browseButtonHandler(ActionEvent event)throws  Exception{
         FXMLLoader fxmll=new FXMLLoader();
-        AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Member/OrderBrowse/HotelDetial.fxml").toURL()));
+        AnchorPane addAnchorPane=fxmll.load((new File("src/main/java/client/UI/Member/OrderBrowse/HotelDetial.fxml").toURL()));
         HotelDetialController hdc=fxmll.getController();
         hdc.show(hotelVO);
     }

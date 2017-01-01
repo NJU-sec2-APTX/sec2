@@ -12,28 +12,27 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 public class ChargeController {
+        @FXML
 	Button  Charge;
 	@FXML
 	Pane change;
-	AnchorPane all;
-	TextField id,money=new TextField();
+        @FXML
+	TextField id,money;
         @FXML
 	AnchorPane add;
+        @FXML
         Label result;
+        @FXML
 	public void  Charge() throws IOException, Exception {
-		User_Factory.getWebsiteSalesController(Start.person.id).recharge(GetId(), GetMoney());
-                if(User_Factory.getWebsiteSalesController(Start.person.id).recharge(GetId(), GetMoney())==ResultMessage.Success){
+            if(Integer.parseInt(money.getText())>0){
+                if(User_Factory.getWebsiteSalesController(Start.person.id).recharge(id.getText(), Integer.parseInt(money.getText()))==ResultMessage.Success){
                     result.setText("充值成功");
                 }else{
                     result.setText("充值失败");
                 }
+            }else{
+                    result.setText("充值失败");
+            }
 	}
-        
-        public String GetId() throws IOException{
-                return id.getText();
-        }
-        
-        public int GetMoney() throws IOException{
-                return Integer.parseInt(money.getText());
-        }
+
 }

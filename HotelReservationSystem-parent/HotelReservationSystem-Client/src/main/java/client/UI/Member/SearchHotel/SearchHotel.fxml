@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Member.SearchHotel.SearchHotelController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Member.SearchHotel.SearchHotelController">
    <children>
       <Pane prefHeight="191.0" prefWidth="870.0">
          <children>
@@ -23,7 +29,7 @@
               </items>
             </ToolBar>
             <ScrollPane fx:id="showPane" layoutY="232.0" prefHeight="304.0" prefWidth="870.0" />
-            <Label layoutX="25.0" layoutY="26.0" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: white;" text="商圈：" textAlignment="CENTER">
+            <Label layoutX="25.0" layoutY="26.0" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: white;" text="城市：" textAlignment="CENTER">
                <font>
                   <Font size="19.0" />
                </font>
@@ -38,7 +44,7 @@
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label layoutX="516.0" layoutY="26.0" prefHeight="28.0" prefWidth="95.0" style="-fx-background-color: white;" text="酒店名称：" textAlignment="CENTER">
+            <Label layoutX="429.0" layoutY="25.0" prefHeight="28.0" prefWidth="95.0" style="-fx-background-color: white;" text="酒店名称：" textAlignment="CENTER">
                <font>
                   <Font size="19.0" />
                </font>
@@ -46,8 +52,7 @@
             <Button fx:id="clearSearchButton" layoutX="775.0" layoutY="25.0" mnemonicParsing="false" onAction="#clearSearchButtonHandler" prefHeight="30.0" prefWidth="82.0" style="-fx-background-color: #b3e6b3;" text="明确搜索" />
             <ChoiceBox fx:id="areaBox" layoutX="93.0" layoutY="24.0" prefHeight="30.0" prefWidth="127.0" />
             <ChoiceBox fx:id="starBox" layoutX="93.0" layoutY="77.0" prefHeight="30.0" prefWidth="127.0" />
-            <TextField fx:id="addressField" layoutX="305.0" layoutY="25.0" prefHeight="30.0" prefWidth="163.0" />
-            <TextField fx:id="hotelNameField" layoutX="618.0" layoutY="25.0" prefHeight="30.0" prefWidth="133.0" />
+            <TextField fx:id="hotelNameField" layoutX="562.0" layoutY="25.0" prefHeight="30.0" prefWidth="133.0" />
             <CheckBox fx:id="isRerveredCheeckBox" layoutX="707.0" layoutY="157.0" mnemonicParsing="false" text="只搜索预定过的酒店" />
             <Label layoutX="25.0" layoutY="128.0" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: white;" text="房间类型：" textAlignment="CENTER">
                <font>
@@ -92,6 +97,7 @@
                   <Font size="19.0" />
                </font>
             </Label>
+            <ChoiceBox fx:id="addressChooseBox" layoutX="304.0" layoutY="25.0" prefHeight="30.0" prefWidth="102.0" />
          </children>
       </Pane>
    </children>

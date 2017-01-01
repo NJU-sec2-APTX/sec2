@@ -63,10 +63,13 @@ public class LoginController {
 		String password=passwordField.getText();
                 UserRole userRole=checkRole();
                 System.out.println(userRole.toString());
+                System.out.println(userRole);
                 ResultMessage result=User_Factory.getUserService().login(account, userRole, password);
                try {
                    switch (result){
                        case Success:
+                           Start.person.id=account;
+                           Start.person.role=userRole;
                             switch(userRole){
                                 case Enterprise:
                                 loginBase.getChildren( ).clear();
@@ -98,7 +101,7 @@ public class LoginController {
                            tipLabel.setText("密码错误");
                            break;
                        case  Logged:
-                           tipLabel.setText("该账号已被注册");
+                           tipLabel.setText("该账号已被登录");
                            break;
                 }            
             } catch (Exception e) { 
