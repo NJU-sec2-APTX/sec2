@@ -12,7 +12,7 @@ public class HotelVO {
 	public String area;
 	public String address;
 	public String introduction;
-	public double price;
+	public double price = 0.0;
 	public int star;
 	public double mark;
 	public ArrayList<RoomCondition> rooms;
@@ -35,6 +35,7 @@ public class HotelVO {
 	}
 	
 	public HotelVO(HotelPO hotelPO, boolean isEverReserved){
+                id = hotelPO.getId();
 		name = hotelPO.getName();
 		area = hotelPO.getArea();
 		address = hotelPO.getAddress();

@@ -25,11 +25,13 @@ public class Strategy {
 	
 	public StrategyList calPrice(OrderVO OrderVO) throws RemoteException{
 		if(OrderVO!=null){
+                    System.out.println(OrderVO.price);
 			strategy_price=new StrategyList();
 			ArrayList<StrategyVO> list=Client.getStrategyDataService().CalAll();
 			for(int i=0;i<list.size();i++){
+                            System.out.println(list.get(i).getStrategyType());
 				StrategyVO TempStrategy=list.get(i);
-				MemberVO membervo=new MemberVO(Client.getMemberDataService().find(TempStrategy.getID()));
+				MemberVO membervo=new MemberVO(Client.getMemberDataService().find(OrderVO.clientId));
 				if(TempStrategy.getName().equals("MemberLevel")){
 					if(TempStrategy.getLevel()<=membervo.getLevel()){
 						double p=OrderVO.price*TempStrategy.getCount();
@@ -91,6 +93,7 @@ public class Strategy {
 					}
 				}
 			}
+                        System.out.println(strategy_price.getfirstStrategy().getPrice());
 			return strategy_price;
 		}else{
 			return null;

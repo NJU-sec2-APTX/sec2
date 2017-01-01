@@ -40,8 +40,11 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 				po.setMark(rs.getDouble(8));
 				po.setAssessNum(rs.getInt(9));
 			}
-			return getRooms(po);
+                        po = getRooms(po);
+                        return po;
+			
 		} catch (SQLException e) {
+                    e.printStackTrace();
 		}
 		return null;
 	}
@@ -66,6 +69,7 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 				r.restNum = rs.getInt(6);
 			}
 		} catch (SQLException e) {
+                    e.printStackTrace();
 		}
 		return r; 
 	}
@@ -117,7 +121,10 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 	@Override
 	public ArrayList<HotelPO> getHotelList(String area, String address, HotelSearchConditions searchItems) {
 		ArrayList<HotelPO> pos = new ArrayList<HotelPO>();
-		String sql = "select * from hotel where area = '" + area +"'&&address = '" + address 
+                String sql;
+                System.out.println("**********************");
+                System.out.println(searchItems==null);
+                sql = "select * from hotel where area = '" + area +"'&&address = '" + address 
 				+ "'&&price <= '" + searchItems.priceUp + "'&&price >= '" + searchItems.priceDown
 				+ "'&&star <= '" + searchItems.starUp + "'&&star >= '" + searchItems.starDown
 				+ "'&&mark <= '" + searchItems.markUp + "'&&mark >= '" + searchItems.markDown
@@ -126,9 +133,12 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 			data = new DBHelper(sql);
 			rs = data.pst.executeQuery(sql);
 			while(rs.next()){
-				pos.add(getHotel(rs));
+				pos.add(getRooms(getHotel(rs)));
 			}
-		} catch (SQLException e) {}
+		} catch (Exception e) {
+                e.printStackTrace();
+                }
+                System.out.println(pos.size());
 		return pos;
 	}
 

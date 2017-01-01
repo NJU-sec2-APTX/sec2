@@ -52,9 +52,23 @@ public class OrderOperation implements OrderblService {
 	public OrderVO calPrice(OrderVO vo) {
 		StrategyPriceService calprice = new PriceController();
 		try {
-			vo.price = calprice.calPrice(vo).getfirstStrategy().getPrice();
+                    HotelPO hotel = Client.getHotelDataService().getHotelInfo(vo.hotelId);
+                    System.out.println("*******");
+                    System.out.println(vo.hotelId);
+                    String num = vo.numOfRoom;
+                    System.out.println(num);
+                    int temp = num.indexOf('/');
+                    vo.price += hotel.getRooms().get(0).price*Integer.parseInt(num.substring(0, temp));
+                    num = num.substring(temp + 1);
+			temp = num.indexOf('/');
+                    vo.price += hotel.getRooms().get(1).price*Integer.parseInt(num.substring(0, temp));
+                    vo.price += hotel.getRooms().get(2).price*Integer.parseInt(num.substring(temp + 1));
+                    
+                    System.out.println(vo.price);
+                    vo.price = calprice.calPrice(vo).getfirstStrategy().getPrice();
 		} catch (RemoteException e) {
 		}
+                System.out.println(vo.price);
 		return vo;
 	}
 

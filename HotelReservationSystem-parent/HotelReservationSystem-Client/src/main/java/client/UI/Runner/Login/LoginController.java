@@ -58,12 +58,9 @@ public class LoginController {
     }
         @FXML
 	void okButtonHandler(){
-                System.out.println("okButton");
                 String account=accountField.getText();
 		String password=passwordField.getText();
                 UserRole userRole=checkRole();
-                System.out.println(userRole.toString());
-                System.out.println(userRole);
                 ResultMessage result=User_Factory.getUserService().login(account, userRole, password);
                try {
                    switch (result){
@@ -114,6 +111,5 @@ public class LoginController {
 	void cancelButtonHandler()throws IOException{
                 loginBase.getChildren().clear(  );
                 loginBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Runner/Runner.fxml")).toURL()));
-                System.out.println("cancelButton");
 	}
 }

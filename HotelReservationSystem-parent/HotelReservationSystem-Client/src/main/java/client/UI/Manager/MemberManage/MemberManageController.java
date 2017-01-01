@@ -40,27 +40,8 @@ public class MemberManageController {
 		all.getChildren().clear();
 		add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/MemberManage/AddMember.fxml").toURL()));
                 all.getChildren().add(add );
-	}
-	
-         public void clickAddMemberR() throws IOException, Exception{
-                Initialize chushi=new Initialize();
-                chushi.initialize(role);
-                UserPO po=new UserPO(id.getText(),UserRole.getUserRole(role.getValue()));
-                po.setContact(contact.getText());
-                po.setName(name.getText());
-                po.setPassword(password.getText());
-                po.setbelonghotel(hotel.getText());
-                UserVO vo=new UserVO(po);
-                ResultMessage rm=User_Factory.getWebsiteManagerController(Start.person.id).addUser(vo);
-                if(rm==ResultMessage.Success){
-                    result.setText("新增用户成功");
-                }else{
-                    result.setText("新增失败");
-                }
         }
-
-     
-        
+            
     @FXML
     //修改用户信息
         public void ChangeMember() throws IOException{
@@ -68,36 +49,7 @@ public class MemberManageController {
                 add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/MemberManage/ChangeMember.fxml").toURL()));
                 all.getChildren().add(add);
         }
-        
-        public void clickChangeMemberR() throws IOException, Exception{
-                Initialize chushi=new Initialize();
-                chushi.initialize(Crole);
-                all.getChildren().clear();
-                add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/MemberManage/Change.fxml").toURL()));
-                all.getChildren().add(add);
-                UserVO vo=User_Factory.getWebsiteManagerController(Start.person.id).getUserInfo(Cid.getText(), UserRole.getUserRole(Crole.getValue()));
-                chushi.initialize(crole);
-                cname.setText(vo.getName());
-                cid.setText(vo.getId());
-                ccontact.setText(vo.getContact());
-                chotel.setText(vo.getBelongHotel());
-                crole.setAccessibleText(vo.getUserRole().toString());
-        }
-        
-        public void clickChangeR() throws IOException, Exception{
-                UserPO po=new UserPO(cid.getText(),UserRole.getUserRole(crole.getValue()));
-                po.setContact(ccontact.getText());
-                po.setName(cname.getText());
-                po.setbelonghotel(chotel.getText());
-                UserVO vo=new UserVO(po);
-                ResultMessage rm=User_Factory.getWebsiteManagerController(Start.person.id).modifyUserInfo(vo);
-                if(rm==ResultMessage.Success){
-                    result.setText("修改成功");
-                }else{
-                    result.setText("修改失败");
-                }
-        }
-        
+                
     //查看用户
         public void GetMember() throws IOException{
                 all.getChildren().clear();
@@ -105,18 +57,5 @@ public class MemberManageController {
                 all.getChildren().add(add);
         }
 
-        public void clickGetMemberR() throws IOException, Exception{
-                Initialize chushi=new Initialize();
-                chushi.initialize(Grole);
-                all.getChildren().clear();
-                add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/MemberManage/ShowMember.fxml").toURL()));
-                all.getChildren().add(add);
-                UserVO vo=User_Factory.getWebsiteManagerController(Start.person.id).getUserInfo(Gid.getText(),UserRole.getUserRole(Grole.getValue()));
-                //显示信息                                              
-                gname.setText(vo.getName());
-                gid.setText(vo.getId());
-                ghotel.setText(vo.getBelongHotel());
-                grole.setText(vo.getUserRole().toString());
-                gcontact.setText(vo.getContact());
-        }
+   
 }

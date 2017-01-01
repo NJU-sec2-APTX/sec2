@@ -16,7 +16,6 @@ import common.vo.MemberVO;
 import common.vo.OrderVO;
 import java.io.File;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -58,7 +57,7 @@ public class MakeOrderController {
     @FXML
     private Label moneyLabel;
     public  HotelVO hotelVO;
-    public  OrderVO addOrderVO;
+    public  OrderVO addOrderVO=new OrderVO();
      MemberVO memberVO;
     @FXML
     private Label tipLabel;
@@ -81,63 +80,65 @@ public class MakeOrderController {
 
     @FXML
     private void cancelButtonHandler(ActionEvent event) throws Exception{
+        basePanel.getChildren().clear(); 
         basePanel.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/SearchHotel/SearchHotel.fxml")).toURL()));
     }
      /*
     *返回是否符合订单要求
     */
     private boolean calculate(){
-        try {
-        if(singleBox.getValue().equals(0)&&douBox.getValue().equals(0)&&famBox.equals(0)){
-            tipLabel.setText("请输入房间");
-            return false;
-        }else if(Integer.parseInt(numOfPersonField.getText())<0){
-            tipLabel.setText("请输入入住人数");
-        }else{
-            if (memberVO.getCredit()<=0) {
-                tipLabel.setText("用户信用值不足");
-                tipLabel.setVisible(true);
+            if(singleBox.getValue().equals(0)&&douBox.getValue().equals(0)&&famBox.equals(0)){
+                tipLabel.setText("请输入房间");
+                return false;
+            }else if(Integer.parseInt(numOfPersonField.getText())<0){
+                tipLabel.setText("请输入入住人数");
             }else{
-                addOrderVO.hotel=hotelVO.name;
-                String room;
-                if (singleBox.getValue()==null) {
-                    room="0/";
+                if (memberVO.getCredit()<=0) {
+                    tipLabel.setText("用户信用值不足");
+                    tipLabel.setVisible(true);
                 }else{
-                    room=singleBox.getValue() +"/";
-                }
-                if (douBox.getValue()==null) {
-                    room =room+"0/";
-                }else{
-                    room=room+douBox.getValue()+"/";
-                }
-                if(famBox.getValue()==null){
-                    room=room+"0";
-                }else{
-                    room=room+famBox.getValue();
-                }
+                    System.out.println(101+""+(hotelVO==null));
+                     System.out.println(101+""+(addOrderVO==null));
+                     System.out.println(101+""+(hotelVO.name==null));
+                    addOrderVO.hotel=hotelVO.name;
+                    String room;
+                    if (singleBox.getValue()==null) {
+                        room="0/";
+                    }else{
+                        room=singleBox.getValue() +"/";
+                    }
+                    if (douBox.getValue()==null) {
+                        room =room+"0/";
+                    }else{
+                        room=room+douBox.getValue()+"/";
+                    }
+                    if(famBox.getValue()==null){
+                        room=room+"0";
+                    }else{
+                        room=room+famBox.getValue();
+                    }
+                    addOrderVO.hotelId=hotelVO.id;
+                    addOrderVO.clientId=Start.person.id;
                 addOrderVO.numOfRoom=room;
                 addOrderVO.numberOfPerson=Integer.parseInt(numOfPersonField.getText());
                 addOrderVO.createdTime=LocalDateToDate.localDateToDate(inDatepicker.getValue());
-                addOrderVO.planExecuteTime=LocalDateToDate.localDateToDate(outDatePicker.getValue());
+                addOrderVO.planExecuteTime=LocalDateToDate.localDateToDate(inDatepicker.getValue());
+                addOrderVO.checkInTime=LocalDateToDate.localDateToDate(inDatepicker.getValue());
+                addOrderVO.checkOutTime=LocalDateToDate.localDateToDate(outDatePicker.getValue());
                 addOrderVO.hasChild=childrenCheckButton.isSelected();
-                moneyLabel.setText("");//
+                
+                moneyLabel.setText(OrderFactory.getOrderService().calPrice(addOrderVO).price+"");//
                 return true;
+                }
             }
-        }
-        }
-        catch (Exception e){
-            System.out.println("client.UI.Member.SearchHotel.MakeOrderController.calculate()");
-            e.printStackTrace();
-            return false;
-        }
-        return false;
+        return  false;
     }
     
     @FXML
     private void calButtonHandler(ActionEvent event) {
         calculate();
     }
-    
+    @FXML
     public void initialize()throws Exception{
         
     }
@@ -146,8 +147,11 @@ public class MakeOrderController {
         memberVO=MemberFactory.getMemberMaintainService(Start.person.id ,UserRole.Member).getInfo() ;
         hotelNameField.setEditable(false);
         hotelVO=h;
+        System.out.println(152+""+hotelVO==null);
         hotelNameField.setText(hotelVO.name);
         for(int i=0;i<3;i++){
+            System.out.print((hotelVO.rooms==null)+"*****");
+            System.out.println(hotelVO.rooms.size());
             int num=hotelVO.rooms.get(i).restNum;
             while(num!=0){
                 num--;

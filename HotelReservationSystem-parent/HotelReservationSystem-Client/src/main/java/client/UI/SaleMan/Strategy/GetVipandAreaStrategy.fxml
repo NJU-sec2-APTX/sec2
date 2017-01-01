@@ -4,7 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="all" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.SaleMan.Strategy.StrategyController">
+<AnchorPane fx:id="all" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.SaleMan.Strategy.GetVipandAreaStrategyController">
    <children>
       <Pane fx:id="change" prefHeight="550.0" prefWidth="870.0">
          <children>
@@ -21,7 +21,7 @@
                <children>
                   <Label text="策略名称" />
                   <Label GridPane.rowIndex="1" />
-                  <TextField fx:id="name" onAction="#GetName" GridPane.columnIndex="1" />
+                  <TextField fx:id="gvname" GridPane.columnIndex="1" />
                   <Label text="等级及对应折扣" GridPane.rowIndex="2" />
                   <Label text="商圈" GridPane.rowIndex="1" />
                   <GridPane gridLinesVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -42,18 +42,21 @@
                         <Label text="等级三" GridPane.rowIndex="2" />
                         <Label text="等级四" GridPane.rowIndex="3" />
                         <Label text="等级五" GridPane.rowIndex="4" />
-                        <TextField fx:id="count1" onAction="#GeCount" GridPane.columnIndex="1" />
-                        <TextField fx:id="count2" onAction="#GetCount" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="count3" onAction="#GetCount" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField fx:id="count5" onAction="#GetCount" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField fx:id="count4" onAction="#GetCount" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="gcount1" GridPane.columnIndex="1" />
+                        <TextField fx:id="gcount2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="gcount3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="gcount5" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="gcount4" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
-                  <ChoiceBox fx:id="area" onDragDetected="#GetArea" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <ChoiceBox fx:id="area" layoutX="97.0" layoutY="42.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="area1" layoutX="97.0" layoutY="85.0" prefWidth="150.0" />
+                     </children>
+                  </AnchorPane>
                </children>
             </GridPane>
-            <Button fx:id="AddVipandAreaStrategyR" layoutX="712.0" layoutY="122.0" mnemonicParsing="false" onAction="#clickAddVipandAreaStrategyR" text="确定" />
-            <Button layoutX="712.0" layoutY="179.0" mnemonicParsing="false" text="取消" />
          </children>
       </Pane>
    </children>

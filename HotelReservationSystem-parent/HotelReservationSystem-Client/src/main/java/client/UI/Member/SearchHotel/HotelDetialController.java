@@ -75,31 +75,33 @@ public class HotelDetialController {
     @FXML
     private ScrollPane orderPanel;
     HotelVO hotelVO;
- 
 
     @FXML
     private void cancelButtonHandler(ActionEvent event)throws Exception {
+        basePanel.getChildren().clear();    
         basePanel.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/SearchHotel/SearchHotel.fxml")).toURL()));
     }
 
     @FXML
     private void bookButtonHandler(ActionEvent event)throws Exception {
-        FXMLLoader fxmll=new FXMLLoader();
-        AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Member/OrderBrowse/MakeOrder.fxml").toURL()));
+        FXMLLoader fxmll=new FXMLLoader((new File("src/main/java/client/UI/Member/SearchHotel/MakeOrder.fxml").toURL()));
+        AnchorPane addAnchorPane=fxmll.load();
         MakeOrderController moc=fxmll.getController();
         moc.show(hotelVO);
+        basePanel.getChildren().clear();
+        basePanel.getChildren().add (addAnchorPane);
     }
     private void add(HotelVO hotelVO)throws Exception{//添加历史订单
         ArrayList<OrderVO> orderVOs=OrderFactory.getOrderService().searchOrderListFromData(Start.person,null, hotelVO);
         if (orderVOs.size()==0) {
-                FXMLLoader fxmll=new FXMLLoader();
-                AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Member/OrderBrowse/ReveredOrder.fxml").toURL()));
+                FXMLLoader fxmll=new FXMLLoader((new File("src/main/java/client/UI/Member/SearchHotel/ReveredOrder.fxml").toURL()));
+                AnchorPane addAnchorPane=fxmll.load();
                 ReveredOrderController sc=fxmll.getController();
                 sc.show(null);
         }else{
             for(int i=0;i<orderVOs.size();i++){
-                FXMLLoader fxmll=new FXMLLoader();
-                AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Member/OrderBrowse/ReveredOrder.fxml").toURL()));
+                FXMLLoader fxmll=new FXMLLoader((new File("src/main/java/client/UI/Member/SearchHotel/ReveredOrder.fxml").toURL()));
+                AnchorPane addAnchorPane=fxmll.load();
                 ReveredOrderController sc=fxmll.getController();
                 sc.show(orderVOs.get(i));
             }
@@ -117,6 +119,7 @@ public class HotelDetialController {
        starLabel.setText(hotelVO.star+"");
        singleLabel.setText(hotelVO.rooms.get(0).restNum+"");
        douLabel.setText(hotelVO.rooms.get(1).restNum+"");
+       famLabel.setText(hotelVO.rooms.get(2).restNum+"");
        areaLabel.setText(hotelVO.area);
        addressLabel.setText(hotelVO.address);
        add(hotelVO);

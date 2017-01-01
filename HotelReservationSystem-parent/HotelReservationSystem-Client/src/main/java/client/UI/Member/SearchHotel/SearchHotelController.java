@@ -77,6 +77,8 @@ public class SearchHotelController {
     @FXML
     private ChoiceBox<String> addressChooseBox;
     @FXML
+    private AnchorPane base;
+    @FXML
     private void markButtonHandler(ActionEvent event)throws Exception {//评分排序
         if (isHaveHotel) {
             HotelSearchConditions searchConditions=makeConditions();
@@ -107,7 +109,6 @@ public class SearchHotelController {
             String name=hotelNameField.getText();
             String address=addressChooseBox.getValue();
             String areaString1=areaBox.getValue();
-            
             hotelList=HotelFactory.getHotelBrowseService().getHotelList(areaString,address, new HotelSearchConditions(), Start.person.id);
             show();
         }
@@ -120,7 +121,7 @@ public class SearchHotelController {
                 FXMLLoader fxmll=new FXMLLoader((new File("src/main/java/client/UI/Member/SearchHotel/Single.fxml").toURL()));
                 AnchorPane addAnchorPane=fxmll.load();
                 SingleController sc=fxmll.getController();
-                sc.show(null);
+                sc.show(null,base);
                 box.getChildren().add(addAnchorPane);
         }else{
                 for(int i=0;i<hotelList.size();i++){
@@ -129,16 +130,17 @@ public class SearchHotelController {
                             FXMLLoader fxmll=new FXMLLoader();
                             AnchorPane addAnchorPane=fxmll.load((new File("src/main/java/client/UI/Member/SearchHotel/Single.fxml").toURL()));
                             SingleController sc=fxmll.getController();
-                            sc.show(hotelList.get(i));
+                            sc.show(hotelList.get(i),base);
                             box.getChildren().add(addAnchorPane);
                         }else{
                             continue;
                         }
                     }else{
-                        FXMLLoader fxmll=new FXMLLoader();
-                        AnchorPane addAnchorPane=fxmll.load((new File("src/main/java/client/UI/Member/SearchHotel/Single.fxml").toURL()));
+                        System.out.println(hotelList.get(i).id+"***"+i);
+                        FXMLLoader fxmll=new FXMLLoader((new File("src/main/java/client/UI/Member/SearchHotel/Single.fxml").toURL()));
+                        AnchorPane addAnchorPane=fxmll.load();
                         SingleController sc=fxmll.getController();
-                        sc.show(hotelList.get(i));
+                        sc.show(hotelList.get(i),base);
                         box.getChildren().add(addAnchorPane);
                     }
                     
@@ -147,15 +149,20 @@ public class SearchHotelController {
         showPane.setContent(box);
     }
     
-    public HotelSearchConditions makeConditions(){
+    public HotelSearchConditions makeConditions(){//生成搜索条件
         HotelSearchConditions hotelSearchConditions=new HotelSearchConditions();
             try{ 
                 String areaString=areaBox.getValue();
                 String name=hotelNameField.getText();
                 String address=addressChooseBox.getValue();
                 HotelSearchConditions searchItems=new HotelSearchConditions();
-                hotelSearchConditions.dateDown=LocalDateToDate.localDateToDate(outDatePicker.getValue());
-                hotelSearchConditions.dateUp=LocalDateToDate.localDateToDate(inDatepicker.getValue());
+                if (outDatePicker.getValue()!=null) {
+                     hotelSearchConditions.dateDown=LocalDateToDate.localDateToDate(outDatePicker.getValue());
+                }
+                if (inDatepicker.getValue()!=null) {
+                    hotelSearchConditions.dateUp=LocalDateToDate.localDateToDate(inDatepicker.getValue());
+                }
+                
                 hotelSearchConditions.hotelName=hotelNameField.getText();
                 hotelSearchConditions.onlyEverReserved=isRerveredCheeckBox.isSelected();
                 hotelSearchConditions.restHotelNumber=(numOfHotelField.getText()==null?0:Integer.parseInt(numOfHotelField.getText()));
@@ -168,15 +175,17 @@ public class SearchHotelController {
                 hotelSearchConditions.markDown=getMark(markString);
                 hotelSearchConditions.markUp=5;
                 hotelSearchConditions.priceDown=getPrice(priceString)[0];
-                hotelSearchConditions.priceUp=getPrice(priceString)[1];
-                hotelList=HotelFactory.getHotelBrowseService().getHotelList(areaString, address, searchItems, Start.person.id);
-                show();
+                hotelSearchConditions.priceUp=getPrice(priceString)[1]; 
+                System.out.println(hotelSearchConditions==null);
+                System.out.println(175);
+                return hotelSearchConditions;
             }catch (Exception e){
+                e.printStackTrace();
                 System.out.println("client.UI.Member.SearchHotel.SearchHotelController.roughSearchButtonHandler()");
                 tipLabel.setText("请正确输入信息");
                 return null;
             }
-                return null;
+               
     }
     
     @FXML
@@ -221,7 +230,7 @@ public class SearchHotelController {
         tipLabel.setVisible(false);
         isHaveHotel=false;
     }
-    private RoomType getRoomType(){
+    private RoomType getRoomType(){//房间类型
         String s=roomTypeBox.getValue();
         if(s==null){
             return null;
@@ -291,9 +300,11 @@ public class SearchHotelController {
     }
 
     @FXML
-    private void priceButtonHandler(ActionEvent event) throws Exception{
+    private void priceButtonHandler(ActionEvent event) throws Exception{//价格排序
         if (isHaveHotel) {
             HotelSearchConditions searchConditions=makeConditions();
+            System.out.println("client.UI.Member.SearchHotel.SearchHotelController.priceButtonHandler()300");
+            System.out.println(searchConditions==null);
             hotelList=HotelFactory.getHotelBrowseService().sortHotelList(areaBox.getValue(),addressChooseBox.getValue(), searchConditions, Start.person.id , SortFlag.star, true);
             show();
         }

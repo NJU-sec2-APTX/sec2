@@ -4,7 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="all" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Manager.SaleManage.SaleManageController">
+<AnchorPane fx:id="all" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Manager.SaleManage.ChangeController">
    <children>
       <Pane fx:id="change" layoutX="-7.0" prefHeight="550.0" prefWidth="870.0">
          <children>
@@ -21,10 +21,10 @@
                <children>
                   <Label text="昵称" />
                   <Label text="联系方式（邮箱/手机）" GridPane.rowIndex="2" />
-                  <TextField fx:id="Name" onAction="#ShowName" GridPane.columnIndex="1" />
-                  <TextField fx:id="Contact" onAction="#ShowContact" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="Name" GridPane.columnIndex="1" />
+                  <TextField fx:id="Contact" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="ID" GridPane.rowIndex="1" />
-                  <TextField fx:id="ID" onAction="#ShowID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="ID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <Button fx:id="ChangeR" layoutX="712.0" layoutY="146.0" mnemonicParsing="false" onAction="#clickChangeR" text="确定修改" />

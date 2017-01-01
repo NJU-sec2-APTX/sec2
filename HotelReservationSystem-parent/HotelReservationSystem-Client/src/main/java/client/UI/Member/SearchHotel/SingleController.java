@@ -42,36 +42,44 @@ public class SingleController  {
     private Button browseButton;
 
     private HotelVO hotelVO;
-
+    private AnchorPane anchorPane;
     @FXML
     private void bookButtonHandler(ActionEvent event) throws Exception{
-        FXMLLoader fxmll=new FXMLLoader();
-        AnchorPane addAnchorPane=fxmll.load((new File("src/main/java/client/UI/Member/OrderBrowse/MakeOrder.fxml").toURL()));
+        FXMLLoader fxmll=new FXMLLoader((new File("src/main/java/client/UI/Member/SearchHotel/MakeOrder.fxml").toURL()));
+        AnchorPane addAnchorPane=fxmll.load();
         MakeOrderController moc=fxmll.getController();
         moc.show(hotelVO);
+        anchorPane.getChildren().clear();
+        anchorPane.getChildren().add(addAnchorPane);
     }
 
-    void show(HotelVO h) {
+    @FXML
+    private void browseButtonHandler(ActionEvent event)throws  Exception{
+        FXMLLoader fxmll=new FXMLLoader((new File("src/main/java/client/UI/Member/SearchHotel/HotelDetial.fxml").toURL()));
+        AnchorPane addAnchorPane=fxmll.load();
+        HotelDetialController hdc=fxmll.getController();
+        hdc.show(hotelVO);
+        anchorPane.getChildren().clear();   
+        anchorPane.getChildren().add(addAnchorPane);
+    }
+    
+    void show(HotelVO h,AnchorPane base) {
         hotelVO=h;
+        anchorPane=base;
         if (hotelVO==null) {
             hotelNameLabel.setText("无");
+            bookButton.setVisible(false);
+            browseButton.setVisible(false);
         }else{
             hotelNameLabel.setText(hotelVO.name);
             addressLabel.setText(hotelVO.address);
             priceLabel.setText(hotelVO.price+"");
             starLabel.setText(hotelVO.star+"");
             markLabel.setText(hotelVO.mark+"");
-            statueLabel.setText(hotelVO.isEverReserved+"");
+            statueLabel.setText(hotelVO.isEverReserved?"是":"否");
         }
         
     }
 
-    @FXML
-    private void browseButtonHandler(ActionEvent event)throws  Exception{
-        FXMLLoader fxmll=new FXMLLoader();
-        AnchorPane addAnchorPane=fxmll.load((new File("src/main/java/client/UI/Member/OrderBrowse/HotelDetial.fxml").toURL()));
-        HotelDetialController hdc=fxmll.getController();
-        hdc.show(hotelVO);
-    }
     
 }

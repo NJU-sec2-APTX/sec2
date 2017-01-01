@@ -5,6 +5,7 @@
  */
 package client.UI.Manager.HotelManage;
 
+import client.UI.SaleMan.Strategy.ChangeLevelStrategyController;
 import client.businessLogicService.HotelFactory;
 import common.vo.HotelVO;
 import java.io.File;
@@ -48,36 +49,19 @@ public class ChangeHotelController {
     private Label result;
     @FXML
     public void initialize(){
-        carea.getItems().addAll("鼓楼","建邺","浦口","栖霞","玄武");
+        
     }
     public void ChangeHotel() throws MalformedURLException, IOException{
         all.getChildren().clear();
-        add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/SaleManage/ChangeHotel.fxml").toURL()));
+        add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/HotelManage/ChangeHotel.fxml").toURL()));
         all.getChildren().add(add);
     }
     public void clickChangeHotelR() throws IOException, Exception{
-        all.getChildren().clear();
-        add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/SaleManage/Change.fxml").toURL()));
-        all.getChildren().add(add);
-        HotelVO vo=HotelFactory.getHotelMaintainService().getHotelInfo(Cname.getText());
-        carea.setAccessibleText(vo.area);
-        cname.setText(vo.name);
-        cid.setText(vo.id);
-        caddress.setText(vo.address);
-        cstar.setText(""+vo.star);
+        FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/Manager/HotelManage/Change.fxml").toURL()));
+        all=fXMLLoader.load();
+        ChangeController sc=fXMLLoader.getController();
+        sc.show(Cname.getText());
+        
         }
-    public void clickChangeR() throws IOException, Exception{
-        HotelVO vo=new HotelVO();
-        vo.name=cname.getText();
-        vo.star=Integer.parseInt(cstar.getText());
-        vo.address=caddress.getText();
-        vo.area=carea.getValue();
-        vo.id=cid.getText();
-        boolean b=HotelFactory.getHotelMaintainService().setHotelInfo(vo);
-        if(b){
-            result.setText("修改成功");
-        }else{
-            result.setText("修改失败");
-        }
-    }
+    
 }

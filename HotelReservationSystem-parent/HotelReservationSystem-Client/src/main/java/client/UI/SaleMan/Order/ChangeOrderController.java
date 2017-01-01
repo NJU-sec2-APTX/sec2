@@ -42,12 +42,9 @@ public class ChangeOrderController {
     }
     
     public void clickChangeOrderR() throws IOException{
-        OrderVO vo=new OrderVO();
-        String Isall=isall.getValue();
-        Boolean IsAll;
-        IsAll = "全部".equals(Isall);
+        Boolean IsAll= "全部".equals(isall.getValue());
         //先找出要修改的订单
-        OrderFactory.getOrderService();
+        OrderVO vo=OrderFactory.getOrderService().searchOrderById(number.getText());
         //更改订单并恢复信用
         OrderFactory.getOrderService().managerCancalOrder(vo, IsAll);
         if(OrderFactory.getOrderService().managerCancalOrder(vo, IsAll)){

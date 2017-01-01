@@ -39,24 +39,28 @@ public class GetStrategyController {
     }
 
     @FXML
-    public void clickGetStrategyR() throws IOException{
+    public void clickGetStrategyR() throws Exception{
         String Type=Gtype.getValue();
         
         if(null != Type)switch (Type) {
             case "会员等级制度":
                 FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/SaleMan/Strategy/GetLevelStrategy.fxml").toURL()));
-                add=fXMLLoader.load();
-                StrategyController sc=fXMLLoader.getController();
+                all=fXMLLoader.load();
+                GetLevelStrategyController sc=fXMLLoader.getController();
+                sc.show(Gname.getText());
                 break;
             case "特殊时段优惠策略":
                 FXMLLoader fXMLLoader1 =new FXMLLoader((new File("src/main/java/client/UI/SaleMan/Strategy/GetDateStrategy.fxml").toURL()));
-                add=fXMLLoader1.load();
-                StrategyController sc1=fXMLLoader1.getController();
+                all=fXMLLoader1.load();
+                GetDateStrategyController sc1=fXMLLoader1.getController();
+                sc1.show(Gname.getText());
                 break;
             case "VIP商圈优惠策略":
+                
                 FXMLLoader fXMLLoader2 =new FXMLLoader((new File("src/main/java/client/UI/SaleMan/Strategy/GetVipandAreaStrategy.fxml").toURL()));
-                add=fXMLLoader2.load();
-                StrategyController sc2=fXMLLoader2.getController();
+                all=fXMLLoader2.load();
+                GetVipandAreaStrategyController sc2=fXMLLoader2.getController();
+                sc2.show(Gname.getText());
                 break;
             default:
                 break;

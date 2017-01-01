@@ -58,12 +58,15 @@ public class AddVipandAreaStrategyController {
     }
     @FXML
     public void clickAddVipandAreaStrategyR() throws IOException{
-                StrategyController sc=new StrategyController();
-                ResultMessage rm=StrategyFactory.getStrategyController(Start.person.id, Start.person.role).addVipandAreaStrategyPO( vname.getText(), sc.GetCount(count1.getText(),count2.getText(),count3.getText(),count4.getText(),count5.getText()), area.getValue());
-                if(rm==ResultMessage.Success){
-                    result.setText("新增VIP商圈优惠策略成功");
-                }else{
-                    result.setText("新增失败");
-                }
+        ResultMessage rm=StrategyFactory.getStrategyController(Start.person.id, Start.person.role).addVipandAreaStrategyPO( vname.getText(), GetCount(count1.getText(),count2.getText(),count3.getText(),count4.getText(),count5.getText()), area.getValue());
+        if(rm==ResultMessage.Success){
+            result.setText("新增VIP商圈优惠策略成功");
+        }else{
+            result.setText("新增失败");
         }
+    }
+    
+    public String GetCount(String c1,String c2,String c3,String c4,String c5) throws IOException{
+        return c1+"/"+c2+"/"+c3+"/"+c4+"/"+c5;
+    }
 }

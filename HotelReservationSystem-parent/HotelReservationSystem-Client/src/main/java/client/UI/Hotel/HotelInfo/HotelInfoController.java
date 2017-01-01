@@ -7,9 +7,11 @@ package client.UI.Hotel.HotelInfo;
 
 import client.UI.Runner.Start;
 import client.businessLogicService.HotelFactory;
+import common.otherEnumClasses.RoomCondition;
 import common.po.HotelPO;
 import common.vo.HotelVO;
 import java.io.File;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,27 +50,30 @@ public class HotelInfoController {
     @FXML
     private TextField addressField;
     @FXML
-    private TextField serviceField;
-    @FXML
     private Label tipLabel;
     @FXML
     private Label starLabel;
     @FXML
     private Label markField;
+    @FXML
+    private TextField singleField;
+    @FXML
+    private TextField douField;
+    @FXML
+    private TextField famField;
     
     private void hotelIntroduceButtonHandler(ActionEvent event) {
         showArea.setText(hotelVO.introduction);
     }
     @FXML
     private void hotelInfoButtonHandler(ActionEvent event) {
-        showArea.setText(hotelVO.name+"\n"+hotelVO.star+"\n"+hotelVO.area+"\n"+hotelVO.address+"\n");
-        correctButton.setDisable(true);
+        
     }
 
     void setEdited(boolean a){//false，不能编辑
         showArea.setEditable(a);
         nameField.setEditable(a);
-        serviceField.setEditable(a);
+        singleField.setEditable(a);
         addressField.setEditable(a);
         areaField.setEditable(a);
     }
@@ -76,19 +81,29 @@ public class HotelInfoController {
 
     @FXML
     private void correctButtonHandler(ActionEvent event) {
+        try {
+            
+       
         correctButton.setDisable(false);
         if(isEditing){
             isEditing=false;
             setEdited(true);
-            if(showArea.getText().equals(hotelVO.introduction)&&nameField.getText().equals(hotelVO.name)&&serviceField.equals(hotelVO.rooms.size())&&
-                    addressField.getText().equals(hotelVO.address)&&areaField.getText().equals(hotelVO.area)){
+            if(showArea.getText().equals(hotelVO.introduction)&&nameField.getText().equals(hotelVO.name)&&
+                addressField.getText().equals(hotelVO.address)&&areaField.getText().equals(hotelVO.area)){
                 tipLabel.setText("信息未变动");
-            }else{
+            }else if(Integer.parseInt(singleField.getText())<0||Integer.parseInt(douField.getText())<0||Integer.parseInt(famField.getText())<0){
+                tipLabel.setText("信息错误");
+            }{
                 HotelPO po=new HotelPO();
                 po.setAddress(addressField.getText());
                 po.setName(nameField.getText());
                 po.setIntroduction(showArea.getText());
                 po.setArea(nameField.getText());
+                ArrayList<RoomCondition> rooms=new ArrayList();
+                rooms.get(0).totalNum=Integer.parseInt(singleField.getText());
+                rooms.get(1).totalNum=Integer.parseInt(douField.getText());
+                rooms.get(2).totalNum=Integer.parseInt(famField.getText());
+                po.setRooms(rooms);
                 HotelVO changeHotelVO=new HotelVO(po);
                 HotelFactory.getHotelMaintainService().setHotelInfo(hotelVO);
                 correctButton.setText("更改");
@@ -97,6 +112,9 @@ public class HotelInfoController {
             isEditing=true;
             setEdited(true);
             correctButton.setText("确定");
+        }
+        } catch (Exception e) {
+                tipLabel.setText("更新失败");
         }
     }
 
@@ -108,6 +126,7 @@ public class HotelInfoController {
     }
     
     public void initialize(){
+        
         isEditing=false;
         showArea.setEditable(false);
         String id=Start.person.id ;
@@ -118,6 +137,8 @@ public class HotelInfoController {
         addressField.setText(hotelVO.address);
         starLabel.setText(hotelVO.star+"");
         markField.setText(hotelVO.mark+"");
-        serviceField.setText(hotelVO.rooms.size()+"");
+        singleField.setText(hotelVO.rooms.get(0).totalNum+"");
+        douField.setText(hotelVO.rooms.get(1).totalNum+"");
+        famField.setText(hotelVO.rooms.get(2).totalNum+"");
     }
 }
