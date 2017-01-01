@@ -16,10 +16,12 @@ import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -39,17 +41,20 @@ public class CreditController  {
          MemberList memberItem=MemberFactory.getMemberMaintainService(Start.person.id, Start.person.role).getMemberCreditInfo();
          ArrayList<MemberItem> creditList=memberItem.getMemberList();
          int size=creditList.size();
+         try{
          if (size!=0) {
+             VBox box=new VBox();
             for(int i=0;i<size;i++){
                 FXMLLoader fxml=new FXMLLoader((new File("src/main/java/client/UI/Member/MemberInfo/CreditSingle.fxml").toURL()));
                 AnchorPane addAnchorPane=fxml.load();
-                System.out.println((addAnchorPane==null)+"134");
                 CreditSingleController cc=fxml.getController();
-                System.out.println(fxml.getController()==null);
-                System.out.println(cc==null);
                 cc.show(creditList.get(i));
-                showPane.getChildrenUnmodifiable().add(addAnchorPane);
+                box.getChildrenUnmodifiable().add(addAnchorPane);
             }
+            showPane.setContent(box);
+            }
+         }catch (Exception e) {
+            e.printStackTrace();
         }
      }
 

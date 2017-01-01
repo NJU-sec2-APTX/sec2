@@ -40,11 +40,7 @@ public class OrderController {
                 OrderVO vo=new OrderVO();
                 String Isall=isall.getValue();
                 Boolean IsAll;
-                if(Isall=="全部"){
-                    IsAll=true;
-                }else{
-                    IsAll=false;
-                }
+                IsAll = "全部".equals(Isall);
                 //先找出要修改的订单
                 OrderFactory.getOrderService();
                 //更改订单并恢复信用

@@ -177,13 +177,19 @@ public class StrategyController {
         public void clickChangeStrategyR() throws IOException{
                 type.getItems().addAll("会员等级制度","特殊时段优惠策略","VIP商圈优惠策略");
                 String Type =type.getValue();
-                if(Type=="会员等级制度"){
+                if(null != Type)switch (Type) {
+                case "会员等级制度":
                     this.ChangeLevelStrategy();
-                }else if(Type=="特殊时段优惠策略"){
+                    break;
+                case "特殊时段优惠策略":
                     this.ChangeDateStrategy();
-                }else if(Type=="VIP商圈优惠策略"){
+                    break;
+                case "VIP商圈优惠策略":
                     this.ChangeVipandAreaStrategy();
-                }
+                    break;
+                default:
+                    break;
+            }
         }
                    
         //修改会员等级制度
@@ -286,13 +292,19 @@ public class StrategyController {
         public void clickGetStrategyR() throws IOException{
                 type.getItems().addAll("会员等级制度","特殊时段优惠策略","VIP商圈优惠策略");
                 String Type=type.getValue();
-                if(Type=="会员等级制度"){
+                if(null != Type)switch (Type) {
+                case "会员等级制度":
                     this.GetLevelStrategy();
-                }else if(Type=="特殊时段优惠策略"){
+                    break;
+                case "特殊时段优惠策略":
                     this.GetDateStrategy();
-                }else if(Type=="VIP商圈优惠策略"){
+                    break;
+                case "VIP商圈优惠策略":
                     this.GetVipandAreaStrategy();
-                }
+                    break;
+                default:
+                    break;
+            }
         }
         
        

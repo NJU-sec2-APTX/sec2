@@ -9,7 +9,7 @@
 
 <AnchorPane fx:id="repBase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Member.MemberInfo.CreditSingleController">
    <children>
-      <ToolBar layoutY="3.0" prefHeight="42.0" prefWidth="870.0">
+      <ToolBar fx:id="toolbar" layoutY="3.0" prefHeight="42.0" prefWidth="870.0">
          <items>
             <Label fx:id="idLabel" prefHeight="30.0" prefWidth="211.0" text="id">
                <font>

@@ -5,16 +5,6 @@
  */
 package client.UI.Hotel.HotelStrategyInput;
 
-import client.UI.Runner.Start;
-import client.businessLogicService.StrategyFactory;
-import common.otherEnumClasses.StrategyLineItem;
-import common.otherEnumClasses.StrategyList;
-import common.otherEnumClasses.StrategyType;
-import common.otherEnumClasses.UserRole;
-import common.vo.StrategyVO;
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.Map;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -53,32 +43,10 @@ public class HotelStrategyInputController {
     private AnchorPane repPane;
 
     boolean isEdit=false;
-    
+
     @FXML
-    public  void initialize()throws Exception{
-        show();
+    public  void initialize(){
         exitEdit();
-    }
-    
-    public void show() throws RemoteException{
-        ArrayList<StrategyVO> list=StrategyFactory.getStrategyController(Start.person.id, UserRole.HotelWorker).getAllStrategy();
-        for(int i=0;i<list.size();i++){
-            StrategyType type=list.get(i).getStrategyType();
-             switch (type){
-                 case Birthday:
-                     birthField.setText(list.get(i).getCount()+"");
-                     break;
-                case SpecialDate:
-                    douElevenField.setText(list.get(i).getCount()+"");
-                    break;
-                case CorporationEnterPrise:
-                    enterpriseField.setText(list.get(i).getCount()+"");
-                    break;
-                case RoomNumber:
-                    threeField.setText(list.get(i).getCount()+"");
-                    break;
-            }
-        }
     }
     void inEdit(){
         correctButton.setText("确定");
@@ -97,6 +65,7 @@ public class HotelStrategyInputController {
     @FXML
     private void correctButtonHandler(ActionEvent event) {
         inEdit();
+        
     }
 
     @FXML
@@ -106,8 +75,6 @@ public class HotelStrategyInputController {
 
     @FXML
     private void addBirthdayButtonHandler(ActionEvent event) {
-        
-        
     }
 
     @FXML

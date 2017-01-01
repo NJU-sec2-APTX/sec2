@@ -11,7 +11,7 @@
       <Button layoutX="515.0" layoutY="380.0" mnemonicParsing="false" text="取消" />
       <Label layoutX="336.0" layoutY="206.0" text="策略名" />
       <TextField fx:id="name" layoutX="427.0" layoutY="202.0" onAction="#GetName" prefHeight="23.0" prefWidth="150.0" />
-      <Label layoutX="330.0" layoutY="288.0" text="账号类型" />
-      <ChoiceBox fx:id="type" layoutX="427.0" layoutY="284.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="type" layoutX="427.0" layoutY="290.0" prefWidth="150.0" />
+      <Label layoutX="339.0" layoutY="294.0" text="策略类型" />
    </children>
 </AnchorPane>

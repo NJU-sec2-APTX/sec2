@@ -45,32 +45,32 @@ public class RoomBaseController  {
     @FXML
     public void initialize() throws Exception{
         FXMLLoader fxmll=new FXMLLoader();
-        repPanel=fxmll.load((new File("src/main/java/client/UI/Hotel/ExecuteOrder/ExecuteReplace.fxml").toURL()));
+        repPanel=fxmll.load((new File("src/UI/Hotel/ExecuteOrder/ExecuteReplace.fxml").toURL()));
         ExecuteReplaceController erc=fxmll.getController();
     }
 
     @FXML
     private void executeButtonHandler(ActionEvent event) throws Exception{
         FXMLLoader fxmll=new FXMLLoader();
-        repPanel=fxmll.load((new File("src/main/java/client/UI/Hotel/ExecuteOrder/ExecuteReplace.fxml").toURL()));
+        repPanel=fxmll.load((new File("src/UI/Hotel/ExecuteOrder/ExecuteReplace.fxml").toURL()));
     }
 
     @FXML
     private void cancelRoomWithOrderButtonHandler(ActionEvent event) throws Exception{
         FXMLLoader fxmll=new FXMLLoader();
-        repPanel=fxmll.load((new File("src/main/java/client/UI/Hotel/ExecuteOrder/OutWithOrderRep.fxml").toURL()));
+        repPanel=fxmll.load((new File("src/UI/Hotel/ExecuteOrder/OutWithOrderRep.fxml").toURL()));
     }
 
     @FXML
     private void outHotelButtonHandler(ActionEvent event) throws Exception{
         repPanel.getChildren().clear();
-        repPanel.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Hotel/ExecuteOrder/OutHotel.fxml").toURL())));
+        repPanel.getChildren().add(FXMLLoader.load((new File("src/UI/Hotel/ExecuteOrder/OutHotel.fxml").toURL())));
     }
 
     @FXML
     private void inHotelButtonHandler(ActionEvent event) throws Exception{
         repPanel.getChildren().clear();
-        repPanel.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Hotel/ExecuteOrder/InHotel.fxml").toURL())));
+        repPanel.getChildren().add(FXMLLoader.load((new File("src/UI/Hotel/ExecuteOrder/InHotel.fxml").toURL())));
     }
     
 }

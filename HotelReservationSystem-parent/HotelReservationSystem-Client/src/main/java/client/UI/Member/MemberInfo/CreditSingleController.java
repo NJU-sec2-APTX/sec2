@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToolBar;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -32,6 +33,8 @@ public class CreditSingleController  {
     private Label oprationLabel;
     @FXML
     private Label changeLabel;
+    @FXML
+    private ToolBar toolbar;
 
     /**
      * Initializes the controller class.
@@ -43,7 +46,6 @@ public class CreditSingleController  {
         changeLabel.setText(memberItem.getChange()+"");
         creditLabel.setText(memberItem.getCredit()+"");
     }
-    @FXML
     public void initialize() {
     }    
     

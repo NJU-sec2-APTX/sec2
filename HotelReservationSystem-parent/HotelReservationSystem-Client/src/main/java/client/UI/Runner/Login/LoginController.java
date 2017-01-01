@@ -65,40 +65,43 @@ public class LoginController {
                 System.out.println(userRole.toString());
                 ResultMessage result=User_Factory.getUserService().login(account, userRole, password);
                try {
-                   if(result==ResultMessage.Success){
-                        Start.person.role=userRole;
-                        Start.person.id=account;
-                        switch(userRole){
-                        case Enterprise:
-                            loginBase.getChildren( ).clear();
-                            System.out.println("Enterprise");
-                            loginBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/MemberUI.fxml")).toURL()));
-                            break;
-                        case Member:
-                            loginBase.getChildren().clear();
-                            loginBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/MemberUI.fxml")).toURL()));
+                   switch (result){
+                       case Success:
+                            switch(userRole){
+                                case Enterprise:
+                                loginBase.getChildren( ).clear();
+                                System.out.println("Enterprise");
+                                loginBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/MemberUI.fxml")).toURL()));
+                                break;
+                            case Member:
+                                loginBase.getChildren().clear();
+                                loginBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/MemberUI.fxml")).toURL()));
+                                break;
+                            case HotelWorker:
+                                loginBase.getChildren().clear();
+                                System.out.println("HotelWorker");
+                                loginBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Hotel/HotelUI.fxml")).toURL()));
+                                break;
+                            case Sales:
+                                loginBase.getChildren().clear();
+                                System.out.println("Sales");
+                                loginBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/SaleMan/SaleFrame.fxml")).toURL()));
+                                break;
+                            case Manager:
+                                loginBase.getChildren().clear();
+                                System.out.println("Manager");
+                                loginBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Manager/ManagerFrame.fxml")).toURL()));
+                                break;
+                             }
                            break;
-                        case HotelWorker:
-                            loginBase.getChildren().clear();
-                            System.out.println("HotelWorker");
-                            loginBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Hotel/HotelUI.fxml")).toURL()));
-                            break;
-                        case Sales:
-                            loginBase.getChildren().clear();
-                            System.out.println("Sales");
-                            loginBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/SaleMan/SaleFrame.fxml")).toURL()));
-                            break;
-                        case Manager:
-                            loginBase.getChildren().clear();
-                            System.out.println("Manager");
-                            loginBase.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Manager/ManagerFrame.fxml")).toURL()));
-                            break;
-                        }
-                    }else{
-                       tipLabel.setText("密码或账户信息错误");
-                     }         
-                            
-               } catch (Exception e) { 
+                       case Failure:
+                           tipLabel.setText("密码错误");
+                           break;
+                       case  Logged:
+                           tipLabel.setText("该账号已被注册");
+                           break;
+                }            
+            } catch (Exception e) { 
                    //System.out.println(userRole);
                    e.printStackTrace();
                   

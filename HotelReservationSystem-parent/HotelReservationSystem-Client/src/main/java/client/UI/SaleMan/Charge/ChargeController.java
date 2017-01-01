@@ -16,7 +16,7 @@ public class ChargeController {
 	@FXML
 	Pane change;
 	AnchorPane all;
-	TextField id,money;
+	TextField id,money=new TextField();
         @FXML
 	AnchorPane add;
         Label result;

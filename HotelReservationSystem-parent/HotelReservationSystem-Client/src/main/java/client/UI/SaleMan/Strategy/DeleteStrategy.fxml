@@ -10,7 +10,7 @@
       <Button fx:id="DeleteStrategyR" layoutX="342.0" layoutY="380.0" mnemonicParsing="false" onAction="#clickDeleteStrategyR" text="删除" />
       <Button layoutX="524.0" layoutY="380.0" mnemonicParsing="false" text="取消" />
       <Label layoutX="336.0" layoutY="206.0" text="策略名" />
-      <TextField fx:id="id" layoutX="427.0" layoutY="202.0" onAction="#GetId" />
+      <TextField fx:id="name" layoutX="427.0" layoutY="202.0" onAction="#GetName" />
       <Label fx:id="result" layoutX="420.0" layoutY="447.0" text="                  " textFill="RED" />
    </children>
 </AnchorPane>
