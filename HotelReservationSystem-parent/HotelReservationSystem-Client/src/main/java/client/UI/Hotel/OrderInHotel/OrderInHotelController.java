@@ -19,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import oracle.jrockit.jfr.parser.ChunkParser;
 
 /**
@@ -34,22 +35,23 @@ public class OrderInHotelController  {
     public  void initialize ()throws Exception{
         Person p=Start.person;
         ArrayList<OrderVO> orderList=OrderFactory.getOrderService().searchOrderListFromData(p, null, null);
+        VBox box=new VBox();
         if(orderList.isEmpty()){
-             FXMLLoader fxmll=new FXMLLoader();
-            AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Hotel/OrderInHotel/SingleOrderController.fxml").toURL()));
+             FXMLLoader fxmll=new FXMLLoader((new File("src/main/java/client/UI/Hotel/OrderInHotel/SingleOrder.fxml").toURL()));
+            AnchorPane addAnchorPane=fxmll.load();
             SingleOrderController soc=fxmll.getController();
             soc.show();
-            showPane.getChildrenUnmodifiable().add(addAnchorPane);
+            box.getChildren().add(addAnchorPane);
         }else{
             for(int i=0;i<orderList.size();i++){
-                FXMLLoader fxmll=new FXMLLoader();
-                AnchorPane addAnchorPane=fxmll.load((new File("src/UI/Hotel/OrderInHotel/SingleOrderController.fxml").toURL()));
+                FXMLLoader fxmll=new FXMLLoader((new File("src/main/java/client/UI/Hotel/OrderInHotel/SingleOrder.fxml").toURL()));
+                AnchorPane addAnchorPane=fxmll.load();
                 SingleOrderController soc=fxmll.getController();
                 soc.show(orderList.get(i));
-                showPane.getChildrenUnmodifiable().add(addAnchorPane);
+                box.getChildren().add(addAnchorPane);
             }
         }
-        
+         showPane.setContent(box);
     }
     
 }

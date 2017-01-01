@@ -23,15 +23,14 @@
                   <Label text="昵称" />
                   <Label text="密码" GridPane.rowIndex="2" />
                   <Label text="联系方式（邮箱/手机）" GridPane.rowIndex="3" />
-                  <TextField fx:id="name" onAction="#GetName" GridPane.columnIndex="1" />
-                  <TextField fx:id="password" onAction="#GetPassword" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="contact" onAction="#GetContact" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="name" GridPane.columnIndex="1" />
+                  <TextField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="contact" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label text="ID" GridPane.rowIndex="1" />
-                  <TextField fx:id="id" onAction="#GetId" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="id" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <Button fx:id="AddSaleR" layoutX="712.0" layoutY="122.0" mnemonicParsing="false" onAction="#clickAddSaleR" text="确定" />
-            <Button layoutX="712.0" layoutY="179.0" mnemonicParsing="false" text="取消" />
             <Label fx:id="result" layoutX="712.0" layoutY="70.0" text="                       " textFill="RED" />
          </children>
       </Pane>

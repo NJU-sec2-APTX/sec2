@@ -93,7 +93,7 @@ public class MemberUIController  {
         replacePane.getChildren().clear();
         replacePane.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Member/SearchHotel/SearchHotel.fxml")).toURL()));
         System.err.println(person.id);
-        MemberVO vO=MemberFactory.getMemberMaintainService(Start.person.id, UserRole.Member).getInfo();
+        MemberVO vO=MemberFactory.getMemberMaintainService(Start.person.id,Start.person.role).getInfo();
         accountField.setText("Welcome! "+vO.getName());
     }
     

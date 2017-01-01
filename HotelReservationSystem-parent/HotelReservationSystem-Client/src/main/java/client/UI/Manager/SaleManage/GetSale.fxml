@@ -5,11 +5,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="change" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Manager.SaleManage.SaleManageController">
+<AnchorPane fx:id="all" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Manager.SaleManage.SaleManageController">
    <children>
-      <Button fx:id="GetSaleR" layoutX="342.0" layoutY="380.0" mnemonicParsing="false" onAction="#clickGetSaleR" text="查看" />
-      <Button layoutX="524.0" layoutY="380.0" mnemonicParsing="false" text="取消" />
+      <Button fx:id="GetSaleR" layoutX="435.0" layoutY="380.0" mnemonicParsing="false" onAction="#clickGetSaleR" text="查看" />
       <Label layoutX="336.0" layoutY="206.0" text="ID" />
-      <TextField fx:id="id" layoutX="427.0" layoutY="202.0" onAction="#GetId" />
+      <TextField fx:id="Gid" layoutX="427.0" layoutY="202.0" />
    </children>
 </AnchorPane>

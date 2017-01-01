@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
 
-<AnchorPane fx:id="add" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.SaleMan.Charge.ChargeController">
+<AnchorPane fx:id="all" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.SaleMan.Charge.ChargeController">
    <children>
       <Pane fx:id="change" prefHeight="550.0" prefWidth="870.0">
          <opaqueInsets>
             <Insets top="1.0" />
          </opaqueInsets>
          <children>
-            <TextField fx:id="id" layoutX="410.0" layoutY="120.0" />
-            <TextField fx:id="money" layoutX="410.0" layoutY="250.0" />
-            <Button fx:id="Charge" layoutX="410.0" layoutY="347.0" mnemonicParsing="false" onAction="#Charge" prefHeight="39.0" prefWidth="76.0" text="充值" />
+            <TextField fx:id="id" layoutX="410.0" layoutY="120.0" onAction="#GetId" />
+            <TextField fx:id="money" layoutX="410.0" layoutY="250.0" onAction="#GetMoney" />
+            <Button fx:id="Charge" layoutX="293.0" layoutY="350.0" mnemonicParsing="false" onAction="#Charge" text="充值" />
+            <Button layoutX="508.0" layoutY="350.0" mnemonicParsing="false" text="取消" />
             <Label layoutX="225.0" layoutY="120.0" text="客户ID" />
             <Label layoutX="219.0" layoutY="250.0" text="充值金额" />
             <Label fx:id="result" layoutX="379.0" layoutY="405.0" text="                         " textFill="RED" />
+            <Label fx:id="test" layoutX="204.0" layoutY="46.0" />
          </children>
       </Pane>
    </children>

@@ -5,13 +5,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="change" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.SaleMan.Strategy.StrategyController">
+<AnchorPane fx:id="change" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.SaleMan.Strategy.ChangeStrategyController">
    <children>
-      <Button fx:id="ChangeStrategyR" layoutX="342.0" layoutY="380.0" mnemonicParsing="false" onAction="#clickChangeStrategyR" text="查看" />
-      <Button layoutX="515.0" layoutY="380.0" mnemonicParsing="false" text="取消" />
+      <Button fx:id="ChangeStrategyR" layoutX="427.0" layoutY="383.0" mnemonicParsing="false" onAction="#clickChangeStrategyR" text="查看" />
       <Label layoutX="336.0" layoutY="206.0" text="策略名" />
-      <TextField fx:id="name" layoutX="427.0" layoutY="202.0" onAction="#GetName" prefHeight="23.0" prefWidth="150.0" />
-      <Label layoutX="330.0" layoutY="288.0" text="账号类型" />
+      <TextField fx:id="Cname" layoutX="427.0" layoutY="202.0" prefHeight="23.0" prefWidth="150.0" />
+      <Label layoutX="330.0" layoutY="288.0" text="策略类型" />
       <ChoiceBox fx:id="type" layoutX="427.0" layoutY="284.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

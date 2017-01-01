@@ -49,7 +49,7 @@
                         <TextField fx:id="count4" onAction="#GetCount" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
-                  <ChoiceBox fx:id="area" onDragDetected="#GetArea" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ChoiceBox fx:id="carea" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <Button fx:id="ChangeVipandAreaStrategyR" layoutX="712.0" layoutY="122.0" mnemonicParsing="false" onAction="#clickChangeVipandAreaStrategyR" text="确定" />

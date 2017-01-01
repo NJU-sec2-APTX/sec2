@@ -23,7 +23,9 @@ public class SaleManageController {
 	@FXML
 	StackPane change;
         @FXML
-        TextField name,password,contact,id,Name,ID,Role,Contact;
+        TextField name,password,contact,id,Name,ID,Contact;
+        @FXML 
+        TextField Did,Cid,Gid,gname,gid,grole,gcontact;
 	@FXML
 	AnchorPane all;
 	Label result;
@@ -37,34 +39,21 @@ public class SaleManageController {
 	}
         
         public void clickAddSaleR() throws IOException, Exception{
-                UserPO po=new UserPO(GetId(),UserRole.Sales);
-                po.setContact(GetContact());
-                po.setName(GetName());
-                po.setPassword(GetPassword());
+                UserPO po=new UserPO(id.getText(),UserRole.Sales);
+                po.setContact(contact.getText());
+                po.setName(name.getText());
+                po.setPassword(password.getText());
                 UserVO vo=new UserVO(po);
-                User_Factory.getWebsiteManagerController(Start.person.id).addUser(vo);
-                if(User_Factory.getWebsiteManagerController(Start.person.id).addUser(vo)==ResultMessage.Success){
+                ResultMessage rm=User_Factory.getWebsiteManagerController(Start.person.id).addUser(vo);
+                if(rm==ResultMessage.Success){
                     result.setText("新增营销人员成功");
                 }else{
                     result.setText("新增失败");
                 }
         }
 	
-        public String GetName() throws IOException{
-                return name.getText();
-        }
+       
         
-        public String GetId() throws IOException{
-                return id.getText();
-        }
-        
-        public String GetPassword() throws IOException{
-                return password.getText();
-        }
-        
-        public String GetContact() throws IOException{
-                return contact.getText();
-        }
         
         //删除营销人员
 	public void DeleteSale() throws IOException{
@@ -74,8 +63,8 @@ public class SaleManageController {
 	}
         
         public void clickDeleteSaleR() throws IOException, Exception{
-                User_Factory.getWebsiteManagerController(Start.person.id).removeUser(GetId(), UserRole.Sales);
-                if(User_Factory.getWebsiteManagerController(Start.person.id).removeUser(GetId(), UserRole.Sales)==ResultMessage.Success){
+                ResultMessage rm=User_Factory.getWebsiteManagerController(Start.person.id).removeUser(Did.getText(), UserRole.Sales);
+                if(rm==ResultMessage.Success){
                     result.setText("删除成功");
                 }else{
                     result.setText("删除失败");
@@ -92,11 +81,10 @@ public class SaleManageController {
                 all.getChildren().clear();
                 add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/SaleManage/Change.fxml").toURL()));
                 all.getChildren().add(add);
-              
-                Name.setText(ShowName());
-                ID.setText(ShowID());
-                Role.setText(ShowRole().toString());
-                Contact.setText(ShowContact());
+                UserVO vo=User_Factory.getWebsiteManagerController(Start.person.id).getUserInfo(Cid.getText(), UserRole.Member);
+                Name.setText(vo.getName());
+                ID.setText(vo.getId());
+                Contact.setText(vo.getContact());
         }
         
         public void clickChangeR() throws IOException, Exception{
@@ -104,8 +92,8 @@ public class SaleManageController {
                 po.setContact(Contact.getText());
                 po.setName(Name.getText());
                 UserVO vo=new UserVO(po);
-                User_Factory.getWebsiteManagerController(Start.person.id).modifyUserInfo(vo);
-                if(User_Factory.getWebsiteManagerController(Start.person.id).modifyUserInfo(vo)==ResultMessage.Success){
+                ResultMessage rm=User_Factory.getWebsiteManagerController(Start.person.id).modifyUserInfo(vo);
+                if(rm==ResultMessage.Success){
                     result.setText("修改成功");
                 }else{
                     result.setText("修改失败");
@@ -123,28 +111,13 @@ public class SaleManageController {
                 all.getChildren().clear();
                 add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/SaleManage/ShowSale.fxml").toURL()));
                 all.getChildren().add(add);
-                UserVO vo=User_Factory.getWebsiteManagerController(Start.person.id).getUserInfo(GetId(),UserRole.Sales);
-               
-                    Name.setText(ShowName());
-                    ID.setText(ShowID());
-                    Role.setText(ShowRole().toString());
-                    Contact.setText(ShowContact());
+                UserVO vo=User_Factory.getWebsiteManagerController(Start.person.id).getUserInfo(Gid.getText(),UserRole.Sales);
+                gname.setText(vo.getName());
+                gid.setText(vo.getId());
+                grole.setText(vo.getUserRole().toString());
+                gcontact.setText(vo.getContact());
                 
         }
         
-        public String ShowName() throws IOException, Exception{ 
-                return User_Factory.getWebsiteManagerController(Start.person.id).getUserInfo(GetId(),UserRole.Sales).getName();
-        }
-        
-        public String ShowID() throws IOException, Exception{
-                return User_Factory.getWebsiteManagerController(Start.person.id).getUserInfo(GetId(),UserRole.Sales).getId();
-        }
-        
-        public UserRole ShowRole() throws IOException, Exception{
-                return UserRole.Sales;
-        }
-        
-        public String ShowContact() throws IOException, Exception{
-                return User_Factory.getWebsiteManagerController(Start.person.id).getUserInfo(GetId(),UserRole.Sales).getContact();
-        }
+       
 }

@@ -17,20 +17,16 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label text="昵称" />
-                  <Label text="账号类型" GridPane.rowIndex="2" />
-                  <Label text="联系方式（邮箱/手机）" GridPane.rowIndex="3" />
+                  <Label text="联系方式（邮箱/手机）" GridPane.rowIndex="2" />
                   <TextField fx:id="Name" onAction="#ShowName" GridPane.columnIndex="1" />
-                  <TextField fx:id="Role" onAction="#ShowRole" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="Contact" onAction="#ShowContact" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="Contact" onAction="#ShowContact" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="ID" GridPane.rowIndex="1" />
                   <TextField fx:id="ID" onAction="#ShowID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <Button layoutX="712.0" layoutY="233.0" mnemonicParsing="false" text="取消" />
             <Button fx:id="ChangeR" layoutX="712.0" layoutY="146.0" mnemonicParsing="false" onAction="#clickChangeR" text="确定修改" />
             <Label fx:id="result" layoutX="717.0" layoutY="72.0" text="                         " textFill="RED" />
          </children>

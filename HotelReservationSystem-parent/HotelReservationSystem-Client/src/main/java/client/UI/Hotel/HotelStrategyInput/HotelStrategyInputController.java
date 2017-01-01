@@ -5,6 +5,12 @@
  */
 package client.UI.Hotel.HotelStrategyInput;
 
+import client.UI.Runner.Start;
+import client.businessLogicService.StrategyFactory;
+import common.otherEnumClasses.StrategyType;
+import common.otherEnumClasses.UserRole;
+import common.vo.StrategyVO;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -44,9 +50,26 @@ public class HotelStrategyInputController {
 
     boolean isEdit=false;
 
-    @FXML
-    public  void initialize(){
+    public  void initialize()throws Exception{
         exitEdit();
+        ArrayList<StrategyVO> arrayList=StrategyFactory.getStrategyController(Start.person.id, UserRole.HotelWorker).getAllStrategy();
+        for (StrategyVO m : arrayList) {
+            StrategyType type=m.getStrategyType();
+            switch (type){
+                case Birthday:
+                    birthField.setText(m.getCount()+"");
+                    break;
+                case SpecialDate:
+                    douElevenField.setText(m.getCount()+"");
+                    break;
+                case RoomNumber:
+                    threeField.setText(m.getCount()+"");
+                    break;
+                case CorporationEnterPrise:
+                    enterpriseField.setText(m.getCount()+"");
+                    break;
+            }
+        }
     }
     void inEdit(){
         correctButton.setText("确定");

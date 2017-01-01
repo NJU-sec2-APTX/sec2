@@ -86,7 +86,6 @@ public class MemberDataServiceImpl extends UnicastRemoteObject implements Member
 		sql1="select * from credit where id='"+ID+"';";
 		try {
 			databasehelper=new DBHelper(sql);
-			System.out.println(sql);
 			resultset=databasehelper.pst.executeQuery();
 			String id = null;
 			UserRole userrole = null;
@@ -96,7 +95,6 @@ public class MemberDataServiceImpl extends UnicastRemoteObject implements Member
 			String contact=null;
 			double credit=0;
 			while (resultset.next()) {
-				System.out.println("ggg");
 				id=resultset.getString(1);
 				name=resultset.getString(2);
 				password=pullpassword(resultset.getString(3));
@@ -106,7 +104,6 @@ public class MemberDataServiceImpl extends UnicastRemoteObject implements Member
 				contact=resultset.getString(7);
             }
 			if(id==null){
-				System.out.println("hhh");
 				return null;
 			}
 			MemberPO memberpo=new MemberPO(id,userrole);

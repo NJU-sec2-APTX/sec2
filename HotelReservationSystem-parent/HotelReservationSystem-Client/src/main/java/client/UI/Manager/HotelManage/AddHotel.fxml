@@ -4,7 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="all" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Manager.HotelManage.HotelManageController">
+<AnchorPane fx:id="all" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Manager.HotelManage.AddHotelController">
    <children>
       <Pane fx:id="change" prefHeight="550.0" prefWidth="870.0">
          <children>
@@ -26,10 +26,10 @@
                   <Label text="地址" GridPane.rowIndex="3" />
                   <Label text="所属商圈" GridPane.rowIndex="4" />
                   <Label text="ID" GridPane.rowIndex="1" />
-                  <TextField fx:id="name" onAction="#GetName" GridPane.columnIndex="1" />
-                  <TextField fx:id="star" onAction="#GetStar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="address" onAction="#GetAddress" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="id" onAction="#GetId" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="name" GridPane.columnIndex="1" />
+                  <TextField fx:id="star" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="address" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="id" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <ChoiceBox fx:id="area" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
             </GridPane>

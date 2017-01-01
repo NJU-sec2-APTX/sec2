@@ -16,6 +16,8 @@ import common.vo.HotelVO;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -71,7 +73,6 @@ public class SearchHotelController {
     public ArrayList<HotelVO> hotelList;
     @FXML
     private Label tipLabel;
-    private TextField addressField;
     boolean isHaveHotel;
     @FXML
     private ChoiceBox<String> addressChooseBox;
@@ -79,7 +80,7 @@ public class SearchHotelController {
     private void markButtonHandler(ActionEvent event)throws Exception {//评分排序
         if (isHaveHotel) {
             HotelSearchConditions searchConditions=makeConditions();
-            hotelList=HotelFactory.getHotelBrowseService().sortHotelList(areaBox.getValue(),addressField.getText(), searchConditions, Start.person.id , SortFlag.mark, true);
+            hotelList=HotelFactory.getHotelBrowseService().sortHotelList(areaBox.getValue(),addressChooseBox.getValue(), searchConditions, Start.person.id , SortFlag.mark, true);
             show();
         }
     }
@@ -88,7 +89,7 @@ public class SearchHotelController {
     private void starButtonHandler(ActionEvent event)throws Exception {//星级排序
         if (isHaveHotel) {
             HotelSearchConditions searchConditions=makeConditions();
-            hotelList=HotelFactory.getHotelBrowseService().sortHotelList(areaBox.getValue(),addressField.getText(), searchConditions, Start.person.id , SortFlag.star, true);
+            hotelList=HotelFactory.getHotelBrowseService().sortHotelList(areaBox.getValue(),addressChooseBox.getValue(), searchConditions, Start.person.id , SortFlag.star, true);
             show();
         }
     }
@@ -104,9 +105,10 @@ public class SearchHotelController {
             isHaveHotel=true;
             tipLabel.setVisible(false);
             String name=hotelNameField.getText();
-            String address=addressField.getText();
+            String address=addressChooseBox.getValue();
             String areaString1=areaBox.getValue();
-            hotelList=HotelFactory.getHotelBrowseService().getHotelList(areaString,address, null, Start.person.id);
+            
+            hotelList=HotelFactory.getHotelBrowseService().getHotelList(areaString,address, new HotelSearchConditions(), Start.person.id);
             show();
         }
     }
@@ -150,7 +152,7 @@ public class SearchHotelController {
             try{ 
                 String areaString=areaBox.getValue();
                 String name=hotelNameField.getText();
-                String address=addressField.getText();
+                String address=addressChooseBox.getValue();
                 HotelSearchConditions searchItems=new HotelSearchConditions();
                 hotelSearchConditions.dateDown=LocalDateToDate.localDateToDate(outDatePicker.getValue());
                 hotelSearchConditions.dateUp=LocalDateToDate.localDateToDate(inDatepicker.getValue());
@@ -187,7 +189,7 @@ public class SearchHotelController {
             isHaveHotel=true;
             tipLabel.setVisible(false);
             String name=hotelNameField.getText();
-            String address=addressField.getText();
+            String address=addressChooseBox.getValue();
             HotelSearchConditions searchItems=new HotelSearchConditions();
             searchItems=makeConditions();
         }
@@ -195,6 +197,23 @@ public class SearchHotelController {
     
     public void initialize(){//初始化
         areaBox.getItems().addAll("北京","上海","南京");
+        
+        areaBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>(){
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (newValue.intValue() ==0) {
+                    addressChooseBox.getItems().clear();
+                    addressChooseBox.getItems().addAll("朝阳区","海淀区","东城区","西城区","崇文区");
+                }else if(newValue.intValue()==1){
+                    addressChooseBox.getItems().clear();
+                    addressChooseBox.getItems().addAll("浦东区","虹口区","松江区");
+                }else if (newValue.intValue()==2) {
+                   addressChooseBox.getItems().clear();
+                      addressChooseBox.getItems().addAll("栖霞","建邺","鼓楼","浦口","玄武");
+                }
+                
+            }
+        });
         starBox.getItems().addAll("一星以上","两星以上","三星以上","四星以上","五星");
         markBox.getItems().addAll("一分以上","两分以上","三分以上","四分以上","五分");
         priceBox.getItems().addAll("200以下","200-300","300-400","500以上");
@@ -275,7 +294,7 @@ public class SearchHotelController {
     private void priceButtonHandler(ActionEvent event) throws Exception{
         if (isHaveHotel) {
             HotelSearchConditions searchConditions=makeConditions();
-            hotelList=HotelFactory.getHotelBrowseService().sortHotelList(areaBox.getValue(),addressField.getText(), searchConditions, Start.person.id , SortFlag.star, true);
+            hotelList=HotelFactory.getHotelBrowseService().sortHotelList(areaBox.getValue(),addressChooseBox.getValue(), searchConditions, Start.person.id , SortFlag.star, true);
             show();
         }
     }

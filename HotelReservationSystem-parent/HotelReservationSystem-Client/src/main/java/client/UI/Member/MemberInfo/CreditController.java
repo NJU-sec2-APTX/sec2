@@ -39,23 +39,28 @@ public class CreditController  {
     @FXML
      public void initialize ()throws Exception{
          MemberList memberItem=MemberFactory.getMemberMaintainService(Start.person.id, Start.person.role).getMemberCreditInfo();
-         ArrayList<MemberItem> creditList=memberItem.getMemberList();
+         if (memberItem==null) {
+            
+        }else{
+             ArrayList<MemberItem> creditList=memberItem.getMemberList();
          int size=creditList.size();
          try{
-         if (size!=0) {
-             VBox box=new VBox();
-            for(int i=0;i<size;i++){
-                FXMLLoader fxml=new FXMLLoader((new File("src/main/java/client/UI/Member/MemberInfo/CreditSingle.fxml").toURL()));
-                AnchorPane addAnchorPane=fxml.load();
-                CreditSingleController cc=fxml.getController();
-                cc.show(creditList.get(i));
-                box.getChildren().add(addAnchorPane);
+            if (size!=0) {
+                VBox box=new VBox();
+                for(int i=0;i<size;i++){
+                    FXMLLoader fxml=new FXMLLoader((new File("src/main/java/client/UI/Member/MemberInfo/CreditSingle.fxml").toURL()));
+                    AnchorPane addAnchorPane=fxml.load();
+                    CreditSingleController cc=fxml.getController();
+                    cc.show(creditList.get(i));
+                    box.getChildren().add(addAnchorPane);
+                }
+                    showPane.setContent(box);
+                }
+            }catch (Exception e) {
+                e.printStackTrace();
             }
-            showPane.setContent(box);
-            }
-         }catch (Exception e) {
-            e.printStackTrace();
         }
+         
      }
 
     @FXML

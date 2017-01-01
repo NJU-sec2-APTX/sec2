@@ -4,7 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="all" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Manager.HotelManage.HotelManageController">
+<AnchorPane fx:id="all" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Manager.HotelManage.ChangeHotelController">
    <children>
       <Pane fx:id="change" prefHeight="550.0" prefWidth="870.0">
          <children>
@@ -26,15 +26,14 @@
                   <Label text="地址" GridPane.rowIndex="2" />
                   <Label text="所属商圈" GridPane.rowIndex="3" />
                   <Label text="ID" GridPane.rowIndex="4" />
-                  <TextField fx:id="name" onAction="#GetName" GridPane.columnIndex="1" />
-                  <TextField fx:id="star" onAction="#GetStar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="address" onAction="#GetAddress" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="area" onAction="#GetArea" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="id" onAction="#Getid" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="cname" GridPane.columnIndex="1" />
+                  <TextField fx:id="cstar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="caddress" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="cid" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <ChoiceBox fx:id="carea" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
-            <Button fx:id="AddHotelR" layoutX="712.0" layoutY="122.0" mnemonicParsing="false" onAction="#clickAddHotelR" text="确定修改" />
-            <Button fx:id="back" layoutX="712.0" layoutY="179.0" mnemonicParsing="false" text="取消" />
+            <Button fx:id="ChangeR" layoutX="712.0" layoutY="122.0" mnemonicParsing="false" onAction="#clickChangeR" text="确定修改" />
             <Label fx:id="result" layoutX="717.0" layoutY="63.0" text="                       " textFill="RED" />
          </children>
       </Pane>

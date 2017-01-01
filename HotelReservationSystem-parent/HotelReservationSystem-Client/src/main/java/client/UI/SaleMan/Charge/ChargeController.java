@@ -17,22 +17,33 @@ public class ChargeController {
 	@FXML
 	Pane change;
         @FXML
-	TextField id,money;
+	AnchorPane all;
+	@FXML
+        TextField id;
+        @FXML
+        TextField money;
         @FXML
 	AnchorPane add;
         @FXML
         Label result;
+   
         @FXML
 	public void  Charge() throws IOException, Exception {
-            if(Integer.parseInt(money.getText())>0){
-                if(User_Factory.getWebsiteSalesController(Start.person.id).recharge(id.getText(), Integer.parseInt(money.getText()))==ResultMessage.Success){
+		ResultMessage rm=User_Factory.getWebsiteSalesController(Start.person.id).recharge(GetId(), GetMoney());
+                if(rm==ResultMessage.Success){
                     result.setText("充值成功");
                 }else{
                     result.setText("充值失败");
                 }
-            }else{
-                    result.setText("充值失败");
-            }
 	}
-
+        
+    @FXML
+        public String GetId() throws IOException{
+                return id.getText();
+        }
+        
+    @FXML
+        public int GetMoney() throws IOException{
+                return Integer.parseInt(money.getText());
+        }
 }

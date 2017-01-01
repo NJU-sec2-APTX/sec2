@@ -24,11 +24,15 @@ public class MemberManageController {
 	@FXML
 	Pane change;
         @FXML
-        TextField name,password,contact,hotel,id,Name,Contact,Hotel,ID;
+        TextField name,password,contact,hotel,id,cname,cid,chotel,ccontact;
+        @FXML
+        TextField gname,gid,ghotel,grole,gcontact;
+        @FXML
+        TextField Cid,Gid;
 	@FXML
 	AnchorPane all;
 	Label result;
-        ChoiceBox<String> type;
+        ChoiceBox<String> role,Crole,crole,Grole;
 	AnchorPane add;
     @FXML
     //新增用户
@@ -39,44 +43,23 @@ public class MemberManageController {
 	}
 	
          public void clickAddMemberR() throws IOException, Exception{
-                UserPO po=new UserPO(GetId(),GetRole());
-                po.setContact(GetContact());
-                po.setName(GetName());
-                po.setPassword(GetPassword());
-                po.setbelonghotel(GetHotel());
+                Initialize chushi=new Initialize();
+                chushi.initialize(role);
+                UserPO po=new UserPO(id.getText(),UserRole.getUserRole(role.getValue()));
+                po.setContact(contact.getText());
+                po.setName(name.getText());
+                po.setPassword(password.getText());
+                po.setbelonghotel(hotel.getText());
                 UserVO vo=new UserVO(po);
-                User_Factory.getWebsiteManagerController(Start.person.id).addUser(vo);
-                if(User_Factory.getWebsiteManagerController(Start.person.id).addUser(vo)==ResultMessage.Success){
+                ResultMessage rm=User_Factory.getWebsiteManagerController(Start.person.id).addUser(vo);
+                if(rm==ResultMessage.Success){
                     result.setText("新增用户成功");
                 }else{
                     result.setText("新增失败");
                 }
         }
 
-        public String GetName() throws IOException{
-                return name.getText();
-        }
-        
-        public String GetPassword() throws IOException{
-                return password.getText();
-        }
-	
-        public UserRole GetRole() throws IOException{
-            type.getItems().addAll("个人客户","企业客户","酒店工作人员","网站营销人员","网站管理人员");
-                return UserRole.getUserRole(type.getValue());
-        }
-        
-        public String GetHotel() throws IOException{
-                return hotel.getText();
-        }
-         
-        public String GetContact() throws IOException{
-                return contact.getText();
-        }
-        
-        public String GetId() throws IOException{
-                return id.getText();
-        }
+     
         
     @FXML
     //修改用户信息
@@ -87,26 +70,28 @@ public class MemberManageController {
         }
         
         public void clickChangeMemberR() throws IOException, Exception{
-            type.getItems().addAll("个人客户","企业客户","酒店工作人员","网站营销人员","网站管理人员");
+                Initialize chushi=new Initialize();
+                chushi.initialize(Crole);
                 all.getChildren().clear();
                 add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/MemberManage/Change.fxml").toURL()));
                 all.getChildren().add(add);
-              
-                Name.setText(ShowName());
-                ID.setText(ShowID());
-                type.setAccessibleText(ShowRole().toString());
-                Hotel.setText(ShowHotel());
-                Contact.setText(ShowContact());
+                UserVO vo=User_Factory.getWebsiteManagerController(Start.person.id).getUserInfo(Cid.getText(), UserRole.getUserRole(Crole.getValue()));
+                chushi.initialize(crole);
+                cname.setText(vo.getName());
+                cid.setText(vo.getId());
+                ccontact.setText(vo.getContact());
+                chotel.setText(vo.getBelongHotel());
+                crole.setAccessibleText(vo.getUserRole().toString());
         }
         
         public void clickChangeR() throws IOException, Exception{
-                UserPO po=new UserPO(GetId(),GetRole());
-                po.setContact(Contact.getText());
-                po.setName(Name.getText());
-                po.setbelonghotel(Hotel.getText());
+                UserPO po=new UserPO(cid.getText(),UserRole.getUserRole(crole.getValue()));
+                po.setContact(ccontact.getText());
+                po.setName(cname.getText());
+                po.setbelonghotel(chotel.getText());
                 UserVO vo=new UserVO(po);
-                User_Factory.getWebsiteManagerController(Start.person.id).modifyUserInfo(vo);
-                if(User_Factory.getWebsiteManagerController(Start.person.id).modifyUserInfo(vo)==ResultMessage.Success){
+                ResultMessage rm=User_Factory.getWebsiteManagerController(Start.person.id).modifyUserInfo(vo);
+                if(rm==ResultMessage.Success){
                     result.setText("修改成功");
                 }else{
                     result.setText("修改失败");
@@ -121,36 +106,17 @@ public class MemberManageController {
         }
 
         public void clickGetMemberR() throws IOException, Exception{
-            type.getItems().addAll("个人客户","企业客户","酒店工作人员","网站营销人员","网站管理人员");
+                Initialize chushi=new Initialize();
+                chushi.initialize(Grole);
                 all.getChildren().clear();
                 add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/MemberManage/ShowMember.fxml").toURL()));
                 all.getChildren().add(add);
+                UserVO vo=User_Factory.getWebsiteManagerController(Start.person.id).getUserInfo(Gid.getText(),UserRole.getUserRole(Grole.getValue()));
                 //显示信息                                              
-                    Name.setText(ShowName());
-                    ID.setText(ShowID());
-                    type.setAccessibleText(ShowRole().toString());
-                    Hotel.setText(ShowHotel());
-                    Contact.setText(ShowContact());
-                
-        }
-        
-        public String ShowName() throws IOException, Exception{ 
-                return User_Factory.getWebsiteManagerController(Start.person.id).getUserInfo(GetId(),GetRole()).getName();
-        }
-        
-        public String ShowID() throws IOException, Exception{
-                return User_Factory.getWebsiteManagerController(Start.person.id).getUserInfo(GetId(),GetRole()).getId();
-        }
-        
-        public UserRole ShowRole() throws IOException, Exception{
-                return User_Factory.getWebsiteManagerController(Start.person.id).getUserInfo(GetId(),GetRole()).getUserRole();
-        }
-        
-        public String ShowHotel() throws IOException, Exception{
-                return User_Factory.getWebsiteManagerController(Start.person.id).getUserInfo(GetId(),GetRole()).getBelongHotel();
-        }
-        
-        public String ShowContact() throws IOException, Exception{
-                return User_Factory.getWebsiteManagerController(Start.person.id).getUserInfo(GetId(),GetRole()).getContact();
+                gname.setText(vo.getName());
+                gid.setText(vo.getId());
+                ghotel.setText(vo.getBelongHotel());
+                grole.setText(vo.getUserRole().toString());
+                gcontact.setText(vo.getContact());
         }
 }
