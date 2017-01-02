@@ -39,7 +39,7 @@ public class OrderVO {
 		clientId = po.getClientId();
 		hotel = po.getHotel();
 		day = po.getDay();
-		createdTime = po.getCheckInTime();
+		createdTime = po.getCreatedTime();
 		planExecuteTime = po.getPlanExecuteTime();
 		latestDoneTime = po.getLatestDoneTime();
 		checkInTime = po.getCheckInTime();
