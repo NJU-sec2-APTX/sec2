@@ -55,11 +55,7 @@ public class ChangeDateStrategyController {
     @FXML
     private Label result;
 
-    @FXML
     String Name;
-    public void initialize(){
-        
-    }
     public void show(String name) throws MalformedURLException, IOException{
         Name=name;
         all.getChildren().clear();
@@ -79,6 +75,7 @@ public class ChangeDateStrategyController {
         cendmonth.setText(liste[1]);
         cendday.setText(liste[2]);
     }
+    @FXML
     private void clickChangeDateStrategyR(String Name) throws RemoteException, IOException {
         StrategyVO vo=StrategyFactory.getStrategyController(Start.person.id, Start.person.role).getStrategy(Name);
         StrategyPO po=new StrategyPO(vo.getID(),vo.getUserRole(),vo.getName(),vo.getEnterprise(),vo.getRoomNumber(),GetBeginDate(cbeginyear.getText(),cbeginmonth.getText(),cbeginday.getText()),GetEndDate(cendyear.getText(),cendmonth.getText(),cendday.getText()),vo.getArea(),vo.getLevel(),Double.parseDouble(cdiscount.getText()),vo.getStrategyType());

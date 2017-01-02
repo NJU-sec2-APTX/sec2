@@ -39,9 +39,6 @@ public class GetLevelStrategyController {
     private TextField gcredit3;
     @FXML
     private TextField glname;
-    public void initialize(){
-        
-    }
     
     public void show (String name) throws MalformedURLException, IOException{
         all.getChildren().clear();

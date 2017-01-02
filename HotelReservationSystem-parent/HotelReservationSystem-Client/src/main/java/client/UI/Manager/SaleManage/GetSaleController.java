@@ -32,6 +32,7 @@ public class GetSaleController {
     public void initialize(){
         
     }
+    @FXML
     private void clickGetSaleR(ActionEvent event) throws IOException, Exception {
         FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/Manager/SaleManage/ShaowSale.fxml").toURL()));
         all=fXMLLoader.load();

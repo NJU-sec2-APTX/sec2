@@ -51,6 +51,7 @@ public class AddMemberController {
     public void initialize(){
         role.getItems().addAll("个人用户","企业用户","酒店工作人员","网站营销人员","网站管理人员");
     }
+    @FXML
     private void clickAddMemberR(ActionEvent event) throws Exception {
         UserPO po=new UserPO(id.getText(),UserRole.getUserRole(role.getValue()));
         po.setContact(contact.getText());

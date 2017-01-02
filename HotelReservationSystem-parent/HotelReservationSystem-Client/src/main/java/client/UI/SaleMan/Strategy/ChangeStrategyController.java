@@ -30,6 +30,7 @@ public class ChangeStrategyController {
     private Button ChangeStrategyR;
     @FXML
     private TextField Cname;
+    @FXML
     public void initialize(){
         type.getItems().addAll("会员等级制度","特殊时段优惠策略","VIP商圈优惠策略");
     }

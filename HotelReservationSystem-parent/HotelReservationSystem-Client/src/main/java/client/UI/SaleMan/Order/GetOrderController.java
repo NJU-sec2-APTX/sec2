@@ -37,6 +37,7 @@ public class GetOrderController {
     public void initialize(){
         
     }
+    @FXML
     private void clickGetOrderR(ActionEvent event) throws MalformedURLException, IOException {
         FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/Manager/SaleManage/Change.fxml").toURL()));
         all=fXMLLoader.load();

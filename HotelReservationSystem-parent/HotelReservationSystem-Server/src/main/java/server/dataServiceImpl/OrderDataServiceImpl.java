@@ -28,7 +28,7 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 
 	public OrderDataServiceImpl() throws RemoteException {
 		super();
-	}
+		}
 
 	@Override
 	public ArrayList<HotelPO> searchReservedHotel(String clientId) throws RemoteException {

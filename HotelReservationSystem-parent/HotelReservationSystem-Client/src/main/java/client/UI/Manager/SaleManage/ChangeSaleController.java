@@ -33,6 +33,7 @@ public class ChangeSaleController {
     public void initialize(){
         
     }
+    @FXML
     private void clickChangeSaleR(ActionEvent event) throws MalformedURLException, IOException, Exception {
         FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/Manager/SaleManage/Change.fxml").toURL()));
         all=fXMLLoader.load();

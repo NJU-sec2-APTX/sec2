@@ -31,8 +31,9 @@ public class ChargeController {
         public void initialize(){
             
         }
+        @FXML
 	public void  Charge() throws IOException, Exception {
-		ResultMessage rm=User_Factory.getWebsiteSalesController(Start.person.id).recharge(GetId(), GetMoney());
+		ResultMessage rm=User_Factory.getWebsiteSalesController(Start.person.id).recharge(id.getText(),Double.parseDouble(money.getText()));
                 if(rm==ResultMessage.Success){
                     result.setText("充值成功");
                 }else{
@@ -40,13 +41,5 @@ public class ChargeController {
                 }
 	}
         
-    @FXML
-        public String GetId() throws IOException{
-                return id.getText();
-        }
-        
-    @FXML
-        public int GetMoney() throws IOException{
-                return Integer.parseInt(money.getText());
-        }
+  
 }

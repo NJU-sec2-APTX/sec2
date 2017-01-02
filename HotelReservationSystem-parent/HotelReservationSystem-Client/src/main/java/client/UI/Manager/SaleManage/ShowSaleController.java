@@ -32,9 +32,7 @@ public class ShowSaleController {
     private TextField gcontact;
     @FXML
     private TextField gid;
-    public void initialize(){
-        
-    }
+    
     public void show(String id,UserRole ur) throws Exception{
         UserVO vo=User_Factory.getWebsiteManagerController(Start.person.id).getUserInfo(id,ur);
         gname.setText(vo.getName());

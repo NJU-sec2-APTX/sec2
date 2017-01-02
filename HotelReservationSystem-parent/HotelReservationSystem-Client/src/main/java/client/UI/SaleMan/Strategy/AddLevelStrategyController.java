@@ -46,6 +46,7 @@ public class AddLevelStrategyController {
     public void initialize(){
         
     }
+    @FXML
     private void clickAddLevelStrategyR(ActionEvent event) throws IOException {
         ResultMessage rm=StrategyFactory.getStrategyController(Start.person.id, Start.person.role).addMemberLevelStrategy(GetCredit(credit1.getText(),credit2.getText(),credit3.getText(),credit4.getText(),credit5.getText()));
         if(rm==ResultMessage.Success){

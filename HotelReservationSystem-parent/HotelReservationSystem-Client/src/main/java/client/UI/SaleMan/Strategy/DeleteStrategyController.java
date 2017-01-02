@@ -33,9 +33,6 @@ public class DeleteStrategyController {
     private Label result;
 
     @FXML
-    public void initialize(){
-        
-    }
     private void clickDeleteStrategyR() throws RemoteException {
         StrategyVO vo=StrategyFactory.getStrategyController(Start.person.id,Start.person.role).getStrategy(dname.getText());         
         ResultMessage rm=StrategyFactory.getStrategyController(Start.person.id,Start.person.role).removeStrategy(vo);

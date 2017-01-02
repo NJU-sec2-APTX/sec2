@@ -29,7 +29,8 @@ public class ChangeHotelController {
 
 
     @FXML
-    private AnchorPane all,add;
+    private AnchorPane all;
+    private AnchorPane addAnchorPane;
     private TextField Cname;
     @FXML
     private Pane change;
@@ -51,17 +52,12 @@ public class ChangeHotelController {
     public void initialize(){
         
     }
-    public void ChangeHotel() throws MalformedURLException, IOException{
-        all.getChildren().clear();
-        add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/HotelManage/ChangeHotel.fxml").toURL()));
-        all.getChildren().add(add);
-    }
     public void clickChangeHotelR() throws IOException, Exception{
         FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/Manager/HotelManage/Change.fxml").toURL()));
-        all=fXMLLoader.load();
+        addAnchorPane=fXMLLoader.load();
         ChangeController sc=fXMLLoader.getController();
+        all.getChildren().add(addAnchorPane);
         sc.show(Cname.getText());
-        
         }
     
 }

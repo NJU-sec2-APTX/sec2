@@ -36,10 +36,10 @@ public class GetHotelController {
     }
     private void clickGetSaleR() throws IOException {
         FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/Manager/HotelManage/ShowHotel.fxml").toURL()));
-        all=fXMLLoader.load();
+        AnchorPane add =fXMLLoader.load();
+        all.getChildren().add(add);
         ShowHotelController sc=fXMLLoader.getController();
         sc.show(Gname.getText());
-        
     }
     
 }

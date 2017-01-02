@@ -52,13 +52,7 @@ public class GetVipandAreaStrategyController {
     @FXML
     private Button AddVipandAreaStrategyR;
     
-    /**
-     * Initializes the controller class.
-     */
-    @FXML
-    public void initialize() {
-        
-    }    
+   
     public void show(String name) throws MalformedURLException, IOException{
         all.getChildren().clear();
         add=FXMLLoader.load((new File("src/main/java/client/UI/SaleMan/Strategy/GetVipandAreaStrategy.fxml").toURL()));

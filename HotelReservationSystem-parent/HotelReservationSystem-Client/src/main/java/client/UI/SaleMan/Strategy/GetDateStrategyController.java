@@ -43,10 +43,7 @@ public class GetDateStrategyController {
     private TextField gendmonth;
     @FXML
     private TextField gendday;
-    @FXML
-    public void initialize(){
-        
-    }
+    
     public void show(String name)throws Exception{
                 all.getChildren().clear();
                 add=FXMLLoader.load((new File("src/main/java/client/UI/SaleMan/Strategy/GetDateStrategy.fxml").toURL()));

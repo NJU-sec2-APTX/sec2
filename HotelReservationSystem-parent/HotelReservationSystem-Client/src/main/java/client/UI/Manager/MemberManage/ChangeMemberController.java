@@ -39,6 +39,7 @@ public class ChangeMemberController {
     public void initialize(){
         Crole.getItems().addAll("个人会员","企业会员","酒店工作人员","网站营销人员","网站管理人员");
     }
+    @FXML
     private void clickChangeMemberR(ActionEvent event) throws MalformedURLException, IOException, Exception {
         FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/Manager/MemberManage/Change.fxml").toURL()));
         all=fXMLLoader.load();

@@ -19,16 +19,17 @@ public class OrderController {
     //修改订单，恢复信用
         public void ChangeOrder() throws IOException{
             FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/SaleMan/Order/ChangeOrder.fxml").toURL()));
-            all=fXMLLoader.load();           
-            ChangeOrderController coc=fXMLLoader.getController();    
-            coc.initialize();
+           add=fXMLLoader.load();           
+           all.getChildren().clear();   
+           all.getChildren().add(add);
         }              
     @FXML
     //查看具体订单信息
         public void GetOrder() throws IOException{
             FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/SaleMan/Order/GetOrder.fxml").toURL()));
-            all=fXMLLoader.load();           
-            GetOrderController goc=fXMLLoader.getController();           
+            add=fXMLLoader.load();           
+           all.getChildren().clear();   
+           all.getChildren().add(add);       
         }            
 }
 

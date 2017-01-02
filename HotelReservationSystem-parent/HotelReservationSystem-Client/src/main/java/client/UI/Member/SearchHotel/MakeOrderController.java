@@ -154,12 +154,9 @@ public class MakeOrderController {
         memberVO=MemberFactory.getMemberMaintainService(Start.person.id ,UserRole.Member).getInfo() ;
         hotelNameField.setEditable(false);
         hotelVO=h;
-        System.out.println(152+""+hotelVO==null);
         hotelNameField.setText(hotelVO.name);
         for(int i=0;i<3;i++){
-            System.out.print((hotelVO.rooms==null)+"*****");
-            System.out.println(hotelVO.rooms.size());
-            int num=hotelVO.rooms.get(i).restNum;
+            int num=hotelVO.rooms.get(i).restNum+1;
             while(num!=0){
                 num--;
                 if(i==0){

@@ -35,6 +35,7 @@ public class DeleteSaleController {
     public void initialize(){
         
     }
+    @FXML
     private void clickDeleteSaleR(ActionEvent event) throws Exception {
         ResultMessage rm=User_Factory.getWebsiteManagerController(Start.person.id).removeUser(Did.getText(), UserRole.Sales);
         if(rm==ResultMessage.Success){

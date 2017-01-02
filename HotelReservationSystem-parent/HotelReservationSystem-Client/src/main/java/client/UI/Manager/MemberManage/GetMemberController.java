@@ -35,6 +35,7 @@ public class GetMemberController {
     public void initialize(){
         Grole.getItems().addAll("个人会员","企业会员","酒店工作人员","网站营销人员","网站管理人员");
     }
+    @FXML
     private void clickGetMemberR(ActionEvent event) throws IOException, Exception {
         FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/Manager/MemberManage/ShowMember.fxml").toURL()));
         all=fXMLLoader.load();

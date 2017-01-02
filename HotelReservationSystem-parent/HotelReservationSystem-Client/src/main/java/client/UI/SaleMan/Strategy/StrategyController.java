@@ -31,15 +31,17 @@ public class StrategyController {
     //新增策略
         public void AddStrategy() throws IOException{
             FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/SaleMan/Strategy/AddStrategy.fxml").toURL()));
-            all=fXMLLoader.load();           
-            AddStrategyController asc=fXMLLoader.getController();    
+            add=fXMLLoader.load();           
+           all.getChildren().clear();   
+           all.getChildren().add(add);   
         }
     //删除策略
     @FXML
 	public void DeleteStrategy() throws IOException{
             FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/SaleMan/Strategy/DeleteStrategy.fxml").toURL()));
-            all=fXMLLoader.load();           
-            DeleteStrategyController dsc=fXMLLoader.getController();         
+            add=fXMLLoader.load();           
+           all.getChildren().clear();   
+           all.getChildren().add(add);        
 	}
         
         
@@ -47,17 +49,17 @@ public class StrategyController {
     @FXML
         public void ChangeStrategy() throws IOException{
             FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/SaleMan/Strategy/ChangeStrategy.fxml").toURL()));
-            all=fXMLLoader.load();           
-            ChangeStrategyController csc=fXMLLoader.getController();    
-            csc.initialize();
+           add=fXMLLoader.load();           
+           all.getChildren().clear();   
+           all.getChildren().add(add); 
         }
     @FXML
     //查看策略，输入策略名，选择策略类型
         public void GetStrategy() throws IOException{
             FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/SaleMan/Strategy/GetStrategy.fxml").toURL()));
-            all=fXMLLoader.load();           
-            GetStrategyController gsc=fXMLLoader.getController();    
-            gsc.initialize();
+            add=fXMLLoader.load();           
+           all.getChildren().clear();   
+           all.getChildren().add(add); 
         }
        
        

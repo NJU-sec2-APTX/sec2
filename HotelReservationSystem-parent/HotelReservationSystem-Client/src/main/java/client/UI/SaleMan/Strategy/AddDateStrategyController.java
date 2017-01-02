@@ -47,9 +47,6 @@ public class AddDateStrategyController {
     private Button AddDateStrategyR;
     @FXML
     private Label result;
-    public void initialize(){
-        
-    }
     @FXML
     public void clickAddDateStrategyR() throws IOException{
         ResultMessage rm=StrategyFactory.getStrategyController(Start.person.id,Start.person.role).addSpecialDateStrategyPO(datename.getText(),Double.parseDouble(datecount.getText()),GetBeginDate(beginyear.getText(),beginmonth.getText(),beginday.getText()),GetEndDate(endyear.getText(),endmonth.getText(),endday.getText()));
@@ -59,6 +56,7 @@ public class AddDateStrategyController {
             result.setText("新增失败");
         }
     }
+    
     public Date GetBeginDate(String y,String m,String d) throws IOException{
         Date date=new Date(Integer.parseInt(y),Integer.parseInt(m),Integer.parseInt(d));
         return date;

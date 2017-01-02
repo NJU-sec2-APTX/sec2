@@ -19,16 +19,21 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 public class MemberManageController {
+
+    Button AddMember;
 	@FXML
-	Button  AddMember,ChangeMember,GetMember,AddMemberR,GetMemberR,ChangeMemberR,ChangeR;
+	Button  ChangeMember,GetMember,AddMemberR,GetMemberR,ChangeMemberR,ChangeR;
 	@FXML
 	Pane change;
+        TextField name;
         @FXML
-        TextField name,password,contact,hotel,id,cname,cid,chotel,ccontact;
+        TextField password,contact,hotel,id,cname,cid,chotel,ccontact;
+        TextField gname;
         @FXML
-        TextField gname,gid,ghotel,grole,gcontact;
+        TextField gid,ghotel,grole,gcontact;
+        TextField Cid;
         @FXML
-        TextField Cid,Gid;
+                TextField Gid;
 	@FXML
 	AnchorPane all;
 	Label result;
@@ -51,6 +56,7 @@ public class MemberManageController {
         }
                 
     //查看用户
+    @FXML
         public void GetMember() throws IOException{
                 all.getChildren().clear();
                 add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/MemberManage/GetMember.fxml").toURL()));

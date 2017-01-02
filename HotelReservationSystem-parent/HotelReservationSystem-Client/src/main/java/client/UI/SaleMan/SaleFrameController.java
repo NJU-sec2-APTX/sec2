@@ -1,8 +1,6 @@
 package client.UI.SaleMan;
 
 import static client.UI.Runner.Start.person;
-import client.UI.SaleMan.Order.OrderController;
-import client.UI.SaleMan.Strategy.StrategyController;
 import client.businessLogicService.User_Factory;
 import java.io.File;
 import java.io.IOException;
@@ -26,34 +24,38 @@ public class SaleFrameController {
     @FXML
     private Button exitButton;
     @FXML
+    private AnchorPane rep;
+    @FXML
 	public void  clickStrategy() throws IOException {
             FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/SaleMan/Strategy/Strategy.fxml").toURL()));
-            all=fXMLLoader.load();           
-            StrategyController sc=fXMLLoader.getController();     
+            add=fXMLLoader.load();           
+           all.getChildren().clear();   
+           all.getChildren().add(add);  
 	}
 	
     @FXML
 	public void clickOrder() throws IOException{
             FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/SaleMan/Order/Order.fxml").toURL()));
-            all=fXMLLoader.load();           
-            OrderController oc=fXMLLoader.getController();    
+           add=fXMLLoader.load();           
+           all.getChildren().clear();   
+           all.getChildren().add(add);  
 	}
         
     @FXML
         public void clickCharge() throws IOException{
             FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/SaleMan/Charge/Charge.fxml").toURL()));
-            all=fXMLLoader.load();           
-            StrategyController sc=fXMLLoader.getController();    
+            add=fXMLLoader.load();           
+           all.getChildren().clear();   
+           all.getChildren().add(add); 
         }
 
     @FXML
     private void exitButtonHander(ActionEvent event)throws Exception{
         System.out.println("exitButton");
-        all.getChildren().clear();
-        all.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Runner/Runner.fxml").toURL())));
+        rep.getChildren().clear();
+        rep.getChildren().add(FXMLLoader.load((new File("src/main/java/client/UI/Runner/Runner.fxml").toURL())));
         System.out.print("退出"+person.id);
         if (null!=person.role)
          User_Factory.getUserService().logout(person.id,person.role);
-         System.out.println("登出");
     }
 }

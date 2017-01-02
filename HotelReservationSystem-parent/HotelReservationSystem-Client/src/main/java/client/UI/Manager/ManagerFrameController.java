@@ -1,6 +1,5 @@
 package client.UI.Manager;
 
-import client.UI.Manager.HotelManage.AddHotelController;
 import static client.UI.Runner.Start.person;
 import client.businessLogicService.User_Factory;
 import java.io.File;
@@ -51,48 +50,49 @@ public class ManagerFrameController {
         System.out.print("退出"+person.id);
         if (null!=person.role)
          User_Factory.getUserService().logout(person.id,person.role);
-         System.out.println("登出");
     }
 
     @FXML
     private void clickHotelButton(ActionEvent event)  throws IOException{
-                change.getChildren().clear();
+                all.getChildren().clear();
                 add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/HotelManage/HotelManage.fxml")).toURL());
-                change.getChildren().add(add);
+                all.getChildren().add(add);
     }
 
     @FXML
     private void clickSaleButton(ActionEvent event) throws IOException{
-                change.getChildren().clear();
+                all.getChildren().clear();
                 add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/SaleManage/SaleManage.fxml")).toURL());
-                change.getChildren().add(add);
+                all.getChildren().add(add);
     }
 
     @FXML
     private void clickMemberButton(ActionEvent event)throws IOException {
-                change.getChildren().clear();
+                all.getChildren().clear();
 		add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/MemberManage/MemberManage.fxml")).toURL());
-                change.getChildren().add(add );
+                all.getChildren().add(add );
     }
 
     @FXML
     private void clickAddButton(ActionEvent event) throws IOException {
-        FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/Manager/HotelManage/AddHotel.fxml").toURL()));
-            all=fXMLLoader.load();           
+        all.getChildren().clear();
+	add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/HotelManage/AddHotel.fxml")).toURL());
+        all.getChildren().add(add );
     }
 
 
     @FXML
     private void clickModifyButton(ActionEvent event) throws IOException {
-        
-         FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/Manager/HotelManage/ChangeHotel.fxml").toURL()));
-            all=fXMLLoader.load();   
+        all.getChildren().clear();
+        add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/HotelManage/ChangeHotel.fxml")).toURL());
+        all.getChildren().add(add );
     }
 
     @FXML
     private void clickGetHotelButton(ActionEvent event) throws IOException {
-        HotelManageController hmc=new HotelManageController();
-        hmc.GetHotel();
+        all.getChildren().clear();
+        add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/HotelManage/GetMember.fxml").toURL()));
+        all.getChildren().add(add );
     }
     public void initialize(){
        

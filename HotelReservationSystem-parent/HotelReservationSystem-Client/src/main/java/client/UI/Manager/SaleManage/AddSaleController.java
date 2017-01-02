@@ -46,6 +46,7 @@ public class AddSaleController {
     public void initialize(){
         
     }
+    @FXML
     private void clickAddSaleR(ActionEvent event) throws Exception {
         UserPO po=new UserPO(id.getText(),UserRole.Sales);
         po.setContact(contact.getText());

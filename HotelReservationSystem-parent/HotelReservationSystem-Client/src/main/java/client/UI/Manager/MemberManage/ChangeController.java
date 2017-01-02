@@ -57,6 +57,7 @@ public class ChangeController {
         chotel.setText(vo.getBelongHotel());
         crole.setAccessibleText(vo.getUserRole().toString());
     }
+    @FXML
     private void clickChangeR(ActionEvent event) throws Exception {
         UserPO po=new UserPO(cid.getText(),UserRole.getUserRole(crole.getValue()));
         po.setContact(ccontact.getText());

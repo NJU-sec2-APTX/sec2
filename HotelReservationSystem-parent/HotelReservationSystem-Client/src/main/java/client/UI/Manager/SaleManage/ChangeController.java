@@ -51,6 +51,7 @@ public class ChangeController {
         ID.setText(vo.getId());
         Contact.setText(vo.getContact());
     }
+    @FXML
     private void clickChangeR(ActionEvent event) throws Exception {
         UserPO po=new UserPO(ID.getText(),UserRole.Sales);
         po.setContact(Contact.getText());

@@ -36,7 +36,7 @@ public class ChangeOrderController {
     public void initialize(){
         isall.getItems().addAll("一半","全部");
     }
-    
+    @FXML
     public void clickChangeOrderR() throws IOException{
         Boolean IsAll= "全部".equals(isall.getValue());
         //先找出要修改的订单

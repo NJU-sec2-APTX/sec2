@@ -9,7 +9,7 @@
    <children>
       <Button fx:id="ChangeMemberR" layoutX="435.0" layoutY="376.0" mnemonicParsing="false" onAction="#clickChangeMemberR" text="修改" />
       <Label layoutX="336.0" layoutY="206.0" text="ID" />
-      <TextField fx:id="Cid" layoutX="427.0" layoutY="202.0" onAction="#GetId" />
+      <TextField fx:id="Cid" layoutX="427.0" layoutY="202.0"  />
       <Label layoutX="327.0" layoutY="287.0" text="账号类型" />
       <ChoiceBox fx:id="Crole" layoutX="427.0" layoutY="283.0" prefWidth="150.0" />
    </children>

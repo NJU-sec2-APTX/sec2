@@ -51,11 +51,7 @@ public class AddVipandAreaStrategyController {
     public void initialize(){
         area.getItems().addAll("鼓楼","栖霞","建邺","玄武","浦口");
     }
-    public void Add() throws MalformedURLException, IOException{
-        all.getChildren().clear();
-        add=FXMLLoader.load((new File("src/main/java/client/UI/SaleMan/Strategy/AddVipandAreaStrategy.fxml").toURL()));
-        all.getChildren().add(add );      
-    }
+    
     @FXML
     public void clickAddVipandAreaStrategyR() throws IOException{
         ResultMessage rm=StrategyFactory.getStrategyController(Start.person.id, Start.person.role).addVipandAreaStrategyPO( vname.getText(), GetCount(count1.getText(),count2.getText(),count3.getText(),count4.getText(),count5.getText()), area.getValue());

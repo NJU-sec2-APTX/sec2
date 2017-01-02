@@ -22,7 +22,7 @@ import javafx.scene.layout.Pane;
 public class AddStrategyController {
 
     @FXML
-    private AnchorPane all,add;
+    private AnchorPane all;
     @FXML
     private Pane change;
     @FXML
@@ -31,26 +31,29 @@ public class AddStrategyController {
     private Button AddDateStrategy;
     @FXML
     private Button AddVipandAreaStrategy;
-
+    AnchorPane add;
     @FXML
     private void AddLevelStrategy() throws MalformedURLException, IOException {
         FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/SaleMan/Strategy/AddLevelStrategy.fxml").toURL()));
-	all=fXMLLoader.load();
-        AddLevelStrategyController alsc=fXMLLoader.getController();
+            add=fXMLLoader.load();           
+           all.getChildren().clear();   
+           all.getChildren().add(add);
     }
 
     @FXML
     private void AddDateStrategy(ActionEvent event) throws MalformedURLException, IOException {
         FXMLLoader fXMLLoader2 =new FXMLLoader((new File("src/main/java/client/UI/SaleMan/Strategy/AddDateStrategy.fxml").toURL()));
-	all=fXMLLoader2.load();
-        AddDateStrategyController alsc=fXMLLoader2.getController();
+	add=fXMLLoader2.load();           
+           all.getChildren().clear();   
+           all.getChildren().add(add);
     }
 
     @FXML
     private void AddVipandAreaStrategy(ActionEvent event) throws IOException {
         FXMLLoader fXMLLoader3 =new FXMLLoader((new File("src/main/java/client/UI/SaleMan/Strategy/AddVipandAreaStrategy.fxml").toURL()));
-	all=fXMLLoader3.load();
-        AddDateStrategyController alsc=fXMLLoader3.getController();
+	add=fXMLLoader3.load();           
+           all.getChildren().clear();   
+           all.getChildren().add(add);
     }
     
 }

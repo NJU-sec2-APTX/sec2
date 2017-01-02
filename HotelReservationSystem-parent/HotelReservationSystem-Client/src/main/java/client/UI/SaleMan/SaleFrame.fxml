@@ -8,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-<AnchorPane fx:id="all" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="1124.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.SaleMan.SaleFrameController">
+<AnchorPane fx:id="rep" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="1124.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.SaleMan.SaleFrameController">
    <children>
       <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="141.0" prefWidth="1104.0" style="-fx-background-color: gray;" text="酒店预订系统">
          <font>
@@ -32,6 +32,10 @@
             <Button fx:id="Charge" mnemonicParsing="false" onAction="#clickCharge" prefHeight="84.0" prefWidth="175.0" text="信用充值" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Pane fx:id="change" layoutX="236.0" layoutY="160.0" prefHeight="550.0" prefWidth="870.0" />
+      <AnchorPane fx:id="all" layoutX="204.0" layoutY="160.0" prefHeight="550.0" prefWidth="870.0">
+         <children>
+            <Pane fx:id="change" layoutY="4.0" prefHeight="550.0" prefWidth="870.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

@@ -52,7 +52,7 @@ public class ChangeVipandAreaStrategyController {
     private Button ChangeVipandAreaStrategyR;
     @FXML
     private Label result;
-
+@FXML
     public void initialize(){
         carea.getItems().addAll("鼓楼","栖霞","建邺","浦口","玄武");
     }
