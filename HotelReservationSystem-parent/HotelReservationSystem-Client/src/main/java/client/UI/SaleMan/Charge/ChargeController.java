@@ -33,6 +33,7 @@ public class ChargeController {
         }
         @FXML
 	public void  Charge() throws IOException, Exception {
+            
 		ResultMessage rm=User_Factory.getWebsiteSalesController(Start.person.id).recharge(id.getText(),Double.parseDouble(money.getText()));
                 if(rm==ResultMessage.Success){
                     result.setText("充值成功");

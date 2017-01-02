@@ -48,7 +48,7 @@ public class AddDateStrategyController {
     @FXML
     private Label result;
     @FXML
-    public void clickAddDateStrategyR() throws IOException{
+    public void clickChangeDateStrategyR() throws IOException{
         ResultMessage rm=StrategyFactory.getStrategyController(Start.person.id,Start.person.role).addSpecialDateStrategyPO(datename.getText(),Double.parseDouble(datecount.getText()),GetBeginDate(beginyear.getText(),beginmonth.getText(),beginday.getText()),GetEndDate(endyear.getText(),endmonth.getText(),endday.getText()));
         if(rm==ResultMessage.Success){
             result.setText("新增特殊时段优惠策略成功");

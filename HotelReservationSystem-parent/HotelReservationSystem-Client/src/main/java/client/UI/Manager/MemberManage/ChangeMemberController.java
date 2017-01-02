@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
@@ -33,6 +34,8 @@ public class ChangeMemberController {
     @FXML
     private TextField Cid;
     @FXML
+    private Label result;
+    @FXML
     private ChoiceBox<String> Crole;
 
     @FXML
@@ -41,10 +44,13 @@ public class ChangeMemberController {
     }
     @FXML
     private void clickChangeMemberR(ActionEvent event) throws MalformedURLException, IOException, Exception {
+        if(User_Factory.getWebsiteManagerController(Start.person.id).getUserInfo(Cid.getText(), UserRole.getUserRole(Crole.getValue()))==null){
+            result.setText("用户不存在");
+        }else{
         FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/Manager/MemberManage/Change.fxml").toURL()));
         all=fXMLLoader.load();
         ChangeController sc=fXMLLoader.getController();
         sc.show(Cid.getText(),UserRole.getUserRole(Crole.getValue()));      
     }
-    
+    }
 }

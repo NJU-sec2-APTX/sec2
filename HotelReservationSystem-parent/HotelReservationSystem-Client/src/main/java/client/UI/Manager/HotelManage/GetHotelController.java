@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
@@ -29,17 +30,21 @@ public class GetHotelController {
     private Button GetSaleR;
     @FXML
     private TextField Gname;
-
+    @FXML
+    private Label result;
     @FXML
     public void initialize(){
         
     }
-    private void clickGetSaleR() throws IOException {
+    private void clickGetHotelR() throws IOException {
+        if(HotelFactory.getHotelMaintainService().getHotelInfo(Gname.getText())==null){
+            result.setText("酒店不存在");
+        }else{
         FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/Manager/HotelManage/ShowHotel.fxml").toURL()));
         AnchorPane add =fXMLLoader.load();
         all.getChildren().add(add);
         ShowHotelController sc=fXMLLoader.getController();
         sc.show(Gname.getText());
     }
-    
+    }
 }

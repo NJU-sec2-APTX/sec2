@@ -34,10 +34,11 @@ public class ShowSaleController {
     private TextField gid;
     
     public void show(String id,UserRole ur) throws Exception{
-        UserVO vo=User_Factory.getWebsiteManagerController(Start.person.id).getUserInfo(id,ur);
+        System.out.println("client.UI.Manager.SaleManage.ShowSaleController.show()"+Start.person.id+id+ur);
+         UserVO vo=User_Factory.getWebsiteManagerController(Start.person.id).getUserInfo(id, ur);
         gname.setText(vo.getName());
         gid.setText(vo.getId());
-        grole.setText(vo.getUserRole().toString());
         gcontact.setText(vo.getContact());
+        grole.setText(vo.getUserRole().toString());
     }
 }

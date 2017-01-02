@@ -91,7 +91,7 @@ public class ManagerFrameController {
     @FXML
     private void clickGetHotelButton(ActionEvent event) throws IOException {
         all.getChildren().clear();
-        add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/HotelManage/GetMember.fxml").toURL()));
+        add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/HotelManage/GetHotel.fxml").toURL()));
         all.getChildren().add(add );
     }
     public void initialize(){

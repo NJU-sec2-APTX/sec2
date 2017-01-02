@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="all" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.SaleMan.Strategy.GetStrategyController">
+<AnchorPane fx:id="all" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.SaleMan.Strategy.GetStrategyController">
    <children>
       <Button fx:id="GetStrategyR" layoutX="435.0" layoutY="374.0" mnemonicParsing="false" onAction="#clickGetStrategyR" text="查看" />
       <Label layoutX="336.0" layoutY="206.0" text="策略名" />
       <TextField fx:id="Gname" layoutX="427.0" layoutY="202.0" prefHeight="23.0" prefWidth="150.0" />
       <ChoiceBox fx:id="Gtype" layoutX="427.0" layoutY="290.0" prefWidth="150.0" />
       <Label layoutX="339.0" layoutY="294.0" text="策略类型" />
+      <Label fx:id="result" layoutX="682.0" layoutY="246.0" text="             " textFill="RED" />
    </children>
 </AnchorPane>

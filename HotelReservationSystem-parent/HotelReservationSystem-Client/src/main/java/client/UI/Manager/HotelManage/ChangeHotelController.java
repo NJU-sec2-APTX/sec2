@@ -5,13 +5,9 @@
  */
 package client.UI.Manager.HotelManage;
 
-import client.UI.SaleMan.Strategy.ChangeLevelStrategyController;
 import client.businessLogicService.HotelFactory;
-import common.vo.HotelVO;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -32,32 +28,22 @@ public class ChangeHotelController {
     private AnchorPane all;
     private AnchorPane addAnchorPane;
     private TextField Cname;
+   
     @FXML
-    private Pane change;
-    @FXML
-    private TextField cname;
-    @FXML
-    private TextField cstar;
-    @FXML
-    private TextField caddress;
-    @FXML
-    private TextField cid;
-    @FXML
-    private ChoiceBox<String> carea;
-    @FXML
-    private Button AddHotelR;
-    @FXML
-    private Label result;
+    private  Label result;
     @FXML
     public void initialize(){
         
     }
     public void clickChangeHotelR() throws IOException, Exception{
+        if(HotelFactory.getHotelMaintainService().getHotelInfo(Cname.getText())==null){
+            result.setText("酒店不存在");
+        }else{
         FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/Manager/HotelManage/Change.fxml").toURL()));
         addAnchorPane=fXMLLoader.load();
         ChangeController sc=fXMLLoader.getController();
         all.getChildren().add(addAnchorPane);
         sc.show(Cname.getText());
         }
-    
+    }
 }

@@ -91,7 +91,7 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 		data = new DBHelper(sql);
                 System.out.println(sql);
 		try {
-			if (data.pst.execute(sql)) {
+			if (!data.pst.execute(sql)) {
                                 setRooms(po);
                                 data.close();
 				return true;
@@ -120,13 +120,13 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
                 System.out.println(sql);
 		try {
                     System.out.println("--------");
-                    boolean label=database.pst.execute(sql);
+                    boolean label=!database.pst.execute(sql);
                     database.close();
 			return label;
 		} catch (SQLException e) {
                     e.printStackTrace();
 		}
-		return false;
+		return true;
 	}
 
 	@Override
@@ -192,7 +192,7 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 				+ "0.0" + "','" + "0" + "','" + "0" +"')";
 		DBHelper database = new DBHelper(sql);
 		try {
-			if (database.pst.execute()) {
+			if (!database.pst.execute()) {
                             database.close();
 				return true;
 			}

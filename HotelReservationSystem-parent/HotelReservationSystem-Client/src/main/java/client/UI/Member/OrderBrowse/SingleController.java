@@ -51,7 +51,11 @@ public class SingleController  {
             IDLabel.setText(orderVO.id);
             makeTimeLabel.setText(orderVO.createdTime.toString());
             hotelLabel.setText(orderVO.hotel);
-            executeTimeLabel.setText(orderVO.checkInTime.toString());
+            if (orderVO.checkInTime==null) {
+                executeTimeLabel.setText("");
+            }else{
+                executeTimeLabel.setText(orderVO.checkInTime.toString());
+            }
             statueLabel.setText(orderVO.state+"");
             if(orderVO.state==OrderState.NotDone){
                 cancelButton.setVisible(true);

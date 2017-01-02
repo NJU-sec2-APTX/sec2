@@ -49,11 +49,8 @@ public class ExecuteSingleController  {
             memberLabel.setText(orderVO.clientId);
             moneyLabel.setText(orderVO.price+"");
             roomInfo.setText(orderVO.numOfRoom);
-            if (orderVO.checkInTime==null) {
-                executeOrderButton.setText("执行");
-            }else if(orderVO.checkOutTime==null){
-                executeOrderButton.setText("取消");
-            }
+            executeOrderButton.setText("执行");
+            
         }
     }
     

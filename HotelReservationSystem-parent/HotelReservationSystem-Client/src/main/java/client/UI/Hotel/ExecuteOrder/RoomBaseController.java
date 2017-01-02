@@ -42,23 +42,27 @@ public class RoomBaseController  {
     private Button inHotelButton;
 
    
-    @FXML
     public void initialize() throws Exception{
-        FXMLLoader fxmll=new FXMLLoader();
-        repPanel=fxmll.load((new File("src/main/java/client/UI/Hotel/ExecuteOrder/ExecuteReplace.fxml").toURL()));
-        ExecuteReplaceController erc=fxmll.getController();
+        FXMLLoader fxmll=new FXMLLoader((new File("src/main/java/client/UI/Hotel/ExecuteOrder/ExecuteReplace.fxml").toURL()));
+        AnchorPane anchorPane=fxmll.load();
+        repPanel.getChildren().clear();
+        repPanel.getChildren().add(anchorPane);
     }
 
     @FXML
     private void executeButtonHandler(ActionEvent event) throws Exception{
-        FXMLLoader fxmll=new FXMLLoader();
-        repPanel=fxmll.load((new File("src/main/java/client/UI/Hotel/ExecuteOrder/ExecuteReplace.fxml").toURL()));
+        FXMLLoader fxmll=new FXMLLoader((new File("src/main/java/client/UI/Hotel/ExecuteOrder/ExecuteReplace.fxml").toURL()));
+        AnchorPane anchorPane=fxmll.load();
+        repPanel.getChildren().clear();
+        repPanel.getChildren().add(anchorPane);
     }
 
     @FXML
     private void cancelRoomWithOrderButtonHandler(ActionEvent event) throws Exception{
-        FXMLLoader fxmll=new FXMLLoader();
-        repPanel=fxmll.load((new File("src/main/java/client/UI/Hotel/ExecuteOrder/OutWithOrderRep.fxml").toURL()));
+        FXMLLoader fxmll=new FXMLLoader((new File("src/main/java/client/UI/Hotel/ExecuteOrder/OutWithOrderRep.fxml").toURL()));
+        AnchorPane anchorPane=fxmll.load();
+        repPanel.getChildren().clear();
+        repPanel.getChildren().add(anchorPane);
     }
 
     @FXML

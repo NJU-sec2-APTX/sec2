@@ -44,6 +44,7 @@ public class OrderOperation implements OrderblService {
 				vos.add(new OrderVO(OrderPO));
 			}
 		} catch (RemoteException | ParseException e) {
+                    e.printStackTrace();
 		}
 		return vos;
 	}
@@ -83,6 +84,7 @@ public class OrderOperation implements OrderblService {
 			Calendar cal = Calendar.getInstance();
 			vo.id = clientId + cal.get(Calendar.YEAR) + cal.get(Calendar.MONTH) + cal.get(Calendar.DATE)
 					+ cal.get(Calendar.HOUR) + cal.get(Calendar.MINUTE);
+                        vo.latestDoneTime = vo.planExecuteTime;
 
 			HotelPO hotel = Client.getHotelDataService().getHotelInfo(vo.hotelId);
 			ArrayList<RoomCondition> rooms = hotel.getRooms();
@@ -109,23 +111,31 @@ public class OrderOperation implements OrderblService {
 	public OrderVO executeOrder(String orderId, String hotelId, Date checkInTime, Date planCheckOutTime) {
 		try {
 			OrderPO po = Client.getOrderDataService().findOrderFromData(orderId);
-			if (po.getHotel() == Client.getHotelDataService().getHotelInfo(hotelId).getName()) {
+                        System.out.println(po==null);
+			if (po.getHotelId().equals(Client.getHotelDataService().getHotelInfo(hotelId).getId())) {
 				if (po.getState() == OrderState.NotDone || po.getState() == OrderState.Exceptional) {
 					if (po.getState() == OrderState.Exceptional) {
 						Client.getUserDataService().updatecredit(po.getClientId(), po.getPrice(), po.getId(),
 								CreditOperation.ExceptionCancel);
 					}
+                                        System.out.println(po.getId());
 					po.setState(OrderState.Done);
 					po.setCheckInTime(checkInTime);
 					po.setCheckOutTime(planCheckOutTime);
-					if (Client.getUserDataService().updatecredit(po.getClientId(), po.getPrice(), po.getId(),
-							CreditOperation.Execute) == ResultMessage.Success
-							&& Client.getOrderDataService().updateOrder(po)) {
+                                        boolean b1 = Client.getUserDataService().updatecredit(po.getClientId(), po.getPrice(), po.getId(),
+							CreditOperation.Execute) == ResultMessage.Success;
+                                        boolean b2 = Client.getOrderDataService().updateOrder(po);
+                                        System.out.println(b1);
+                                        System.out.println(b2);
+					if (b1&& b2) {
+                                            System.out.println("this/!");
+                                             System.out.println(po.getId());
 						return new OrderVO(po);
 					}
 				}
 			}
 		} catch (RemoteException e) {
+                    e.printStackTrace();
 		}
 		return null;
 	}

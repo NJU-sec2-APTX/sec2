@@ -54,9 +54,7 @@ public class ChangeLevelStrategyController {
         
     }
     public void show(String name) throws MalformedURLException, IOException{
-        all.getChildren().clear();
-        add=FXMLLoader.load((new File("src/main/java/client/UI/SaleMan/Strategy/ChangeLevelStrategy.fxml").toURL()));
-        all.getChildren().add(add);
+        
         StrategyVO vo=StrategyFactory.getStrategyController(Start.person.id,Start.person.role).getStrategy(name);
         clname.setText(vo.getName());
         String list[]=vo.getEnterprise().split("/");

@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -30,7 +31,6 @@ import javafx.scene.layout.AnchorPane;
 public class ExecuteReplaceController {
     @FXML
     private AnchorPane basePane;
-    private ScrollPane showPane;
     @FXML
     private AnchorPane rep;
     @FXML
@@ -46,24 +46,22 @@ public class ExecuteReplaceController {
     private void add( String orderID)throws Exception{
         Date date=LocalDateToDate.instantDate();
         OrderVO ov=OrderFactory.getOrderService().executeOrder(orderID, Start.person.id, date, null);
+        System.out.println("client.UI.Hotel.ExecuteOrder.ExecuteReplaceController.add()"+ov==null);
+        VBox box=new VBox();
         if(ov==null){
-            showPane.getChildrenUnmodifiable().clear();
-            FXMLLoader fxmll=new FXMLLoader();
-            AnchorPane addAnchorPane=fxmll.load((new File("src/main/java/client/UI/Hotel/ExecuteOrder/ExecuteSingle.fxml").toURL()));
+            FXMLLoader fxmll=new FXMLLoader((new File("src/main/java/client/UI/Hotel/ExecuteOrder/ExecuteSingle.fxml").toURL()));
+            AnchorPane addAnchorPane=fxmll.load();
             ExecuteSingleController esc=fxmll.getController();
             esc.show(null);
-            showPane.getChildrenUnmodifiable().add(addAnchorPane);
+            box.getChildren().add(addAnchorPane);
         }else{     
-                    showPane.getChildrenUnmodifiable().clear();
-                    FXMLLoader fxmll=new FXMLLoader();
-                    AnchorPane addAnchorPane=fxmll.load((new File("src/main/java/client/UI/Hotel/ExecuteOrder/ExecuteSingle.fxml").toURL()));
+                    FXMLLoader fxmll=new FXMLLoader((new File("src/main/java/client/UI/Hotel/ExecuteOrder/ExecuteSingle.fxml").toURL()));
+                    AnchorPane addAnchorPane=fxmll.load();
                     ExecuteSingleController esc=fxmll.getController();
                     esc.show(ov);
-                    showPane.getChildrenUnmodifiable().add(addAnchorPane);
+                    box.getChildren().add(addAnchorPane);
         }
-    }
-    public void initialize() {
-        
+        orderPane.setContent(box);
     }
 
     @FXML

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="all" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Manager.SaleManage.GetSaleController">
+<AnchorPane fx:id="all" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.UI.Manager.SaleManage.GetSaleController">
    <children>
       <Button fx:id="GetSaleR" layoutX="435.0" layoutY="380.0" mnemonicParsing="false" onAction="#clickGetSaleR" text="查看" />
       <Label layoutX="336.0" layoutY="206.0" text="ID" />
       <TextField fx:id="Gid" layoutX="427.0" layoutY="202.0" />
+      <Label fx:id="result" layoutX="441.0" layoutY="443.0" text="               " textFill="#fc0303" />
    </children>
 </AnchorPane>

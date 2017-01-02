@@ -57,7 +57,6 @@ public class BrowseHotel {
 			}
 			Collections.sort(hotelList, comp);
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {}
-                System.out.println("*sort*"+hotelList.size());
 		return hotelList;
 	}
 }

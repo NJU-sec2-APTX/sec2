@@ -58,25 +58,23 @@ public class ChangeDateStrategyController {
     String Name;
     public void show(String name) throws MalformedURLException, IOException{
         Name=name;
-        all.getChildren().clear();
-        add=FXMLLoader.load((new File("src/main/java/client/UI/SaleMan/Strategy/ChangeDateStrategy.fxml").toURL()));
-        all.getChildren().add(add);
+        
         StrategyVO vo=StrategyFactory.getStrategyController(Start.person.id,Start.person.role).getStrategy(name);
         cdname.setText(vo.getName());
         String bd=""+vo.getStartDate();
         String ed=""+vo.getEndDate();
-        String listb[]=bd.split("/");
-        String liste[]=ed.split("/");
+        String listb[]=bd.split("-");
+        String liste[]=ed.split("-");
         cdiscount.setText(""+vo.getCount());
-        cbeginyear.setText(listb[0]);
-        cbeginmonth.setText(listb[1]);
+        cbeginyear.setText(""+(Integer.parseInt(listb[0])-1900));
+        cbeginmonth.setText(""+(Integer.parseInt(listb[1])-1));
         cbeginday.setText(listb[2]);
-        cendyear.setText(liste[0]);
-        cendmonth.setText(liste[1]);
+        cendyear.setText(""+(Integer.parseInt(liste[0])-1900));
+        cendmonth.setText(""+(Integer.parseInt(liste[1])-1));
         cendday.setText(liste[2]);
     }
     @FXML
-    private void clickChangeDateStrategyR(String Name) throws RemoteException, IOException {
+    private void clickChangeDateStrategyR() throws RemoteException, IOException {
         StrategyVO vo=StrategyFactory.getStrategyController(Start.person.id, Start.person.role).getStrategy(Name);
         StrategyPO po=new StrategyPO(vo.getID(),vo.getUserRole(),vo.getName(),vo.getEnterprise(),vo.getRoomNumber(),GetBeginDate(cbeginyear.getText(),cbeginmonth.getText(),cbeginday.getText()),GetEndDate(cendyear.getText(),cendmonth.getText(),cendday.getText()),vo.getArea(),vo.getLevel(),Double.parseDouble(cdiscount.getText()),vo.getStrategyType());
         StrategyVO VO=new StrategyVO(po);
