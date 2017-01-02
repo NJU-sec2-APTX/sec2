@@ -110,6 +110,7 @@ public class SearchHotelController {
             String address=addressChooseBox.getValue();
             String areaString1=areaBox.getValue();
             hotelList=HotelFactory.getHotelBrowseService().getHotelList(areaString,address, new HotelSearchConditions(), Start.person.id);
+            System.out.println("aaaaaa");
             show();
         }
     }
@@ -156,6 +157,7 @@ public class SearchHotelController {
                 String name=hotelNameField.getText();
                 String address=addressChooseBox.getValue();
                 HotelSearchConditions searchItems=new HotelSearchConditions();
+                
                 if (outDatePicker.getValue()!=null) {
                      hotelSearchConditions.dateDown=LocalDateToDate.localDateToDate(outDatePicker.getValue());
                 }
@@ -165,7 +167,8 @@ public class SearchHotelController {
                 
                 hotelSearchConditions.hotelName=hotelNameField.getText();
                 hotelSearchConditions.onlyEverReserved=isRerveredCheeckBox.isSelected();
-                hotelSearchConditions.restHotelNumber=(numOfHotelField.getText()==null?0:Integer.parseInt(numOfHotelField.getText()));
+                
+                hotelSearchConditions.restHotelNumber=(numOfHotelField.getText().equals("")?0:Integer.parseInt(numOfHotelField.getText()));
                 String star=starBox.getValue();//
                 String markString=markBox.getValue();//
                 String priceString=priceBox.getValue();//

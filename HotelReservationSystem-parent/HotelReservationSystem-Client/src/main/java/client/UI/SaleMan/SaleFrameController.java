@@ -1,6 +1,8 @@
 package client.UI.SaleMan;
 
 import static client.UI.Runner.Start.person;
+import client.UI.SaleMan.Order.OrderController;
+import client.UI.SaleMan.Strategy.StrategyController;
 import client.businessLogicService.User_Factory;
 import java.io.File;
 import java.io.IOException;
@@ -25,24 +27,23 @@ public class SaleFrameController {
     private Button exitButton;
     @FXML
 	public void  clickStrategy() throws IOException {
-		change.getChildren().clear();
-		add=FXMLLoader.load((new File("src/main/java/client/UI/SaleMan/Strategy/Strategy.fxml")).toURL());
-                change.getChildren().add(add );
+            FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/SaleMan/Strategy/Strategy.fxml").toURL()));
+            all=fXMLLoader.load();           
+            StrategyController sc=fXMLLoader.getController();     
 	}
 	
     @FXML
 	public void clickOrder() throws IOException{
-		change.getChildren().clear();
-                add=FXMLLoader.load((new File("src/main/java/client/UI/SaleMan/Order/Order.fxml")).toURL());
-                change.getChildren().add(add);
+            FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/SaleMan/Order/Order.fxml").toURL()));
+            all=fXMLLoader.load();           
+            OrderController oc=fXMLLoader.getController();    
 	}
         
     @FXML
         public void clickCharge() throws IOException{
-                change.getChildren().clear();
-                add=FXMLLoader.load((new File("src/main/java/client/UI/SaleMan/Charge/Charge.fxml")).toURL());
-                change.getChildren().add(add);
-             
+            FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/SaleMan/Charge/Charge.fxml").toURL()));
+            all=fXMLLoader.load();           
+            StrategyController sc=fXMLLoader.getController();    
         }
 
     @FXML

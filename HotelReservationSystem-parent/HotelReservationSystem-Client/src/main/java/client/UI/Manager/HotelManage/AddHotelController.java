@@ -52,12 +52,6 @@ public class AddHotelController {
     public void initialize(){
         area.getItems().addAll("鼓楼","建邺","栖霞","玄武","浦口");
     }
-    public void AddHotel() throws MalformedURLException, IOException{
-        all.getChildren().clear();
-	add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/HotelManage/AddHotel.fxml").toURL()));
-        all.getChildren().add(add );
-    }
-    
     public void clickAddHotelR() throws IOException{
         HotelPO po=new HotelPO();
         po.setAddress(address.getText());

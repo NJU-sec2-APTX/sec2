@@ -1,11 +1,5 @@
 package client.UI.Manager.SaleManage;
 
-import client.UI.Runner.Start;
-import client.businessLogicService.User_Factory;
-import common.otherEnumClasses.ResultMessage;
-import common.otherEnumClasses.UserRole;
-import common.po.UserPO;
-import common.vo.UserVO;
 import java.io.File;
 import java.io.IOException;
 
@@ -33,26 +27,26 @@ public class SaleManageController {
         
         //新增营销人员
 	public void  AddSale() throws IOException {
-		all.getChildren().clear();
-		add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/SaleManage/AddSale.fxml").toURL()));
-                all.getChildren().add(add );
+            FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/Manager/SaleManage/AddSale.fxml").toURL()));
+            all=fXMLLoader.load();           
+            AddSaleController asc=fXMLLoader.getController();            
 	}                                  
         //删除营销人员
 	public void DeleteSale() throws IOException{
-		all.getChildren().clear();
-                add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/SaleManage/DeleteSale.fxml").toURL()));
-                all.getChildren().add(add);
+            FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/Manager/SaleManage/DeleteSale.fxml").toURL()));
+            all=fXMLLoader.load();           
+            DeleteSaleController dsc=fXMLLoader.getController();           
 	}            
         //修改营销人员信息
         public void ChangeSale() throws IOException{
-                all.getChildren().clear();
-                add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/SaleManage/ChangeSale.fxml").toURL()));
-                all.getChildren().add(add);
+            FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/Manager/SaleManage/ChangeSale.fxml").toURL()));
+            all=fXMLLoader.load();           
+            ChangeSaleController csc=fXMLLoader.getController();     
         }                 
         //查看营销人员
         public void GetSale() throws IOException{
-                all.getChildren().clear();
-                add=FXMLLoader.load((new File("src/main/java/client/UI/Manager/SaleManage/GetSale.fxml").toURL()));
-                all.getChildren().add(add);
+            FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/Manager/SaleManage/GetSale.fxml").toURL()));
+            all=fXMLLoader.load();           
+            GetSaleController gsc=fXMLLoader.getController();     
         }                           
 }

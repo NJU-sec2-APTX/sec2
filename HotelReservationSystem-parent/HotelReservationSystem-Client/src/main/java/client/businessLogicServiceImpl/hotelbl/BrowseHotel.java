@@ -26,7 +26,6 @@ public class BrowseHotel {
 					hotelVOs.add(new HotelVO(hotelPO,false));
 				}
 			}//标记每个酒店是否曾预定过
-                        System.out.println(hotelVOs.get(0).id);
 			if(searchItems.onlyEverReserved){
 				ArrayList<HotelVO> vos = new ArrayList<HotelVO>();
 				for(HotelVO hotelVO : hotelVOs){
@@ -38,7 +37,6 @@ public class BrowseHotel {
 			}
 		} catch (RemoteException e) {
                 e.printStackTrace();}
-                System.out.println(hotelVOs.get(0).id);
 		return hotelVOs;
 	}
 	

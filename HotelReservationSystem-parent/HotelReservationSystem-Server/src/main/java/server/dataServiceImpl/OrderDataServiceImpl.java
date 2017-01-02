@@ -119,11 +119,13 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 				+ po.getPlanExecuteTime() + "','" + "','" + po.getLatestDoneTime() + "','" + po.getNumberOfPerson()
 				+ "','" + po.isHasChild() + "','" + po.getNumOfRoom() + "')";
 		data = new DBHelper(sql);
+                System.out.println(sql);
 		try {
 			if (data.pst.execute()) {
 				return true;
 			}
 		} catch (SQLException e) {
+                    e.printStackTrace();
 		}
 		return false;
 	}

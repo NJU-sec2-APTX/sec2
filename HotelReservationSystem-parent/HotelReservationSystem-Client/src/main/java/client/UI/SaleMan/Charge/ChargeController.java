@@ -28,6 +28,9 @@ public class ChargeController {
         Label result;
    
         @FXML
+        public void initialize(){
+            
+        }
 	public void  Charge() throws IOException, Exception {
 		ResultMessage rm=User_Factory.getWebsiteSalesController(Start.person.id).recharge(GetId(), GetMoney());
                 if(rm==ResultMessage.Success){

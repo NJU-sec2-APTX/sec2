@@ -7,12 +7,8 @@ package client.UI.SaleMan.Order;
 
 import client.businessLogicService.OrderFactory;
 import common.vo.OrderVO;
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;

@@ -10,6 +10,7 @@ import client.UI.Runner.Start;
 import client.businessLogicService.HotelFactory;
 import client.businessLogicService.MemberFactory;
 import client.businessLogicService.OrderFactory;
+import com.sun.net.httpserver.Authenticator;
 import common.otherEnumClasses.UserRole;
 import common.vo.HotelVO;
 import common.vo.MemberVO;
@@ -67,15 +68,20 @@ public class MakeOrderController {
     private CheckBox childrenCheckButton;
     @FXML
     private AnchorPane basePanel;
-    
+    boolean success;
     /*
     *提交订单
     */
     @FXML
     private void okButtonHandler(ActionEvent event) {
-       if( calculate()){
-           OrderFactory.getOrderService().createOrder(addOrderVO, Start.person.id);
-       }
+        if(success=success=true){
+             OrderFactory.getOrderService().createOrder(addOrderVO, Start.person.id);
+             tipLabel.setText("生成成功");
+        }else{
+            tipLabel.setText("生成失败");
+        }
+          
+          
     }
 
     @FXML
@@ -86,15 +92,16 @@ public class MakeOrderController {
      /*
     *返回是否符合订单要求
     */
-    private boolean calculate(){
+    private void  calculate(){
             if(singleBox.getValue().equals(0)&&douBox.getValue().equals(0)&&famBox.equals(0)){
                 tipLabel.setText("请输入房间");
-                return false;
+                success=false;
             }else if(Integer.parseInt(numOfPersonField.getText())<0){
                 tipLabel.setText("请输入入住人数");
             }else{
                 if (memberVO.getCredit()<=0) {
                     tipLabel.setText("用户信用值不足");
+                    success=false;
                     tipLabel.setVisible(true);
                 }else{
                     System.out.println(101+""+(hotelVO==null));
@@ -102,17 +109,17 @@ public class MakeOrderController {
                      System.out.println(101+""+(hotelVO.name==null));
                     addOrderVO.hotel=hotelVO.name;
                     String room;
-                    if (singleBox.getValue()==null) {
+                    if (singleBox.getValue().equals("")) {
                         room="0/";
                     }else{
                         room=singleBox.getValue() +"/";
                     }
-                    if (douBox.getValue()==null) {
+                    if (douBox.getValue().equals("")) {
                         room =room+"0/";
                     }else{
                         room=room+douBox.getValue()+"/";
                     }
-                    if(famBox.getValue()==null){
+                    if(famBox.getValue().equals("")){
                         room=room+"0";
                     }else{
                         room=room+famBox.getValue();
@@ -126,12 +133,12 @@ public class MakeOrderController {
                 addOrderVO.checkInTime=LocalDateToDate.localDateToDate(inDatepicker.getValue());
                 addOrderVO.checkOutTime=LocalDateToDate.localDateToDate(outDatePicker.getValue());
                 addOrderVO.hasChild=childrenCheckButton.isSelected();
-                
-                moneyLabel.setText(OrderFactory.getOrderService().calPrice(addOrderVO).price+"");//
-                return true;
+                addOrderVO.price=OrderFactory.getOrderService().calPrice(addOrderVO).price;
+                moneyLabel.setText(addOrderVO.price+"");//
+                success=true;
                 }
             }
-        return  false;
+            success =false;
     }
     
     @FXML

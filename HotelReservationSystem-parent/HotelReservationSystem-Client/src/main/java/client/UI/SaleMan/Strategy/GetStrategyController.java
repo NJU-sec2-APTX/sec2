@@ -32,12 +32,6 @@ public class GetStrategyController {
     public void initialize(){
         Gtype.getItems().addAll("会员等级制度","特殊时段优惠策略","VIP商圈优惠策略");
     }
-    public void GetStrategy() throws IOException{
-        all.getChildren().clear();
-        add=FXMLLoader.load((new File("src/main/java/client/UI/SaleMan/Strategy/GetStrategy.fxml").toURL()));
-        all.getChildren().add(add);
-    }
-
     @FXML
     public void clickGetStrategyR() throws Exception{
         String Type=Gtype.getValue();

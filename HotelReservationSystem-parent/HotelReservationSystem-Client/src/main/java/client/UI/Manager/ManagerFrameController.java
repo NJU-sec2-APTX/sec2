@@ -1,5 +1,6 @@
 package client.UI.Manager;
 
+import client.UI.Manager.HotelManage.AddHotelController;
 import static client.UI.Runner.Start.person;
 import client.businessLogicService.User_Factory;
 import java.io.File;
@@ -76,15 +77,16 @@ public class ManagerFrameController {
 
     @FXML
     private void clickAddButton(ActionEvent event) throws IOException {
-        HotelManageController hmc=new HotelManageController();
-        hmc.AddHotel();
+        FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/Manager/HotelManage/AddHotel.fxml").toURL()));
+            all=fXMLLoader.load();           
     }
 
 
     @FXML
     private void clickModifyButton(ActionEvent event) throws IOException {
-        HotelManageController hmc=new HotelManageController();
-        hmc.ChangeHotel();
+        
+         FXMLLoader fXMLLoader =new FXMLLoader((new File("src/main/java/client/UI/Manager/HotelManage/ChangeHotel.fxml").toURL()));
+            all=fXMLLoader.load();   
     }
 
     @FXML

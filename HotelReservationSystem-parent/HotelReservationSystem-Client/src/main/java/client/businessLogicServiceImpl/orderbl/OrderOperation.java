@@ -67,6 +67,7 @@ public class OrderOperation implements OrderblService {
                     System.out.println(vo.price);
                     vo.price = calprice.calPrice(vo).getfirstStrategy().getPrice();
 		} catch (RemoteException e) {
+                    e.printStackTrace();
 		}
                 System.out.println(vo.price);
 		return vo;
@@ -83,7 +84,7 @@ public class OrderOperation implements OrderblService {
 			vo.id = clientId + cal.get(Calendar.YEAR) + cal.get(Calendar.MONTH) + cal.get(Calendar.DATE)
 					+ cal.get(Calendar.HOUR) + cal.get(Calendar.MINUTE);
 
-			HotelPO hotel = Client.getHotelDataService().getHotelInfo(vo.hotel);
+			HotelPO hotel = Client.getHotelDataService().getHotelInfo(vo.hotelId);
 			ArrayList<RoomCondition> rooms = hotel.getRooms();
 			String num = vo.numOfRoom;
 			int temp = num.indexOf('/');
@@ -99,6 +100,7 @@ public class OrderOperation implements OrderblService {
 				return vo;
 			}
 		} catch (RemoteException e) {
+                    e.printStackTrace();
 		}
 		return null;
 	}

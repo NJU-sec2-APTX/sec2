@@ -41,6 +41,7 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 				po.setAssessNum(rs.getInt(9));
 			}
                         po = getRooms(po);
+                        data.close();
                         return po;
 			
 		} catch (SQLException e) {
@@ -62,12 +63,13 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 		RoomCondition r = new RoomCondition();
 		try {
 			String sql = "select * from room where id='" + po.getId() + s + "'";
-			data = new DBHelper(sql);
-			rs = data.pst.executeQuery(sql);
-			if (rs.next()) {
-				r = new RoomCondition(rs.getString(2), RoomType.get(rs.getString(3)), rs.getDouble(4), rs.getInt(5));
-				r.restNum = rs.getInt(6);
+			DBHelper database = new DBHelper(sql);
+			ResultSet datars = database.pst.executeQuery(sql);
+			if (datars.next()) {
+				r = new RoomCondition(datars.getString(2), RoomType.get(datars.getString(3)), datars.getDouble(4), datars.getInt(5));
+				r.restNum = datars.getInt(6);
 			}
+                        database.close();
 		} catch (SQLException e) {
                     e.printStackTrace();
 		}
@@ -79,21 +81,25 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 		String sql = "update hotel set" 
 				+ " name = '" + po.getName() + "'"
 				+", area = '" + po.getArea() + "'"
-				+", address = '" + po.getArea() + "'"
+				+", address = '" + po.getAddress() + "'"
 				+", introduction = '" + po.getIntroduction() + "'"
-				+", price = '" + po.getPrice() + "'"
-				+", star = '" + po.getStar() + "'"
-				+", mark = '" + po.getMark() + "'"
-				+", assessNum = '" + po.getAssessNum() + "'"
-				+" where id='" + po.getId() + "'";
+				+", price = " + po.getPrice() 
+				+", star = " + po.getStar() 
+				+", mark = " + po.getMark() 
+				+", assessNum = " + po.getAssessNum() 
+				+" where id='" + po.getId() + "';";
 		data = new DBHelper(sql);
+                System.out.println(sql);
 		try {
-			if (data.pst.execute()) {
+			if (data.pst.execute(sql)) {
+                                setRooms(po);
+                                data.close();
 				return true;
 			}
-			setRooms(po);
 		} catch (SQLException e) {
+                    e.printStackTrace();
 		}
+                System.out.println("this");
 		return false;
 	}
 
@@ -107,13 +113,18 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 	private boolean setRoom(String id, RoomCondition r) {
 		String sql = "update room set"
 				+" price = '" + r.price + "'"
-				+" totalNum = " + r.totalNum + "'"
-				+" restNum = " + r.restNum + "'"
-				+"where id='" + id + "'";
-		data = new DBHelper(sql);
+				+", totalNum = '" + r.totalNum + "'"
+				+", restNum = '" + r.restNum + "'"
+				+" where id='" + id + "';";
+		DBHelper database = new DBHelper(sql);
+                System.out.println(sql);
 		try {
-			return data.pst.execute();
+                    System.out.println("--------");
+                    boolean label=database.pst.execute(sql);
+                    database.close();
+			return label;
 		} catch (SQLException e) {
+                    e.printStackTrace();
 		}
 		return false;
 	}
@@ -129,12 +140,24 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 				+ "'&&star <= '" + searchItems.starUp + "'&&star >= '" + searchItems.starDown
 				+ "'&&mark <= '" + searchItems.markUp + "'&&mark >= '" + searchItems.markDown
 				+ "'";
+                System.out.println(sql);
 		try {
 			data = new DBHelper(sql);
 			rs = data.pst.executeQuery(sql);
+                        HotelPO po = new HotelPO();
 			while(rs.next()){
-				pos.add(getRooms(getHotel(rs)));
+                            po.setId(rs.getString(1));
+                            po.setName(rs.getString(2));
+                            po.setArea(rs.getString(3));
+                            po.setAddress(rs.getString(4));
+                            po.setIntroduction(rs.getString(5));
+                            po.setPrice(rs.getDouble(6));
+                            po.setStar(rs.getInt(7));
+                            po.setMark(rs.getDouble(8));
+                            po.setAssessNum(rs.getInt(9));
+                            pos.add(getRooms(po));
 			}
+                        data.close();
 		} catch (Exception e) {
                 e.printStackTrace();
                 }
@@ -149,9 +172,11 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 		data = new DBHelper(sql);
 		try {
 			if (data.pst.execute()&&addRooms(po.getId())) {
+                            data.close();
 				return true;
 			}
 		} catch (SQLException e) {
+                    e.printStackTrace();
 		}
 		return false;
 	}
@@ -165,9 +190,10 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 		String sql = "insert into room (id,hotelId,roomtype,price,totalNum,restNum) values ('" 
 				+ hotelId + type + "','" + hotelId + "','" + type + "','" 
 				+ "0.0" + "','" + "0" + "','" + "0" +"')";
-		data = new DBHelper(sql);
+		DBHelper database = new DBHelper(sql);
 		try {
-			if (data.pst.execute()) {
+			if (database.pst.execute()) {
+                            database.close();
 				return true;
 			}
 		} catch (SQLException e) {}
